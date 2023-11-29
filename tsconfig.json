@@ -1,0 +1,22 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "isolatedModules": true,
+    "ignoreDeprecations": "5.0",
+    "moduleResolution": "node",
+    "importsNotUsedAsValues": "preserve",
+    "paths": {
+      "$stores/*": ["./src/stores/*"],
+      "$ts/*": ["./src/ts/*"],
+      "$types/*": ["./src/types/*"]
+    }
+  },
+  "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

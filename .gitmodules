@@ -1,0 +1,3 @@
+[submodule "src/state/Boot"]
+	path = src/state/Boot
+	url = https://github.com/IzK-ArcOS/v6-Boot

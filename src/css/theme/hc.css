@@ -1,0 +1,124 @@
+:root .theme-hc {
+  --glass-blur: 0px;
+  --fg: #ff0;
+  --win-bg: #000;
+  --win-border-rad: 0px;
+  --win-border: #0ff 1px solid;
+  --win-border-light: #ff0 1px solid;
+  --glass-bg: #000;
+  --glass-alt-bg: #000;
+  --glass-ultralight: #000;
+  --glass-ultradark: #000;
+  --darkened-overlay: #0004;
+  --darkened-overlay-alt: #0004;
+  --startmenu-bg: var(--glass-ultradark);
+  --startmenu-applist-item-bg: transparent;
+  --startmenu-applist-item-bg-hover: #ffffff05;
+  --startmenu-applist-item-bg-active: #0001;
+  --button-border-rad: 0px;
+  --button-bg: #440;
+  --button-hover-bg: #660;
+  --button-active-bg: #220;
+  --button-glass-bg: #440;
+  --button-glass-hover-bg: #660;
+  --button-glass-active-bg: #220;
+  --clr-red-bg: #300;
+  --clr-red-fg: #f00;
+  --clr-green-bg: #030;
+  --clr-green-fg: #0f0;
+  --clr-yellow-bg: #330;
+  --clr-yellow-fg: #ff0;
+  --clr-orange-bg: #331900;
+  --clr-orange-fg: #fa0;
+  --clr-blue-bg: #003;
+  --clr-blue-fg: #00f;
+  --clr-aqua-bg: #033;
+  --clr-aqua-fg: #0ff;
+  --accent: #0ff !important;
+  --accent-dark: #aff;
+  --accent-light: #0aa;
+}
+
+.theme-hc {
+  font-family: "Source Code Pro", monospace;
+}
+
+.theme-hc window div.body button {
+  border-radius: 0;
+}
+
+.theme-hc window div.body button.material-icons-round {
+  color: #0ff !important;
+}
+
+.theme-hc window div.body button:not(.material-icons-round),
+.theme-hc div.actioncenter div.quicksettings button {
+  border: #3f3 1px solid !important;
+}
+
+.theme-hc window div.body button.selected:not(.material-icons-round),
+.theme-hc window#SettingsApp div.wallpaper,
+.theme-hc window#SettingsApp button.themerenderer,
+.theme-hc window#SettingsApp div.about-page div.section {
+  border: #ff0 1px solid !important;
+}
+
+.theme-hc window#DesktopWallpaper div.wallpaper {
+  background-image: none !important;
+  background-color: #021;
+}
+
+.theme-hc window,
+.theme-hc window div.body input,
+.theme-hc window div.body select {
+  border: #0ff 1px solid !important;
+}
+
+.theme-hc window div.titlebar {
+  background-color: #006;
+}
+
+.theme-hc h1,
+.theme-hc h2,
+.theme-hc h3,
+.theme-hc h4,
+.theme-hc h5 {
+  color: #0f0 !important;
+  font-weight: 900 !important;
+}
+
+.theme-hc div.newtb,
+.theme-hc div.actioncenter,
+.theme-hc div.startmenu,
+.theme-hc div.startmenu > * {
+  border: #0ff 1px solid !important;
+}
+
+.theme-hc > div.wallpaper {
+  background-image: none !important;
+}
+
+.theme-hc hr {
+  border: #0ff 1px solid !important;
+}
+
+.theme-hc window#FileManager div.topbar {
+  background-color: #003 !important;
+}
+
+.theme-hc div.startmenu div.left button.expander {
+  border: #0f0 1px solid !important;
+}
+
+.theme-hc div.startmenu div.left button:disabled {
+  color: #f0f !important;
+  opacity: 1 !important;
+  filter: unset;
+}
+
+.theme-hc div.arcfind-wrapper div.apps button {
+  border: #ff0 1px solid;
+}
+.theme-hc window:not(.custom):not(.headless):not(.glass) div.body {
+  border-top: #0ff 1px solid !important;
+}

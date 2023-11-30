@@ -1,0 +1,9 @@
+@import url("./elements.css");
+@import url("./themes.css");
+@import url("./globals.css");
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+  outline: none;
+}

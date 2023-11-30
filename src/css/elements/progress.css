@@ -1,0 +1,48 @@
+div.progressbar {
+  position: relative;
+  width: 250px;
+  height: 5px;
+  overflow: hidden;
+  background-color: #222;
+  border-radius: 2.5px;
+}
+
+div.progressbar > div {
+  height: 5px;
+  background: #115cd6;
+  border-radius: 2.5px;
+}
+
+div.progressbar > div:not(.value) {
+  position: absolute;
+}
+
+.inc {
+  animation: increase 2s infinite;
+}
+
+.dec {
+  animation: decrease 2s 0.5s infinite;
+}
+
+@keyframes increase {
+  from {
+    left: -5%;
+    width: 5%;
+  }
+  to {
+    left: 130%;
+    width: 100%;
+  }
+}
+
+@keyframes decrease {
+  from {
+    left: -80%;
+    width: 80%;
+  }
+  to {
+    left: 110%;
+    width: 10%;
+  }
+}

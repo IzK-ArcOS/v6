@@ -14,6 +14,7 @@ CurrentLogItem.subscribe((v) => {
   /* if (ARCOS_MODE != "development") return; */
   document.title = `ArcOS v6 | ${v.source} - ${v.msg}`;
 });
+
 export function Log(source: string, msg: string, level = LogLevel.info) {
   const data: LogItem = { source, msg, level };
 
@@ -31,6 +32,7 @@ export function Log(source: string, msg: string, level = LogLevel.info) {
   });
 
   if (data.level == LogLevel.critical)
+    // TODO: restore this
     /* sendReport({
       includeUserData: false,
       includeApi: true,

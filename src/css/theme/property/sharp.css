@@ -1,0 +1,5 @@
+.sharp *,
+.sharp *::before,
+.sharp *::after {
+  border-radius: 0px !important;
+}

@@ -18,6 +18,7 @@ export default defineConfig({
       $assets: resolve(__dirname, "./src/assets"),
       $state: resolve(__dirname, "./src/state"),
       $lib: resolve(__dirname, "./src/lib"),
+      $css: resolve(__dirname, "./src/css"),
     },
   },
 });

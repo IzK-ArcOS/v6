@@ -1,0 +1,59 @@
+:root .theme-amoled {
+  --fg: #ddd;
+  --win-bg: #000;
+  --win-border-rad: 7.5px;
+  --win-border: #333 1px solid;
+  --win-border-light: #5554 1px solid;
+  --glass-bg: #00000083;
+  --glass-alt-bg: #0000003d;
+  --glass-ultralight: #0004;
+  --glass-ultradark: #0008;
+  --darkened-overlay: #0002;
+  --darkened-overlay-alt: #0004;
+  --startmenu-bg: var(--glass-ultradark);
+  --startmenu-applist-item-bg: transparent;
+  --startmenu-applist-item-bg-hover: #ffffff05;
+  --startmenu-applist-item-bg-active: #0001;
+  --button-border-rad: 4px;
+  --button-bg: #252525;
+  --button-hover-bg: #2b2b2b;
+  --button-active-bg: #0a0a0a;
+  --button-glass-bg: rgba(255, 255, 255, 0.1);
+  --button-glass-hover-bg: #fff3;
+  --button-glass-active-bg: #1117;
+  --clr-red-bg: #452929;
+  --clr-red-fg: #ff7e7e;
+  --clr-green-bg: #283e28;
+  --clr-green-fg: #a8ffa6;
+  --clr-yellow-bg: #49432e;
+  --clr-yellow-fg: #ffe073;
+  --clr-orange-bg: #543d1b;
+  --clr-orange-fg: #ffad32;
+  --clr-blue-bg: #273a48;
+  --clr-blue-fg: #96d3ff;
+  --clr-aqua-fg: #79ffd0;
+  --clr-aqua-bg: #214538;
+}
+
+:root .theme-amoled.noglass {
+  --glass-bg: #000;
+  --glass-alt-bg: #111;
+  --glass-ultralight: #000;
+  --glass-ultradark: #000;
+}
+
+.theme-amoled window.window div.body input,
+.theme-amoled window.window div.body select {
+  border: var(--button-bg) 1px solid;
+}
+
+.theme-amoled div.newtb::after,
+.theme-amoled div.actioncenter::after,
+.theme-amoled div.startmenu::after {
+  opacity: 0.1;
+}
+/* 
+.theme-amoled div.newtb {
+  background-color: #ffffff07;
+}
+ */

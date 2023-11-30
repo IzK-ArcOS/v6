@@ -3,4 +3,6 @@
   import StateRenderer from "$lib/StateRenderer.svelte";
 </script>
 
-<StateRenderer handler={PrimaryState} />
+<div class="app theme-dark">
+  <StateRenderer handler={PrimaryState} />
+</div>

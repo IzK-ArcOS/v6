@@ -1,3 +1,4 @@
+import { State } from "$types/state";
 import { StateHandler } from ".";
 import { Log } from "../console";
 

@@ -1,4 +1,6 @@
 import { UserToken } from "$ts/stores/user";
+import { UserDataResponse } from "$types/response";
+import { UserData } from "$types/user";
 import { getServerUrl, makeTokenOptions } from "../util";
 import axios from "axios";
 

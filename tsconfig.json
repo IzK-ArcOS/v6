@@ -15,7 +15,9 @@
       "$stores/*": ["./src/stores/*"],
       "$ts/*": ["./src/ts/*"],
       "$types/*": ["./src/types/*"],
-      "$assets/*": ["./src/assets/*"]
+      "$assets/*": ["./src/assets/*"],
+      "$state/*": ["./src/state/*"],
+      "$lib/*": ["./src/lib/*"]
     }
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],

@@ -1,4 +1,5 @@
 import { ConnectedServer } from "$ts/stores/server";
+import { Params, Server } from "$types/server";
 
 export function getServerUrl(
   path: string,

@@ -1,6 +1,6 @@
 import { StateHandler } from "$ts/states";
 import { States } from "$types/state";
-import Boot from "../../state/Boot/Boot.svelte";
+import Boot from "$state/Boot/Boot.svelte";
 
 export const primaryStates: States = new Map([
   [

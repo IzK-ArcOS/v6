@@ -1,4 +1,5 @@
 import { Store } from "$ts/writable";
+import { Server } from "$types/server";
 
 export const ConnectedServer = Store<Server>(null);
 

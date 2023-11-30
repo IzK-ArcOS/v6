@@ -1,4 +1,5 @@
 import { TEST_MODES } from "$ts/stores/server";
+import { Server, ServerMeta } from "$types/server";
 import { getServerUrl } from "./util";
 import axios from "axios";
 

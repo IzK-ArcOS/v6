@@ -2,6 +2,7 @@ import { getServerUrl } from "../util";
 import axios from "axios";
 import { getUserData } from "./data";
 import { UserData, UserName, UserToken } from "$ts/stores/user";
+import { CreateTokenResponse } from "$types/response";
 
 export async function Authenticate(username: string, password: string) {
   const url = getServerUrl("/v2/token");

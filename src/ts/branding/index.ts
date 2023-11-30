@@ -1,6 +1,7 @@
 import { Log } from "$ts/console";
 import { ReleaseLogo } from "$ts/images/branding";
 import { MODES } from "$ts/stores/branding";
+import { LogLevel } from "$types/console";
 
 export let ARCOS_MODE = "release";
 

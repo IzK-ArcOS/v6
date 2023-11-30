@@ -1,11 +1,11 @@
-interface LogItem {
+export interface LogItem {
   timestamp?: number;
   level: LogLevel;
   msg: string;
   source: string;
 }
 
-enum LogLevel {
+export enum LogLevel {
   info,
   warn,
   error,

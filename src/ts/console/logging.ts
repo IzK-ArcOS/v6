@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
 import { LogLevelData } from "./store";
 import dayjs from "dayjs";
+import { type LogItem, LogLevel } from "../../types/console";
 
 export const LogStore = writable<LogItem[]>([]);
 export const CurrentLogItem = writable<LogItem>({

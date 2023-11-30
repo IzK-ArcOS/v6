@@ -14,7 +14,8 @@
     "paths": {
       "$stores/*": ["./src/stores/*"],
       "$ts/*": ["./src/ts/*"],
-      "$types/*": ["./src/types/*"]
+      "$types/*": ["./src/types/*"],
+      "$assets/*": ["./src/assets/*"]
     }
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],

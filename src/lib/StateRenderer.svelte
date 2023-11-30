@@ -1,5 +1,6 @@
 <script lang="ts">
   import { StateHandler } from "$ts/states";
+  import { State } from "$types/state";
   import { onMount } from "svelte";
 
   export let handler: StateHandler;

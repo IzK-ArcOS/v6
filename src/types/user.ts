@@ -1,4 +1,4 @@
-interface UserData {
+export interface UserData {
   sh: {
     taskbar: {
       centered: boolean; //done
@@ -42,7 +42,7 @@ interface UserData {
     anim: boolean; //done
     noGlass: boolean; //done
     noQuickSettings: boolean;
-    userThemes?: ThemeStore;
+    userThemes?: /* ThemeStore */ any; // TODO: ADD THEMESTORE INTERFACES BACK
     compactContext: boolean;
     showHiddenApps?: boolean;
   };
@@ -66,3 +66,14 @@ interface UserData {
 
   appdata: AppData;
 }
+
+export type AppData = {
+  experiments: { [key: string]: boolean };
+  [key: string]: ScopedAppData;
+};
+
+export type ScopedAppData = {
+  [key: string]: number | boolean | string | object;
+};
+
+export type AllUsers = { [name: string]: UserData };

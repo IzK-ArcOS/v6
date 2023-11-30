@@ -15,6 +15,7 @@ export default defineConfig({
       $stores: resolve(__dirname, "./src/stores"),
       $ts: resolve(__dirname, "./src/ts"),
       $types: resolve(__dirname, "./src/types"),
+      $assets: resolve(__dirname, "./src/assets"),
     },
   },
 });

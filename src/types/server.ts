@@ -1,4 +1,4 @@
-interface Server {
+export interface Server {
   secure: boolean;
   port: number;
   host: string;
@@ -6,10 +6,10 @@ interface Server {
   meta?: ServerMeta;
 }
 
-interface ServerMeta {
+export interface ServerMeta {
   protected: boolean;
   revision: number;
   name: string;
 }
 
-type Params = Record<string, any>;
+export type Params = Record<string, any>;

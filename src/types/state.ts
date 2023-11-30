@@ -1,4 +1,4 @@
-interface State {
+export interface State {
   name: string;
   content: any;
   attribs: { [key: string]: boolean | string | number };
@@ -7,4 +7,4 @@ interface State {
   image?: string;
 }
 
-type States = Map<string, State>;
+export type States = Map<string, State>;

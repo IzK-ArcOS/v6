@@ -13,7 +13,7 @@
 {#if handler}
   <div class="state-renderer {handler.id}">
     {#if state && state.content}
-      <svelte:component this={state.content} thisState={state} />
+      <svelte:component this={state.content} thisState={state} {handler} />
     {/if}
   </div>
 {/if}

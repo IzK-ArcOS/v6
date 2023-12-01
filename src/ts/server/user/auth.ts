@@ -1,12 +1,20 @@
 import { getServerUrl } from "../util";
 import axios from "axios";
 import { getUserData } from "./data";
-import { UserData, UserName, UserToken } from "$ts/stores/user";
+import { UserDataStore, UserName, UserToken } from "$ts/stores/user";
 import { CreateTokenResponse } from "$types/response";
+import { Log } from "$ts/console";
 
-export async function Authenticate(username: string, password: string) {
+export async function Authenticate(
+  username: string,
+  password: string
+): Promise<boolean> {
+  Log("server/user/auth", `Attempting to authenticate "${username}"`);
+
   const url = getServerUrl("/v2/token");
   const formData = new FormData();
+
+  if (!url) return false;
 
   formData.set("username", username);
   formData.set("password", password);
@@ -22,7 +30,7 @@ export async function Authenticate(username: string, password: string) {
 
   if (!userdata) return false;
 
-  UserData.set(userdata);
+  UserDataStore.set(userdata);
   UserName.set(username);
   UserToken.set(token);
 

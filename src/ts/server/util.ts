@@ -6,6 +6,8 @@ export function getServerUrl(
   params?: Params,
   server?: Server
 ): string {
+  server ||= ConnectedServer.get();
+
   const protocol = server.secure ? "https" : "http";
   const hostname = server.host || ConnectedServer.get();
   const port = server.port || 3333;

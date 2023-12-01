@@ -15,9 +15,10 @@ export class StateWatcher {
   }
 
   public watch(event: (state: State) => any) {
+    const id = this.handler.id;
     Log(
-      "ts/state/watch: StateWatcher.watch",
-      `${this.handler.id}: Adding watcher: ${event.toString()}`
+      "ts/state/watch",
+      `StateWatcher.watch ${id}: Adding watcher: ${event.toString()}`
     );
 
     WATCHERS.push(event);
@@ -26,10 +27,12 @@ export class StateWatcher {
   }
 
   public async trigger(state: State) {
+    const id = this.handler.id;
+
     for (let i = 0; i < WATCHERS.length; i++) {
       Log(
-        "ts/states/watch: StateWatcher.trigger",
-        `${this.handler.id}: Triggering watcher at index ${i}: state changing to ${state.key}`
+        "ts/states/watch",
+        `StateWatcher.trigger ${id}: Triggering watcher at index ${i}: state changing to ${state.key}`
       );
 
       await WATCHERS[i](state);

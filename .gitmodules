@@ -1,3 +1,9 @@
 [submodule "src/state/Boot"]
 	path = src/state/Boot
 	url = https://github.com/IzK-ArcOS/v6-Boot
+[submodule "src/state/Crash"]
+	path = src/state/Crash
+	url = https://github.com/IzK-ArcOS/v6-Crash
+[submodule "src/state/Login"]
+	path = src/state/Login
+	url = https://github.com/IzK-ArcOS/v6-Login

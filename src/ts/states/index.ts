@@ -1,9 +1,14 @@
+import { manualCrash } from "$ts/bugrep/crash";
 import { Log } from "$ts/console";
+import { primaryStates } from "$ts/stores/state";
 import { Store } from "$ts/writable";
+import { LogLevel } from "$types/console";
 import { State, States } from "$types/state";
+import { StateWatcher } from "./watch";
 
 export class StateHandler {
   public readonly current = Store<State>();
+  public readonly watcher: StateWatcher;
 
   constructor(
     public readonly id: string,
@@ -12,11 +17,22 @@ export class StateHandler {
   ) {
     Log("ts/states", `Created StateHandler "${id}"`);
 
+    this.watcher = new StateWatcher(this);
+
     this.navigate(startState);
   }
 
   public navigate(stateKey: string) {
-    if (!this.store.has(stateKey)) return false;
+    Log("ts/states", `StateHandler.navigate: Navigating to "${stateKey}"`);
+
+    if (!this.store.has(stateKey)) {
+      manualCrash(
+        "ts/states",
+        `StateHandler.navigate: No such state ${stateKey}`
+      );
+
+      return false;
+    }
 
     const state = this.store.get(stateKey);
 
@@ -29,3 +45,5 @@ export class StateHandler {
     return true;
   }
 }
+
+export const PrimaryState = new StateHandler("ArcOS", primaryStates, "boot");

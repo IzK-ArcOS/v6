@@ -3,10 +3,7 @@ import { Log } from "../console";
 export let ARCOS_BUILD = "unknown";
 
 export async function getBuild() {
-  Log(
-    "branding/build: getBuild",
-    "Attempting to retrieve git hash from /build"
-  );
+  Log("branding/build", "Attempting to retrieve git hash from /build");
 
   try {
     const req = await (await fetch("./build")).text();

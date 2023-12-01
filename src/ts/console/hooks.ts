@@ -3,9 +3,19 @@ import { Log } from "./logging";
 import { checkLogString } from "./utils";
 
 export function setLoggingHooks() {
-  console.warn = (c: string, ...a: any) =>
-    checkLogString(c) && Log("Console", c + a.join(" "), LogLevel.warn);
+  Log("console/hooks", "Setting logging hooks");
 
-  console.error = (content: string, ...a: any[]) =>
-    Log("Console", content + a.join(" "), LogLevel.error);
+  console.warn = (content: string, ...a: any) => {
+    if (!checkLogString(content)) return;
+
+    const joined = a.join(" ");
+
+    Log("Console", `${content}${joined}`, LogLevel.warn);
+  };
+
+  console.error = (content: string, ...args: any[]) => {
+    const joinedArgs = args.join(" ");
+
+    Log("Console", `${content}${joinedArgs}`, LogLevel.warn);
+  };
 }

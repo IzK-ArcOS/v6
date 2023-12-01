@@ -1,3 +1,4 @@
+import { Log } from "$ts/console";
 import { makeTokenOptions, getServerUrl } from "../util";
 import axios from "axios";
 
@@ -5,6 +6,8 @@ export async function createUser(
   username: string,
   password: string
 ): Promise<boolean> {
+  Log("server/user/mutate", `Creating user "${username}"`);
+
   const url = getServerUrl("/v2/users");
 
   if (!url) return false;

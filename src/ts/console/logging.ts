@@ -1,7 +1,8 @@
 import { writable } from "svelte/store";
 import { LogLevelData } from "./store";
 import dayjs from "dayjs";
-import { type LogItem, LogLevel } from "$types/console";
+import { LogItem, LogLevel } from "../../types/console";
+import { ARCOS_MODE } from "$ts/metadata/mode";
 
 export const LogStore = writable<LogItem[]>([]);
 export const CurrentLogItem = writable<LogItem>({
@@ -11,7 +12,8 @@ export const CurrentLogItem = writable<LogItem>({
 });
 
 CurrentLogItem.subscribe((v) => {
-  /* if (ARCOS_MODE != "development") return; */
+  if (ARCOS_MODE != "development") return;
+
   document.title = `ArcOS v6 | ${v.source} - ${v.msg}`;
 });
 
@@ -31,16 +33,16 @@ export function Log(source: string, msg: string, level = LogLevel.info) {
     return currentLog;
   });
 
-  if (data.level == LogLevel.critical)
-    // TODO: restore this
-    /* sendReport({
+  // TODO: Restore BugRep logic
+  /*if (data.level == LogLevel.critical)
+    sendReport({
       includeUserData: false,
       includeApi: true,
       title: `Critical state`,
       body: `A log item with state CRITICAL was sent:\n${source}: ${msg}\n\nTS: ${timestamp}`,
     }); */
 
-    console.log(
-      `ArcOS: ${timestamp} [${levelCaption}] ${data.source}: ${data.msg}`
-    );
+  console.log(
+    `ArcOS: ${timestamp} [${levelCaption}] ${data.source}: ${data.msg}`
+  );
 }

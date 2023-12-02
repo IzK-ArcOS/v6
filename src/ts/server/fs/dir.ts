@@ -12,13 +12,16 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 
   if (!url || !token) return null;
 
-  const response = await axios.get(url, makeTokenOptions(token));
+  try {
+    const response = await axios.get(url, makeTokenOptions(token));
 
-  if (response.status !== 200) return null;
+    if (response.status !== 200) return null;
 
-  //!! THIS CODE IS NOT AT ALL DEFINITIVE OR WORKING
-
-  return response.data as UserDirectory;
+    //!! THIS CODE IS NOT AT ALL DEFINITIVE OR WORKING
+    return response.data as UserDirectory;
+  } catch {
+    return null;
+  }
 }
 
 export function getParentDirectory(p: string): string {

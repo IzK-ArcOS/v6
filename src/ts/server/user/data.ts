@@ -14,12 +14,16 @@ export async function getUserData(token?: string): Promise<UserData> {
 
   if (!token || !url) return;
 
-  const response = await axios.get<UserDataResponse>(
-    url,
-    makeTokenOptions(bearer)
-  );
+  try {
+    const response = await axios.get<UserDataResponse>(
+      url,
+      makeTokenOptions(bearer)
+    );
 
-  if (response.status !== 200) return null;
+    if (response.status !== 200) return null;
 
-  return response.data.properties;
+    return response.data.properties;
+  } catch {
+    return null;
+  }
 }

@@ -13,9 +13,13 @@ export async function createUser(
 
   if (!url) return false;
 
-  const req = await axios.post(url, { username, password });
+  try {
+    const req = await axios.post(url, { username, password });
 
-  return req.status === 200;
+    return req.status === 200;
+  } catch {
+    return false;
+  }
 }
 
 export async function deleteSelf(token: string): Promise<boolean> {
@@ -23,7 +27,11 @@ export async function deleteSelf(token: string): Promise<boolean> {
 
   if (!url) return false;
 
-  const response = await axios.delete(url, makeTokenOptions(token));
+  try {
+    const response = await axios.delete(url, makeTokenOptions(token));
 
-  return response.status === 200;
+    return response.status === 200;
+  } catch {
+    return false;
+  }
 }

@@ -20,20 +20,24 @@ export async function Authenticate(
   formData.set("username", username);
   formData.set("password", password);
 
-  const response = await axios.post<CreateTokenResponse>(url, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
+  try {
+    const response = await axios.post<CreateTokenResponse>(url, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
 
-  if (response.status !== 200) return false;
+    if (response.status !== 200) return false;
 
-  const token = response.data.access_token;
-  const userdata = await getUserData(token);
+    const token = response.data.access_token;
+    const userdata = await getUserData(token);
 
-  if (!userdata) return false;
+    if (!userdata) return false;
 
-  UserDataStore.set(userdata);
-  UserName.set(username);
-  UserToken.set(token);
+    UserDataStore.set(userdata);
+    UserName.set(username);
+    UserToken.set(token);
 
-  return true;
+    return true;
+  } catch {
+    return false;
+  }
 }

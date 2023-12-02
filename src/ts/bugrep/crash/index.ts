@@ -1,4 +1,5 @@
 import { Log } from "$ts/console";
+import { PrimaryState } from "$ts/states";
 import { CRASHING, CrashReport } from "$ts/stores/crash";
 import { ReportOptions } from "$types/bugrep";
 import { LogLevel } from "$types/console";
@@ -26,10 +27,10 @@ export function manualCrash(source: string, reason: string, stack?: string) {
   Log(`bugrep/crash`, `Error: ${source}: ${reason}`, LogLevel.error);
 
   CRASHING.set(true);
-  /* 
+
   setTimeout(() => {
     PrimaryState.navigate("crash");
-  }, 2000); */
+  }, 2000);
 
   if (import.meta.env.DEV)
     return Log(

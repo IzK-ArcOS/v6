@@ -2,7 +2,6 @@ import { manualCrash } from "$ts/bugrep/crash";
 import { Log } from "$ts/console";
 import { primaryStates } from "$ts/stores/state";
 import { Store } from "$ts/writable";
-import { LogLevel } from "$types/console";
 import { State, States } from "$types/state";
 import { StateWatcher } from "./watch";
 
@@ -13,7 +12,12 @@ export class StateHandler {
   public readonly startState: string;
   public readonly id: string;
 
-  constructor(id: string, store: States, startState: string) {
+  constructor(
+    id: string,
+    store: States,
+    startState: string,
+    preNavigate = true
+  ) {
     this.id = id;
     this.store = store;
     this.startState = startState;
@@ -21,9 +25,7 @@ export class StateHandler {
 
     this.watcher = new StateWatcher(this);
 
-    console.log(this.store);
-
-    this.navigate(startState);
+    if (preNavigate) this.navigate(startState);
   }
 
   public navigate(stateKey: string) {

@@ -1,6 +1,7 @@
 import { Log } from "$ts/console";
-import { makeTokenOptions, getServerUrl } from "../util";
+import { Endpoints } from "$ts/stores/endpoint";
 import axios from "axios";
+import { getServerUrl, makeTokenOptions } from "../util";
 
 export async function createUser(
   username: string,
@@ -8,7 +9,7 @@ export async function createUser(
 ): Promise<boolean> {
   Log("server/user/mutate", `Creating user "${username}"`);
 
-  const url = getServerUrl("/v2/users");
+  const url = getServerUrl(Endpoints.NewUsers);
 
   if (!url) return false;
 
@@ -18,7 +19,7 @@ export async function createUser(
 }
 
 export async function deleteSelf(token: string): Promise<boolean> {
-  const url = getServerUrl("/v2/users/me");
+  const url = getServerUrl(Endpoints.UserData);
 
   if (!url) return false;
 

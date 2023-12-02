@@ -1,7 +1,8 @@
-import { get } from "svelte/store";
-import { LogLevelData, LogStore } from "../console";
-import dayjs from "dayjs";
+import { LogLevelData } from "$ts/stores/console";
 import { LogItem, LogLevel } from "$types/console";
+import dayjs from "dayjs";
+import { get } from "svelte/store";
+import { LogStore } from "./logging";
 
 export type CollectorResult = { [key: string]: LogItem[] };
 export type IterableCollectorResult = [string, LogItem[]][];

@@ -11,7 +11,3 @@ export const CRASH_BLACKLIST = [
   "AxiosError",
   "ClientResponseError",
 ];
-
-CRASHING.subscribe((v) => {
-  console.log(v);
-});

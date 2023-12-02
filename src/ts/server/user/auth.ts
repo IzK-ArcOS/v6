@@ -1,9 +1,10 @@
-import { getServerUrl } from "../util";
-import axios from "axios";
-import { getUserData } from "./data";
+import { Log } from "$ts/console";
+import { Endpoints } from "$ts/stores/endpoint";
 import { UserDataStore, UserName, UserToken } from "$ts/stores/user";
 import { CreateTokenResponse } from "$types/response";
-import { Log } from "$ts/console";
+import axios from "axios";
+import { getServerUrl } from "../util";
+import { getUserData } from "./data";
 
 export async function Authenticate(
   username: string,
@@ -11,7 +12,7 @@ export async function Authenticate(
 ): Promise<boolean> {
   Log("server/user/auth", `Attempting to authenticate "${username}"`);
 
-  const url = getServerUrl("/v2/token");
+  const url = getServerUrl(Endpoints.Token);
   const formData = new FormData();
 
   if (!url) return false;

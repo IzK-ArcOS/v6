@@ -1,8 +1,8 @@
-import { writable } from "svelte/store";
-import { LogLevelData } from "./store";
-import dayjs from "dayjs";
-import { LogItem, LogLevel } from "../../types/console";
 import { ARCOS_MODE } from "$ts/metadata/mode";
+import { LogLevelData } from "$ts/stores/console";
+import dayjs from "dayjs";
+import { writable } from "svelte/store";
+import { LogItem, LogLevel } from "../../types/console";
 
 export const LogStore = writable<LogItem[]>([]);
 export const CurrentLogItem = writable<LogItem>({

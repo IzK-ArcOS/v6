@@ -1,14 +1,17 @@
-import { AllUsers } from "$types/user";
+import { Log } from "$ts/console";
+import { Endpoints } from "$ts/stores/endpoint";
+import { UserCache } from "$ts/stores/user";
+import { AllUsers, PartialUser } from "$types/user";
 import axios from "axios";
 import { getServerUrl } from "../util";
-import { UserCache } from "$ts/stores/user";
 
 export async function getUsers(): Promise<AllUsers> {
+  Log("server/user/get", "Getting users");
   const cache = UserCache.get();
 
   if (cache && Object.entries(cache).length) return cache;
 
-  const url = getServerUrl("/v2/users");
+  const url = getServerUrl(Endpoints.Users);
 
   if (!url) return {};
 
@@ -16,7 +19,14 @@ export async function getUsers(): Promise<AllUsers> {
 
   if (response.status !== 200) return {};
 
-  UserCache.set(response.data);
+  const userList = response.data.data as PartialUser[]; // Don't ask.
+  const allUsers = {};
 
-  return response.data as AllUsers;
+  for (const user of userList) {
+    allUsers[user.username] = user;
+  }
+
+  UserCache.set(allUsers);
+
+  return allUsers as AllUsers;
 }

@@ -1,3 +1,5 @@
+import { Nullable } from "./common";
+
 export interface UserData {
   sh: {
     taskbar: {
@@ -52,12 +54,7 @@ export interface UserData {
   autoLoads: string[];
   askPresist: boolean;
 
-  acc: {
-    enabled: boolean;
-    admin: boolean;
-    profilePicture: string | number | null;
-    loginBackground?: string;
-  };
+  acc: AccountInfo;
 
   volume: {
     level: number;
@@ -65,6 +62,13 @@ export interface UserData {
   };
 
   appdata: AppData;
+}
+
+interface AccountInfo {
+  admin: boolean;
+  enabled: boolean;
+  loginBackground?: string;
+  profilePicture: Nullable<string | number>;
 }
 
 export type AppData = {
@@ -77,3 +81,8 @@ export type ScopedAppData = {
 };
 
 export type AllUsers = { [name: string]: UserData };
+
+export interface PartialUser {
+  acc: AccountInfo;
+  username: string;
+}

@@ -1,6 +1,13 @@
 import { ConnectedServer } from "$ts/stores/server";
 import { Params, Server } from "$types/server";
 
+/**
+ * Get endpoint URL of the current server
+ * @param path The endpoint path (start with a `/`, don't end with one)
+ * @param params Optinally any `URLSearchParams` to pass to the endpoint
+ * @param server Optionally the server to use
+ * @returns A string containing the full URL, or `null` if no server can be used.
+ */
 export function getServerUrl(
   path: string,
   params?: Params,

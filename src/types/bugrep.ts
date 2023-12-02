@@ -1,5 +1,5 @@
-import { UserData } from "./user";
 import { Record } from "pocketbase";
+import { UserData } from "./user";
 
 export interface Report {
   author?: string;

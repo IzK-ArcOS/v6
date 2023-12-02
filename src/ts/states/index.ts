@@ -9,26 +9,33 @@ import { StateWatcher } from "./watch";
 export class StateHandler {
   public readonly current = Store<State>();
   public readonly watcher: StateWatcher;
+  public readonly store: States;
+  public readonly startState: string;
+  public readonly id: string;
 
-  constructor(
-    public readonly id: string,
-    public readonly store: States,
-    public readonly startState: string
-  ) {
+  constructor(id: string, store: States, startState: string) {
+    this.id = id;
+    this.store = store;
+    this.startState = startState;
     Log("ts/states", `Created StateHandler "${id}"`);
 
     this.watcher = new StateWatcher(this);
+
+    console.log(this.store);
 
     this.navigate(startState);
   }
 
   public navigate(stateKey: string) {
-    Log("ts/states", `StateHandler.navigate: Navigating to "${stateKey}"`);
+    Log(
+      "ts/states",
+      `StateHandler.navigate[${this.id}]: Navigating to "${stateKey}"`
+    );
 
     if (!this.store.has(stateKey)) {
       manualCrash(
         "ts/states",
-        `StateHandler.navigate: No such state ${stateKey}`
+        `StateHandler.navigate[${this.id}]: No such state ${stateKey}`
       );
 
       return false;

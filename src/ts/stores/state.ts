@@ -1,6 +1,6 @@
 import Boot from "$state/Boot/Boot.svelte";
 import Crash from "$state/Crash/Crash.svelte";
-import { Login } from "$state/Login/ts/main";
+import Login from "$state/Login/Login.svelte";
 import { States } from "$types/state";
 
 export const primaryStates: States = new Map([

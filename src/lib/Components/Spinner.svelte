@@ -1,6 +1,6 @@
 <script lang="ts">
   import { SpinnerIcon } from "$ts/images/general";
-  import "../css/spinner.css";
+  /* import "$css/components/" */
   export let height: number;
 </script>
 

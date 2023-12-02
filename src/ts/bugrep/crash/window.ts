@@ -40,7 +40,7 @@ export function handleWindowError(
   const options: ReportOptions = {
     includeUserData: false,
     includeApi: true,
-    title: "Svelte:Window auto-generated error",
+    title: "ArcOS Crash",
     body: `File: ${filename} ${position}\n\n${message}\n\n${
       stack || "  at ArcOS (no stack)"
     }`,
@@ -50,7 +50,7 @@ export function handleWindowError(
 
   CrashReport.set(report);
 
-  Log(`Error: ${filename}`, message, LogLevel.error);
+  Log(`bugrep/crash/window`, `Error: ${filename}: ${message}`, LogLevel.error);
 
   setTimeout(() => {
     PrimaryState.navigate("crash");
@@ -59,7 +59,7 @@ export function handleWindowError(
   if (import.meta.env.DEV)
     return Log(
       "bugrep/crash/window",
-      "Not sending a report in dev env, we ain't spammin' da servers!",
+      "Not sending bug report in Vite environment!",
       LogLevel.warn
     );
 

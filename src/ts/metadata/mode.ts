@@ -1,7 +1,7 @@
 import { Log } from "$ts/console";
 
 export async function getMode() {
-  Log("ts/branding", "Attempting to retrieve mode from /mode");
+  Log("branding", "Attempting to retrieve mode from /mode");
 
   try {
     const mode = await (await fetch("./mode")).text();

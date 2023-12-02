@@ -1,11 +1,16 @@
 import { Log } from "$ts/console";
-import { PrimaryState } from "$ts/states";
-import { CrashReport } from "$ts/stores/crash";
+import { CRASHING, CrashReport } from "$ts/stores/crash";
 import { ReportOptions } from "$types/bugrep";
 import { LogLevel } from "$types/console";
 import { createReport, sendReport } from "../";
 
 export function manualCrash(source: string, reason: string, stack?: string) {
+  if (CRASHING.get())
+    return Log(
+      "bugrep/crash/window",
+      "Crash prevented because another crash is already in progress!",
+      LogLevel.warn
+    );
   Log("ArcOS", `------(#! [ SYSTEM IS CRASHING ] !#)------`, LogLevel.error);
   const options: ReportOptions = {
     includeUserData: false,
@@ -18,16 +23,18 @@ export function manualCrash(source: string, reason: string, stack?: string) {
 
   CrashReport.set(report);
 
-  Log(`Error: ${source}`, reason, LogLevel.error);
+  Log(`bugrep/crash`, `Error: ${source}: ${reason}`, LogLevel.error);
 
+  CRASHING.set(true);
+  /* 
   setTimeout(() => {
     PrimaryState.navigate("crash");
-  }, 2000);
+  }, 2000); */
 
   if (import.meta.env.DEV)
     return Log(
-      "reporting/crash.ts: manualCrash",
-      "Not sending a report in dev env, we ain't spammin' da servers!",
+      "bugrep/crash",
+      "Not sending bug report in Vite environment!",
       LogLevel.warn
     );
 

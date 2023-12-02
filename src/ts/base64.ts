@@ -6,7 +6,7 @@ export function toBase64(input: string) {
     return btoa(input);
   } catch {
     Log(
-      `ts/base64.ts: toBase64`,
+      `base64`,
       `Couldn't convert ${input.length} bytes to Base64.`,
       LogLevel.error
     );
@@ -19,7 +19,7 @@ export function fromBase64(input: string) {
     return atob(input);
   } catch {
     Log(
-      `ts/base64.ts: toBase64`,
+      `base64`,
       `Couldn't convert ${input.length} bytes to string.`,
       LogLevel.error
     );

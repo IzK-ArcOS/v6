@@ -32,8 +32,8 @@ export async function getWallpaper(
 
 export async function wallpaperFromFS(path: string): Promise<Wallpaper> {
   Log(
-    "wallpapers.ts: wallpaperFromFS",
-    `Reading wallpaper from path "${path}"...`,
+    "wallpaper",
+    `Reading FS wallpaper from path "${path}"...`,
     LogLevel.info
   );
 
@@ -41,8 +41,8 @@ export async function wallpaperFromFS(path: string): Promise<Wallpaper> {
 
   if (!file) {
     Log(
-      "wallpapers.ts: wallpaperFromFS",
-      `Unable to get wallpaper "${path}"`,
+      "wallpaper",
+      `Unable to get wallpaper "${path}" from ArcFS`,
       LogLevel.error
     );
 

@@ -2,6 +2,7 @@
 @import url("./components.css");
 @import url("./themes.css");
 @import url("./globals.css");
+@import url("./app.css");
 
 * {
   box-sizing: border-box;

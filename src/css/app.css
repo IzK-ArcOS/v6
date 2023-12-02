@@ -1,0 +1,8 @@
+div#app > div.app {
+  transition: filter 3s;
+  overflow: hidden;
+}
+
+div#app > div.app.gray {
+  filter: grayscale(100%) !important;
+}

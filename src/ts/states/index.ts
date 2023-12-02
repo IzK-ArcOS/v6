@@ -17,7 +17,7 @@ export class StateHandler {
     this.id = id;
     this.store = store;
     this.startState = startState;
-    Log("ts/states", `Created StateHandler "${id}"`);
+    Log("states", `Created StateHandler "${id}"`);
 
     this.watcher = new StateWatcher(this);
 
@@ -28,13 +28,13 @@ export class StateHandler {
 
   public navigate(stateKey: string) {
     Log(
-      "ts/states",
+      "states",
       `StateHandler.navigate[${this.id}]: Navigating to "${stateKey}"`
     );
 
     if (!this.store.has(stateKey)) {
       manualCrash(
-        "ts/states",
+        "states",
         `StateHandler.navigate[${this.id}]: No such state ${stateKey}`
       );
 

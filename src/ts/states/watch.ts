@@ -6,10 +6,7 @@ const WATCHERS: ((state: State) => any)[] = [];
 
 export class StateWatcher {
   constructor(public readonly handler: StateHandler) {
-    Log(
-      "ts/states/watch",
-      `Created new StateWatcher for handler ${handler.id}`
-    );
+    Log("states/watch", `Created new StateWatcher for handler ${handler.id}`);
 
     handler.current.subscribe((v) => this.trigger(v));
   }
@@ -17,7 +14,7 @@ export class StateWatcher {
   public watch(event: (state: State) => any) {
     const id = this.handler.id;
     Log(
-      "ts/state/watch",
+      "state/watch",
       `StateWatcher.watch ${id}: Adding watcher: ${event.toString()}`
     );
 
@@ -31,7 +28,7 @@ export class StateWatcher {
 
     for (let i = 0; i < WATCHERS.length; i++) {
       Log(
-        "ts/states/watch",
+        "states/watch",
         `StateWatcher.trigger ${id}: Triggering watcher at index ${i}: state changing to ${state.key}`
       );
 

@@ -5,7 +5,7 @@ export default function (
   init: RequestInit,
   ms: number = 3000
 ): Promise<Response> {
-  Log("ts/util/ttlFetch", url);
+  Log("util/ttlFetch", url);
 
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {

@@ -10,12 +10,12 @@ export function setLoggingHooks() {
 
     const joined = a.join(" ");
 
-    Log("Console", `${content}${joined}`, LogLevel.warn);
+    Log("console/hooks", `${content}${joined}`, LogLevel.warn);
   };
 
   console.error = (content: string, ...args: any[]) => {
     const joinedArgs = args.join(" ");
 
-    Log("Console", `${content}${joinedArgs}`, LogLevel.warn);
+    Log("console/hooks", `${content}${joinedArgs}`, LogLevel.warn);
   };
 }

@@ -10,10 +10,8 @@
   onMount(() => handler.current.subscribe((v) => (state = v)));
 </script>
 
-{#if handler}
-  <div class="state-renderer {handler.id}">
-    {#if state && state.content}
-      <svelte:component this={state.content} thisState={state} {handler} />
-    {/if}
+{#if handler && state}
+  <div class="state-renderer {handler.id} state-{handler.id}-{state.key}">
+    <svelte:component this={state.content} thisState={state} {handler} />
   </div>
 {/if}

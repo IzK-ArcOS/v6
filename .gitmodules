@@ -7,3 +7,6 @@
 [submodule "src/state/Login"]
 	path = src/state/Login
 	url = https://github.com/IzK-ArcOS/v6-Login
+[submodule "src/state/FirstTimeSetup"]
+	path = src/state/FirstTimeSetup
+	url = https://github.com/IzK-ArcOS/v6-FirstTimeSetup

@@ -1,5 +1,6 @@
 import Boot from "$state/Boot/Boot.svelte";
 import Crash from "$state/Crash/Crash.svelte";
+import FirstTimeSetup from "$state/FirstTimeSetup/FirstTimeSetup.svelte";
 import Login from "$state/Login/Login.svelte";
 import { States } from "$types/state";
 
@@ -19,6 +20,15 @@ export const primaryStates: States = new Map([
       name: "Login",
       key: "login",
       content: Login,
+      attribs: {},
+    },
+  ],
+  [
+    "fts",
+    {
+      name: "First Time Setup",
+      key: "fts",
+      content: FirstTimeSetup,
       attribs: {},
     },
   ],

@@ -5,3 +5,5 @@ export { default as HomeIcon } from "$assets/general/home.svg";
 export { default as ConnectIcon } from "$assets/general/connect.svg";
 export { default as WarningIcon } from "$assets/general/warning.svg";
 export { default as FlagIcon } from "$assets/general/flag.svg";
+export { default as SettingsIcon } from "$assets/general/settings.svg";
+export { default as WaveIcon } from "$assets/general/wave.svg";

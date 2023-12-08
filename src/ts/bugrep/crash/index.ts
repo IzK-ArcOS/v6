@@ -41,5 +41,3 @@ export function manualCrash(source: string, reason: string, stack?: string) {
 
   sendReport(options);
 }
-
-export async function setCrashHandlers() {}

@@ -10,3 +10,6 @@
 [submodule "src/state/FirstTimeSetup"]
 	path = src/state/FirstTimeSetup
 	url = https://github.com/IzK-ArcOS/v6-FirstTimeSetup
+[submodule "src/state/ArcTerm"]
+	path = src/state/ArcTerm
+	url = https://github.com/IzK-ArcOS/v6-ArcTerm

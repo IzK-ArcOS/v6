@@ -1,3 +1,4 @@
+import { fromBase64, toBase64 } from "$ts/base64";
 import { Log } from "$ts/console";
 import { Endpoints } from "$ts/stores/endpoint";
 import { UserDataStore, UserName, UserToken } from "$ts/stores/user";
@@ -40,4 +41,22 @@ export async function Authenticate(
   } catch {
     return false;
   }
+}
+
+export async function doRememberedLogin() {
+  const token = localStorage.getItem("arcos-remembered-token");
+
+  if (!token) return false;
+
+  const [username, password] = fromBase64(token).split(":");
+
+  return await Authenticate(username, password);
+}
+
+export async function setRememberedToken(username: string, password: string) {
+  const token = toBase64(`${username}:${password}`);
+
+  localStorage.setItem("arcos-remembered-token", token);
+
+  return token;
 }

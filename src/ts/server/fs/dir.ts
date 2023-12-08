@@ -18,10 +18,21 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
     if (response.status !== 200) return null;
 
     //!! THIS CODE IS NOT AT ALL DEFINITIVE OR WORKING
-    return response.data as UserDirectory;
+    return response.data.data as UserDirectory;
   } catch {
     return null;
   }
+}
+
+export async function createDirectory(path: string): Promise<boolean> {
+  const url = getServerUrl("/fs/dir/create", { path: toBase64(path) });
+  const token = UserToken.get();
+
+  if (!url || !token) return false;
+
+  const response = await axios.get(url, makeTokenOptions(token));
+
+  return response.status === 200;
 }
 
 export function getParentDirectory(p: string): string {

@@ -3,8 +3,9 @@ import { LogLevelData } from "$ts/stores/console";
 import dayjs from "dayjs";
 import { writable } from "svelte/store";
 import { LogItem, LogLevel } from "../../types/console";
+import { Store } from "$ts/writable";
 
-export const LogStore = writable<LogItem[]>([]);
+export const LogStore = Store<LogItem[]>([]);
 export const CurrentLogItem = writable<LogItem>({
   level: LogLevel.info,
   source: "Console",

@@ -1,3 +1,4 @@
+import ArcTerm from "$state/ArcTerm/ArcTerm.svelte";
 import Boot from "$state/Boot/Boot.svelte";
 import Crash from "$state/Crash/Crash.svelte";
 import FirstTimeSetup from "$state/FirstTimeSetup/FirstTimeSetup.svelte";
@@ -29,6 +30,15 @@ export const primaryStates: States = new Map([
       name: "First Time Setup",
       key: "fts",
       content: FirstTimeSetup,
+      attribs: {},
+    },
+  ],
+  [
+    "arcterm",
+    {
+      name: "ArcTerm",
+      key: "arcterm",
+      content: ArcTerm,
       attribs: {},
     },
   ],

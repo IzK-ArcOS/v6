@@ -1,6 +1,7 @@
 import ArcTerm from "$state/ArcTerm/ArcTerm.svelte";
 import Boot from "$state/Boot/Boot.svelte";
 import Crash from "$state/Crash/Crash.svelte";
+import Desktop from "$state/Desktop/Desktop.svelte";
 import FirstTimeSetup from "$state/FirstTimeSetup/FirstTimeSetup.svelte";
 import Login from "$state/Login/Login.svelte";
 import { States } from "$types/state";
@@ -16,11 +17,11 @@ export const primaryStates: States = new Map([
     },
   ],
   [
-    "login",
+    "arcterm",
     {
-      name: "Login",
-      key: "login",
-      content: Login,
+      name: "ArcTerm",
+      key: "arcterm",
+      content: ArcTerm,
       attribs: {},
     },
   ],
@@ -34,14 +35,20 @@ export const primaryStates: States = new Map([
     },
   ],
   [
-    "arcterm",
+    "login",
     {
-      name: "ArcTerm",
-      key: "arcterm",
-      content: ArcTerm,
+      name: "Login",
+      key: "login",
+      content: Login,
       attribs: {},
     },
   ],
+  ["desktop", {
+    name: "Desktop",
+    key: "desktop",
+    content: Desktop,
+    attribs: {}
+  }],
   [
     "crash",
     {

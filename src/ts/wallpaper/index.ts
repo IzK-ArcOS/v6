@@ -1,6 +1,6 @@
 import { fromBase64 } from "$ts/base64";
 import { Log } from "$ts/console";
-import { arrayToBlob } from "$ts/server/fs/convert";
+import { arrayToBlob, blobToText } from "$ts/server/fs/convert";
 import { readFile } from "$ts/server/fs/file";
 import { UserName } from "$ts/stores/user";
 import { Wallpapers } from "$ts/stores/wallpaper";
@@ -15,10 +15,7 @@ const getters: [string, (id: string) => Wallpaper | Promise<Wallpaper>][] = [
   ["img", (id) => Wallpapers[id] || Wallpapers["img04"]],
 ];
 
-export async function getWallpaper(
-  id: string,
-  override?: string
-): Promise<Wallpaper> {
+export async function getWallpaper(id: string, override?: string): Promise<Wallpaper> {
   if (!id) return Wallpapers["img04"];
 
   if (id.startsWith("http")) return { author: "The Web", name: id, url: id };
@@ -49,7 +46,7 @@ export async function wallpaperFromFS(path: string): Promise<Wallpaper> {
     return Wallpapers["img04"];
   }
 
-  const url = URL.createObjectURL(arrayToBlob(file.data, "image/jpeg"));
+  const url = URL.createObjectURL(file.data);
 
   return { url, author: UserName.get(), name: url, source: "" };
 }

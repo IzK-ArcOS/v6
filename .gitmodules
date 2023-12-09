@@ -13,3 +13,6 @@
 [submodule "src/state/ArcTerm"]
 	path = src/state/ArcTerm
 	url = https://github.com/IzK-ArcOS/v6-ArcTerm
+[submodule "src/state/Desktop"]
+	path = src/state/Desktop
+	url = https://github.com/IzK-ArcOS/v6-Desktop

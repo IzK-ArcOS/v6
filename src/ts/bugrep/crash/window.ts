@@ -40,7 +40,7 @@ export function handleWindowError(
   const options: ReportOptions = {
     includeUserData: false,
     includeApi: true,
-    title: "ArcOS Crash",
+    title: "Crash by irrecoverable unhandled exception",
     body: `File: ${filename} ${position}\n\n${message}\n\n${
       stack || "  at ArcOS (no stack)"
     }`,

@@ -21,29 +21,33 @@ export async function testConnection(
   for (let i = 0; i < TEST_MODES.length; i++) {
     const mode = TEST_MODES[i];
 
-    const s: Server = {
+    const server: Server = {
       secure: mode[0],
       port: mode[1],
       host,
       authCode,
     };
 
-    testingServerLog(s);
+    testingServerLog(server);
 
-    const url = getServerUrl(Endpoints.MetaData, {}, s);
+    const url = getServerUrl(Endpoints.MetaData, {}, server);
 
     try {
       const response = await ttlFetch(url, {}, 10000);
 
-      if (response.status === 200) {
-        validResponseLog(s);
+      if (response.status !== 200) continue;
 
-        if (set) ConnectedServer.set(s);
+      validResponseLog(server);
 
-        return { ...s, meta: (await response.json()) as ServerMeta };
-      }
+      const meta = (await response.json()) as ServerMeta;
+
+      server.meta = meta;
+
+      if (set) ConnectedServer.set(server);
+
+      return server;
     } catch {
-      invalidResponseLog(s);
+      invalidResponseLog(server);
 
       continue;
     }

@@ -1,4 +1,5 @@
 import { Log } from "$ts/console";
+import { compileStackString } from "$ts/console/logging/stack";
 import { PrimaryState } from "$ts/states";
 import { CRASHING, CrashReport } from "$ts/stores/crash";
 import { ReportOptions } from "$types/bugrep";
@@ -17,7 +18,7 @@ export function manualCrash(source: string, reason: string, stack?: string) {
     includeUserData: false,
     includeApi: true,
     title: reason,
-    body: `Source: ${source}\n\n${stack || "  at ArcOS (no stack)"}`,
+    body: `Source: ${source}\n${stack || compileStackString()}`,
   };
 
   const report = createReport(options);

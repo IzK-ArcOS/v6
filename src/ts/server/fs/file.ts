@@ -5,9 +5,11 @@ import { ArcFile, PartialArcFile } from "$types/fs";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 import { getParentDirectory, readDirectory } from "./dir";
+import { Log } from "$ts/console";
 
 export async function readFile(path: string): Promise<ArcFile> {
-  const url = getServerUrl(Endpoints.FsFile, {
+  Log("server/fs/file", `Reading "${path}"...`);
+  const url = getServerUrl(Endpoints.FsFileGet, {
     path: toBase64(path),
   });
   const token = UserToken.get();
@@ -18,22 +20,29 @@ export async function readFile(path: string): Promise<ArcFile> {
 
   if (!partial) return null;
 
-  return {
+  const contents = await axios.get(
+    url,
+    makeTokenOptions(token, { responseType: "blob" })
+  );
+
+  const file: ArcFile = {
     name: partial.filename,
     path,
-    data: null /* !! REPLACE THIS WITH WORKING API ENDPOINT!*/,
+    data: contents.data,
     mime: partial.mime,
   };
+
+  return file;
 }
 
 export async function getPartialFile(path: string): Promise<PartialArcFile> {
   const parent = getParentDirectory(path);
-
   const dir = await readDirectory(parent);
+  const filename = getFilenameFromPath(path);
 
   if (!dir) return null;
 
-  return dir.files.filter((f) => f.scopedPath == path)[0];
+  return dir.files.filter((f) => f.filename == filename)[0];
 }
 
 export async function writeFile(
@@ -41,7 +50,7 @@ export async function writeFile(
   blob: Blob,
   onUploadProgress?: (progress: any) => any
 ) {
-  const url = getServerUrl("/fs/file/write", { path: toBase64(path) });
+  const url = getServerUrl(Endpoints.FsFileWrite, { path: toBase64(path) });
   const token = UserToken.get();
 
   if (!url) return null;
@@ -53,4 +62,10 @@ export async function writeFile(
   );
 
   return response.status === 200;
+}
+
+export function getFilenameFromPath(path: string): string {
+  const split = path.split("/");
+
+  return split[split.length - 1];
 }

@@ -2,8 +2,9 @@ import { ARCOS_MODE } from "$ts/metadata/mode";
 import { LogLevelData } from "$ts/stores/console";
 import dayjs from "dayjs";
 import { writable } from "svelte/store";
-import { LogItem, LogLevel } from "../../types/console";
 import { Store } from "$ts/writable";
+import { LogItem, LogLevel } from "$types/console";
+import { pushToStack } from "./stack";
 
 export const LogStore = Store<LogItem[]>([]);
 export const CurrentLogItem = writable<LogItem>({
@@ -34,14 +35,7 @@ export function Log(source: string, msg: string, level = LogLevel.info) {
     return currentLog;
   });
 
-  // TODO: Restore BugRep logic
-  /*if (data.level == LogLevel.critical)
-    sendReport({
-      includeUserData: false,
-      includeApi: true,
-      title: `Critical state`,
-      body: `A log item with state CRITICAL was sent:\n${source}: ${msg}\n\nTS: ${timestamp}`,
-    }); */
+  pushToStack(source);
 
   console.log(
     `ArcOS: ${timestamp} [${levelCaption}] ${data.source}: ${data.msg}`

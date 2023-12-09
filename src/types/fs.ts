@@ -22,7 +22,14 @@ export interface PartialArcFile {
 export interface ArcFile {
   name: string;
   path: string;
-  data: ArrayBuffer;
+  data: Blob;
   mime: string;
   anymime?: boolean;
+}
+
+export interface FSQuota {
+  username: string;
+  max: number;
+  free: number;
+  used: number;
 }

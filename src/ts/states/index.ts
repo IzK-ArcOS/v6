@@ -21,7 +21,10 @@ export class StateHandler {
     this.id = id;
     this.store = store;
     this.startState = startState;
-    Log("states", `Created StateHandler "${id}"`);
+    Log(
+      "states",
+      `Created StateHandler "${id}" with ${store.size} states (starts at ${startState})`
+    );
 
     this.watcher = new StateWatcher(this);
 

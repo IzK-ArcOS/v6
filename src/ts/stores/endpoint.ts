@@ -1,9 +1,19 @@
 export const Endpoints = {
-  Users: "/users/get",
-  NewUsers: "/v2/users/",
+  FsDirCreate: "/fs/dir/create", // v1,
+  FsDirectory: "/fs/dir/get", // v1
+  FsFileGet: "/fs/file/get", // v1
+  FsFileWrite: "/fs/file/write", // v1
+  FsQuota: "/fs/quota", // v1
+  FsRm: "/fs/rm", // v1
   MetaData: "/v2/",
-  FsDirectory: "/fs/dir/get",
-  FsFile: "/v2/fs/file/",
+  NewUsers: "/v2/users/",
   Token: "/v2/token/",
   UserData: "/v2/users/me",
+  Users: "/users/get", // v1
 };
+
+export function isStoredEndpoint(endpoint: string) {
+  const store = Object.values(Endpoints);
+
+  return store.includes(endpoint);
+}

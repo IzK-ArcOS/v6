@@ -1,3 +1,5 @@
+import { manualCrash } from "$ts/bugrep/crash";
+import { isStoredEndpoint } from "$ts/stores/endpoint";
 import { ConnectedServer } from "$ts/stores/server";
 import { Params, Server } from "$types/server";
 
@@ -13,6 +15,15 @@ export function getServerUrl(
   params?: Params,
   server?: Server
 ): string {
+  if (!isStoredEndpoint(path)) {
+    manualCrash(
+      "src/ts/server/util.ts",
+      "getServerUrl: The path must be part of the Endpoints store."
+    );
+
+    return null;
+  }
+
   server ||= ConnectedServer.get();
 
   if (!server) return null;

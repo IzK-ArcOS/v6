@@ -25,7 +25,7 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 }
 
 export async function createDirectory(path: string): Promise<boolean> {
-  const url = getServerUrl("/fs/dir/create", { path: toBase64(path) });
+  const url = getServerUrl(Endpoints.FsDirCreate, { path: toBase64(path) });
   const token = UserToken.get();
 
   if (!url || !token) return false;

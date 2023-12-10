@@ -1,19 +1,25 @@
 @import url("./window/core.css");
+@import url("./window/titlebar.css");
+@import url("./window/body.css");
 
 window:not(.core) {
   position: fixed;
-  background-color: var(--win-bg);
+  top: 50px;
+  left: 50px;
   color: var(--fg);
+  background-color: var(--win-bg);
   border: var(--win-border);
+  border-radius: var(--win-border-rad);
   overflow: hidden;
   transition: all 0.3s, width 0s, height 0s, z-index 0s, pointer-events 0s,
     transform 0s, backdrop-filter 0s;
+  font-size: 13px;
+  font-family: "Nunito Sans", sans-serif;
+  box-shadow: 0 5px 15px 5px #0003;
+  margin-top: 50px;
   opacity: 0;
   visibility: hidden;
   scale: 0.9;
-  font-size: 13px;
-  box-shadow: 0 5px 15px 5px #0003;
-  margin-top: 50px;
 }
 
 window.visible {
@@ -21,4 +27,8 @@ window.visible {
   visibility: visible;
   scale: 1;
   margin-top: 0;
+}
+
+window.resizable {
+  resize: both;
 }

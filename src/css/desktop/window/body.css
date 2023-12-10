@@ -1,0 +1,9 @@
+window div.body {
+  height: calc(100% - 30px);
+  width: 100%;
+  background-color: transparent;
+  box-sizing: border-box;
+  padding: 10px;
+  overflow: auto;
+  font-size: 13px;
+}

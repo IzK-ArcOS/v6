@@ -19,3 +19,6 @@
 [submodule "src/apps/Wallpaper"]
 	path = src/apps/Wallpaper
 	url = https://github.com/IzK-ArcOS/v6-Wallpaper
+[submodule "src/apps/ArcTerm"]
+	path = src/apps/ArcTerm
+	url = https://github.com/IzK-ArcOS/v6-ArcTerm-App

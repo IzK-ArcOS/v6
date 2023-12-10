@@ -1,0 +1,51 @@
+window div.titlebar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+
+  z-index: 100;
+  background-color: var(--win-bg);
+  padding: 5px;
+  font-size: 12px;
+}
+
+window div.titlebar div.title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 18px;
+}
+
+window div.titlebar div.title img {
+  height: 14px;
+}
+
+window div.titlebar div.controls {
+  display: flex;
+  gap: 2px;
+  height: 20px;
+}
+
+window div.titlebar div.controls button {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  width: 18px;
+  height: 18px;
+  color: var(--fg);
+  transition: opacity 0.2s;
+}
+
+window div.titlebar div.controls button:hover {
+  color: var(--accent-light);
+}
+
+window div.titlebar div.controls button:disabled,
+window div.titlebar div.controls button:active {
+  opacity: 0.2;
+}

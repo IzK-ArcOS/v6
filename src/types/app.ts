@@ -14,6 +14,7 @@ export interface App {
   pos: Coordinate;
   state: AppState;
   controls: WindowControls;
+  glass?: boolean;
 }
 
 export interface WindowControls {
@@ -37,6 +38,7 @@ export interface AppState {
   maximized: boolean;
   headless: boolean;
   fullscreen: boolean;
+  resizable: boolean;
 }
 
 export type AppLibrary = ReadableStore<Nullable<Record<string, App>>>; // [id, instance]

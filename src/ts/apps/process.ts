@@ -28,4 +28,6 @@ export function killProcess(pid: number): boolean {
   procs[pid] = "disposed"
 
   processes.set(procs);
+
+  return true;
 }

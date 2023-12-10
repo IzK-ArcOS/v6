@@ -1,3 +1,4 @@
+import { maxZIndex } from "$ts/stores/apps";
 import { App } from "$types/app";
 
 export function generateCSS(app: App) {
@@ -11,6 +12,7 @@ export function generateCSS(app: App) {
   cssString += `max-height: ${app.maxSize.h}px;`;
   cssString += `width: ${app.size.w}px;`;
   cssString += `height: ${app.size.h}px;`;
+  cssString += `z-index: ${maxZIndex.get() + 1}`;
 
   return cssString;
 }

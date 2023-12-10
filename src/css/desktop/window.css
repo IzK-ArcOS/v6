@@ -1,6 +1,8 @@
 @import url("./window/core.css");
 @import url("./window/titlebar.css");
 @import url("./window/body.css");
+@import url("./window/maximize.css");
+@import url("./window/focus.css");
 
 window:not(.core) {
   position: fixed;

@@ -1,0 +1,14 @@
+.focused.glass {
+  background-color: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+window.focused div.titlebar {
+  opacity: 1;
+  background-color: transparent;
+}
+
+window:not(.focused) div.titlebar>* {
+  opacity: 0.6 !important;
+}

@@ -1,0 +1,11 @@
+window:not(.core).maximized {
+  top: 0;
+  left: 0;
+  transform: translate3d(0px, 0px, 0px) !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: unset !important;
+  max-height: unset !important;
+  border-width: 0px;
+  border-radius: 0;
+}

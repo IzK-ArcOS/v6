@@ -7,6 +7,7 @@ export class AppRuntime {
   app: App;
   public PAGES = [];
   public readonly CurrentPage = writable<string>("");
+  public pid: number;
 
   constructor(appData: App) {
     if (!appData.id) {
@@ -47,5 +48,9 @@ export class AppRuntime {
 
   public onSwitchPage() {
     this.Log("Page changed!", "onSwitchPage");
+  }
+
+  public setPid(pid: number) {
+    this.pid = pid;
   }
 }

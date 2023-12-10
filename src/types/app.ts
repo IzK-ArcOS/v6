@@ -4,7 +4,7 @@ import { ReadableStore } from "./writable";
 
 export interface App {
   metadata: AppMetaData
-  runtime: AppRuntime;
+  runtime: typeof AppRuntime;
   content?: any;
   sideload?: SideloadInfo;
   id: string;
@@ -13,6 +13,13 @@ export interface App {
   maxSize: Size;
   pos: Coordinate;
   state: AppState;
+  controls: WindowControls;
+}
+
+export interface WindowControls {
+  minimize: boolean;
+  maximize: boolean;
+  close: boolean;
 }
 
 export interface AppMetaData {
@@ -22,6 +29,7 @@ export interface AppMetaData {
   version: string;
   icon: string;
   appGroup?: string;
+  core?: boolean;
 }
 
 export interface AppState {

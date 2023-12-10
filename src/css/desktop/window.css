@@ -1,0 +1,24 @@
+@import url("./window/core.css");
+
+window:not(.core) {
+  position: fixed;
+  background-color: var(--win-bg);
+  color: var(--fg);
+  border: var(--win-border);
+  overflow: hidden;
+  transition: all 0.3s, width 0s, height 0s, z-index 0s, pointer-events 0s,
+    transform 0s, backdrop-filter 0s;
+  opacity: 0;
+  visibility: hidden;
+  scale: 0.9;
+  font-size: 13px;
+  box-shadow: 0 5px 15px 5px #0003;
+  margin-top: 50px;
+}
+
+window.visible {
+  opacity: 1;
+  visibility: visible;
+  scale: 1;
+  margin-top: 0;
+}

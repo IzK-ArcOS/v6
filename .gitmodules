@@ -16,3 +16,6 @@
 [submodule "src/state/Desktop"]
 	path = src/state/Desktop
 	url = https://github.com/IzK-ArcOS/v6-Desktop
+[submodule "src/apps/Wallpaper"]
+	path = src/apps/Wallpaper
+	url = https://github.com/IzK-ArcOS/v6-Wallpaper

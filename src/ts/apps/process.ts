@@ -1,10 +1,10 @@
 import { appLibrary, processes } from "$ts/stores/apps";
 
-export function spawnProcess(appId: string): boolean {
+export function spawnProcess(appId: string): number {
   const library = appLibrary.get();
   const procs = processes.get();
 
-  if (!library[appId]) return false;
+  if (!library[appId]) return -1;
 
   const pid = Math.floor(Math.random() * 1e9); // 0 - 1000000000
 
@@ -14,7 +14,7 @@ export function spawnProcess(appId: string): boolean {
 
   processes.set(procs);
 
-  return true;
+  return pid;
 }
 
 export function killProcess(pid: number): boolean {

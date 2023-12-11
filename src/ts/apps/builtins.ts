@@ -12,5 +12,5 @@ export async function loadBuiltinApps() {
     await loadApp(id, app);
   }
 
-  await sleep(500)
+  //await sleep(500)
 }

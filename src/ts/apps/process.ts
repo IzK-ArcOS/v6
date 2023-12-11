@@ -1,6 +1,10 @@
+import { Log } from "$ts/console";
 import { appLibrary, processes } from "$ts/stores/apps";
+import { LogLevel } from "$types/console";
+import { closeWindow } from "./close";
 
 export function spawnProcess(appId: string): number {
+  Log("apps/process", `Spawning process ${appId}...`)
   const library = appLibrary.get();
   const procs = processes.get();
 
@@ -10,6 +14,8 @@ export function spawnProcess(appId: string): number {
 
   if (procs[pid]) return spawnProcess(appId) // Try to get another pid
 
+  console.log(library[appId])
+
   procs[pid] = { ...library[appId] };
 
   processes.set(procs);
@@ -17,17 +23,23 @@ export function spawnProcess(appId: string): number {
   return pid;
 }
 
-export function killProcess(pid: number): boolean {
+export async function killProcess(pid: number): Promise<boolean> {
+  Log(`apps/process`, `Killing process with PID ${pid}...`);
+
   const procs = processes.get();
+  const closed = await closeWindow(pid);
 
-  if (!procs[pid]) return false;
+  if (!closed) {
+    Log(`apps/process`, `Failed to kill ${pid}: no such process`, LogLevel.error);
 
-  // TODO: Try to close the window and check if it's okay to remove the process from the store
+    return false; // PID doesn't exist, don't continue.  
+  }
 
-  // Set it to disposed to prevent the Window Inheritance Bug that delayed v5 (svelte moment)
-  procs[pid] = "disposed"
+  // Set it to disposed to prevent the Window Inheritance Bug
+  //procs[pid] = "disposed";
 
-  processes.set(procs);
+  //processes.set(procs);
 
   return true;
 }
+

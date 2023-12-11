@@ -1,4 +1,4 @@
-window:not(.core).maximized {
+window:not(.core):not(.closing).maximized {
   top: 0;
   left: 0;
   transform: translate3d(0px, 0px, 0px) !important;

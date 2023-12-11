@@ -6,8 +6,6 @@
 
 window:not(.core) {
   position: fixed;
-  top: 50px;
-  left: 50px;
   color: var(--fg);
   background-color: var(--win-bg);
   border: var(--win-border);
@@ -24,7 +22,12 @@ window:not(.core) {
   scale: 0.9;
 }
 
-window.visible {
+/* 
+window:not(.visible) {
+  transform: none !important;
+}
+ */
+window.visible:not(.closing) {
   opacity: 1;
   visibility: visible;
   scale: 1;

@@ -1,10 +1,12 @@
 import { manualCrash } from "$ts/bugrep/crash";
 import { Log } from "$ts/console";
 import { appLibrary } from "$ts/stores/apps";
+import { sleep } from "$ts/util";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
+import { spawnProcess } from "./process";
 
-export function loadApp(id: string, data: App): boolean {
+export async function loadApp(id: string, data: App): Promise<boolean> {
   Log("apps/load", `Loading application ${id}`)
   const library = appLibrary.get();
 
@@ -16,7 +18,12 @@ export function loadApp(id: string, data: App): boolean {
 
   library[id] = { ...data };
 
+  await sleep(100);
+
   appLibrary.set(library);
+
+
+  if (data.metadata.core) spawnProcess(id);
 
   return true;
 }

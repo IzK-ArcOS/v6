@@ -12,11 +12,9 @@ export function spawnProcess(appId: string): number {
 
   const pid = Math.floor(Math.random() * 1e9); // 0 - 1000000000
 
-  if (procs[pid]) return spawnProcess(appId) // Try to get another pid
+  if (procs.has(pid)) return spawnProcess(appId) // Try to get another pid
 
-  console.log(library[appId])
-
-  procs[pid] = { ...library[appId] };
+  procs.set(pid, { ...library[appId] });
 
   processes.set(procs);
 
@@ -36,9 +34,9 @@ export async function killProcess(pid: number): Promise<boolean> {
   }
 
   // Set it to disposed to prevent the Window Inheritance Bug
-  //procs[pid] = "disposed";
+  procs.set(pid, "disposed");
 
-  //processes.set(procs);
+  processes.set(procs);
 
   return true;
 }

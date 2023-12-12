@@ -11,7 +11,7 @@ export async function closeWindow(pid: number): Promise<boolean> {
   const udata = UserDataStore.get() as UserData;
   const cpids = closedPids.get();
 
-  if (!procs[pid] || cpids.includes(pid)) {
+  if (!procs.has(pid) || cpids.includes(pid)) {
     Log("apps/close", `Failed to close window ${pid}: no such process.`, LogLevel.error)
 
     return false;

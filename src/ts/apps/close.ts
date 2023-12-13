@@ -18,7 +18,8 @@ export async function closeWindow(pid: number, isCore = false): Promise<boolean>
     return false;
   }
 
-  closedPids.update((v) => { // This tells the window instance that it's closing
+  // This tells the window instance that it's closing
+  closedPids.update((v) => {
     v.push(pid);
 
     return v;

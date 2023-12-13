@@ -1,3 +1,4 @@
+import { manualCrash } from "$ts/bugrep/crash";
 import { Log } from "$ts/console";
 import { appLibrary, processes } from "$ts/stores/apps";
 import { LogLevel } from "$types/console";
@@ -10,7 +11,7 @@ export function spawnProcess(appId: string): number {
 
   if (!library[appId]) return -1;
 
-  const pid = Math.floor(Math.random() * 1e9); // 0 - 1000000000
+  const pid = Math.floor(Math.random() * 1e6); // 0 - 1000000
 
   if (procs.has(pid)) return spawnProcess(appId) // Try to get another pid
 
@@ -25,7 +26,9 @@ export async function killProcess(pid: number): Promise<boolean> {
   Log(`apps/process`, `Killing process with PID ${pid}...`);
 
   const procs = processes.get();
-  const closed = await closeWindow(pid);
+  const proc = procs.get(pid);
+  const isCore = proc && proc != "disposed" && proc.metadata.core;
+  const closed = await closeWindow(pid, isCore);
 
   if (!closed) {
     Log(`apps/process`, `Failed to kill ${pid}: no such process`, LogLevel.error);
@@ -37,6 +40,8 @@ export async function killProcess(pid: number): Promise<boolean> {
   procs.set(pid, "disposed");
 
   processes.set(procs);
+
+  if (isCore) manualCrash("src/ts/apps/process.ts", "killProcess: Attempted to kill core process. Don't do that.")
 
   return true;
 }

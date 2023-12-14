@@ -19,6 +19,7 @@ export default defineConfig({
       $state: resolve(__dirname, "./src/state"),
       $lib: resolve(__dirname, "./src/lib"),
       $css: resolve(__dirname, "./src/css"),
+      $apps: resolve(__dirname, "./src/apps"),
     },
   },
 });

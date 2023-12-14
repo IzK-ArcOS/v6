@@ -23,5 +23,5 @@
 	path = src/apps/ArcTerm
 	url = https://github.com/IzK-ArcOS/v6-ArcTerm-App
 [submodule "src/state/Shell"]
-	path = src/state/Shell
+	path = src/apps/Shell
 	url = https://github.com/IzK-ArcOS/v6-Shell

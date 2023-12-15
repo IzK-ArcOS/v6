@@ -1,5 +1,5 @@
 import { Log } from "$ts/console";
-import { closedPids, processes } from "$ts/stores/apps";
+import { ClosedPids, processes } from "$ts/stores/apps";
 import { UserDataStore } from "$ts/stores/user";
 import { sleep } from "$ts/util";
 import { LogLevel } from "$types/console";
@@ -10,7 +10,7 @@ export async function closeWindow(pid: number, isCore = false): Promise<boolean>
 
   const procs = processes.get();
   const udata = UserDataStore.get() as UserData;
-  const cpids = closedPids.get();
+  const cpids = ClosedPids.get();
 
   if (!procs.has(pid) || cpids.includes(pid)) {
     Log("apps/close", `Failed to close window ${pid}: no such process.`, LogLevel.error);
@@ -19,7 +19,7 @@ export async function closeWindow(pid: number, isCore = false): Promise<boolean>
   }
 
   // This tells the window instance that it's closing
-  closedPids.update((v) => {
+  ClosedPids.update((v) => {
     v.push(pid);
 
     return v;

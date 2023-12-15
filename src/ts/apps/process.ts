@@ -1,6 +1,6 @@
 import { manualCrash } from "$ts/bugrep/crash";
 import { Log } from "$ts/console";
-import { appLibrary, processes } from "$ts/stores/apps";
+import { appLibrary, ClosedPids, processes } from "$ts/stores/apps";
 import { LogLevel } from "$types/console";
 import { closeWindow } from "./close";
 
@@ -46,3 +46,9 @@ export async function killProcess(pid: number): Promise<boolean> {
   return true;
 }
 
+export function isPid(n: number): boolean {
+  const procs = processes.get();
+  const closedPids = ClosedPids.get();
+
+  return !!procs.get(n) || closedPids.includes(n);
+}

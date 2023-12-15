@@ -1,9 +1,27 @@
 window:not(.core):not(.closing).maximized {
   transform: translate3d(0px, 0px, 0px) !important;
-  width: 100% !important;
-  height: 100% !important;
   max-width: unset !important;
   max-height: unset !important;
   border-width: 0px;
   border-radius: 0;
+}
+
+window:not(.core):not(.closing).maximized.tb-vertical-right,
+window:not(.core):not(.closing).maximized.tb-vertical {
+  width: calc(100% - var(--size-secondary)) !important;
+  height: 100% !important;
+}
+
+window:not(.core):not(.closing).maximized.tb-vertical {
+  transform: translate3d(var(--size-secondary), 0px, 0px) !important;
+}
+
+window:not(.core):not(.closing).maximized.tb-,
+window:not(.core):not(.closing).maximized.tb-top {
+  width: 100% !important;
+  height: calc(100% - var(--size-secondary)) !important;
+}
+
+window:not(.core):not(.closing).maximized.tb-top {
+  transform: translate3d(0px, var(--size-secondary), 0px) !important;
 }

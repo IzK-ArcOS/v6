@@ -12,7 +12,7 @@ export async function getUserData(token?: string): Promise<UserData> {
   const bearer = token || UserToken.get();
   const url = getServerUrl(Endpoints.UserData);
 
-  if (!token || !url) return;
+  if (!bearer || !url) return;
 
   try {
     const response = await axios.get<UserDataResponse>(
@@ -23,6 +23,27 @@ export async function getUserData(token?: string): Promise<UserData> {
     if (response.status !== 200) return null;
 
     return response.data.properties;
+  } catch {
+    return null;
+  }
+}
+
+export async function setUserData(data: UserData): Promise<boolean> {
+  Log("server/user/data", "Committing UserData using <token>");
+
+  const token = UserToken.get();
+  const url = getServerUrl(Endpoints.UserData);
+
+  if (!token || !url) return;
+
+  try {
+    const response = await axios.put(
+      url,
+      data,
+      makeTokenOptions(token)
+    );
+
+    return response.status === 200;
   } catch {
     return null;
   }

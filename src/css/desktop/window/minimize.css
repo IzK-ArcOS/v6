@@ -1,0 +1,5 @@
+div.process-renderer window.minimized:not(.core) {
+  margin-top: 50px;
+  opacity: 0;
+  visibility: hidden;
+}

@@ -1,0 +1,1 @@
+export type ProcessGroups = Record<string, number[]>; // appId, pid[]

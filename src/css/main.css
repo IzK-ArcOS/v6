@@ -9,6 +9,7 @@
   user-select: none;
   outline: none;
   font-family: inherit;
+  -webkit-user-drag: none;
 }
 
 *:not(.material-icons-round) {

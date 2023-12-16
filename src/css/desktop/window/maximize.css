@@ -4,6 +4,7 @@ window:not(.core):not(.closing).maximized {
   max-height: unset !important;
   border-width: 0px;
   border-radius: 0;
+  transition: all 0.3s !important;
 }
 
 window:not(.core):not(.closing).maximized.tb-vertical-right,

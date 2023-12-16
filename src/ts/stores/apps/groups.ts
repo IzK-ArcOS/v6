@@ -25,4 +25,8 @@ export const appGroups: AppGroupStore = {
     name: "System Tools",
     id: "systemTools",
   },
+  internal: {
+    name: "Internal Tools",
+    id: "internal"
+  }
 };

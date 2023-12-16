@@ -1,5 +1,5 @@
 window div.body {
-  height: calc(100% - 30px);
+  height: calc(100% - var(--titlebar-height));
   width: 100%;
   background-color: transparent;
   box-sizing: border-box;

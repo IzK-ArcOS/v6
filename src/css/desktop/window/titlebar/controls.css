@@ -1,0 +1,26 @@
+window div.titlebar div.controls {
+  display: flex;
+  gap: 2px;
+  height: 20px;
+}
+
+window div.titlebar div.controls button {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  width: 18px;
+  height: 18px;
+  color: var(--fg);
+  transition: opacity 0.2s;
+}
+
+window div.titlebar div.controls button:hover {
+  color: var(--accent-light);
+}
+
+window div.titlebar div.controls button:disabled,
+window div.titlebar div.controls button:active {
+  opacity: 0.2;
+}

@@ -1,0 +1,10 @@
+window div.titlebar div.title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 18px;
+}
+
+window div.titlebar div.title img {
+  height: 16px;
+}

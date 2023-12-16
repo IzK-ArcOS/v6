@@ -4,8 +4,10 @@
 @import url("./window/maximize.css");
 @import url("./window/minimize.css");
 @import url("./window/focus.css");
+@import url("./window/bigtb.css");
 
 window:not(.core) {
+  --titlebar-height: 30px;
   position: fixed;
   color: var(--fg);
   background-color: var(--win-bg);

@@ -1,0 +1,15 @@
+window:not(.core).bigtb {
+  --titlebar-height: 40px;
+}
+
+window:not(.core).bigtb div.titlebar {
+  padding: 5px 10px;
+}
+
+window:not(.core).bigtb div.titlebar div.title {
+  gap: 10px;
+}
+
+window:not(.core).bigtb div.titlebar div.title img {
+  height: 20px;
+}

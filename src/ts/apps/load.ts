@@ -10,18 +10,17 @@ export async function loadApp(id: string, data: App): Promise<boolean> {
   Log("apps/load", `Loading application ${id}`)
   const library = appLibrary.get();
 
-  if (library[id]) {
+  if (library.has(id)) {
     Log("apps/load", `Loading ${id} failed because an application with the same ID already exists`, LogLevel.error)
 
     return false;
   }
 
-  library[id] = { ...data };
+  library.set(id, Object.create(data));
 
   await sleep(100);
 
   appLibrary.set(library);
-
 
   if (data.metadata.core) spawnProcess(id);
 

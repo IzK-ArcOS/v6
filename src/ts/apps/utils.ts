@@ -12,7 +12,7 @@ export function isPopulatable(app: App) {
 export function getAppById(id: string): Nullable<App> {
   const library = appLibrary.get();
 
-  if (!library[id]) return null;
+  if (!library.has(id)) return null;
 
-  return library[id];
+  return library.get(id);
 }

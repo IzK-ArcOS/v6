@@ -4,7 +4,7 @@ import { appLibrary } from "$ts/stores/apps";
 import { sleep } from "$ts/util";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
-import { spawnProcess } from "./process";
+import { spawnApp } from "./spawn";
 
 export async function loadApp(id: string, data: App): Promise<boolean> {
   Log("apps/load", `Loading application ${id}`)
@@ -22,7 +22,7 @@ export async function loadApp(id: string, data: App): Promise<boolean> {
 
   appLibrary.set(library);
 
-  if (data.metadata.core) spawnProcess(id);
+  if (data.metadata.core) spawnApp(id);
 
   return true;
 }

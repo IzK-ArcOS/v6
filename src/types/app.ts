@@ -44,7 +44,6 @@ export interface AppState {
 export type AppLibrary = ReadableStore<Map<string, App>>; // [id, instance]
 export type Coordinate = { x: number, y: number };
 export type Size = { w: number, h: number };
-export type Processes = ReadableStore<Map<number, App | "disposed">>; // [pid, instance]
 
 export interface SideloadInfo {
   module?: string;

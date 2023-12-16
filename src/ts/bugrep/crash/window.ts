@@ -41,9 +41,8 @@ export function handleWindowError(
     includeUserData: false,
     includeApi: true,
     title: "Crash by irrecoverable unhandled exception",
-    body: `File: ${filename} ${position}\n\n${message}\n\n${
-      stack || "  at ArcOS (no stack)"
-    }`,
+    body: `File: ${filename} ${position}\n\n${message}\n\n${stack || "  at ArcOS (no stack)"
+      }`,
   };
 
   const report = createReport(options);
@@ -67,6 +66,8 @@ export function handleWindowError(
 }
 
 export function isBlackListed(test: string) {
+  if (!test) return false;
+
   for (let i = 0; i < CRASH_BLACKLIST.length; i++) {
     if (test.includes(CRASH_BLACKLIST[i])) return true;
   }

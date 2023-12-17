@@ -41,8 +41,10 @@ export function getAppGroups(): {
   result = Object.fromEntries(
     Object.entries(result).map((g) => {
       g[1].apps = g[1].apps.sort((a, b) => {
-        const appA = library[a];
-        const appB = library[b];
+        const appA = library.get(a);
+        const appB = library.get(b);
+
+        console.log(a, b)
 
         return appA.metadata.name > appB.metadata.name ? 1 : -1;
       });

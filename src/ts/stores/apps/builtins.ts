@@ -3,10 +3,12 @@ import { desktopWallpaper } from "$apps/Wallpaper/ts/app";
 import { ArcTermApp as ArcTerm } from "$apps/ArcTerm/ts/app";
 import { App } from "$types/app";
 import { LogListApp as LogList } from "$apps/LogList/ts/app";
+import { ElementsApp } from "$apps/Elements/ts/app";
 
 export const builtinApps: Record<string, App> = {
   desktopWallpaper,
   ArcShell,
   ArcTerm,
   LogList,
+  ElementsApp,
 }

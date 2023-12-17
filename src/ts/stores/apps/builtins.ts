@@ -4,6 +4,7 @@ import { ArcTermApp as ArcTerm } from "$apps/ArcTerm/ts/app";
 import { App } from "$types/app";
 import { LogListApp as LogList } from "$apps/LogList/ts/app";
 import { ElementsApp } from "$apps/Elements/ts/app";
+import { SettingsApp } from "$apps/Settings/ts/app";
 
 export const builtinApps: Record<string, App> = {
   desktopWallpaper,
@@ -11,4 +12,5 @@ export const builtinApps: Record<string, App> = {
   ArcTerm,
   LogList,
   ElementsApp,
+  SettingsApp
 }

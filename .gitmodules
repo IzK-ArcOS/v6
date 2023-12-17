@@ -25,3 +25,6 @@
 [submodule "src/state/Shell"]
 	path = src/apps/Shell
 	url = https://github.com/IzK-ArcOS/v6-Shell
+[submodule "src/apps/Settings"]
+	path = src/apps/Settings
+	url = https://github.com/IzK-ArcOS/v6-Settings

@@ -15,5 +15,5 @@ export function spawnApp(id: string): boolean {
     }
   }
 
-  ProcessStack.spawn(AppProcess, `App ${id}`, library.get(id))
+  ProcessStack.spawn(AppProcess, `aProc#${id}`, library.get(id))
 }

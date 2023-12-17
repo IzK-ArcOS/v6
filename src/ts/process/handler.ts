@@ -19,14 +19,14 @@ export class ProcessHandler {
     Log("process/handler", `ProcessHandler[${this.id}]: ${text}`, level)
   }
 
-  public async spawn(proc: typeof Process, name: string, app?: App) {
+  public async spawn(proc: typeof Process, name: string, app?: App, ...additional: any[]) {
     this.Log(`Spawning process ${proc.name} (isApp = ${!!app})`);
 
     const procs = this.processes.get();
 
     const pid = Math.floor(Math.random() * 1e6); // 0 - 1000000
 
-    if (procs.has(pid)) return this.spawn(proc, name, app) // Try to get another pid
+    if (procs.has(pid)) return await this.spawn(proc, name, app, ...additional) // Try to get another pid
 
     const instance = new proc(this, pid, name, app)
 
@@ -36,7 +36,7 @@ export class ProcessHandler {
 
     await this.handleProcess(pid)
 
-    return pid;
+    return instance;
   }
 
   public async kill(pid: number): Promise<boolean> {

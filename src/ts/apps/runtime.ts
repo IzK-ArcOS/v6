@@ -1,4 +1,5 @@
 import { Log } from "$ts/console";
+import { Process } from "$ts/process";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
 import { ReadableStore } from "$types/writable";
@@ -10,7 +11,7 @@ export class AppRuntime {
   public readonly CurrentPage = writable<string>("");
   public pid: number;
 
-  constructor(appData: App, public appMutator: ReadableStore<App>) {
+  constructor(appData: App, public appMutator: ReadableStore<App>, public process: Process) {
     if (!appData.id) {
       Log(
         `apps/runtime`,
@@ -22,6 +23,8 @@ export class AppRuntime {
     }
 
     this.app = appData;
+
+    console.log(process);
   }
 
   public Log(

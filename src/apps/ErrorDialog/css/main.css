@@ -1,11 +1,49 @@
-#LogList div.body {
+#ErrorDialog {
+  width: max-content !important;
+}
+
+#ErrorDialog div.body {
   padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#ErrorDialog div.top {
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+#ErrorDialog div.top div.error-image img {
+  height: 40px;
+}
+
+#ErrorDialog div.bottom {
+  display: flex;
+  margin-top: 20px;
+  justify-content: flex-end;
   border-top: var(--win-border);
-  overflow: hidden;
+  padding: 10px;
+  background-color: var(--button-glass-bg);
 }
 
-#LogList div.body div {
-  height: 100%;
+#ErrorDialog div.bottom div.buttons {
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
 }
 
-#LogList textarea {}
+#ErrorDialog div.bottom div.buttons button {
+  min-width: 70px;
+  margin: 0;
+}
+
+/* 
+#ErrorDialog div.top p.error-message {
+  white-space: nowrap;
+}
+ */
+#ErrorDialog div.top div.component p {
+  margin: 10px 0;
+}

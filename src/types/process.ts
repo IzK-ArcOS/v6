@@ -10,5 +10,5 @@ export type ProcessSpawnArguments = {
   name: string;
   parentPid?: number;
   app?: App,
-  args?: any[]
+  args?: any
 }

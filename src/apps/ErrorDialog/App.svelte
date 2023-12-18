@@ -1,9 +1,62 @@
-<script>
+<script lang="ts">
+  import { ErrorDialog } from "$types/error";
+  import { onMount } from "svelte";
   import "./css/main.css";
-  import Crash from "$state/Crash/Crash.svelte";
-  import { LogStore } from "$ts/console";
+  import { Runtime } from "./ts/runtime";
+
+  export let runtime: Runtime;
+
+  let data: ErrorDialog = null;
+
+  onMount(() => {
+    console.log(runtime.process);
+
+    data = runtime.process.args[0] as ErrorDialog;
+
+    console.log(data);
+  });
+
+  function e(cb: () => void) {
+    cb();
+
+    closeThis();
+  }
+
+  function closeThis() {
+    runtime.process.handler.kill(runtime.process.pid);
+  }
 </script>
 
-<div class="log">
-  <Crash inline />
-</div>
+{#if data}
+  <div class="top">
+    {#if data.image}
+      <div class="error-image">
+        <img src={data.image} alt="" />
+      </div>
+    {/if}
+    <div class="content">
+      <h3 class="error-title">
+        {data.title}
+      </h3>
+      <p class="error-message">
+        {#if data.component}
+          <div class="component">
+            <svelte:component this={data.component} error={data} />
+          </div>
+        {:else}
+          {@html data.message || "$error.message"}
+        {/if}
+      </p>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="buttons">
+      {#each data.buttons as button}
+        <button
+          on:click={() => e(button.action)}
+          class:suggested={button.suggested}>{button.caption}</button
+        >
+      {/each}
+    </div>
+  </div>
+{/if}

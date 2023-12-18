@@ -8,9 +8,11 @@ export class Process {
   public _disposed = false;
   public app: Nullable<App> = null;
   public parentPid: Nullable<number> = null;
+  public args: any[] = [];
 
-  constructor(private readonly handler: ProcessHandler, public pid: number, public name: string, app?: App, ...args: any[]) {
+  constructor(public readonly handler: ProcessHandler, public pid: number, public name: string, app?: App, ...args: any[]) {
     this.app = app;
+    this.args = args
   }
 
   public setParentPid(pid: number) {

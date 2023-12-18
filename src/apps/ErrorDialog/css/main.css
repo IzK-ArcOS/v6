@@ -1,0 +1,11 @@
+#LogList div.body {
+  padding: 0;
+  border-top: var(--win-border);
+  overflow: hidden;
+}
+
+#LogList div.body div {
+  height: 100%;
+}
+
+#LogList textarea {}

@@ -1,6 +1,7 @@
 import { Log } from "$ts/console";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
+import { ReadableStore } from "$types/writable";
 import { writable } from "svelte/store";
 
 export class AppRuntime {
@@ -9,7 +10,7 @@ export class AppRuntime {
   public readonly CurrentPage = writable<string>("");
   public pid: number;
 
-  constructor(appData: App) {
+  constructor(appData: App, public appMutator: ReadableStore<App>) {
     if (!appData.id) {
       Log(
         `apps/runtime`,

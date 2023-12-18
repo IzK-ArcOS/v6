@@ -18,6 +18,8 @@ export interface App {
   isOverlay?: boolean;
 }
 
+export type AppMutator = ReadableStore<App>;
+
 export interface WindowControls {
   minimize: boolean;
   maximize: boolean;

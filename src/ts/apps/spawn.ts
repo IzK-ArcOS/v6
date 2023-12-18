@@ -10,13 +10,17 @@ export function spawnApp(id: string, parent?: number): boolean {
 
   class AppProcess extends Process {
     constructor(handler: ProcessHandler, pid: number, name: string, app: App) {
-      super(handler, pid, name, app)
+      super(handler, pid, name, app);
 
       this.setParentPid(parent);
     }
   }
 
-  ProcessStack.spawn({ proc: AppProcess, name: `aProc#${id}`, app: library.get(id) })
+  ProcessStack.spawn({
+    proc: AppProcess,
+    name: `app#${id}`,
+    app: library.get(id),
+  });
 }
 
 export function spawnOverlay(app: App, parentPid: number) {
@@ -32,5 +36,5 @@ export function spawnOverlay(app: App, parentPid: number) {
     }
   }
 
-  ProcessStack.spawn({ proc: OverlayProcess, name: `overlay#${app.id}`, app })
+  ProcessStack.spawn({ proc: OverlayProcess, name: `overlay#${app.id}`, app });
 }

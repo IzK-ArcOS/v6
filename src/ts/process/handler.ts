@@ -127,8 +127,6 @@ export class ProcessHandler {
   }
 
   public getSubProcesses(pPid: number): ProcessMap {
-    this.Log(`Getting subprocesses of parent PID ${pPid}`);
-
     const result: ProcessMap = new Map([]);
 
     if (!this.isPid(pPid)) return result;
@@ -145,8 +143,6 @@ export class ProcessHandler {
   }
 
   public getOverlayProcesses(pPid: number): ProcessMap {
-    this.Log(`Getting overlay subprocesses of parent PID ${pPid}`);
-
     const children = this.getSubProcesses(pPid);
 
     const result: ProcessMap = new Map([]);

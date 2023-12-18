@@ -15,6 +15,7 @@ export interface App {
   state: AppState;
   controls: WindowControls;
   glass?: boolean;
+  isOverlay?: boolean;
 }
 
 export interface WindowControls {

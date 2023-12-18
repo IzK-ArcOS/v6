@@ -136,8 +136,23 @@ export class ProcessHandler {
     const procs = this.processes.get();
 
     for (const [pid, proc] of procs) {
-      console.log(proc.parentPid)
       if (proc.parentPid != pPid) continue;
+
+      result.set(pid, proc);
+    }
+
+    return result;
+  }
+
+  public getOverlayProcesses(pPid: number): ProcessMap {
+    this.Log(`Getting overlay subprocesses of parent PID ${pPid}`);
+
+    const children = this.getSubProcesses(pPid);
+
+    const result: ProcessMap = new Map([]);
+
+    for (const [pid, proc] of children) {
+      if (proc.parentPid != pPid || !proc.app || !proc.app.isOverlay) continue;
 
       result.set(pid, proc);
     }

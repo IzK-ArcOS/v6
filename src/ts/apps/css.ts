@@ -12,7 +12,7 @@ export function generateCSS(app: App) {
   cssString += `max-height: ${app.maxSize.h}px;`;
   cssString += `width: ${app.size.w}px;`;
   cssString += `height: ${app.size.h}px;`;
-  cssString += `z-index: ${maxZIndex.get() + 1}`;
+  if (!app.isOverlay) cssString += `z-index: ${maxZIndex.get() + 1}`;
 
   return cssString;
 }

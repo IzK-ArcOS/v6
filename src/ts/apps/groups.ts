@@ -44,8 +44,6 @@ export function getAppGroups(): {
         const appA = library.get(a);
         const appB = library.get(b);
 
-        console.log(a, b)
-
         return appA.metadata.name > appB.metadata.name ? 1 : -1;
       });
 

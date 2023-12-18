@@ -18,3 +18,19 @@ export function spawnApp(id: string, parent?: number): boolean {
 
   ProcessStack.spawn({ proc: AppProcess, name: `aProc#${id}`, app: library.get(id) })
 }
+
+export function spawnOverlay(app: App, parentPid: number) {
+  app = { ...app, isOverlay: true };
+
+  if (!ProcessStack.isPid(parentPid)) return false;
+
+  class OverlayProcess extends Process {
+    constructor(handler: ProcessHandler, pid: number, name: string, app: App) {
+      super(handler, pid, name, app);
+
+      this.setParentPid(parentPid);
+    }
+  }
+
+  ProcessStack.spawn({ proc: OverlayProcess, name: `overlay#${app.id}`, app })
+}

@@ -26,7 +26,7 @@ window div.body button:not(.reset).suggested:active {
   background-color: var(--accent);
 }
 
-window.glass div.body button:not(.reset) {
+window.glass div.body button:not(.reset):not(.suggested) {
   background-color: var(--button-glass-bg, #fff1);
 }
 

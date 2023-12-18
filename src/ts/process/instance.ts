@@ -7,9 +7,16 @@ import { ProcessHandler } from "./handler";
 export class Process {
   public _disposed = false;
   public app: Nullable<App> = null;
+  public parentPid: Nullable<number> = null;
 
-  constructor(private readonly handler: ProcessHandler, public pid: number, public name: string, app?: App) {
+  constructor(private readonly handler: ProcessHandler, public pid: number, public name: string, app?: App, ...args: any[]) {
     this.app = app;
+  }
+
+  public setParentPid(pid: number) {
+    if (!this.handler.isPid(pid) || this.parentPid) return false;
+
+    this.parentPid = pid;
   }
 
   public Log(text: string, level?: LogLevel) {

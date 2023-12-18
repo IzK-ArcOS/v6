@@ -15,3 +15,9 @@
 *:not(.material-icons-round) {
   font-family: "Nunito Sans", sans-serif;
 }
+
+div#app *:not(window)::after,
+div#app *:not(window),
+div#app *:not(window)::before {
+  transition: all 0.3s, color 0.1s, top 0s, left 0s;
+}

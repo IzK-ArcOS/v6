@@ -1,6 +1,5 @@
 import { Log } from "$ts/console";
 import { builtinApps } from "$ts/stores/apps/builtins";
-import { sleep } from "$ts/util";
 import { loadApp } from "./load";
 
 export async function loadBuiltinApps() {

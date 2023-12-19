@@ -9,6 +9,6 @@ window.focused div.titlebar {
   background-color: transparent;
 }
 
-window:not(.focused) div.titlebar>* {
+window:not(.focused) div.titlebar > * {
   opacity: 0.6 !important;
 }

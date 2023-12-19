@@ -10,7 +10,7 @@ export const ErrorDialog: App = {
     author: "ArcOS Team",
     version: "1.0.0",
     icon: WarningIcon,
-    appGroup: "internal"
+    appGroup: "internal",
   },
   runtime: Runtime,
   content: AppSvelte,
@@ -24,12 +24,12 @@ export const ErrorDialog: App = {
     maximized: false,
     headless: false,
     fullscreen: false,
-    resizable: false
+    resizable: false,
   },
   controls: {
     minimize: false,
     maximize: false,
-    close: true
+    close: true,
   },
   glass: false,
-}
+};

@@ -11,7 +11,11 @@ export class AppRuntime {
   public readonly CurrentPage = writable<string>("");
   public pid: number;
 
-  constructor(appData: App, public appMutator: ReadableStore<App>, public process: Process) {
+  constructor(
+    appData: App,
+    public appMutator: ReadableStore<App>,
+    public process: Process
+  ) {
     if (!appData.id) {
       Log(
         `apps/runtime`,

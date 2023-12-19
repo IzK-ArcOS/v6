@@ -5,16 +5,32 @@ import { ErrorDialog } from "$types/error";
 import { ProcessHandler } from "./handler";
 import { Process } from "./instance";
 
-export function createErrorDialog(options: ErrorDialog, parentPid: number, overlay?: boolean) {
+export function createErrorDialog(
+  options: ErrorDialog,
+  parentPid: number,
+  overlay?: boolean
+) {
   class DialogProcess extends Process {
-    constructor(handler: ProcessHandler, pid: number, name: string, app?: App, ...args: any[]) {
+    constructor(
+      handler: ProcessHandler,
+      pid: number,
+      name: string,
+      app?: App,
+      ...args: any[]
+    ) {
       super(handler, pid, name, app, ...args);
 
       this.setParentPid(pid);
     }
   }
 
-  const app = { ...AppData, isOverlay: overlay }
+  const app = { ...AppData, isOverlay: overlay };
 
-  ProcessStack.spawn({ proc: DialogProcess, parentPid, name: `error#${parentPid}`, args: options, app })
-} 
+  ProcessStack.spawn({
+    proc: DialogProcess,
+    parentPid,
+    name: `error#${parentPid}`,
+    args: options,
+    app,
+  });
+}

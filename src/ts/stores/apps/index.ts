@@ -1,6 +1,5 @@
 import { Store } from "$ts/writable";
 import { App, AppLibrary } from "$types/app";
-import { Processes } from "$types/process";
 
 export * from "./builtins";
 export * from "./groups";

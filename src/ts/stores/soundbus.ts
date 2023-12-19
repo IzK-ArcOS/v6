@@ -1,12 +1,12 @@
 import { SoundStore } from "$types/soundbus";
 
 import dialogError from "$assets/audio/Error.wav";
-import dialogWarning from "$assets/audio/Warning.wav";
 import dialogInfo from "$assets/audio/Info.wav";
 import notification from "$assets/audio/Notification.wav";
-import systemLogon from "$assets/audio/logon.wav";
-import systemLogoff from "$assets/audio/logoff.wav";
+import dialogWarning from "$assets/audio/Warning.wav";
 import click from "$assets/audio/click.wav";
+import systemLogoff from "$assets/audio/logoff.wav";
+import systemLogon from "$assets/audio/logon.wav";
 import mwomp from "$assets/audio/mwomp.mp3";
 
 export const ArcSounds: SoundStore = {

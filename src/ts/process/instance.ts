@@ -10,9 +10,15 @@ export class Process {
   public parentPid: Nullable<number> = null;
   public args: any[] = [];
 
-  constructor(public readonly handler: ProcessHandler, public pid: number, public name: string, app?: App, ...args: any[]) {
+  constructor(
+    public readonly handler: ProcessHandler,
+    public pid: number,
+    public name: string,
+    app?: App,
+    ...args: any[]
+  ) {
     this.app = app;
-    this.args = args
+    this.args = args;
   }
 
   public setParentPid(pid: number) {
@@ -22,7 +28,11 @@ export class Process {
   }
 
   public Log(text: string, level?: LogLevel) {
-    Log("process/instance", `ProcessHandler[${this.handler.id}][${this.name}]: ${text}`, level)
+    Log(
+      "process/instance",
+      `ProcessHandler[${this.handler.id}][${this.name}]: ${text}`,
+      level
+    );
   }
 
   start(): any {

@@ -3,9 +3,9 @@ import { Endpoints } from "$ts/stores/endpoint";
 import { defaultQuota } from "$ts/stores/quota";
 import { ConnectedServer } from "$ts/stores/server";
 import { UserName, UserToken } from "$ts/stores/user";
+import { FSQuota } from "$types/fs";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
-import { FSQuota } from "$types/fs";
 
 export async function getFSQuota(): Promise<FSQuota> {
   const username = UserName.get();

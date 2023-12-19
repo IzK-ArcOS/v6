@@ -1,9 +1,9 @@
 import { ARCOS_MODE } from "$ts/metadata/mode";
 import { LogLevelData } from "$ts/stores/console";
-import dayjs from "dayjs";
-import { writable } from "svelte/store";
 import { Store } from "$ts/writable";
 import { LogItem, LogLevel } from "$types/console";
+import dayjs from "dayjs";
+import { writable } from "svelte/store";
 import { pushToStack } from "./stack";
 
 export const LogStore = Store<LogItem[]>([]);

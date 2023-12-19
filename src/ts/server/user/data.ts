@@ -37,11 +37,7 @@ export async function setUserData(data: UserData): Promise<boolean> {
   if (!token || !url) return;
 
   try {
-    const response = await axios.put(
-      url,
-      data,
-      makeTokenOptions(token)
-    );
+    const response = await axios.put(url, data, makeTokenOptions(token));
 
     return response.status === 200;
   } catch {

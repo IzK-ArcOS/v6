@@ -10,7 +10,7 @@ export const ElementsApp: App = {
     author: "Test App",
     version: "0.0.0",
     icon: DefaultIcon,
-    appGroup: "internal"
+    appGroup: "internal",
   },
   runtime: Runtime,
   content: AppSvelte,
@@ -24,12 +24,12 @@ export const ElementsApp: App = {
     maximized: false,
     headless: false,
     fullscreen: false,
-    resizable: true
+    resizable: true,
   },
   controls: {
     minimize: true,
     maximize: true,
-    close: true
+    close: true,
   },
-  glass: false
-}
+  glass: false,
+};

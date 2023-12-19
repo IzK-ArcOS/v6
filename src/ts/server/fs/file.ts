@@ -1,11 +1,11 @@
 import { toBase64 } from "$ts/base64";
+import { Log } from "$ts/console";
 import { Endpoints } from "$ts/stores/endpoint";
 import { UserToken } from "$ts/stores/user";
 import { ArcFile, PartialArcFile } from "$types/fs";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 import { getParentDirectory, readDirectory } from "./dir";
-import { Log } from "$ts/console";
 
 export async function readFile(path: string): Promise<ArcFile> {
   Log("server/fs/file", `Reading "${path}"...`);

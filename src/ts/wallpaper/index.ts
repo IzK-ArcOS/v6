@@ -1,6 +1,5 @@
 import { fromBase64 } from "$ts/base64";
 import { Log } from "$ts/console";
-import { arrayToBlob, blobToText } from "$ts/server/fs/convert";
 import { readFile } from "$ts/server/fs/file";
 import { UserName } from "$ts/stores/user";
 import { Wallpapers } from "$ts/stores/wallpaper";

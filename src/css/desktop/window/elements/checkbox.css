@@ -1,5 +1,4 @@
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
-
   input[type="checkbox"],
   input[type="radio"] {
     --active: var(--accent);
@@ -58,8 +57,8 @@
     --bc: var(--border);
   }
 
-  input[type="checkbox"]:disabled+label,
-  input[type="radio"]:disabled+label {
+  input[type="checkbox"]:disabled + label,
+  input[type="radio"]:disabled + label {
     cursor: url("../../../../assets/cursors/forbidden.cur");
   }
 
@@ -83,8 +82,8 @@
     --o: 1;
   }
 
-  input[type="checkbox"]+label,
-  input[type="radio"]+label {
+  input[type="checkbox"] + label,
+  input[type="radio"] + label {
     font-size: 14px;
     line-height: 21px;
     display: inline-block;

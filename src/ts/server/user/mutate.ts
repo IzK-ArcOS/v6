@@ -3,7 +3,10 @@ import { Endpoints } from "$ts/stores/endpoint";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 
-export async function createUser(username: string, password: string): Promise<boolean> {
+export async function createUser(
+  username: string,
+  password: string
+): Promise<boolean> {
   Log("server/user/mutate", `Creating user "${username}"`);
 
   const url = getServerUrl(Endpoints.NewUsers);

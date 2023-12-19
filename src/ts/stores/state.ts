@@ -43,12 +43,15 @@ export const primaryStates: States = new Map([
       attribs: {},
     },
   ],
-  ["desktop", {
-    name: "Desktop",
-    key: "desktop",
-    content: Desktop,
-    attribs: {}
-  }],
+  [
+    "desktop",
+    {
+      name: "Desktop",
+      key: "desktop",
+      content: Desktop,
+      attribs: {},
+    },
+  ],
   [
     "crash",
     {

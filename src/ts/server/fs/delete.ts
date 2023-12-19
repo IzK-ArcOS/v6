@@ -1,8 +1,8 @@
 import { toBase64 } from "$ts/base64";
+import { Endpoints } from "$ts/stores/endpoint";
 import { UserToken } from "$ts/stores/user";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
-import { Endpoints } from "$ts/stores/endpoint";
 
 export async function deleteItem(path: string): Promise<boolean> {
   const url = getServerUrl(Endpoints.FsRm, { path: toBase64(path) });

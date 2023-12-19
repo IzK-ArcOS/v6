@@ -3,7 +3,7 @@ import { Nullable } from "./common";
 import { ReadableStore } from "./writable";
 
 export interface App {
-  metadata: AppMetaData
+  metadata: AppMetaData;
   runtime: typeof AppRuntime;
   content?: any;
   sideload?: SideloadInfo;
@@ -45,8 +45,8 @@ export interface AppState {
 }
 
 export type AppLibrary = ReadableStore<Map<string, App>>; // [id, instance]
-export type Coordinate = { x: number, y: number };
-export type Size = { w: number, h: number };
+export type Coordinate = { x: number; y: number };
+export type Size = { w: number; h: number };
 
 export interface SideloadInfo {
   module?: string;

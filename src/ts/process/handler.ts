@@ -1,7 +1,6 @@
 import { Log } from "$ts/console";
 import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
-import { App } from "$types/app";
 import { Nullable } from "$types/common";
 import { LogLevel } from "$types/console";
 import { ProcessMap, ProcessSpawnArguments, Processes } from "$types/process";

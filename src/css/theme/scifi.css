@@ -1,7 +1,7 @@
 :root .theme-scifi {
   --fg: #7ad0d6;
   --win-bg: #08151d;
-  --win-border-rad: 7.5px;
+  --win-border-rad: 10px;
   --win-border: #609495 1px solid;
   --win-border-light: #317f87 1px solid;
   --glass-bg: #08151da9;

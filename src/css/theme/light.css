@@ -1,7 +1,7 @@
 :root .theme-light {
   --fg: #333;
   --win-bg: #fff;
-  --win-border-rad: 7.5px;
+  --win-border-rad: 10px;
   --win-border: rgb(226, 226, 226) 1px solid;
   --win-border-light: #ffffff34 1px solid;
   --glass-bg: #ffffffd2;

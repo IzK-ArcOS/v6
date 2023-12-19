@@ -1,7 +1,7 @@
 :root .theme-amoled {
   --fg: #ddd;
   --win-bg: #000;
-  --win-border-rad: 7.5px;
+  --win-border-rad: 10px;
   --win-border: #333 1px solid;
   --win-border-light: #5554 1px solid;
   --glass-bg: #00000083;

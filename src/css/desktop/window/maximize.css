@@ -2,6 +2,8 @@ window:not(.core):not(.closing).maximized {
   transform: translate3d(0px, 0px, 0px) !important;
   max-width: unset !important;
   max-height: unset !important;
+  min-width: unset !important;
+  min-height: unset !important;
   border-width: 0px;
   border-radius: 0;
   transition: all 0.3s !important;

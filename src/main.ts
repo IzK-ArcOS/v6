@@ -2,7 +2,6 @@ import "$css/main.css";
 import { setCrashHooks } from "$ts/bugrep/hooks";
 import { setLoggingHooks } from "$ts/console/hooks";
 import App from "./App.svelte";
-import { ArcSoundBus } from "$ts/soundbus";
 
 setLoggingHooks();
 setCrashHooks();

@@ -2,7 +2,6 @@ import { maxZIndex } from "$ts/stores/apps";
 import { App } from "$types/app";
 
 export function generateCSS(app: App) {
-  console.log(app);
   if (!app || app.metadata.core) return "";
 
   let cssString = "";

@@ -27,8 +27,6 @@ export class AppRuntime {
     }
 
     this.app = appData;
-
-    console.log(process);
   }
 
   public Log(

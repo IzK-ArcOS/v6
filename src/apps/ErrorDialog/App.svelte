@@ -9,11 +9,7 @@
   let data: ErrorDialog = null;
 
   onMount(() => {
-    console.log(runtime.process);
-
     data = runtime.process.args[0] as ErrorDialog;
-
-    console.log(data);
   });
 
   function e(cb: () => void) {

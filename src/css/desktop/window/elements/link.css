@@ -1,0 +1,26 @@
+window div.body button.link {
+  padding: 0;
+  margin: 0;
+  display: inline;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+window a,
+window div.body button.link {
+  color: var(--accent-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+window a:hover,
+window div.body button.link:hover {
+  color: var(--accent-lighter) !important;
+}
+
+window div.body code {
+  padding: 0 2.5px;
+  border-radius: var(--button-border-rad);
+  background-color: var(--button-active-bg);
+  font-family: "Source Code Pro", monospace;
+}

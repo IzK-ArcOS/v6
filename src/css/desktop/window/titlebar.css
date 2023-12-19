@@ -13,17 +13,22 @@ window div.titlebar {
   background-color: var(--win-bg);
   padding: 5px;
   font-size: 12px;
+  position:relative;
 }
 
 window div.titlebar.left {
   flex-direction: row-reverse;
 }
 
-window div.titlebar.center div.title {
+window div.titlebar.center div.title span.title-text {
   position: absolute;
-  width: inherit;
-  height: inherit;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   justify-content: center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }

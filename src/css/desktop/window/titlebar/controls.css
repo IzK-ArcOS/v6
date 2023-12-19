@@ -4,7 +4,7 @@ window div.titlebar div.controls {
   height: 20px;
 }
 
-window div.titlebar div.controls button {
+window div.titlebar div.controls button.titlebar-control {
   margin: 0;
   padding: 0;
   background-color: transparent;
@@ -16,11 +16,11 @@ window div.titlebar div.controls button {
   transition: opacity 0.2s;
 }
 
-window div.titlebar div.controls button:hover {
+window div.titlebar div.controls button.titlebar-control:hover {
   color: var(--accent-light);
 }
 
-window div.titlebar div.controls button:disabled,
-window div.titlebar div.controls button:active {
+window div.titlebar div.controls button.titlebar-control:disabled,
+window div.titlebar div.controls button.titlebar-control:active {
   opacity: 0.2;
 }

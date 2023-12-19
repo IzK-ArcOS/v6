@@ -1,0 +1,12 @@
+window div.body h1,
+window div.body h2,
+window div.body h3,
+window div.body h4,
+window div.body h5 {
+  margin: 5px 0;
+}
+
+window div.body p {
+  margin: 3px 0;
+  font-size: inherit;
+}

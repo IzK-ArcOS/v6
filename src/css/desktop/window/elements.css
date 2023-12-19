@@ -1,99 +1,15 @@
 @import url("./elements/checkbox.css");
-
-window div.body button:not(.reset) {
-  border: none;
-  border-radius: var(--button-border-rad, 4px);
-  padding: 5px 15px;
-  background-color: var(--button-bg, #4a4a4a);
-  color: var(--fg, #ccc);
-  transition: opacity 0.2s, background-color 0.2s;
-  font-size: 13px;
-  margin: 2px;
-}
-
-window div.body button:not(.reset).suggested {
-  background-color: var(--accent-light);
-  color: var(--accent-darkest);
-  min-width: 80px;
-  box-shadow: 0 1px 2px 1px #0000001c;
-}
-
-window div.body button:not(.reset).suggested:hover {
-  background-color: var(--accent-lighter);
-}
-
-window div.body button:not(.reset).suggested:active {
-  background-color: var(--accent);
-}
-
-window.glass div.body button:not(.reset):not(.suggested) {
-  background-color: var(--button-glass-bg, #fff1);
-}
-
-window.glass div.body button:not(.reset):hover {
-  background-color: var(--button-glass-hover-bg, #fff3);
-}
-
-window.glass div.body button:not(.reset):active {
-  background-color: var(--button-glass-active-bg, #0005);
-}
-
-window div.body button:not(.reset):hover {
-  background-color: var(--button-hover-bg, #555555);
-}
+@import url("./elements/suggested.css");
+@import url("./elements/fields.css");
+@import url("./elements/glass.css");
+@import url("./elements/button.css");
+@import url("./elements/link.css");
+@import url("./elements/text.css");
 
 window div.body button:not(.reset):not(.material-icons-round):hover,
 window div.body input:hover,
 window div.body select:hover {
   box-shadow: 0 1px 2px 1px #00000033;
-}
-
-window div.body button:not(.reset):not(:disabled):active {
-  background-color: var(--button-active-bg, #2a2a2a);
-}
-
-button:not(.reset):not(:disabled):active {
-  transform: scale(0.95);
-  opacity: 0.8;
-}
-
-window div.body button:not(.reset):disabled {
-  opacity: 0.3;
-}
-
-window div.body button.link {
-  padding: 0;
-  margin: 0;
-  display: inline;
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-
-window div.body input,
-window div.body select {
-  background-color: var(--win-bg);
-  border: var(--win-border);
-  color: var(--fg);
-  border-radius: var(--button-border-rad, 4px);
-  padding: 3.5px;
-}
-
-window.glass div.body input,
-window.glass div.body select {
-  background-color: var(--win-glass-bg);
-}
-
-window div.body h1,
-window div.body h2,
-window div.body h3,
-window div.body h4,
-window div.body h5 {
-  margin: 5px 0;
-}
-
-window div.body p {
-  margin: 3px 0;
-  font-size: inherit;
 }
 
 window button.fullwidth,
@@ -103,23 +19,4 @@ window input.fullwidth {
   text-align: left;
   box-sizing: border-box;
   margin-bottom: 5px;
-}
-
-window a,
-window div.body button.link {
-  color: var(--accent-light);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-window a:hover,
-window div.body button.link:hover {
-  color: var(--accent-lighter) !important;
-}
-
-window div.body code {
-  padding: 0 2.5px;
-  border-radius: var(--button-border-rad);
-  background-color: var(--button-active-bg);
-  font-family: "Source Code Pro", monospace;
 }

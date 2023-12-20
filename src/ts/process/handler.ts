@@ -143,13 +143,25 @@ export class ProcessHandler {
 
   public getOverlayProcesses(pPid: number): ProcessMap {
     const children = this.getSubProcesses(pPid);
-
     const result: ProcessMap = new Map([]);
 
     for (const [pid, proc] of children) {
       if (proc.parentPid != pPid || !proc.app || !proc.app.isOverlay) continue;
 
       result.set(pid, proc);
+    }
+
+    return result;
+  }
+
+  public getAppPids(id: string): number[] {
+    const procs = this.processes.get();
+    const result = [];
+
+    for (const [pid, proc] of procs) {
+      if (proc.app && proc.app.id == id) {
+        result.push(pid)
+      }
     }
 
     return result;

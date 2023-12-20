@@ -1,5 +1,5 @@
 import { Process, ProcessHandler } from "$ts/process";
-import { appLibrary } from "$ts/stores/apps";
+import { appLibrary, focusedPid } from "$ts/stores/apps";
 import { ProcessStack } from "$ts/stores/process";
 import { App } from "$types/app";
 
@@ -16,11 +16,23 @@ export function spawnApp(id: string, parent?: number): boolean {
     }
   }
 
+  const app = library.get(id);
+
+  const instances = ProcessStack.getAppPids(id);
+
+  if (app.singleInstance && instances.length) {
+    focusedPid.set(instances[0]);
+
+    return true;
+  }
+
   ProcessStack.spawn({
     proc: AppProcess,
     name: `app#${id}`,
     app: library.get(id),
   });
+
+  return true;
 }
 
 export function spawnOverlay(app: App, parentPid: number) {

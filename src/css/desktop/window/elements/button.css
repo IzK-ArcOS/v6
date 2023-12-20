@@ -1,6 +1,6 @@
 window div.body button:not(.reset) {
   border: none;
-  border-radius: var(--button-border-rad, 4px);
+  border-radius: var(--button-border-rad);
   padding: 5px 15px;
   background-color: var(--button-bg, #4a4a4a);
   color: var(--fg, #ccc);

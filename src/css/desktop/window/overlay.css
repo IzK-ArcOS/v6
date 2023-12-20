@@ -3,6 +3,12 @@ window.overlay {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) !important;
+  z-index: 2;
+}
+
+window.overlay,
+window.overlay * {
+  pointer-events: initial;
 }
 
 div.overlay-shade {

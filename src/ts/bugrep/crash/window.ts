@@ -41,9 +41,8 @@ export function handleWindowError(
     includeUserData: false,
     includeApi: true,
     title: "Crash by irrecoverable unhandled exception",
-    body: `File: ${filename} ${position}\n\n${message}\n\n${
-      stack || "  at ArcOS (no stack)"
-    }`,
+    body: `File: ${filename} ${position}\n\n${message}\n\n${stack || "  at ArcOS (no stack)"
+      }`,
   };
 
   const report = createReport(options);

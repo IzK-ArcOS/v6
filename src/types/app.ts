@@ -16,6 +16,8 @@ export interface App {
   controls: WindowControls;
   glass?: boolean;
   isOverlay?: boolean;
+  loadCondition?: () => boolean | Promise<boolean>;
+  singleInstance?: boolean;
 }
 
 export type AppMutator = ReadableStore<App>;

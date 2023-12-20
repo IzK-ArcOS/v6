@@ -4,7 +4,8 @@ import { appLibrary } from "$ts/stores/apps";
 import { sleep } from "$ts/util";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
-import { spawnApp } from "./spawn";
+import { spawnApp } from "../spawn";
+import { loadConditionFailed } from "./fail";
 
 export async function loadApp(id: string, data: App): Promise<boolean> {
   Log("apps/load", `Loading application ${id}`);
@@ -13,9 +14,17 @@ export async function loadApp(id: string, data: App): Promise<boolean> {
   if (library.has(id)) {
     Log(
       "apps/load",
-      `Loading ${id} failed because an application with the same ID already exists`,
+      `${id} failed because an application with the same ID already exists`,
       LogLevel.error
     );
+
+    return false;
+  }
+
+  const allowLoad = data.loadCondition ? await data.loadCondition() : true;
+
+  if (!allowLoad) {
+    loadConditionFailed(data);
 
     return false;
   }

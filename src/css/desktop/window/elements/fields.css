@@ -1,10 +1,9 @@
-
 window div.body input,
 window div.body select {
   background-color: var(--win-bg);
   border: var(--win-border);
   color: var(--fg);
-  border-radius: var(--button-border-rad, 4px);
+  border-radius: var(--button-border-rad);
   padding: 3.5px;
 }
 

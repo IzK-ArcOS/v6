@@ -1,4 +1,4 @@
-import type { Network } from "./interface";
+import { Network } from "$types/device";
 
 export const defaultNetwork: Network = {
   downlink: 0,

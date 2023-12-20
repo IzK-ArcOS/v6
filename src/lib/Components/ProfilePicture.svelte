@@ -1,12 +1,21 @@
 <script lang="ts">
-  export let src: string;
+  import { getProfilePicture } from "$ts/stores/pfp";
+  import { UserDataStore } from "$ts/stores/user";
+
+  export let src: string = "";
   export let height: number;
   export let className: string = "";
+
+  let url = "";
+
+  UserDataStore.subscribe((v) => {
+    url = getProfilePicture(v.acc.profilePicture);
+  });
 </script>
 
 <div
   class="pfprenderer {className} pfp"
-  style="background-image:url('{src}'); height:{height}px;"
+  style="background-image:url('{src || url}'); height:{height}px;"
 />
 
 <style scoped>

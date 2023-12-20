@@ -55,7 +55,7 @@ export async function loadExternal(
     manualCrash("src/ts/apps/load.ts", "loading external app failed, CORS?");
   }
 
-  const loaded = loadApp(tag, app);
+  const loaded = await loadApp(tag, app);
 
   return loaded;
 }

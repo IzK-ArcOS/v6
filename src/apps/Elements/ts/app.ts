@@ -34,5 +34,5 @@ export const ElementsApp: App = {
     close: true,
   },
   glass: false,
-  loadCondition: () => ARCOS_MODE == "development" && ConnectedServer.get().host.includes("v6")
+  loadCondition: () => ARCOS_MODE == "development"
 };

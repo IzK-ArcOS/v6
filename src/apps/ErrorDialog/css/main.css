@@ -23,7 +23,7 @@
   margin-top: 20px;
   justify-content: flex-end;
   border-top: var(--win-border);
-  padding: 15px;
+  padding: 10px;
   background-color: var(--button-bg);
 }
 
@@ -35,10 +35,9 @@
 }
 
 #ErrorDialog div.bottom div.buttons button {
-  min-width: 80px;
+  min-width: 70px;
   margin: 0;
   background-color: var(--button-hover-bg);
-  height: 35px;
 }
 
 #ErrorDialog div.bottom div.buttons button:hover {

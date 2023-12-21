@@ -48,9 +48,11 @@
 
 .theme-scifi div.wallpaper {
   background-image: none !important;
-  background: linear-gradient(to bottom,
-      var(--win-bg) 0%,
-      #02060a 100%) !important;
+  background: linear-gradient(
+    to bottom,
+    var(--win-bg) 0%,
+    #02060a 100%
+  ) !important;
 }
 
 .theme-scifi div.newtb {

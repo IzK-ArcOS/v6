@@ -1,13 +1,11 @@
-
 window.glass div.body button:not(.reset):not(.suggested) {
-    background-color: var(--button-glass-bg, #fff1);
-  }
-  
-  window.glass div.body button:not(.reset):hover {
-    background-color: var(--button-glass-hover-bg, #fff3);
-  }
-  
-  window.glass div.body button:not(.reset):active {
-    background-color: var(--button-glass-active-bg, #0005);
-  }
-  
+  background-color: var(--button-glass-bg, #fff1);
+}
+
+window.glass div.body button:not(.reset):hover {
+  background-color: var(--button-glass-hover-bg, #fff3);
+}
+
+window.glass div.body button:not(.reset):active {
+  background-color: var(--button-glass-active-bg, #0005);
+}

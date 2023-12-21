@@ -1,4 +1,4 @@
-import { AppRuntime } from "$ts/apps";
+import { AppRuntime } from "$ts/apps/runtime";
 import { Process } from "$ts/process";
 import type { App, AppMutator } from "$types/app";
 

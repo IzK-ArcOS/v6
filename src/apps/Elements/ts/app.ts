@@ -1,6 +1,5 @@
 import { DefaultIcon } from "$ts/images/apps";
 import { ARCOS_MODE } from "$ts/metadata";
-import { ConnectedServer } from "$ts/stores/server";
 import { App } from "$types/app";
 import AppSvelte from "../App.svelte";
 import { Runtime } from "./runtime";

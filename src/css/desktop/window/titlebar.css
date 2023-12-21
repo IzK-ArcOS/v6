@@ -13,7 +13,7 @@ window div.titlebar {
   background-color: var(--win-bg);
   padding: 5px;
   font-size: 12px;
-  position:relative;
+  position: relative;
 }
 
 window div.titlebar.left {
@@ -27,7 +27,7 @@ window div.titlebar.center div.title span.title-text {
   top: 0;
   left: 0;
   justify-content: center;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: none;

@@ -42,7 +42,6 @@
 
 #ErrorDialog div.bottom div.buttons button:hover {
   background-color: var(--button-glass-hover-bg);
-
 }
 
 #ErrorDialog div.bottom div.buttons button:active {

@@ -9,6 +9,8 @@
   let url = "";
 
   UserDataStore.subscribe((v) => {
+    if (!v) return;
+
     url = getProfilePicture(v.acc.profilePicture);
   });
 </script>

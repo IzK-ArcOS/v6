@@ -88,7 +88,7 @@ export class ProcessHandler {
     if (!procs.size) return;
 
     for (const [pid] of procs) {
-      await this.kill(pid)
+      this.kill(pid)
     }
   }
 

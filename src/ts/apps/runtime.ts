@@ -17,9 +17,9 @@ export class AppRuntime {
     public process: Process
   ) {
     if (!appData.id) {
-      Log(
-        `apps/runtime`,
+      this.Log(
         `Can't create AppRuntime without valid app ID`,
+        "constructor",
         LogLevel.error
       );
 
@@ -27,6 +27,7 @@ export class AppRuntime {
     }
 
     this.app = appData;
+    this.setPid(process.pid)
   }
 
   public Log(
@@ -57,6 +58,7 @@ export class AppRuntime {
   }
 
   public setPid(pid: number) {
+    this.Log(`Setting PID to ${pid}`, "setPid")
     this.pid = pid;
   }
 }

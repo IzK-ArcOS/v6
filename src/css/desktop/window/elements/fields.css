@@ -4,7 +4,7 @@ window div.body select {
   border: var(--win-border);
   color: var(--fg);
   border-radius: var(--button-border-rad);
-  padding: 3.5px;
+  padding: 6px 10px;
 }
 
 window.glass div.body input,

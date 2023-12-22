@@ -10,6 +10,7 @@ export const Endpoints = {
   Token: "/v2/token/",
   UserData: "/v2/users/me",
   Users: "/users/get", // v1
+  UserRename: "/user/rename" // v1
 };
 
 export function isStoredEndpoint(endpoint: string) {

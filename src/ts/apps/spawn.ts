@@ -17,8 +17,8 @@ export function spawnApp(id: string, parent?: number): boolean {
   }
 
   const app = library.get(id);
-
-  const instances = ProcessStack.getAppPids(id);
+  const closedPids = ProcessStack.closedPids.get();
+  const instances = ProcessStack.getAppPids(id).filter((p) => !closedPids.includes(p));
 
   if (app.singleInstance && instances.length) {
     focusedPid.set(instances[0]);

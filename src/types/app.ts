@@ -18,6 +18,7 @@ export interface App {
   isOverlay?: boolean;
   loadCondition?: () => boolean | Promise<boolean>;
   singleInstance?: boolean;
+  autoOpen?: boolean;
 }
 
 export type AppMutator = ReadableStore<App>;

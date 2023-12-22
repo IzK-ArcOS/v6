@@ -24,6 +24,6 @@
 
 {#if render}
   <div class="app theme-dark fullscreen" class:gray={$CRASHING}>
-    <StateRenderer handler={PrimaryState} />
+    <StateRenderer handler={PrimaryState} renderProcesses />
   </div>
 {/if}

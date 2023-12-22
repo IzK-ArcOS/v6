@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ProcessRenderer from "$state/Desktop/Components/ProcessRenderer.svelte";
   import { AppRuntime } from "$ts/apps";
   import { StateHandler } from "$ts/states";
   import { State } from "$types/state";
@@ -6,6 +7,7 @@
 
   export let runtime: AppRuntime = null;
   export let handler: StateHandler;
+  export let renderProcesses = false;
 
   let state: State;
 
@@ -14,11 +16,16 @@
 
 {#if handler && state}
   <div class="state-renderer {handler.id} state-{handler.id}-{state.key}">
-    <svelte:component
-      this={state.content}
-      thisState={state}
-      {handler}
-      {runtime}
-    />
+    {#if state.content}
+      <svelte:component
+        this={state.content}
+        thisState={state}
+        {handler}
+        {runtime}
+      />
+    {/if}
   </div>
+  {#if state.key != "desktop" && renderProcesses}
+    <ProcessRenderer />
+  {/if}
 {/if}

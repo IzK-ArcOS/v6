@@ -3,7 +3,7 @@ import { appLibrary, focusedPid } from "$ts/stores/apps";
 import { ProcessStack } from "$ts/stores/process";
 import { App } from "$types/app";
 
-export function spawnApp(id: string, parent?: number): boolean {
+export function spawnApp(id: string, parent?: number, processHandler = ProcessStack): boolean {
   const library = appLibrary.get();
 
   if (!library.has(id)) return false;
@@ -17,8 +17,8 @@ export function spawnApp(id: string, parent?: number): boolean {
   }
 
   const app = library.get(id);
-  const closedPids = ProcessStack.closedPids.get();
-  const instances = ProcessStack.getAppPids(id).filter((p) => !closedPids.includes(p));
+  const closedPids = processHandler.closedPids.get();
+  const instances = processHandler.getAppPids(id).filter((p) => !closedPids.includes(p));
 
   if (app.singleInstance && instances.length) {
     focusedPid.set(instances[0]);
@@ -26,7 +26,7 @@ export function spawnApp(id: string, parent?: number): boolean {
     return true;
   }
 
-  ProcessStack.spawn({
+  processHandler.spawn({
     proc: AppProcess,
     name: `app#${id}`,
     app: library.get(id),
@@ -35,10 +35,10 @@ export function spawnApp(id: string, parent?: number): boolean {
   return true;
 }
 
-export function spawnOverlay(app: App, parentPid: number) {
+export function spawnOverlay(app: App, parentPid: number, processHandler = ProcessStack) {
   app = { ...app, isOverlay: true };
 
-  if (!ProcessStack.isPid(parentPid)) return false;
+  if (!processHandler.isPid(parentPid)) return false;
 
   class OverlayProcess extends Process {
     constructor(handler: ProcessHandler, pid: number, name: string, app: App) {
@@ -48,5 +48,5 @@ export function spawnOverlay(app: App, parentPid: number) {
     }
   }
 
-  ProcessStack.spawn({ proc: OverlayProcess, name: `overlay#${app.id}`, app });
+  processHandler.spawn({ proc: OverlayProcess, name: `overlay#${app.id}`, app });
 }

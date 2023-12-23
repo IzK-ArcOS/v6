@@ -17,7 +17,7 @@ const defaultUserData: UserData = {
       accentedStart: false
     },
     window: {
-      bigtb: false,
+      bigtb: true,
       lefttb: false,
       buttons: "default",
       centertb: false

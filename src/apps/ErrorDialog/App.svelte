@@ -7,6 +7,7 @@
   export let runtime: Runtime;
 
   let data: ErrorDialog = null;
+  let disabled = false;
 
   onMount(() => {
     data = runtime.process.args[0] as ErrorDialog;
@@ -37,7 +38,11 @@
       <p class="error-message">
         {#if data.component}
           <div class="component">
-            <svelte:component this={data.component} error={data} />
+            <svelte:component
+              this={data.component}
+              error={data}
+              bind:disabled
+            />
           </div>
         {:else}
           {@html data.message || "$error.message"}
@@ -50,8 +55,11 @@
       {#each data.buttons as button}
         <button
           on:click={() => e(button.action)}
-          class:suggested={button.suggested}>{button.caption}</button
+          class:suggested={button.suggested}
+          disabled={disabled && button.suggested}
         >
+          {button.caption}
+        </button>
       {/each}
     </div>
   </div>

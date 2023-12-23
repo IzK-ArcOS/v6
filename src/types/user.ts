@@ -3,31 +3,31 @@ import { Nullable } from "./common";
 export interface UserData {
   sh: {
     taskbar: {
-      centered: boolean; //done
-      labels: boolean; //done
-      pos: "vertical" | "" | "vertical-right" | "top" | string; // TODO: vert-left, bottom, vert-right, top
-      docked: boolean; //done
+      centered: boolean; // added
+      labels: boolean; // added
+      pos: "vertical" | "" | "vertical-right" | "top" | string; // TODO: vert-left, bottom, vert-right, top // added
+      docked: boolean; // added
       colored: boolean;
       isLauncher: boolean;
-      clockSecs: boolean;
-      clockDate: boolean;
-      clock12hr: boolean;
+      clockSecs: boolean; // added
+      clockDate: boolean; // added
+      clock12hr: boolean; // added
       accentedStart: boolean;
     };
 
     window: {
-      bigtb: boolean; //done
-      lefttb: boolean; //done
+      bigtb: boolean; // added
+      lefttb: boolean; // added
       buttons: string;
-      centertb: boolean;
+      centertb: boolean; // added
     };
 
     desktop: {
-      wallpaper: string | null;
+      wallpaper: string | null; // added
       icons: boolean;
-      theme: "light" | "dark" | string;
-      sharp: boolean;
-      accent: string;
+      theme: "light" | "dark" | string; // added
+      sharp: boolean; // added
+      accent: string; // added
       pinnedApps: string[];
       pinnedFolders: string[];
       pinnedFiles: string[];
@@ -37,16 +37,16 @@ export interface UserData {
     };
 
     start: {
-      small: boolean; //done
-      noGroups: boolean;
+      small: boolean; // added
+      noGroups: boolean; // added
     };
 
-    anim: boolean; //done
-    noGlass: boolean; //done
+    anim: boolean; // added
+    noGlass: boolean; // added
     noQuickSettings: boolean;
     userThemes?: /* ThemeStore */ any; // TODO: ADD THEMESTORE INTERFACES BACK
     compactContext: boolean;
-    showHiddenApps?: boolean;
+    showHiddenApps?: boolean; // halfway
   };
 
   disabledApps: string[];
@@ -67,8 +67,8 @@ export interface UserData {
 interface AccountInfo {
   admin: boolean;
   enabled: boolean;
-  loginBackground?: string;
-  profilePicture: Nullable<string | number>;
+  loginBackground?: string; // added
+  profilePicture: Nullable<string | number>; // added
 }
 
 export type AppData = {

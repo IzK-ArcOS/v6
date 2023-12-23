@@ -7,6 +7,7 @@
 @import url("./window/focus.css");
 @import url("./window/bigtb.css");
 @import url("./window/overlay.css");
+@import url("./window/colored.css");
 
 window:not(.core) {
   --titlebar-height: 30px;

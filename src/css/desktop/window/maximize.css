@@ -6,6 +6,9 @@ window:not(.core):not(.closing).maximized {
   min-height: unset !important;
   border-width: 0px;
   border-radius: 0;
+}
+
+div.desktop:not(.noani) window:not(.core):not(.closing).maximized {
   transition: all 0.3s !important;
 }
 

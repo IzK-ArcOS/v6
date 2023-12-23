@@ -9,13 +9,26 @@
 }
 
 #ErrorDialog div.top {
-  padding: 10px;
+  padding: 20px;
   display: flex;
-  gap: 10px;
+  gap: 20px;
 }
 
 #ErrorDialog div.top div.error-image img {
   height: 40px;
+}
+
+#ErrorDialog div.top div.component {
+  display: flex;
+  flex-direction: column;
+}
+
+#ErrorDialog div.top div.component :first-child {
+  margin-top: 5px;
+}
+
+#ErrorDialog div.top h3.error-title {
+  margin-top: 0;
 }
 
 #ErrorDialog div.bottom {

@@ -31,5 +31,5 @@ export const ErrorDialog: App = {
     maximize: false,
     close: false,
   },
-  glass: false,
+  glass: true,
 };

@@ -1,9 +1,16 @@
 window div.body {
   height: calc(100% - var(--titlebar-height));
   width: 100%;
-  background-color: transparent;
   box-sizing: border-box;
   padding: 10px;
   overflow: auto;
   font-size: 13px;
+}
+
+window:not(.core) div.body {
+  background-color: var(--win-bg);
+}
+
+window.glass div.body {
+  background-color: transparent;
 }

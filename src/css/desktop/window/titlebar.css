@@ -16,6 +16,10 @@ window div.titlebar {
   position: relative;
 }
 
+window:not(.glass) > div.titlebar {
+  border-bottom: var(--win-border-light);
+}
+
 window div.titlebar.left {
   flex-direction: row-reverse;
 }

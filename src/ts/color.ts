@@ -1,8 +1,8 @@
 import colorsea from "colorsea";
 
 // @source https://stackoverflow.com/a/59387478
-export function lightenColor(color: string, modifier: number = 0.35) {
-  if (!color) color = "70D6FF";
+export function lightenColor(color: string, modifier: number = 5) {
+  /* if (!color) color = "70D6FF";
 
   color = color.toString();
 
@@ -20,8 +20,14 @@ export function lightenColor(color: string, modifier: number = 0.35) {
       (255 - color) * (1 - Math.pow(Math.E, -modifier)) + color
     ).toString(16);
   });
+ */
+  return colorsea(`#${color}`).lighten(modifier, "relative").hex();
+  /* 
+    return result; */
+}
 
-  return result;
+export function hex3to6(color: string): string {
+  return colorsea(`#${color}`).hex()
 }
 
 export function darkenColor(color: string, modifier: number = 5) {

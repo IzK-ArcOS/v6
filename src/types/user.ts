@@ -1,4 +1,5 @@
 import { Nullable } from "./common";
+import { ThemeStore } from "./theme";
 
 export interface UserData {
   sh: {
@@ -7,12 +8,12 @@ export interface UserData {
       labels: boolean; // added
       pos: "vertical" | "" | "vertical-right" | "top" | string; // TODO: vert-left, bottom, vert-right, top // added
       docked: boolean; // added
-      colored: boolean;
+      colored: boolean; // added
       isLauncher: boolean;
       clockSecs: boolean; // added
       clockDate: boolean; // added
       clock12hr: boolean; // added
-      accentedStart: boolean;
+      accentedStart: boolean; // added
     };
 
     window: {
@@ -24,7 +25,7 @@ export interface UserData {
 
     desktop: {
       wallpaper: string | null; // added
-      icons: boolean;
+      icons: boolean; // added
       theme: "light" | "dark" | string; // added
       sharp: boolean; // added
       accent: string; // added
@@ -32,8 +33,8 @@ export interface UserData {
       pinnedFolders: string[];
       pinnedFiles: string[];
       noCustomCursor: boolean;
-      noIconGrid: boolean;
-      lockIcons: boolean;
+      noIconGrid: boolean; // added
+      lockIcons: boolean; // added
     };
 
     start: {
@@ -44,7 +45,7 @@ export interface UserData {
     anim: boolean; // added
     noGlass: boolean; // added
     noQuickSettings: boolean;
-    userThemes?: /* ThemeStore */ any; // TODO: ADD THEMESTORE INTERFACES BACK
+    userThemes?: ThemeStore; // added
     compactContext: boolean;
     showHiddenApps?: boolean; // halfway
   };
@@ -65,8 +66,8 @@ export interface UserData {
 }
 
 interface AccountInfo {
-  admin: boolean;
-  enabled: boolean;
+  admin: boolean; // backwards compat, discontinued
+  enabled: boolean; // added
   loginBackground?: string; // added
   profilePicture: Nullable<string | number>; // added
 }

@@ -14,7 +14,8 @@ export class Runtime extends AppRuntime {
 
     mutator.update((v) => { // Adapt the window properties to the error dialog's data
       v.metadata.name = data.title;
-      v.metadata.icon = data.image || WarningIcon
+      v.metadata.icon = data.image || WarningIcon;
+      v.maxSize.w = data.component && !data.shrunk ? 500 : 400;
       return v;
     })
   }

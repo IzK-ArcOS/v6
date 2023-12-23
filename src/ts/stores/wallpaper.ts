@@ -68,7 +68,7 @@ export const Wallpapers: { [key: string]: Wallpaper } = {
     source: "Radków, Poland",
   },
   /**SWHFotografie */
-  img13: { url: img13, author: "SWHFotografie", name: "Agga" },
+  img13: { url: img13, author: "SWHFotografie", name: "Agga", source: "The Hague, The Netherlands" },
   img18: {
     url: img18,
     author: "SWHFotografie",

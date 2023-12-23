@@ -25,7 +25,7 @@
 </script>
 
 {#if data}
-  <div class="top">
+  <div class="top" class:shrunk={data.shrunk}>
     {#if data.image}
       <div class="error-image">
         <img src={data.image} alt="" />

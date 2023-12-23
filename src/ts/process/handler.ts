@@ -19,7 +19,7 @@ export class ProcessHandler {
   }
 
   // ### SECTION SPAWN ###
-  public async spawn({ proc, name, parentPid, app, args }: ProcessSpawnArguments) {
+  public async spawn({ proc, name, parentPid, app, args }: ProcessSpawnArguments): Promise<Process> {
     this.Log(`Spawning process ${proc.name} (isApp = ${!!app})`);
 
     const procs = this.processes.get();

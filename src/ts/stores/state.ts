@@ -49,7 +49,9 @@ export const primaryStates: States = new Map([
       name: "Desktop",
       key: "desktop",
       content: Desktop,
-      attribs: {},
+      attribs: {
+        noProcesssRenderer: true
+      },
     },
   ],
   [
@@ -58,7 +60,9 @@ export const primaryStates: States = new Map([
       name: "Aw, Snap!",
       key: "crash",
       content: Crash,
-      attribs: {},
+      attribs: {
+        noProcesssRenderer: true
+      },
     },
   ],
 ]);

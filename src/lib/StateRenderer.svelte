@@ -25,7 +25,7 @@
       />
     {/if}
   </div>
-  {#if state.key != "desktop" && renderProcesses}
+  {#if !state.attribs.noProcesssRenderer && renderProcesses}
     <ProcessRenderer />
   {/if}
 {/if}

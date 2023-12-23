@@ -5,7 +5,7 @@ import { ErrorDialog } from "$types/error";
 import { ProcessHandler } from "./handler";
 import { Process } from "./instance";
 
-export function createErrorDialog(
+export async function createErrorDialog(
   options: ErrorDialog,
   parentPid: number,
   overlay?: boolean
@@ -26,11 +26,11 @@ export function createErrorDialog(
 
   const app = { ...AppData, isOverlay: overlay };
 
-  ProcessStack.spawn({
+  return (await ProcessStack.spawn({
     proc: DialogProcess,
     parentPid,
     name: `error#${parentPid}`,
     args: options,
     app,
-  });
+  })).pid;
 }

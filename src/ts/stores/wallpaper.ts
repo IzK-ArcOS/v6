@@ -60,24 +60,24 @@ import { Wallpaper } from "$types/wallpaper";
 
 export const Wallpapers: { [key: string]: Wallpaper } = {
   /**ArcOS Team */
-  img04: { url: img04, thumb: img04Thumb, author: "Izaak Kuipers", name: "ArcOS Dark" },
-  img05: { url: img05, thumb: img05Thumb, author: "Izaak Kuipers", name: "ArcOS Light" },
-  img03: { url: img03, thumb: img03Thumb, author: "Izaak Kuipers", name: "Stealth Gradient" },
-  img12: { url: img12, thumb: img12Thumb, author: "Izaak Kuipers", name: "Gradiented Waves" },
+  img04: { url: img04, thumb: img04Thumb, author: "Izaak Kuipers", name: "ArcOS Dark", builtin: true },
+  img05: { url: img05, thumb: img05Thumb, author: "Izaak Kuipers", name: "ArcOS Light", builtin: true },
+  img03: { url: img03, thumb: img03Thumb, author: "Izaak Kuipers", name: "Stealth Gradient", builtin: true },
+  img12: { url: img12, thumb: img12Thumb, author: "Izaak Kuipers", name: "Gradiented Waves", builtin: true },
   /**SWHFotografie */
   img08: {
     url: img08,
     thumb: img08Thumb,
     author: "SWHFotografie",
     name: "Wandelbos",
-    source: "Wandelbos, The Netherlands",
+    source: "Wandelbos, The Netherlands", builtin: true
   },
   /** Eversiege */
   img21: {
     url: img21,
     thumb: img21Thumb,
     author: "Eversiege",
-    name: "Flippin' Trees",
+    name: "Flippin' Trees", builtin: true
   },
   /**Nik Nikovsky */
   img24: {
@@ -85,36 +85,36 @@ export const Wallpapers: { [key: string]: Wallpaper } = {
     thumb: img24Thumb,
     author: "Nik Nikovsky",
     name: "Camp Forest",
-    source: "Radków, Poland",
+    source: "Radków, Poland", builtin: true
   },
   img25: {
     url: img25,
     thumb: img25Thumb,
     author: "Nik Nikovsky",
     name: "Horses",
-    source: "Radków, Poland",
+    source: "Radków, Poland", builtin: true
   },
   img26: {
     url: img26,
     thumb: img26Thumb,
     author: "Nik Nikovsky",
     name: "Glorified Duck",
-    source: "Radków, Poland",
+    source: "Radków, Poland", builtin: true
   },
   /**SWHFotografie */
-  img13: { url: img13, thumb: img13Thumb, author: "SWHFotografie", name: "Agga", source: "The Hague, The Netherlands" },
+  img13: { url: img13, thumb: img13Thumb, author: "SWHFotografie", name: "Agga", source: "The Hague, The Netherlands", builtin: true },
   img18: {
     url: img18,
     thumb: img18Thumb,
     author: "SWHFotografie",
     name: "Wilhelmina Sunset",
-    source: "Wilheminakanaal, Tilburg, The Netherlands",
+    source: "Wilheminakanaal, Tilburg, The Netherlands", builtin: true
   },
   img20: {
     url: img20,
     thumb: img20Thumb,
     author: "SWHFotografie",
-    name: "Stars and Milkyway",
+    name: "Stars and Milkyway", builtin: true
   },
   /**Matteo Scaringi */
   img15: {
@@ -122,49 +122,49 @@ export const Wallpapers: { [key: string]: Wallpaper } = {
     thumb: img15Thumb,
     author: "Matteo Scaringi",
     name: "Corfu",
-    source: "Corfu, Greece",
+    source: "Corfu, Greece", builtin: true
   },
   img19: {
     url: img19,
     thumb: img19Thumb,
     author: "Matteo Scaringi",
     name: "Long Exposure",
-    source: "Slijpe, West-Flanders, Belgium",
+    source: "Slijpe, West-Flanders, Belgium", builtin: true
   },
   img27: {
     url: img27,
     thumb: img27Thumb,
     author: "Matteo Scaringi",
-    name: "Evening Neighborhood",
+    name: "Evening Neighborhood", builtin: true
   },
   /**Kees van Voorthuizen */
-  img14: { url: img14, thumb: img14Thumb, author: "Kees van Voorthuizen", name: "Scheveningen" },
+  img14: { url: img14, thumb: img14Thumb, author: "Kees van Voorthuizen", name: "Scheveningen", builtin: true },
   img01: {
     url: img01,
     thumb: img01Thumb,
     author: "Kees van Voorthuizen",
     name: "Mykonos Seaside",
-    source: "Mykonos, Greece",
+    source: "Mykonos, Greece", builtin: true
   },
   img02: {
     url: img02,
     thumb: img02Thumb,
     author: "Kees van Voorthuizen",
     name: "Sunset in Mykonos",
-    source: "Mykonos, Greece",
+    source: "Mykonos, Greece", builtin: true
   },
   /**Saw Ramsson */
   img22: {
     url: img22,
     thumb: img22Thumb,
     author: "Saw Ramsson",
-    name: "Evening Lakeside",
+    name: "Evening Lakeside", builtin: true
   },
   img23: {
     url: img23,
     thumb: img23Thumb,
     author: "Saw Ramsson",
-    name: "Sunny Lake",
+    name: "Sunny Lake", builtin: true
   },
   /**Blocky (Cy) */
   img17: {
@@ -172,14 +172,14 @@ export const Wallpapers: { [key: string]: Wallpaper } = {
     thumb: img17Thumb,
     author: "Blocky (Cy)",
     name: "Sunset Sky",
-    source: "Fairfield Bay, US",
+    source: "Fairfield Bay, US", builtin: true
   },
   img28: {
     url: img28,
     thumb: img28Thumb,
     author: "Blocky (Cy)",
     name: "Florida Beach",
-    source: "Florida",
+    source: "Florida", builtin: true
   },
   /**Matteo Scaringi */
   img16: {
@@ -187,31 +187,29 @@ export const Wallpapers: { [key: string]: Wallpaper } = {
     thumb: img16Thumb,
     author: "Matteo Scaringi, Izaak Kuipers",
     name: "Login Background - Blurred",
-    source: "Corfu, Greece",
+    source: "Corfu, Greece", builtin: true
   },
   /**Computer Clan */
   img29: {
     url: img29,
     thumb: img29Thumb,
     author: "Computer Clan",
-    name: "Connections",
+    name: "Connections", builtin: true
   },
   img30: {
     url: img30,
     thumb: img30Thumb,
     author: "Computer Clan",
-    name: "Blades",
+    name: "Blades", builtin: true
   },
   img31: {
     url: img31,
     thumb: img31Thumb,
     author: "Computer Clan",
-    name: "Flaming Peddles",
+    name: "Flaming Peddles", builtin: true
   },
   /**Izaak Kuipers */
-  img06: { url: img06, thumb: img06Thumb, author: "Izaak Kuipers", name: "ArcOS Beta Dark" },
-  img07: { url: img07, thumb: img07Thumb, author: "Izaak Kuipers", name: "ArcOS Beta Light" },
-  /* img09: { url: img09, author: "Unknown", name: "Login Background" }, */
-
-  img0: { url: img0, thumb: img0Thumb, author: "Izaak Kuipers", name: "Blank" },
+  img06: { url: img06, thumb: img06Thumb, author: "Izaak Kuipers", name: "ArcOS Beta Dark", builtin: true },
+  img07: { url: img07, thumb: img07Thumb, author: "Izaak Kuipers", name: "ArcOS Beta Light", builtin: true },
+  img0: { url: img0, thumb: img0Thumb, author: "Izaak Kuipers", name: "Blank", builtin: true },
 };

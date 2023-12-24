@@ -4,4 +4,5 @@ export interface Wallpaper {
   source?: string;
   url: string;
   thumb: string;
+  builtin?: boolean;
 }

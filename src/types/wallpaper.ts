@@ -3,4 +3,5 @@ export interface Wallpaper {
   name: string;
   source?: string;
   url: string;
+  thumb: string;
 }

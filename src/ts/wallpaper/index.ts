@@ -17,7 +17,7 @@ const getters: [string, (id: string) => Wallpaper | Promise<Wallpaper>][] = [
 export async function getWallpaper(id: string, override?: string): Promise<Wallpaper> {
   if (!id) return Wallpapers["img04"];
 
-  if (id.startsWith("http")) return { author: "The Web", name: "From the Internet", url: id };
+  if (id.startsWith("http")) return { author: "The Web", name: "From the Internet", url: id, thumb: id };
 
   for (let i = 0; i < getters.length; i++) {
     if (id.startsWith(getters[i][0])) return await getters[i][1](id);
@@ -47,5 +47,5 @@ export async function wallpaperFromFS(path: string): Promise<Wallpaper> {
 
   const url = URL.createObjectURL(file.data);
 
-  return { url, author: UserName.get(), name: "Uploaded", source: "" };
+  return { url, thumb: url, author: UserName.get(), name: "Uploaded", source: "" };
 }

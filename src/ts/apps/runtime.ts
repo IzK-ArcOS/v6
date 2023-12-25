@@ -27,7 +27,7 @@ export class AppRuntime {
     }
 
     this.app = appData;
-    this.setPid(process.pid)
+    this.setPid(process.pid);
   }
 
   public Log(

@@ -11,6 +11,8 @@ export async function loadApp(id: string, data: App): Promise<boolean> {
   Log("apps/load", `Loading application ${id}`);
   const library = appLibrary.get();
 
+  console.log(data);
+
   if (library.has(id)) {
     Log(
       "apps/load",
@@ -29,7 +31,7 @@ export async function loadApp(id: string, data: App): Promise<boolean> {
     return false;
   }
 
-  library.set(id, Object.create(data));
+  library.set(id, data);
 
   await sleep(100);
 

@@ -7,6 +7,8 @@ import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 
 export async function readDirectory(path: string): Promise<UserDirectory> {
+  Log("server/fs/dir", `Reading directory ${path}`);
+
   const url = getServerUrl(Endpoints.FsDirectory, { path: toBase64(path) });
   const token = UserToken.get();
 
@@ -25,6 +27,8 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 }
 
 export async function createDirectory(path: string): Promise<boolean> {
+  Log("server/fs/dir", `Creating directory ${path}`);
+
   const url = getServerUrl(Endpoints.FsDirCreate, { path: toBase64(path) });
   const token = UserToken.get();
 

@@ -8,7 +8,8 @@ import { getServerUrl, makeTokenOptions } from "../util";
 import { getParentDirectory, readDirectory } from "./dir";
 
 export async function readFile(path: string): Promise<ArcFile> {
-  Log("server/fs/file", `Reading "${path}"...`);
+  Log("server/fs/file", `Reading file ${path}`);
+
   const url = getServerUrl(Endpoints.FsFileGet, {
     path: toBase64(path),
   });
@@ -36,6 +37,7 @@ export async function readFile(path: string): Promise<ArcFile> {
 }
 
 export async function getPartialFile(path: string): Promise<PartialArcFile> {
+  Log("server/fs/file", `Getting partial file of ${path}`)
   const parent = getParentDirectory(path);
   const dir = await readDirectory(parent);
   const filename = getFilenameFromPath(path);
@@ -50,6 +52,8 @@ export async function writeFile(
   blob: Blob,
   onUploadProgress?: (progress: any) => any
 ) {
+  Log("server/fs/file", `Writing ${blob.size} bytes to ${path}`);
+
   const url = getServerUrl(Endpoints.FsFileWrite, { path: toBase64(path) });
   const token = UserToken.get();
 

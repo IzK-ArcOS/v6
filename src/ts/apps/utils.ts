@@ -14,5 +14,7 @@ export function getAppById(id: string): Nullable<App> {
 
   if (!library.has(id)) return null;
 
+  console.log(library, library.get(id))
+
   return library.get(id);
 }

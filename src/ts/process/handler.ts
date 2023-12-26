@@ -3,11 +3,12 @@ import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
 import { Nullable } from "$types/common";
 import { LogLevel } from "$types/console";
-import { ProcessMap, ProcessSpawnArguments, Processes } from "$types/process";
+import { ProcessMap, ProcessReadableStore, ProcessSpawnArguments } from "$types/process";
 import { Process } from "./instance";
+import { Processes } from "./store";
 
 export class ProcessHandler {
-  public processes: Processes = Store(new Map([]));
+  public processes: ProcessReadableStore = Processes();
   public closedPids = Store<number[]>([]);
 
   constructor(public readonly id: string) {
@@ -22,19 +23,15 @@ export class ProcessHandler {
   public async spawn({ proc, name, parentPid, app, args }: ProcessSpawnArguments): Promise<Process> {
     this.Log(`Spawning process ${proc.name} (isApp = ${!!app})`);
 
-    const procs = this.processes.get();
-
     const pid = Math.floor(Math.random() * 1e6); // 0 - 1000000
 
-    if (procs.has(pid)) return await this.spawn({ proc, name, parentPid, app, args }) // Try to get another pid
+    if (this.processes.has(pid)) return await this.spawn({ proc, name, parentPid, app, args }) // Try to get another pid
 
     const instance = new proc(this, pid, name, app, args)
 
     if (parentPid) instance.setParentPid(parentPid);
 
-    procs.set(pid, instance);
-
-    this.processes.set(procs);
+    this.processes.set(pid, instance);
 
     await this.handleProcess(pid)
 
@@ -44,11 +41,9 @@ export class ProcessHandler {
   private async handleProcess(pid: number) {
     this.Log(`(internal) Handling process with PID ${pid} `)
 
-    const procs = this.processes.get();
+    if (!this.processes.has(pid)) return false;
 
-    if (!procs.has(pid)) return false;
-
-    const proc = procs.get(pid);
+    const proc = this.processes.getOne(pid);
 
     if (proc._disposed) return false;
 
@@ -60,14 +55,11 @@ export class ProcessHandler {
   public async kill(pid: number): Promise<boolean> {
     this.Log(`Killing process with PID ${pid}`);
 
-    const procs = this.processes.get();
+    if (!this.processes.has(pid)) return false;
 
-    if (!procs.has(pid)) return false;
-
-    const proc = procs.get(pid);
+    const proc = this.processes.getOne(pid);
 
     if (proc._disposed) return false;
-
     if (proc.stop) await proc.stop();
 
     await this._killSubProcesses(pid)
@@ -75,9 +67,7 @@ export class ProcessHandler {
 
     proc._disposed = true
 
-    procs.set(pid, proc);
-
-    this.processes.set(procs);
+    this.processes.set(pid, proc);
 
     return true;
   }
@@ -116,11 +106,10 @@ export class ProcessHandler {
   // ### SECTION GETTERS ###
   public getProcess(pid: number): Nullable<Process> {
     this.Log(`Getting process of PID ${pid}`)
-    const procs = this.processes.get();
 
-    if (!procs.has(pid)) return null;
+    if (!this.processes.has(pid)) return null;
 
-    const proc = procs.get(pid);
+    const proc = this.processes.getOne(pid);
 
     return proc._disposed ? null : proc;
   }
@@ -170,10 +159,9 @@ export class ProcessHandler {
 
   // ### SECTION CHECKS ###
   public isPid(pid: number): boolean {
-    const procs = this.processes.get();
     const closed = this.closedPids.get();
 
-    return procs.has(pid) || closed.includes(pid);
+    return this.processes.has(pid) || closed.includes(pid);
   }
 
   public isClosed(pid: number): boolean {

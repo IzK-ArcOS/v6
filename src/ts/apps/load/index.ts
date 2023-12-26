@@ -11,8 +11,6 @@ export async function loadApp(id: string, data: App): Promise<boolean> {
   Log("apps/load", `Loading application ${id}`);
   const library = appLibrary.get();
 
-  console.log(data);
-
   if (library.has(id)) {
     Log(
       "apps/load",

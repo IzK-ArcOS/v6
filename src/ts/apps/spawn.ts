@@ -2,12 +2,9 @@ import { Process, ProcessHandler } from "$ts/process";
 import { appLibrary, focusedPid } from "$ts/stores/apps";
 import { ProcessStack } from "$ts/stores/process";
 import { App } from "$types/app";
+import { getAppById } from "./utils";
 
 export function spawnApp(id: string, parent?: number, processHandler = ProcessStack): boolean {
-  const library = appLibrary.get();
-
-  if (!library.has(id)) return false;
-
   class AppProcess extends Process {
     constructor(handler: ProcessHandler, pid: number, name: string, app: App) {
       super(handler, pid, name, app);
@@ -16,7 +13,7 @@ export function spawnApp(id: string, parent?: number, processHandler = ProcessSt
     }
   }
 
-  const app = library.get(id);
+  const app = getAppById(id);
   const closedPids = processHandler.closedPids.get();
   const instances = processHandler.getAppPids(id).filter((p) => !closedPids.includes(p));
 
@@ -29,7 +26,7 @@ export function spawnApp(id: string, parent?: number, processHandler = ProcessSt
   processHandler.spawn({
     proc: AppProcess,
     name: `app#${id}`,
-    app: library.get(id),
+    app,
   });
 
   return true;

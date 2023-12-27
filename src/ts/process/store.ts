@@ -1,10 +1,20 @@
+import { Store } from "$ts/writable";
 import { Nullable } from "$types/common";
 import { ProcessReadableStore, ProcessStoreValue, ProcessSubscriberCallback } from "$types/process";
+import { ReadableStore } from "$types/writable";
 import { Process } from "./instance";
 
-export function Processes(): ProcessReadableStore {
+export function Processes(store?: ProcessReadableStore): ProcessReadableStore {
   const map = new Map<number, Process>()
   const subscribers: ProcessSubscriberCallback[] = [];
+
+  function startProcessSync() {
+    if (!store) return;
+
+    store.subscribe((v) => {
+
+    })
+  }
 
   function get(): ProcessStoreValue {
     const result: ProcessStoreValue = [];
@@ -48,5 +58,11 @@ export function Processes(): ProcessReadableStore {
     cb(get());
   }
 
-  return { get, getOne, set, subscribe, has }
+  const mirror = Store<ProcessStoreValue>();
+
+  subscribe((v) => mirror.set(v));
+
+  startProcessSync()
+
+  return { get, getOne, set, subscribe, has, mirror }
 }

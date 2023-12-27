@@ -1,6 +1,7 @@
 import { Process } from "$ts/process";
 import { App } from "./app";
 import { Nullable } from "./common";
+import { ReadableStore } from "./writable";
 
 export type ProcessGroups = Record<string, number[]>; // appId, pid[]
 export type ProcessMap = Map<number, Process>;
@@ -20,4 +21,5 @@ export type ProcessReadableStore = {
   set(pid: number, proc: Process): boolean;
   subscribe(cb: ProcessSubscriberCallback): void;
   has(pid: number): boolean;
+  mirror: ReadableStore<ProcessStoreValue>;
 }

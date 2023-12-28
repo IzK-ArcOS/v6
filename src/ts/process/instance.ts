@@ -6,6 +6,7 @@ import { ProcessHandler } from "./handler";
 
 export class Process {
   public _disposed = false;
+  public _paused = false;
   public app: Nullable<App> = null;
   public parentPid: Nullable<number> = null;
   public args: any[] = [];
@@ -41,5 +42,29 @@ export class Process {
 
   stop(): any {
     // PLACEHOLDER
+  }
+
+  protected pause() {
+    this.Log(`Pausing ${this.pid}`);
+
+    if (this._paused) {
+      this.Log(`Attempted to pause already paused process`, LogLevel.warn);
+
+      return;
+    }
+
+    this._paused = true;
+  }
+
+  protected resume() {
+    this.Log(`Resuming ${this.pid}`)
+
+    if (!this._paused) {
+      this.Log(`Attempted to resume unpaused process`, LogLevel.warn);
+
+      return;
+    }
+
+    this._paused = false;
   }
 }

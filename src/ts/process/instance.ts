@@ -7,6 +7,7 @@ import { ProcessHandler } from "./handler";
 export class Process {
   public _disposed = false;
   public _paused = false;
+  public _pausedError = "Not executing code in paused process";
   public app: Nullable<App> = null;
   public parentPid: Nullable<number> = null;
   public args: any[] = [];
@@ -42,6 +43,12 @@ export class Process {
 
   stop(): any {
     // PLACEHOLDER
+  }
+
+  protected pauseCheck() {
+    if (this._paused) this.Log(this._pausedError, LogLevel.error);
+
+    return this._paused;
   }
 
   protected pause() {

@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "update": "git pull && git submodule update"
+    "update": "git pull && git submodule update",
+    "serve": "vite build && npx serve dist"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.4.1",
@@ -34,6 +35,7 @@
     "marked-extended-tables": "^1.0.5",
     "math.js": "^1.1.46",
     "pocketbase": "^0.15.3",
+    "serve": "^14.2.1",
     "svelte-click-outside": "^1.0.0",
     "svelte-markdown": "^0.2.3",
     "svelte-preprocess-markdown": "^2.7.3",

@@ -15,7 +15,7 @@ const getters: [string, (id: string) => Wallpaper | Promise<Wallpaper>][] = [
 ];
 
 export async function getWallpaper(id: string, override?: string): Promise<Wallpaper> {
-  if (!id) return Wallpapers["img04"];
+  if (!id) return Wallpapers[override || "img04"];
 
   if (id.startsWith("http")) return { author: "The Web", name: "From the Internet", url: id, thumb: id };
 

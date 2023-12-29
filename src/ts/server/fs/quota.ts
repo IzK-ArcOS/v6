@@ -15,7 +15,7 @@ export async function getFSQuota(): Promise<FSQuota> {
 
   if (!server || !username || !url || !token) return defaultQuota;
 
-  Log(`fs/quota.ts: getFSQuota`, `Getting FSQuota for ${username}`);
+  Log(`server/fs/quota`, `Getting FSQuota for ${username}`);
 
   const response = await axios.get(url, makeTokenOptions(token));
 

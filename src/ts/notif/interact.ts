@@ -6,7 +6,7 @@ import { NotificationService } from "./service";
 let notifProc: NotificationService = null;
 
 function procCheck() {
-  if (!notifProc) Log(`ts/notif/interact`, `Can't handle notifications without a NotificationService to interact with.`, LogLevel.error);
+  if (!notifProc) Log(`notif/interact`, `Can't handle notifications without a NotificationService to interact with.`, LogLevel.error);
 
   return !!notifProc;
 }
@@ -14,7 +14,7 @@ function procCheck() {
 export const getNotificationStore = () => notifProc ? notifProc.store : null;
 
 export function setNotificationProc(proc: NotificationService) {
-  Log(`ts/notif/interact`, `Setting notification process to ${proc.pid}`);
+  Log(`notif/interact`, `Setting notification process to ${proc.pid}`);
 
   if (!proc) return;
 

@@ -6,7 +6,7 @@ import { App } from "$types/app";
 import { getAppById } from "./utils";
 
 export function spawnApp(id: string, parent?: number, args?: any[], processHandler = ProcessStack): boolean {
-  Log("ts/apps/spawn", `Spawning app with ID ${id} on handler ${processHandler.id}`);
+  Log("apps/spawn", `Spawning app with ID ${id} on handler ${processHandler.id}`);
   class AppProcess extends Process {
     constructor(handler: ProcessHandler, pid: number, name: string, app: App) {
       super(handler, pid, name, app);
@@ -36,7 +36,7 @@ export function spawnApp(id: string, parent?: number, args?: any[], processHandl
 }
 
 export function spawnOverlay(app: App, parent: number, args?: any[], processHandler = ProcessStack) {
-  Log("ts/apps/spawn", `Spawning overlay with ID ${app.id} on handler ${processHandler.id}`);
+  Log("apps/spawn", `Spawning overlay with ID ${app.id} on handler ${processHandler.id}`);
 
   app = { ...app, isOverlay: true };
 

@@ -23,7 +23,7 @@
 </svelte:head>
 
 {#if render}
-  <div class="app theme-dark fullscreen" class:gray={$CRASHING}>
+  <div class="app theme-dark fullscreen">
     <StateRenderer handler={PrimaryState} renderProcesses />
   </div>
 {/if}

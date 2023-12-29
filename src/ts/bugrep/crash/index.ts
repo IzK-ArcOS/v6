@@ -29,9 +29,7 @@ export function manualCrash(source: string, reason: string, stack?: string) {
 
   CRASHING.set(true);
 
-  setTimeout(() => {
-    PrimaryState.navigate("crash");
-  }, 2000);
+  PrimaryState.navigate("crash");
 
   if (import.meta.env.DEV)
     return Log(

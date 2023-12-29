@@ -51,9 +51,7 @@ export function handleWindowError(
 
   Log(`bugrep/crash/window`, `Error: ${filename}: ${message}`, LogLevel.error);
 
-  setTimeout(() => {
-    PrimaryState.navigate("crash");
-  }, 2000);
+  PrimaryState.navigate("crash");
 
   if (import.meta.env.DEV)
     return Log(

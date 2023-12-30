@@ -3,6 +3,7 @@ import { App } from "./app";
 import { Nullable } from "./common";
 import { ReadableStore } from "./writable";
 
+export type Processes = ReadableStore<ProcessMap>; // [pid, instance]
 export type ProcessGroups = Record<string, number[]>; // appId, pid[]
 export type ProcessMap = Map<number, Process>;
 export type ProcessSpawnArguments = {
@@ -12,14 +13,3 @@ export type ProcessSpawnArguments = {
   app?: App;
   args?: any;
 };
-
-export type ProcessStoreValue = [number, Process][];
-export type ProcessSubscriberCallback = (v: ProcessStoreValue) => void;
-export type ProcessReadableStore = {
-  get(): ProcessStoreValue;
-  getOne(pid: number): Nullable<Process>;
-  set(pid: number, proc: Process): boolean;
-  subscribe(cb: ProcessSubscriberCallback): void;
-  has(pid: number): boolean;
-  mirror: ReadableStore<ProcessStoreValue>;
-}

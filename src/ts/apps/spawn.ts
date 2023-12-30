@@ -8,8 +8,8 @@ import { getAppById } from "./utils";
 export function spawnApp(id: string, parent?: number, args?: any[], processHandler = ProcessStack): boolean {
   Log("apps/spawn", `Spawning app with ID ${id} on handler ${processHandler.id}`);
   class AppProcess extends Process {
-    constructor(handler: ProcessHandler, pid: number, name: string, app: App) {
-      super(handler, pid, name, app);
+    constructor(handler: ProcessHandler, pid: number, name: string, app: App, args: any[] = []) {
+      super(handler, pid, name, app, args);
 
       this.setParentPid(parent);
     }
@@ -43,8 +43,8 @@ export function spawnOverlay(app: App, parent: number, args?: any[], processHand
   if (!processHandler.isPid(parent)) return false;
 
   class OverlayProcess extends Process {
-    constructor(handler: ProcessHandler, pid: number, name: string, app: App) {
-      super(handler, pid, name, app);
+    constructor(handler: ProcessHandler, pid: number, name: string, app: App, args: any[] = []) {
+      super(handler, pid, name, app, args);
 
       this.setParentPid(parent);
     }

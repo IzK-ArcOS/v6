@@ -17,7 +17,7 @@ export class Process {
     public pid: number,
     public name: string,
     app?: App,
-    ...args: any[]
+    args: any[] = []
   ) {
     this.app = app;
     this.args = args;

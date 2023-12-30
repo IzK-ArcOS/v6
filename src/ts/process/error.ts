@@ -16,9 +16,9 @@ export async function createErrorDialog(
       pid: number,
       name: string,
       app?: App,
-      ...args: any[]
+      args: any[] = []
     ) {
-      super(handler, pid, name, app, ...args);
+      super(handler, pid, name, app, args);
 
       this.setParentPid(pid);
     }

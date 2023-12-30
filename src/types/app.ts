@@ -37,6 +37,7 @@ export interface AppMetaData {
   icon: string;
   appGroup?: string;
   core?: boolean;
+  hidden?: boolean;
 }
 
 export interface AppState {

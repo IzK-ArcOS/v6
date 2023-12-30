@@ -28,3 +28,6 @@
 [submodule "src/apps/Settings"]
 	path = src/apps/Settings
 	url = https://github.com/IzK-ArcOS/v6-Settings
+[submodule "src/apps/AppInfo"]
+	path = src/apps/AppInfo
+	url = https://github.com/IzK-ArcOS/v6-AppInfo

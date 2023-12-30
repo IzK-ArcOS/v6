@@ -30,7 +30,7 @@ export async function createErrorDialog(
     proc: DialogProcess,
     parentPid,
     name: `error#${parentPid}`,
-    args: options,
+    args: [options],
     app,
   })).pid;
 }

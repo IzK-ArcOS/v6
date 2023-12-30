@@ -11,3 +11,13 @@ window.glass div.body input,
 window.glass div.body select {
   background-color: var(--win-glass-bg);
 }
+
+window.glass div.body select.flat {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: inherit;
+  color: inherit;
+  box-shadow: none;
+  border-radius: 0;
+}

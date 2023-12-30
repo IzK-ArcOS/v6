@@ -34,6 +34,7 @@ export class NotificationService extends Process {
 
     await sleep(0);
 
+    this.store.set(notifications)
     this.current.set(id);
 
     if (!data.timeout) return id;

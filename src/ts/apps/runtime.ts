@@ -35,7 +35,7 @@ export class AppRuntime {
     fn: string = "<anonymous>",
     level = LogLevel.info
   ) {
-    Log(`${this.app.id}Runtime: ${fn}`, message, level);
+    Log(`${this.app.id}Runtime`, `${fn}: ${message}`, level);
   }
 
   public switchPage(page: string): boolean {

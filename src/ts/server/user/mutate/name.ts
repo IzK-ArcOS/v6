@@ -1,10 +1,10 @@
 import { fromBase64, toBase64 } from "$ts/base64";
+import { Log } from "$ts/console";
+import { getServerUrl, makeTokenOptions } from "$ts/server/util";
+import { Endpoints } from "$ts/stores/endpoint";
+import { UserName, UserToken } from "$ts/stores/user";
 import axios from "axios";
 import { setRememberedToken } from "../auth";
-import { UserName, UserToken } from "$ts/stores/user";
-import { getServerUrl, makeTokenOptions } from "$ts/server/util";
-import { Log } from "$ts/console";
-import { Endpoints } from "$ts/stores/endpoint";
 
 export async function changeUsername(oldName: string, newName: string) {
   Log("server/user/mutate/name", `Changing username from ${oldName} to ${newName}`);

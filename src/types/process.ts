@@ -1,6 +1,5 @@
 import { Process } from "$ts/process";
 import { App } from "./app";
-import { Nullable } from "./common";
 import { ReadableStore } from "./writable";
 
 export type Processes = ReadableStore<ProcessMap>; // [pid, instance]

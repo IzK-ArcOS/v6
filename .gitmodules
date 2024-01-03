@@ -31,6 +31,3 @@
 [submodule "src/apps/AppInfo"]
 	path = src/apps/AppInfo
 	url = https://github.com/IzK-ArcOS/v6-AppInfo
-[submodule "src/apps/v6-LoggerApp"]
-	path = src/apps/v6-LoggerApp
-	url = https://github.com/IzK-ArcOS/v6-LoggerApp

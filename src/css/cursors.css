@@ -1,0 +1,31 @@
+@import url("./cursors/imports.css");
+
+* {
+  cursor: var(--cur-normal);
+}
+
+a:hover,
+a:hover *,
+button:hover,
+button:hover *,
+input:hover,
+input:hover *,
+select:hover,
+select:hover * {
+  cursor: var(--cur-hand);
+}
+
+input:not([type*="checkbox"]),
+textarea {
+  cursor: var(--cur-beam) !important;
+}
+
+:disabled,
+:disabled * {
+  cursor: var(--cur-forbidden) !important;
+}
+
+div.app.cursor-busy,
+div.app.cursor-busy * {
+  cursor: var(--cur-busy) !important;
+}

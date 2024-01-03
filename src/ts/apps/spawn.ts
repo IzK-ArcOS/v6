@@ -3,9 +3,10 @@ import { Process, ProcessHandler } from "$ts/process";
 import { focusedPid } from "$ts/stores/apps";
 import { ProcessStack } from "$ts/stores/process";
 import { App } from "$types/app";
+import { LogLevel } from "$types/console";
 import { getAppById } from "./utils";
 
-export function spawnApp(id: string, parent?: number, args?: any[], processHandler = ProcessStack): boolean {
+export function spawnApp(id: string, parent?: number, args?: any[], processHandler = ProcessStack, data: App = null): boolean {
   Log("apps/spawn", `Spawning app with ID ${id} on handler ${processHandler.id}`);
   class AppProcess extends Process {
     constructor(handler: ProcessHandler, pid: number, name: string, app: App, args: any[] = []) {
@@ -15,12 +16,14 @@ export function spawnApp(id: string, parent?: number, args?: any[], processHandl
     }
   }
 
-  const app = getAppById(id);
+  const app = data || getAppById(id);
   const closedPids = processHandler.closedPids.get();
   const instances = processHandler.getAppPids(id).filter((p) => !closedPids.includes(p));
 
   if (app.singleInstance && instances.length) {
     focusedPid.set(instances[0]);
+
+    Log("apps/spawn", `Not spawning as ${id} is SingleInstance, focussing opened instance instead.`, LogLevel.warn)
 
     return true;
   }

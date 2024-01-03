@@ -33,7 +33,8 @@ export function setJsonHierarchy<T = any>(
     currentObj = currentObj[key];
   }
 
-  currentObj[parts[parts.length - 1]] = value;
+  if (value === null) delete currentObj[parts[parts.length - 1]]
+  else currentObj[parts[parts.length - 1]] = value;
 
   return getJsonHierarchy(object, hierarchy);
 }

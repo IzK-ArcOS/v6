@@ -21,7 +21,7 @@ export function invalidResponseLog(server: Server) {
   Log(
     "server/test",
     `Didn't get valid response from ${server.host} on port ${server.port} (secure = ${server.secure})`,
-    LogLevel.warn
+    LogLevel.error
   );
 }
 
@@ -29,6 +29,6 @@ export function connectFailureLog(host: string) {
   Log(
     "server/test",
     `Unable to connect to server ${host}: none of the modes match.`,
-    LogLevel.error
+    LogLevel.critical
   );
 }

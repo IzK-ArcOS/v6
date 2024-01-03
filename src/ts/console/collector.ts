@@ -7,8 +7,10 @@ import { LogStore } from "./logging";
 export type CollectorResult = { [key: string]: LogItem[] };
 export type IterableCollectorResult = [string, LogItem[]][];
 
-export function collectLogsBySource(): CollectorResult {
-  const logs = get(LogStore);
+export function collectLogsBySource(reverse = false): CollectorResult {
+  let logs = get(LogStore);
+
+  if (reverse) logs = logs.reverse();
 
   let sources = [];
   let items: CollectorResult = {};

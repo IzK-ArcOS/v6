@@ -19,6 +19,7 @@ export interface App {
   loadCondition?: () => boolean | Promise<boolean>;
   singleInstance?: boolean;
   autoOpen?: boolean;
+  contextMenu?: AppContextMenu;
 }
 
 export type AppMutator = ReadableStore<App>;
@@ -52,9 +53,33 @@ export type AppLibrary = ReadableStore<Map<string, App>>; // [id, instance]
 export type Coordinate = { x: number; y: number };
 export type Size = { w: number; h: number };
 
+export interface ContextMenuItem {
+  sep?: boolean;
+  caption?: string;
+  icon?: string;
+  image?: string;
+  isActive?: (
+    window: App,
+    data: DOMStringMap,
+    scope: string
+  ) => boolean | Promise<boolean>;
+  action?(window: App, data: DOMStringMap, scope: string): void;
+  subItems?: ContextMenuItem[];
+}
+
+export type AppContextMenu = { [key: string]: ContextMenuItem[] };
+
 export interface SideloadInfo {
   module?: string;
   tag: string;
 }
 
 export type SideLoadStore = ReadableStore<Nullable<SideloadInfo[]>>;
+export interface ContextMenuInstance {
+  x: number;
+  y: number;
+  items: ContextMenuItem[];
+  scope?: string;
+  scopeMap?: DOMStringMap;
+  app?: App;
+}

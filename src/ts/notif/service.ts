@@ -32,7 +32,7 @@ export class NotificationService extends Process {
 
     notifications.set(id, data);
 
-    await sleep(0);
+    await sleep();
 
     this.store.set(notifications)
     this.current.set(id);

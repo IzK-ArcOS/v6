@@ -1,11 +1,9 @@
 import "$css/main.css";
-import { AppRuntime } from "$ts/apps/runtime";
 import { setCrashHooks } from "$ts/bugrep/hooks";
 import { setLoggingHooks } from "$ts/console/hooks";
-import { ProcessHandler } from "$ts/process";
 import App from "./App.svelte";
-ProcessHandler
-AppRuntime
+
+document.addEventListener("contextmenu", (e) => e.preventDefault());
 
 setLoggingHooks();
 setCrashHooks();

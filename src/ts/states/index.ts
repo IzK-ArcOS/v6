@@ -1,7 +1,7 @@
-import { manualCrash } from "$ts/bugrep/crash";
 import { Log } from "$ts/console";
 import { primaryStates } from "$ts/stores/state";
 import { Store } from "$ts/writable";
+import { LogLevel } from "$types/console";
 import { State, States } from "$types/state";
 import { StateWatcher } from "./watch";
 
@@ -37,16 +37,16 @@ export class StateHandler {
       `StateHandler.navigate[${this.id}]: Navigating to "${stateKey}"`
     );
 
-    if (!this.store.has(stateKey)) {
-      manualCrash(
+    const has = this.store.has(stateKey);
+
+    if (!has)
+      Log(
         "states",
-        `StateHandler.navigate[${this.id}]: No such state ${stateKey}`
-      );
+        `StateHandler.navigate[${this.id}]: No such state ${stateKey}, falling back to ${this.startState}`,
+        LogLevel.warn
+      )
 
-      return false;
-    }
-
-    const state = this.store.get(stateKey);
+    const state = this.store.get(has ? stateKey : this.startState);
 
     if (state.onload) state.onload();
 

@@ -12,6 +12,7 @@ function procCheck() {
 }
 
 export const getNotificationStore = () => notifProc ? notifProc.store : null;
+export const getNotifCurrentStore = () => notifProc ? notifProc.current : null;
 
 export function setNotificationProc(proc: NotificationService) {
   Log(`notif/interact`, `Setting notification process to ${proc.pid}`);

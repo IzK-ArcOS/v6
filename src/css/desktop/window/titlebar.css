@@ -24,6 +24,10 @@ window div.titlebar.left {
   flex-direction: row-reverse;
 }
 
+window div.titlebar.center div.title {
+  max-width: 80%;
+}
+
 window div.titlebar.center div.title span.title-text {
   position: absolute;
   width: 100%;
@@ -35,4 +39,7 @@ window div.titlebar.center div.title span.title-text {
   justify-content: center;
   align-items: center;
   pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

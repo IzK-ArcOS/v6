@@ -8,9 +8,9 @@ export function generateCSS(app: App) {
   let cssString = "";
 
   // Following 6 lines are to account for headless window sizes
-  let minHeight = app.minSize.h + 40;
-  let maxHeight = app.maxSize.h + 40;
-  let height = app.size.h + 40;
+  let minHeight = app.minSize.h ? app.minSize.h + 40 : app.minSize.h;
+  let maxHeight = app.maxSize.h ? app.maxSize.h + 40 : app.maxSize.h;
+  let height = app.size.h ? app.size.h + 40 : app.size.h;
   if (app.isOverlay || app.state.headless) minHeight -= 40;
   if (app.isOverlay || app.state.headless) maxHeight -= 40;
   if (app.isOverlay || app.state.headless) height -= 40;

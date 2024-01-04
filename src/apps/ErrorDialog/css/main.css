@@ -12,6 +12,7 @@
   padding: 20px;
   display: flex;
   gap: 20px;
+  padding-bottom: 0;
 }
 
 #ErrorDialog div.top div.error-image img {
@@ -75,4 +76,8 @@
  */
 #ErrorDialog div.top div.component p {
   margin: 10px 0;
+}
+
+#ErrorDialog div.top div.component :last-child {
+  margin-bottom: 0;
 }

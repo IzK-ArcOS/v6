@@ -8,6 +8,7 @@ export interface App {
   content?: any;
   sideload?: SideloadInfo;
   id: string;
+  pid?: number;
   size: Size;
   minSize: Size;
   maxSize: Size;

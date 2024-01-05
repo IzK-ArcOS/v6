@@ -11,6 +11,7 @@ export const ErrorDialog: App = {
     version: "1.0.0",
     icon: WarningIcon,
     appGroup: "internal",
+    hidden: true
   },
   runtime: Runtime,
   content: AppSvelte,

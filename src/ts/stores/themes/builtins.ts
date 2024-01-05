@@ -17,7 +17,7 @@ export const BuiltinThemes: ThemeStore = {
     accent: "70D6FF",
     smallStart: true,
     titleButtons: "default",
-    titlebarLarge: false,
+    titlebarLarge: true,
     titlebarLeft: false,
     taskbarColored: false,
     titlebarCentered: false,

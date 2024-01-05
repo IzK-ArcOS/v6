@@ -34,3 +34,6 @@
 [submodule "src/apps/LoggerApp"]
 	path = src/apps/LoggerApp
 	url = https://github.com/IzK-ArcOS/v6-LoggerApp
+[submodule "src/apps/ProcessManager"]
+	path = src/apps/ProcessManager
+	url = https://github.com/IzK-ArcOS/v6-ProcessManager

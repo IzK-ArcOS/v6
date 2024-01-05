@@ -2,6 +2,7 @@ import { AppInfo } from "$apps/AppInfo/ts/app";
 import { ArcTermApp as ArcTerm } from "$apps/ArcTerm/ts/app";
 import { ErrorDialog } from "$apps/ErrorDialog/ts/app";
 import { LoggerApp } from "$apps/LoggerApp/ts/app";
+import { ProcessManager } from "$apps/ProcessManager/ts/app";
 import { SettingsApp } from "$apps/Settings/ts/app";
 import { ArcShell } from "$apps/Shell/ts/app";
 import { desktopWallpaper } from "$apps/Wallpaper/ts/app";
@@ -14,5 +15,6 @@ export const builtinApps: Record<string, App> = {
   SettingsApp,
   AppInfo,
   LoggerApp,
-  ErrorDialog
+  ErrorDialog,
+  ProcessManager
 }

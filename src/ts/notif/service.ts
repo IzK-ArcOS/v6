@@ -52,6 +52,12 @@ export class NotificationService extends Process {
     this.current.set(null);
   }
 
+  public stop() {
+    this._paused = true;
+    this.close();
+    this.store.set(null)
+  }
+
   public deleteNotification(id: string) {
     if (this.pauseCheck()) return;
 

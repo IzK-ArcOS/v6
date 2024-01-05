@@ -10,12 +10,21 @@
   export let renderProcesses = false;
 
   let state: State;
+  let classes = "";
 
-  onMount(() => handler.current.subscribe((v) => (state = v)));
+  onMount(() =>
+    handler.current.subscribe((v) => {
+      state = v;
+
+      classes = (v.attribs.classes as string) || "";
+    })
+  );
 </script>
 
 {#if handler && state}
-  <div class="state-renderer {handler.id} state-{handler.id}-{state.key}">
+  <div
+    class="state-renderer {classes} {handler.id} state-{handler.id}-{state.key}"
+  >
     {#if state.content}
       <svelte:component
         this={state.content}

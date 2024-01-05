@@ -1,3 +1,4 @@
+import { Nullable } from "./common";
 import { ErrorButton } from "./error";
 import { ReadableStore } from "./writable";
 
@@ -11,4 +12,4 @@ export interface Notification {
   timestamp?: number;
 }
 
-export type NotificationStore = ReadableStore<Map<string, Notification>>;
+export type NotificationStore = ReadableStore<Nullable<Map<string, Notification>>>;

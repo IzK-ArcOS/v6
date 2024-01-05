@@ -59,7 +59,7 @@ export function saveCurrentTheme(name: string) {
       titlebarLarge: udata.sh.window.bigtb,
       titlebarLeft: udata.sh.window.lefttb,
       taskbarColored: udata.sh.taskbar.colored,
-      titlebarCentered: udata.sh.taskbar.centered,
+      titlebarCentered: udata.sh.window.centertb,
       isLauncher: udata.sh.taskbar.isLauncher,
     };
 

@@ -46,6 +46,8 @@ export class Process {
   }
 
   protected pauseCheck() {
+    if (this._disposed) return true;
+
     if (this._paused) this.Log(this._pausedError, LogLevel.error);
 
     return this._paused;

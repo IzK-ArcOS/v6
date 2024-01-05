@@ -61,7 +61,8 @@ export const primaryStates: States = new Map([
       key: "crash",
       content: Crash,
       attribs: {
-        noProcesssRenderer: true
+        noProcesssRenderer: true,
+        classes: "sharp noani theme-amoled"
       },
     },
   ],

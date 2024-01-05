@@ -115,7 +115,6 @@ export class ProcessHandler {
 
   // ### SECTION GETTERS ###
   public getProcess(pid: number): Nullable<Process> {
-    this.Log(`Getting process of PID ${pid}`)
     const procs = this.processes.get();
 
     if (!procs.has(pid)) return null;

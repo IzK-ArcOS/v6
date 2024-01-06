@@ -1,6 +1,8 @@
 import { ErrorDialog as AppData } from "$apps/ErrorDialog/ts/app";
+import { ArcSoundBus } from "$ts/soundbus";
 import { ProcessStack } from "$ts/stores/process";
 import { App } from "$types/app";
+import { Nullable } from "$types/common";
 import { ErrorDialog } from "$types/error";
 import { ProcessHandler } from "./handler";
 import { Process } from "./instance";
@@ -9,7 +11,7 @@ export async function createErrorDialog(
   options: ErrorDialog,
   parentPid: number,
   overlay?: boolean
-) {
+): Promise<Nullable<number>> {
   class DialogProcess extends Process {
     constructor(
       handler: ProcessHandler,
@@ -26,11 +28,17 @@ export async function createErrorDialog(
 
   const app = { ...AppData, isOverlay: overlay };
 
-  return (await ProcessStack.spawn({
+  const process = await ProcessStack.spawn({
     proc: DialogProcess,
     parentPid,
     name: `error#${parentPid}`,
     args: [options],
     app,
-  })).pid;
+  });
+
+  if (!process) return null;
+
+  if (options.sound) ArcSoundBus.playSound(options.sound)
+
+  return process.pid;
 }

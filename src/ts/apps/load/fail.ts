@@ -1,7 +1,7 @@
 import { createTrayIcon, disposeTrayIcon } from "$apps/Shell/ts/tray";
 import { TrayIcon } from "$apps/Shell/types/tray";
 import { Log } from "$ts/console";
-import { WarningIcon } from "$ts/images/general";
+import { WarningIcon } from "$ts/images/dialog";
 import { createErrorDialog } from "$ts/process/error";
 import { ProcessStack } from "$ts/stores/process";
 import { App } from "$types/app";
@@ -16,6 +16,7 @@ export function loadConditionFailed(app: App) {
     message: `Loading application <code>${app.id}</code> was stopped because the necessary load condition failed. Try restarting to resolve this problem. If it persists, contact the ArcOS Team for more information.<br><br>Condition: <code>${app.loadCondition.toString()}</code>`,
     buttons: [{ caption: "Okay", action() { } }],
     image: WarningIcon,
+    sound: "arcos.dialog.warning"
   }
 
   function onOpen(icon: TrayIcon) {

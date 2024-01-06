@@ -1,3 +1,4 @@
+import { isDisabled } from "$ts/apps/disable/utils";
 import { Log } from "$ts/console";
 import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
@@ -22,8 +23,13 @@ export class ProcessHandler {
   public async spawn({ proc, name, parentPid, app, args }: ProcessSpawnArguments): Promise<Process> {
     this.Log(`Spawning process ${proc.name} (isApp = ${!!app})`);
 
-    const procs = this.processes.get();
+    if (app && isDisabled(app.id)) {
+      this.Log(`Not spawning disabled application ${app.id}!`, LogLevel.error)
 
+      return null;
+    }
+
+    const procs = this.processes.get();
     const pid = Math.floor(Math.random() * 1e6); // 0 - 1000000
 
     if (procs.has(pid)) return await this.spawn({ proc, name, parentPid, app, args }) // Try to get another pid

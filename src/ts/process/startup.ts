@@ -3,7 +3,6 @@ import { ShutdownIcon } from "$ts/images/power";
 import { sendNotification } from "$ts/notif";
 import { ProcessStack } from "$ts/stores/process";
 import { StartupServices } from "$ts/stores/process/startup";
-import { createErrorDialog } from "./error";
 
 export async function StartCoreProcesses(restart = false, handler = ProcessStack) {
   Log("process/startup", `Starting ${StartupServices.length} core services.`);

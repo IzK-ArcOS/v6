@@ -1,5 +1,5 @@
 import { AppRuntime } from "$ts/apps/runtime";
-import { WarningIcon } from "$ts/images/general";
+import { WarningIcon } from "$ts/images/dialog";
 import { sendNotification } from "$ts/notif";
 import { Process } from "$ts/process";
 import type { App, AppMutator } from "$types/app";

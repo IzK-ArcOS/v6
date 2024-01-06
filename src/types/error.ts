@@ -4,7 +4,8 @@ export interface ErrorDialog {
   buttons: ErrorButton[];
   image?: string;
   component?: any;
-  shrunk?: boolean
+  shrunk?: boolean;
+  sound?: string;
 }
 
 export interface ErrorButton {

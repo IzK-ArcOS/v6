@@ -2,11 +2,12 @@ import { Log } from "$ts/console";
 
 import * as Apps from "./apps";
 import * as Branding from "./branding";
+import * as Dialog from "./dialog";
 import * as Filesystem from "./filesystem";
 import * as General from "./general";
 import * as Power from "./power";
 
 export function getAllImages(): Record<string, string> {
   Log("images", "Getting all images");
-  return { ...Branding, ...General, ...Apps, ...Filesystem, ...Power };
+  return { ...Branding, ...General, ...Apps, ...Filesystem, ...Power, ...Dialog };
 }

@@ -1,4 +1,4 @@
-import { WarningIcon } from "$ts/images/general";
+import { WarningIcon } from "$ts/images/dialog";
 import { App } from "$types/app";
 import AppSvelte from "../App.svelte";
 import { Runtime } from "./runtime";

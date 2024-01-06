@@ -22,10 +22,10 @@ export function setNotificationProc(proc: NotificationService) {
   notifProc = proc;
 }
 
-export function sendNotification(data: Notification) {
+export async function sendNotification(data: Notification) {
   if (!procCheck()) return;
 
-  notifProc.send(data);
+  return await notifProc.send(data);
 }
 
 export function closeNotification() {
@@ -44,4 +44,8 @@ export function clearNotifications() {
   if (!procCheck()) return;
 
   notifProc.store.set(new Map([]))
+}
+
+export function isNotificationServiceActive() {
+  return notifProc && !notifProc._disposed && !notifProc._paused
 }

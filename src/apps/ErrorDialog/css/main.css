@@ -1,18 +1,21 @@
 #ErrorDialog {
   width: max-content !important;
+  display: flex;
+  flex-direction: column;
 }
 
 #ErrorDialog div.body {
   padding: 0;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 #ErrorDialog div.top {
   padding: 20px;
   display: flex;
   gap: 20px;
-  padding-bottom: 0;
+  padding-bottom: 20px;
 }
 
 #ErrorDialog div.top div.error-image img {
@@ -38,7 +41,7 @@
 
 #ErrorDialog div.bottom {
   display: flex;
-  margin-top: 20px;
+  margin-top: auto;
   justify-content: flex-end;
   border-top: var(--win-border);
   padding: 10px;

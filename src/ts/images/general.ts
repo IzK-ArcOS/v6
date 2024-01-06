@@ -21,6 +21,5 @@ export { default as ThemesIcon } from "$assets/general/themes.svg";
 export { default as TrashIcon } from "$assets/general/trash.svg";
 export { default as UpdateIcon } from "$assets/general/update.svg";
 export { default as UploadIcon } from "$assets/general/upload.svg";
-export { default as WarningIcon } from "$assets/general/warning.svg";
 export { default as WaveIcon } from "$assets/general/wave.svg";
 export { default as WindowSettingsIcon } from "$assets/general/windowsettings.svg";

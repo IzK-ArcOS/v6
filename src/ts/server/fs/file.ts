@@ -6,6 +6,9 @@ import { ArcFile, PartialArcFile } from "$types/fs";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 import { getParentDirectory, readDirectory } from "./dir";
+import { Notification } from "$types/notif";
+import { deleteNotification, sendNotification } from "$ts/notif";
+import { sleep } from "$ts/util";
 
 export async function readFile(path: string): Promise<ArcFile> {
   Log("server/fs/file", `Reading file ${path}`);
@@ -66,6 +69,18 @@ export async function writeFile(
   );
 
   return response.status === 200;
+}
+
+export async function writeFileAnnounced(path: string, blob: Blob, notif: Notification) {
+  const id = await sendNotification(notif);
+
+  await sleep(500);
+
+  const result = await writeFile(path, blob);
+
+  deleteNotification(id);
+
+  return result;
 }
 
 export function getFilenameFromPath(path: string): string {

@@ -1,5 +1,6 @@
 import { manualCrash } from "$ts/bugrep/crash";
 import { Log } from "$ts/console";
+import { killAllAppInstances } from "$ts/process/kill";
 import { appLibrary } from "$ts/stores/apps";
 import { sleep } from "$ts/util";
 import { App } from "$types/app";
@@ -58,4 +59,15 @@ export async function loadExternal(
   const loaded = await loadApp(tag, app);
 
   return loaded;
+}
+
+export async function unloadApp(id: string) {
+  Log("apps/load", `Unloading application ${id}`);
+
+  await killAllAppInstances(id);
+
+  const library = appLibrary.get();
+
+  library.delete(id);
+  appLibrary.set(library);
 }

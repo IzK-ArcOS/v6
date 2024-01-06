@@ -1,4 +1,5 @@
-.focused.glass {
+.focused.glass,
+.overlay.glass {
   background-color: var(--glass-bg);
   -webkit-backdrop-filter: blur(var(--glass-blur));
   backdrop-filter: blur(var(--glass-blur));

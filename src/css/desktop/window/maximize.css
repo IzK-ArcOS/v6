@@ -1,4 +1,4 @@
-window:not(.core):not(.closing).maximized {
+window:not(.core).maximized {
   transform: translate3d(0px, 0px, 0px) !important;
   max-width: unset !important;
   max-height: unset !important;
@@ -8,26 +8,26 @@ window:not(.core):not(.closing).maximized {
   border-radius: 0;
 }
 
-div.desktop:not(.noani) window:not(.core):not(.closing).maximized {
+div.desktop:not(.noani) window:not(.core).maximized {
   transition: all 0.3s !important;
 }
 
-window:not(.core):not(.closing).maximized.tb-vertical-right,
-window:not(.core):not(.closing).maximized.tb-vertical {
+window:not(.core).maximized.tb-vertical-right,
+window:not(.core).maximized.tb-vertical {
   width: calc(100% - var(--size-secondary)) !important;
   height: 100% !important;
 }
 
-window:not(.core):not(.closing).maximized.tb-vertical {
+window:not(.core).maximized.tb-vertical {
   transform: translate3d(var(--size-secondary), 0px, 0px) !important;
 }
 
-window:not(.core):not(.closing).maximized.tb-,
-window:not(.core):not(.closing).maximized.tb-top {
+window:not(.core).maximized.tb-,
+window:not(.core).maximized.tb-top {
   width: 100% !important;
   height: calc(100% - var(--size-secondary)) !important;
 }
 
-window:not(.core):not(.closing).maximized.tb-top {
+window:not(.core).maximized.tb-top {
   transform: translate3d(0px, var(--size-secondary), 0px) !important;
 }

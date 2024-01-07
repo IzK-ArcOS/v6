@@ -1,3 +1,4 @@
+import { AcceleratorHandler } from "$ts/apps/keyboard";
 import { Log } from "$ts/console";
 import { App } from "$types/app";
 import { Nullable } from "$types/common";
@@ -11,6 +12,7 @@ export class Process {
   public app: Nullable<App> = null;
   public parentPid: Nullable<number> = null;
   public args: any[] = [];
+  public accelerator: AcceleratorHandler;
 
   constructor(
     public readonly handler: ProcessHandler,
@@ -21,6 +23,10 @@ export class Process {
   ) {
     this.app = app;
     this.args = args;
+
+    if (this.app) {
+      this.accelerator = new AcceleratorHandler(this);
+    }
   }
 
   public setParentPid(pid: number) {
@@ -75,5 +81,18 @@ export class Process {
     }
 
     this._paused = false;
+  }
+
+  public hasIdAsSubprocess(id: string): boolean {
+    const subprocesses = [...this.handler.getSubProcesses(this.pid)];
+
+    for (let i = 0; i < subprocesses.length; i++) {
+      const process = subprocesses[i][1];
+
+      if (process._disposed) continue;
+      if (process.app && process.app.id == id) return true;
+    }
+
+    return false;
   }
 }

@@ -23,7 +23,8 @@ export class Runtime extends AppRuntime {
     const data: ErrorDialog = process.args[0];
 
     if (!data) {
-      stop(); return
+      stop();
+      return;
     }
 
     mutator.update((v) => { // Adapt the window properties to the error dialog's data
@@ -32,5 +33,19 @@ export class Runtime extends AppRuntime {
       v.maxSize.w = data.component && !data.shrunk ? 500 : 400;
       return v;
     })
+
+    process.accelerator.store.push({
+      key: "escape",
+      action: () => this.defaultAction()
+    })
+  }
+
+  public async defaultAction() {
+    const data: ErrorDialog = this.process.args[0];
+    const suggested = data.buttons.filter((a) => !a.suggested)[0] || data.buttons[0];
+
+    await suggested.action();
+
+    this.process.handler.kill(this.process.pid);
   }
 }

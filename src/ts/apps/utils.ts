@@ -9,17 +9,18 @@ export function isPopulatable(app: App, includeOverlays?: boolean) {
   return (!app.metadata.core && !app.isOverlay && !app.metadata.hidden) || showHidden;
 }
 
-export function getAppById(id: string): Nullable<App> {
+export function getAppById(id: string, override?: App): Nullable<App> {
   const library = appLibrary.get();
 
   if (!library.has(id)) return null;
 
-  const app = library.get(id);
+  const app = override || library.get(id);
   const runtime = app.runtime;
   const content = app.content;
   const loadCondition = app.loadCondition
   const contextMenu = app.contextMenu;
+  const accelerators = app.accelerators;
   const isolated = JSON.parse(JSON.stringify(app));
 
-  return { ...isolated, runtime, content, loadCondition, contextMenu };
+  return { ...isolated, runtime, content, loadCondition, contextMenu, accelerators };
 }

@@ -1,3 +1,4 @@
+import { Process } from "$ts/process";
 
 
 export interface AppKeyCombination {
@@ -5,7 +6,7 @@ export interface AppKeyCombination {
   ctrl?: boolean;
   shift?: boolean;
   key?: string;
-  action(proc: any): void;
+  action(proc: Process): void;
   global?: boolean;
 }
 

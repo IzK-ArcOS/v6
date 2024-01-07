@@ -1,8 +1,7 @@
 import { Log } from "$ts/console";
-import { ShutdownIcon } from "$ts/images/power";
-import { sendNotification } from "$ts/notif";
 import { ProcessStack } from "$ts/stores/process";
 import { StartupServices } from "$ts/stores/process/startup";
+import { ServiceRestartNotification } from "./restart";
 
 export async function StartCoreProcesses(restart = false, handler = ProcessStack) {
   Log("process/startup", `Starting ${StartupServices.length} core services.`);
@@ -25,11 +24,6 @@ export async function StartCoreProcesses(restart = false, handler = ProcessStack
   }
 
   if (restart && startCount) {
-    sendNotification({
-      title: "Processes restarted",
-      message: `ArcOS has restarted ${startCount} core process${startCount == 1 ? "" : "es"} that weren't running anymore.`,
-      image: ShutdownIcon,
-      timeout: 2500,
-    })
+    ServiceRestartNotification(startCount)
   }
 }

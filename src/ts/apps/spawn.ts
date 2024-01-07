@@ -38,12 +38,12 @@ export function spawnApp(id: string, parent?: number, args?: any[], processHandl
   return true;
 }
 
-export function spawnOverlay(app: App, parent: number, args?: any[], processHandler = ProcessStack) {
+export function spawnOverlay(app: App, parent: number, args?: any[], noShade?: boolean, processHandler = ProcessStack) {
   Log("apps/spawn", `Spawning overlay with ID ${app.id} on handler ${processHandler.id}`);
 
   if (!app) return;
 
-  app = { ...app, isOverlay: true };
+  app = { ...app, isOverlay: true, noOverlayShade: noShade };
 
   if (!processHandler.isPid(parent)) return false;
 

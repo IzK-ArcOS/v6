@@ -1,4 +1,5 @@
 import { AppRuntime } from "$ts/apps/runtime";
+import { AppKeyCombinations } from "./accelerator";
 import { Nullable } from "./common";
 import { ReadableStore } from "./writable";
 
@@ -17,10 +18,12 @@ export interface App {
   controls: WindowControls;
   glass?: boolean;
   isOverlay?: boolean;
+  noOverlayShade?: boolean;
   loadCondition?: () => boolean | Promise<boolean>;
   singleInstance?: boolean;
   autoOpen?: boolean;
   contextMenu?: AppContextMenu;
+  accelerators?: AppKeyCombinations
 }
 
 export type AppMutator = ReadableStore<App>;

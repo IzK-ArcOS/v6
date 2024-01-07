@@ -1,4 +1,5 @@
 import { isDisabled } from "$ts/apps/disable/utils";
+import { AcceleratorHandler } from "$ts/apps/keyboard";
 import { Log } from "$ts/console";
 import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
@@ -10,9 +11,12 @@ import { Process } from "./instance";
 export class ProcessHandler {
   public processes: Processes = Store(new Map([]));
   public closedPids = Store<number[]>([]);
+  public accelerator: AcceleratorHandler
 
   constructor(public readonly id: string) {
     this.Log(`Created Process Handler for ${id}`);
+
+    this.accelerator = new AcceleratorHandler(this);
   }
 
   private Log(text: string, level?: LogLevel) {
@@ -174,9 +178,11 @@ export class ProcessHandler {
   // ### END SECTION GETTERS ###
 
   // ### SECTION CHECKS ###
-  public isPid(pid: number): boolean {
+  public isPid(pid: number, opened = false): boolean {
     const procs = this.processes.get();
     const closed = this.closedPids.get();
+
+    if (opened) return procs.has(pid) && !closed.includes(pid);
 
     return procs.has(pid) || closed.includes(pid);
   }

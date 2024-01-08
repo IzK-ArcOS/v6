@@ -7,6 +7,8 @@ import { LogLevel } from "$types/console";
 import { ProcessMap, ProcessSpawnArguments, Processes } from "$types/process";
 import { Process } from "./instance";
 
+const PROCESS_LIMIT = 150;
+
 export class ProcessHandler {
   public processes: Processes = Store(new Map([]));
   public closedPids = Store<number[]>([]);
@@ -29,8 +31,11 @@ export class ProcessHandler {
       return null;
     }
 
+    const aboveLimit = this.checkProcessLimit(!!app);
     const procs = this.processes.get();
     const pid = Math.floor(Math.random() * 1e6); // 0 - 1000000
+
+    if (aboveLimit) return null;
 
     if (procs.has(pid)) return await this.spawn({ proc, name, parentPid, app, args }) // Try to get another pid
 
@@ -187,6 +192,15 @@ export class ProcessHandler {
     const closed = this.closedPids.get();
 
     return closed.includes(pid);
+  }
+
+  public checkProcessLimit(isApp?: boolean): boolean {
+    const apps = [...this.processes.get()].filter((a) => !a[1]._disposed && a[1].app).length
+    const above = apps >= PROCESS_LIMIT && isApp;
+
+    if (above) this.Log(`WARNING: Running app count is above ${PROCESS_LIMIT}, not spawning additional apps!`, LogLevel.critical)
+
+    return above;
   }
   // ### END SECTION CHECKS ###
 }

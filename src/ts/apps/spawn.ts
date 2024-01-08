@@ -20,6 +20,8 @@ export function spawnApp(id: string, parent?: number, args?: any[], processHandl
   const closedPids = processHandler.closedPids.get();
   const instances = processHandler.getAppPids(id).filter((p) => !closedPids.includes(p));
 
+  if (!app) return false;
+
   if (app.singleInstance && instances.length) {
     focusedPid.set(instances[0]);
 

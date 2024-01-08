@@ -11,3 +11,9 @@ export function getAllImages(): Record<string, string> {
   Log("images", "Getting all images");
   return { ...Branding, ...General, ...Apps, ...Filesystem, ...Power, ...Dialog };
 }
+
+export function getIconPath(id: string) {
+  const icons = getAllImages();
+
+  return icons[id] || Apps.DefaultIcon;
+}

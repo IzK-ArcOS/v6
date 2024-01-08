@@ -6,6 +6,6 @@ export async function killAllAppInstances(id: string) {
   const pids = ProcessStack.getAppPids(id);
 
   for (let i = 0; i < pids.length; i++) {
-    await ProcessStack.kill(pids[i]);
+    ProcessStack.kill(pids[i]);
   }
 } 

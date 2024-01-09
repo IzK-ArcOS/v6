@@ -4,7 +4,7 @@ window div.body {
   box-sizing: border-box;
   padding: 10px;
   overflow: auto;
-  font-size: 13px;
+  font-size: var(--font-size);
 }
 
 window:not(.core) div.body {

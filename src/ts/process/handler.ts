@@ -98,7 +98,9 @@ export class ProcessHandler {
 
     if (!procs.size) return;
 
-    for (const [pid] of procs) {
+    for (const [pid, proc] of procs) {
+      if (proc._disposed) continue;
+
       this.kill(pid)
     }
   }

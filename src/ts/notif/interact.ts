@@ -17,7 +17,7 @@ export const getNotifCurrentStore = () => notifProc ? notifProc.current : null;
 export function setNotificationProc(proc: NotificationService) {
   Log(`notif/interact`, `Setting notification process to ${proc.pid}`);
 
-  if (!proc) return;
+  if (!proc) return Log("notif/interact", "Can't set NotifProc to invalid process!", LogLevel.error);
 
   notifProc = proc;
 }
@@ -41,7 +41,10 @@ export function deleteNotification(id: string) {
 }
 
 export function clearNotifications() {
+  console.log("clearNotifications")
   if (!procCheck()) return;
+  console.log("procCheck finished")
+
 
   notifProc.store.set(new Map([]))
 }

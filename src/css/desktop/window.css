@@ -18,7 +18,7 @@ window:not(.core) {
   border-radius: var(--win-border-rad);
   overflow: hidden;
 
-  font-size: 13px;
+  font-size: var(--font-size);
   font-family: "Nunito Sans", sans-serif;
   box-shadow: 0 5px 15px 5px #0003;
   margin-top: 50px;

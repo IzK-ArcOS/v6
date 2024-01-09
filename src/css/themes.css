@@ -8,8 +8,8 @@
 @import url("./theme/property.css");
 
 :root {
-  --font-size: 13px;
-  --font: "Nunito Sans", sans-serif;
+  --font-size: 12px;
+  --font: "Source Code Pro", monospace;
   --glass-blur: 10px;
   --fg: #ccc;
   --win-bg: #1e1e1e;

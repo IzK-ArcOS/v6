@@ -19,7 +19,7 @@ window:not(.core) {
   overflow: hidden;
 
   font-size: var(--font-size);
-  font-family: "Nunito Sans", sans-serif;
+  font-family: var(--font);
   box-shadow: 0 5px 15px 5px #0003;
   margin-top: 50px;
   opacity: 0;

@@ -14,7 +14,7 @@
 }
 
 *:not(.material-icons-round) {
-  font-family: "Nunito Sans", sans-serif;
+  font-family: var(--font);
 }
 
 div#app *:not(window)::after,

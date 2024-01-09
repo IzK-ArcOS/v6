@@ -12,7 +12,7 @@ export function isPopulatable(app: App, includeOverlays?: boolean) {
 export function getAppById(id: string, override?: App): Nullable<App> {
   const library = appLibrary.get();
 
-  if (!library.has(id)) return null;
+  if (!library.has(id) && !override) return null;
 
   const app = override || library.get(id);
   const runtime = app.runtime;

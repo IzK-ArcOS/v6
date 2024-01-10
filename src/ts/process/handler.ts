@@ -5,6 +5,7 @@ import { Store } from "$ts/writable";
 import { Nullable } from "$types/common";
 import { LogLevel } from "$types/console";
 import { ProcessMap, ProcessSpawnArguments, Processes } from "$types/process";
+import { ProcessDispatcher } from "./dispatch";
 import { Process } from "./instance";
 
 const PROCESS_LIMIT = 150;
@@ -12,9 +13,11 @@ const PROCESS_LIMIT = 150;
 export class ProcessHandler {
   public processes: Processes = Store(new Map([]));
   public closedPids = Store<number[]>([]);
+  public dispatch: ProcessDispatcher;
 
   constructor(public readonly id: string) {
     this.Log(`Created Process Handler for ${id}`);
+    this.dispatch = new ProcessDispatcher(this)
   }
 
   private Log(text: string, level?: LogLevel) {
@@ -78,11 +81,11 @@ export class ProcessHandler {
     const proc = procs.get(pid);
 
     if (proc._disposed) return false;
-
     if (proc.stop) await proc.stop();
 
     await this._killSubProcesses(pid)
     await this._close(pid);
+    this.dispatch.unsubscribe(pid)
 
     proc._disposed = true
 

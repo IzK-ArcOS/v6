@@ -1,14 +1,14 @@
 import { Log } from "$ts/console";
 import { Process } from "$ts/process";
+import { Store } from "$ts/writable";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
 import { ReadableStore } from "$types/writable";
-import { writable } from "svelte/store";
 
 export class AppRuntime {
   app: App;
   public PAGES = [];
-  public readonly CurrentPage = writable<string>("");
+  public readonly CurrentPage = Store<string>("");
   public pid: number;
 
   constructor(

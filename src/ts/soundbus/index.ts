@@ -65,10 +65,10 @@ export class SoundBus {
 
     const bus = this._bus[id];
 
-    for (let i = 0; i < bus.length; i++) {
-      bus[i].src = null;
-      bus[i].currentTime = -1;
-      bus[i].pause();
+    for (const player of bus) {
+      player.src = null;
+      player.currentTime = -1;
+      player.pause();
     }
 
     return true;

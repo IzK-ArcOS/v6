@@ -8,8 +8,7 @@ export async function StartCoreProcesses(restart = false, handler = ProcessStack
 
   let startCount = 0;
 
-  for (let i = 0; i < StartupServices.length; i++) {
-    const service = StartupServices[i];
+  for (const service of StartupServices) {
     const processes = [...handler.processes.get()]
     const sameNames = processes.filter(([_, proc]) => {
       return proc.name == service.name && !proc._disposed;
@@ -20,7 +19,7 @@ export async function StartCoreProcesses(restart = false, handler = ProcessStack
 
     startCount++;
 
-    await handler.spawn(StartupServices[i]);
+    await handler.spawn(service);
   }
 
   if (restart && startCount) {

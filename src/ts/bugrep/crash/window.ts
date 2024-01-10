@@ -66,8 +66,8 @@ export function handleWindowError(
 export function isBlackListed(test: string) {
   if (!test) return false;
 
-  for (let i = 0; i < CRASH_BLACKLIST.length; i++) {
-    if (test.includes(CRASH_BLACKLIST[i])) return true;
+  for (const item of CRASH_BLACKLIST) {
+    if (test.includes(item)) return true;
   }
 
   return false;

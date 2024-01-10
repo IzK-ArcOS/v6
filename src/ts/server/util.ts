@@ -47,10 +47,8 @@ export function compileParams(params: Params): string {
 
   const entries = Object.entries(params);
 
-  for (let i = 0; i < entries.length; i++) {
-    const param = entries[i];
-
-    result += `${param[0]}=${param[1]}&`;
+  for (const [key, value] of entries) {
+    result += `${key}=${value}&`;
   }
 
   return result;

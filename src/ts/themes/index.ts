@@ -89,8 +89,8 @@ export function deleteCustomTheme(id: string) {
 export function verifyTheme(json: object) {
   const keys = Object.keys(json);
 
-  for (let i = 0; i < UserThemeKeys.length; i++) {
-    if (!keys.includes(UserThemeKeys[i])) return false;
+  for (const key of UserThemeKeys) {
+    if (!keys.includes(key)) return false;
   }
 
   return true;

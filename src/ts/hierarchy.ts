@@ -6,10 +6,10 @@ export function getJsonHierarchy<T = any>(
 
   let currentObj = object;
 
-  for (let i = 0; i < parts.length; i++) {
-    if (!currentObj[parts[i]]) return null;
+  for (const part of parts) {
+    if (!currentObj[part]) return null;
 
-    currentObj = currentObj[parts[i]];
+    currentObj = currentObj[part];
   }
 
   return currentObj as T;
@@ -21,9 +21,11 @@ export function setJsonHierarchy<T = any>(
   value: T
 ): T {
   const parts = hierarchy.split(".");
+  const lastIndex = parts.length - 1
+
   let currentObj = object;
 
-  for (let i = 0; i < parts.length - 1; i++) {
+  for (let i = 0; i < lastIndex; i++) {
     const key = parts[i];
 
     if (currentObj[key] === undefined) {
@@ -33,8 +35,8 @@ export function setJsonHierarchy<T = any>(
     currentObj = currentObj[key];
   }
 
-  if (value === null) delete currentObj[parts[parts.length - 1]]
-  else currentObj[parts[parts.length - 1]] = value;
+  if (value === null) delete currentObj[parts[lastIndex]]
+  else currentObj[parts[lastIndex]] = value;
 
   return getJsonHierarchy(object, hierarchy);
 }

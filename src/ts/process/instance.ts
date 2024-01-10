@@ -86,8 +86,7 @@ export class Process {
   public hasIdAsSubprocess(id: string): boolean {
     const subprocesses = [...this.handler.getSubProcesses(this.pid)];
 
-    for (let i = 0; i < subprocesses.length; i++) {
-      const process = subprocesses[i][1];
+    for (const [_, process] of subprocesses) {
 
       if (process._disposed) continue;
       if (process.app && process.app.id == id) return true;

@@ -21,10 +21,10 @@ export function compileStackString(): string {
 
   let str = "";
 
-  for (let i = 0; i < stack.length; i++) {
-    if (stack[i] == "ArcOS") continue;
+  for (const source of stack) {
+    if (source == "ArcOS") continue;
 
-    str += `  at [ArcOS] ${stack[i]}\n`;
+    str += `  at [ArcOS] ${source}\n`;
   }
 
   return str;

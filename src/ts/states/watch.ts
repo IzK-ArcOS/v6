@@ -26,13 +26,13 @@ export class StateWatcher {
   public async trigger(state: State) {
     const id = this.handler.id;
 
-    for (let i = 0; i < WATCHERS.length; i++) {
+    for (const watcher of WATCHERS) {
       Log(
         "states/watch",
-        `StateWatcher.trigger ${id}: Triggering watcher at index ${i}: state changing to ${state.key}`
+        `StateWatcher.trigger ${id}: Triggering watcher: state changing to ${state.key}`
       );
 
-      await WATCHERS[i](state);
+      await watcher(state);
     }
   }
 }

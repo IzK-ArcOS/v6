@@ -52,8 +52,7 @@ export class AcceleratorHandler {
 
     if (state != "desktop") return;
 
-    for (let i = 0; i < this.store.length; i++) {
-      const combo = this.store[i];
+    for (const combo of this.store) {
 
       const alt = combo.alt ? e.altKey : true;
       const ctrl = combo.ctrl ? e.ctrlKey : true;

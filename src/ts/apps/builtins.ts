@@ -10,6 +10,4 @@ export async function loadBuiltinApps() {
   for (const [id, app] of entries) {
     await loadApp(id, app);
   }
-
-  //await sleep(500)
 }

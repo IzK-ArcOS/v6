@@ -15,16 +15,14 @@ export function collectLogsBySource(reverse = false): CollectorResult {
   let sources = [];
   let items: CollectorResult = {};
 
-  for (let i = 0; i < logs.length; i++) {
-    const logItem = logs[i];
-
-    if (!sources.includes(logItem.source)) {
-      sources.push(logItem.source);
+  for (const log of logs) {
+    if (!sources.includes(log.source)) {
+      sources.push(log.source);
     }
 
-    items[logItem.source] = Array.prototype.concat(
-      items[logItem.source] || [],
-      [logItem]
+    items[log.source] = Array.prototype.concat(
+      items[log.source] || [],
+      [log]
     );
   }
 
@@ -35,12 +33,11 @@ export function compileStringLog(): string[] {
   const result: string[] = [];
   const logs = get(LogStore);
 
-  for (let i = 0; i < logs.length; i++) {
-    const item = logs[i];
-    const caption = LogLevelData[LogLevel[item.level]].capt;
-    const time = dayjs(item.timestamp || 0).format("HH:mm:ss.mmm");
+  for (const log of logs) {
+    const caption = LogLevelData[LogLevel[log.level]].capt;
+    const time = dayjs(log.timestamp || 0).format("HH:mm:ss.mmm");
 
-    result.push(`${time} [${caption}] ${item.source}: ${item.msg}`);
+    result.push(`${time} [${caption}] ${log.source}: ${log.msg}`);
   }
 
   return result;

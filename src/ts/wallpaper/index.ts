@@ -19,8 +19,8 @@ export async function getWallpaper(id: string, override?: string): Promise<Wallp
 
   if (id.startsWith("http")) return { author: "The Web", name: "From the Internet", url: id, thumb: id };
 
-  for (let i = 0; i < getters.length; i++) {
-    if (id.startsWith(getters[i][0])) return await getters[i][1](id);
+  for (const [prefix, getter] of getters) {
+    if (id.startsWith(prefix)) return await getter(id);
   }
 
   return Wallpapers[override || "img04"];

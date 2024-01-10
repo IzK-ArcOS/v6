@@ -18,14 +18,9 @@ export async function testConnection(
 ): Promise<Server | false> {
   Log("server/test", `Attempting to connect to ${host}`);
 
-  for (let i = 0; i < TEST_MODES.length; i++) {
-    const mode = TEST_MODES[i];
-
+  for (const [secure, port] of TEST_MODES) {
     const server: Server = {
-      secure: mode[0],
-      port: mode[1],
-      host,
-      authCode,
+      secure, port, host, authCode
     };
 
     testingServerLog(server);

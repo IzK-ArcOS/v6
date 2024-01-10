@@ -37,3 +37,6 @@
 [submodule "src/apps/ProcessManager"]
 	path = src/apps/ProcessManager
 	url = https://github.com/IzK-ArcOS/v6-ProcessManager
+[submodule "src/apps/Qlorb"]
+	path = src/apps/Qlorb
+	url = https://github.com/IzK-ArcOS/v6-Qlorb

@@ -2,8 +2,8 @@
   --fg: #333;
   --win-bg: #fff;
   --win-border-rad: 10px;
-  --win-border: rgb(226, 226, 226) 1px solid;
-  --win-border-light: rgb(240, 240, 240) 1px solid;
+  --win-border: rgb(156, 156, 156) 1px solid;
+  --win-border-light: rgb(195, 195, 195) 1px solid;
   --glass-bg: #ffffffdd;
   --glass-alt-bg: #ffffff44;
   --glass-ultralight: rgba(255, 255, 255, 0.267);

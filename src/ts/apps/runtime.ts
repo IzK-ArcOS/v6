@@ -1,5 +1,7 @@
 import { Log } from "$ts/console";
 import { Process } from "$ts/process";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
+import { RuntimeGlobalDispatches, RuntimeScopedDispatches } from "$ts/stores/process/dispatch";
 import { Store } from "$ts/writable";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
@@ -28,6 +30,7 @@ export class AppRuntime {
 
     this.app = appData;
     this.setPid(process.pid);
+    this._subscribeToDispatch();
   }
 
   public Log(
@@ -60,5 +63,50 @@ export class AppRuntime {
   public setPid(pid: number) {
     this.Log(`Setting PID to ${pid}`, "setPid")
     this.pid = pid;
+  }
+
+  public minimize() {
+    this.appMutator.update((v) => {
+      if (v.metadata.core) return v;
+
+      v.state.minimized = true;
+
+      return v
+    })
+  }
+
+  public maximize() {
+    this.appMutator.update((v) => {
+      if (v.metadata.core) return v;
+
+      v.state.maximized = true;
+      v.state.minimized = false;
+
+      return v
+    })
+  }
+
+  public restore() {
+    this.appMutator.update((v) => {
+      if (v.metadata.core) return v;
+
+      v.state.maximized = false;
+
+      return v
+    })
+  }
+
+
+  private _subscribeToDispatch() {
+    const globals = RuntimeGlobalDispatches(this);
+    const scoped = RuntimeScopedDispatches(this);
+
+    for (const event in globals) {
+      GlobalDispatch.subscribe(event, () => globals[event]());
+    }
+
+    for (const event in scoped) {
+      this.process.handler.dispatch.subscribe(this.pid, event, () => scoped[event]())
+    }
   }
 }

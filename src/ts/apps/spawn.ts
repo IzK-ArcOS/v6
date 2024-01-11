@@ -6,7 +6,7 @@ import { App } from "$types/app";
 import { LogLevel } from "$types/console";
 import { getAppById } from "./utils";
 
-export function spawnApp(id: string, parent?: number, args?: any[], processHandler = ProcessStack, data: App = null): boolean {
+export async function spawnApp(id: string, parent?: number, args?: any[], processHandler = ProcessStack, data: App = null): Promise<number | false> {
   Log("apps/spawn", `Spawning app with ID ${id} on handler ${processHandler.id}`);
   class AppProcess extends Process {
     constructor(handler: ProcessHandler, pid: number, name: string, app: App, args: any[] = []) {
@@ -27,17 +27,17 @@ export function spawnApp(id: string, parent?: number, args?: any[], processHandl
 
     Log("apps/spawn", `Not spawning as ${id} is SingleInstance, focussing opened instance instead.`, LogLevel.warn)
 
-    return true;
+    return instances[0];
   }
 
-  processHandler.spawn({
+  const proc = await processHandler.spawn({
     proc: AppProcess,
     name: `app#${id}`,
     app,
     args
   });
 
-  return true;
+  return proc.pid;
 }
 
 export function spawnOverlay(app: App, parent: number, args?: any[], noShade?: boolean, processHandler = ProcessStack) {

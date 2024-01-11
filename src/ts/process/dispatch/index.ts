@@ -5,7 +5,7 @@ export class ProcessDispatcher {
   public subscribers: Record<number, Record<string, ((data: unknown) => void)[]>> = {};
 
   constructor(public handler) {
-    Log("process/dispatch", `Creating new ProcessDispatcher`)
+    this.Log("Creating new ProcessDispatcher");
   }
 
   private Log(text: string, level?: LogLevel) {

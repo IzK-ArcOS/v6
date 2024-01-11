@@ -1,5 +1,4 @@
 import { maxZIndex } from "$ts/stores/apps";
-import { UserDataStore } from "$ts/stores/user";
 import { App } from "$types/app";
 
 export function generateCSS(app: App) {

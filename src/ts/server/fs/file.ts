@@ -1,14 +1,14 @@
 import { toBase64 } from "$ts/base64";
 import { Log } from "$ts/console";
+import { deleteNotification, sendNotification } from "$ts/notif";
 import { Endpoints } from "$ts/stores/endpoint";
 import { UserToken } from "$ts/stores/user";
+import { sleep } from "$ts/util";
 import { ArcFile, PartialArcFile } from "$types/fs";
+import { Notification } from "$types/notif";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 import { getParentDirectory, readDirectory } from "./dir";
-import { Notification } from "$types/notif";
-import { deleteNotification, sendNotification } from "$ts/notif";
-import { sleep } from "$ts/util";
 
 export async function readFile(path: string): Promise<ArcFile> {
   Log("server/fs/file", `Reading file ${path}`);

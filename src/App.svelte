@@ -3,7 +3,6 @@
   import { Logo } from "$ts/branding";
   import { getBuild, getMode } from "$ts/metadata";
   import { PrimaryState } from "$ts/states";
-  import { CRASHING } from "$ts/stores/crash";
   import { onMount } from "svelte";
 
   let render = false;

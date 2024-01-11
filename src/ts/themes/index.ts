@@ -2,7 +2,7 @@ import { Log } from "$ts/console";
 import { SaveIcon } from "$ts/images/general";
 import { textToBlob } from "$ts/server/fs/convert";
 import { createDirectory } from "$ts/server/fs/dir";
-import { writeFile, writeFileAnnounced } from "$ts/server/fs/file";
+import { writeFileAnnounced } from "$ts/server/fs/file";
 import { BuiltinThemes } from "$ts/stores/themes/builtins";
 import { UserThemeKeys } from "$ts/stores/themes/values";
 import { UserDataStore, UserName } from "$ts/stores/user";

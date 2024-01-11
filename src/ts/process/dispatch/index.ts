@@ -9,7 +9,7 @@ export class ProcessDispatcher {
   }
 
   private Log(text: string, level?: LogLevel) {
-    Log("process/handler", `ProcessDispatcher[${this.handler.id}]: ${text}`, level)
+    Log("process/dispatch", `ProcessDispatcher[${this.handler.id}]: ${text}`, level)
   }
 
   subscribe<T = any[]>(pid: number, event: string, callback: (data: T) => void) {

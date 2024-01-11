@@ -1,9 +1,8 @@
+import { DeviceInfo } from "$types/device";
 import { getCPU } from "./cpu";
 import { getGPU } from "./gpu";
 import { getMEM } from "./mem";
 import { getNET } from "./net";
-
-import type { DeviceInfo } from "./interface";
 
 export function getDeviceInfo(): DeviceInfo {
   return {

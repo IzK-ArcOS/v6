@@ -5,11 +5,11 @@ export class GlobalDispatcher {
   public subscribers: Record<string, Record<number, (data: unknown) => void>> = {};
 
   constructor() {
-    Log("process/dispatch", `Creating new GlobalDispatcher`)
+    this.Log("Creating new GlobalDispatcher")
   }
 
   private Log(text: string, level?: LogLevel) {
-    Log("process/handler", `GlobalDispatcher: ${text}`, level)
+    Log("process/dispatch", `GlobalDispatcher: ${text}`, level)
   }
 
   subscribe<T = any[]>(event: string, callback: (data: T) => void) {

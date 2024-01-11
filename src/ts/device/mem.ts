@@ -1,4 +1,4 @@
-import type { Memory } from "./interface";
+import { Memory } from "$types/device";
 
 export function getMEM(): Memory {
   const nav = navigator as { deviceMemory?: number };

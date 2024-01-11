@@ -25,8 +25,11 @@ window:not(.core) {
   opacity: 0;
   visibility: hidden;
   scale: 0.9;
+}
+
+div:not(.noani) window:not(.core) {
   transition: all 0.3s, z-index 0s, pointer-events 0s, transform 0s,
-    backdrop-filter 0s, width 0s, height 0s !important;
+    backdrop-filter 0s, width 0s, height 0s;
 }
 
 /* 

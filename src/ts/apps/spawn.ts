@@ -37,6 +37,8 @@ export async function spawnApp(id: string, parent?: number, args?: any[], proces
     args
   });
 
+  if (!proc) return false;
+
   return proc.pid;
 }
 

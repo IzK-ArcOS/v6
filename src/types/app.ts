@@ -1,6 +1,6 @@
 import { AppRuntime } from "$ts/apps/runtime";
 import { AppKeyCombinations } from "./accelerator";
-import { Nullable } from "./common";
+import { MaybePromise, Nullable } from "./common";
 import { ReadableStore } from "./writable";
 
 export interface App {
@@ -62,14 +62,13 @@ export interface ContextMenuItem {
   caption?: string;
   icon?: string;
   image?: string;
-  isActive?: (
-    window: App,
-    data: DOMStringMap,
-    scope: string
-  ) => boolean | Promise<boolean>;
-  action?(window: App, data: DOMStringMap, scope: string): void;
+  isActive?: ContextMenuCallback<boolean>;
+  action?: ContextMenuCallback;
   subItems?: ContextMenuItem[];
+  disabled?: ContextMenuCallback<boolean>;
 }
+
+export type ContextMenuCallback<T = void> = (window: App, data: DOMStringMap, scope: string) => MaybePromise<T>;
 
 export type AppContextMenu = { [key: string]: ContextMenuItem[] };
 

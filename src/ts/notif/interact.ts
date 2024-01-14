@@ -1,9 +1,9 @@
 import { Log } from "$ts/console";
+import { NotificationProcess } from "$ts/services/ns";
 import { LogLevel } from "$types/console";
 import { Notification } from "$types/notif";
-import { NotificationService } from "./service";
 
-let notifProc: NotificationService = null;
+let notifProc: NotificationProcess = null;
 
 function procCheck() {
   if (!notifProc) Log(`notif/interact`, `Can't handle notifications without a NotificationService to interact with.`, LogLevel.error);
@@ -14,7 +14,7 @@ function procCheck() {
 export const getNotificationStore = () => notifProc ? notifProc.store : null;
 export const getNotifCurrentStore = () => notifProc ? notifProc.current : null;
 
-export function setNotificationProc(proc: NotificationService) {
+export function setNotificationProc(proc: NotificationProcess) {
   Log(`notif/interact`, `Setting notification process to ${proc.pid}`);
 
   if (!proc) return Log("notif/interact", "Can't set NotifProc to invalid process!", LogLevel.error);

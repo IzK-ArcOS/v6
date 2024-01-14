@@ -80,7 +80,7 @@ export class ProcessHandler {
 
     const proc = procs.get(pid);
 
-    if (proc._disposed) return false;
+    if (proc._disposed || proc._criticalProcess) return false;
     if (proc.stop) await proc.stop();
 
     await this._killSubProcesses(pid)
@@ -130,14 +130,14 @@ export class ProcessHandler {
   // ### END SECTION KILL ###
 
   // ### SECTION GETTERS ###
-  public getProcess(pid: number): Nullable<Process> {
+  public getProcess<T = Process>(pid: number): Nullable<T> {
     const procs = this.processes.get();
 
     if (!procs.has(pid)) return null;
 
     const proc = procs.get(pid);
 
-    return proc._disposed ? null : proc;
+    return proc._disposed ? null : proc as T;
   }
 
   public getSubProcesses(pPid: number): ProcessMap {

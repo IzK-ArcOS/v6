@@ -9,6 +9,7 @@ export class Process {
   public _disposed = false;
   public _paused = false;
   public _pausedError = "Not executing code in paused process";
+  public _criticalProcess = false;
   public app: Nullable<App> = null;
   public parentPid: Nullable<number> = null;
   public args: any[] = [];

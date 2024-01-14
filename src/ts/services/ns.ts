@@ -1,11 +1,12 @@
+import { Service } from "$types/service";
+import { setNotificationProc } from "$ts/notif/interact";
 import { Process, ProcessHandler } from "$ts/process";
 import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
 import { App } from "$types/app";
 import { Notification, NotificationStore } from "$types/notif";
-import { setNotificationProc } from "./interact";
 
-export class NotificationService extends Process {
+export class NotificationProcess extends Process {
   constructor(handler: ProcessHandler, pid: number, name: string, app: App, args: any[]) {
     super(handler, pid, name, app, args);
 
@@ -70,3 +71,12 @@ export class NotificationService extends Process {
     if (this.current.get() == id) this.close();
   }
 }
+
+
+export const NotificationService: Service = {
+  name: "Notification Service",
+  description: "Handles sending, deleting and managing notifications.",
+  process: NotificationProcess,
+  initialState: "started"
+}
+

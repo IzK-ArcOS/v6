@@ -1,19 +1,9 @@
-import { BrowserCheck } from "$state/Desktop/ts/browsercheck";
-import { UserDataCommitter } from "$state/Desktop/ts/userdata";
-import { NotificationService } from "$ts/notif";
+import { ServiceManager } from "$ts/service";
 import { ProcessSpawnArguments } from "$types/process";
 
 export const StartupServices: ProcessSpawnArguments[] = [
   {
-    proc: UserDataCommitter,
-    name: "UserDataCommitter",
+    proc: ServiceManager,
+    name: "ServiceManager"
   },
-  {
-    proc: NotificationService,
-    name: "NotificationService",
-  },
-  {
-    proc: BrowserCheck,
-    name: "BrowserCheck"
-  }
 ]

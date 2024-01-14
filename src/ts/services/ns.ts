@@ -5,6 +5,7 @@ import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
 import { App } from "$types/app";
 import { Notification, NotificationStore } from "$types/notif";
+import { PrimaryState } from "$ts/states";
 
 export class NotificationProcess extends Process {
   constructor(handler: ProcessHandler, pid: number, name: string, app: App, args: any[]) {
@@ -77,6 +78,7 @@ export const NotificationService: Service = {
   name: "Notification Service",
   description: "Handles sending, deleting and managing notifications.",
   process: NotificationProcess,
-  initialState: "started"
+  initialState: "started",
+  startCondition: () => PrimaryState.current.get().key == "desktop"
 }
 

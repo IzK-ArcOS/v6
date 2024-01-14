@@ -1,4 +1,5 @@
 import { appLibrary } from "$ts/stores/apps";
+import { BaseAppContext } from "$ts/stores/apps/context";
 import { UserDataStore } from "$ts/stores/user";
 import { App } from "$types/app";
 import { Nullable } from "$types/common";
@@ -18,7 +19,7 @@ export function getAppById(id: string, override?: App): Nullable<App> {
   const runtime = app.runtime;
   const content = app.content;
   const loadCondition = app.loadCondition
-  const contextMenu = app.contextMenu;
+  const contextMenu = { ...app.contextMenu, ...BaseAppContext };
   const accelerators = app.accelerators;
   const isolated = JSON.parse(JSON.stringify(app));
 

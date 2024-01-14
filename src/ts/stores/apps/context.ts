@@ -37,6 +37,9 @@ export const BaseAppContext: AppContextMenu = {
       caption: "close",
       image: ShutdownIcon,
       disabled: (window) => window.metadata.core,
+      action: (window) => {
+        ProcessStack.kill(window.pid)
+      }
     }
   ]
 }

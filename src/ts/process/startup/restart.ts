@@ -3,7 +3,7 @@ import { ShutdownIcon } from "$ts/images/power";
 import { sendNotification } from "$ts/notif";
 import { createErrorDialog } from "../error";
 
-export function ServiceRestartNotification(count: number) {
+export function CoreRestartNotification(count: number) {
   sendNotification({
     title: "Processes restarted",
     message: `ArcOS has restarted ${count} core process${count == 1 ? "" : "es"} that weren't running anymore. Do note that ArcOS might show behave unexpectedly until you restart. Click Learn More for more information.`,

@@ -1,6 +1,7 @@
 import { Log } from "$ts/console";
 import { Process, ProcessHandler } from "$ts/process";
 import { focusedPid } from "$ts/stores/apps";
+import { BaseAppContext } from "$ts/stores/apps/context";
 import { ProcessStack } from "$ts/stores/process";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";

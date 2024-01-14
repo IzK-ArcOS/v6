@@ -4,7 +4,7 @@ import { serviceStore } from "$ts/stores/service";
 import { Store } from "$ts/writable";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
-import { ReadableServiceStore, ServiceStore } from "$types/service";
+import { ReadableServiceStore, ServiceStartResult, ServiceStore } from "$types/service";
 
 export const ServiceManagerPid = Store<number>();
 
@@ -45,15 +45,19 @@ export class ServiceManager extends Process {
     return this._storeLoaded = true;
   }
 
-  public async startService(id: string): Promise<boolean> {
+  public async startService(id: string): Promise<ServiceStartResult> {
     const services = this.Services.get();
     const service = services.get(id);
 
-    if (!services.has(id)) return false;
+    if (!services.has(id)) return "err_noExist";
+
+    const canStart = service.startCondition ? await service.startCondition() : true;
+
+    if (!canStart) return "err_startCondition";
 
     const instance = await ProcessStack.spawn({ proc: service.process, name: `svc#${id}`, parentPid: this.pid });
 
-    if (!instance) return false;
+    if (!instance) return "err_spawnFailed";
 
     service.pid = instance.pid;
     service.changedAt = new Date().getTime();
@@ -61,7 +65,7 @@ export class ServiceManager extends Process {
     services.set(id, service);
     this.Services.set(services);
 
-    return true;
+    return "started";
   }
 
   public async stopService(id: string): Promise<boolean> {
@@ -87,11 +91,11 @@ export class ServiceManager extends Process {
     return true;
   }
 
-  public async restartService(id: string): Promise<boolean> {
+  public async restartService(id: string): Promise<ServiceStartResult> {
     const stopped = await this.stopService(id);
     const started = await this.startService(id);
 
-    return stopped && started;
+    return started;
   }
 
   private initialRun() {

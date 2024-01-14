@@ -109,4 +109,5 @@ export class AppRuntime {
       this.process.handler.dispatch.subscribe(this.pid, event, () => scoped[event]())
     }
   }
+
 }

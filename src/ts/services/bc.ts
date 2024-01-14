@@ -2,6 +2,7 @@ import { createTrayIcon } from "$apps/Shell/ts/tray";
 import { FirefoxIcon } from "$ts/images/general";
 import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";
+import { PrimaryState } from "$ts/states";
 import { sleep } from "$ts/util";
 import { App } from "$types/app";
 import { Notification } from "$types/notif";
@@ -49,5 +50,6 @@ export const BrowserCheck: Service = {
   name: "Browser Check",
   description: "Performs checks to ensure your browser is compatible",
   process: BrowserCheckProcess,
-  initialState: "started"
+  initialState: "started",
+  startCondition: () => PrimaryState.current.get().key == "desktop"
 }

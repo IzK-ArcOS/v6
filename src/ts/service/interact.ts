@@ -1,6 +1,6 @@
 import { ProcessStack } from "$ts/stores/process";
 import { Nullable } from "$types/common";
-import { Service } from "$types/service";
+import { Service, ServiceStartResult } from "$types/service";
 import { ServiceManager, ServiceManagerPid } from ".";
 
 export async function stopService(id: string) {
@@ -12,11 +12,11 @@ export async function stopService(id: string) {
   return await manager.stopService(id);
 }
 
-export async function startService(id: string) {
+export async function startService(id: string): Promise<ServiceStartResult> {
   const managerPid = ServiceManagerPid.get();
   const manager = ProcessStack.getProcess<ServiceManager>(managerPid);
 
-  if (!managerPid || !manager) return false;
+  if (!managerPid || !manager) return "err_noManager";
 
   return await manager.startService(id);
 }

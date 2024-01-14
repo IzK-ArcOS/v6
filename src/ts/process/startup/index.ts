@@ -1,14 +1,14 @@
 import { Log } from "$ts/console";
 import { ProcessStack } from "$ts/stores/process";
-import { StartupServices } from "$ts/stores/process/startup";
-import { ServiceRestartNotification } from "./restart";
+import { StartupProcesses } from "$ts/stores/process/startup";
+import { CoreRestartNotification } from "./restart";
 
 export async function StartCoreProcesses(restart = false, handler = ProcessStack) {
-  Log("process/startup", `Starting ${StartupServices.length} core services.`);
+  Log("process/startup", `Starting ${StartupProcesses.length} core processes.`);
 
   let startCount = 0;
 
-  for (const service of StartupServices) {
+  for (const service of StartupProcesses) {
     const processes = [...handler.processes.get()]
     const sameNames = processes.filter(([_, proc]) => {
       return proc.name == service.name && !proc._disposed;
@@ -23,6 +23,6 @@ export async function StartCoreProcesses(restart = false, handler = ProcessStack
   }
 
   if (restart && startCount) {
-    ServiceRestartNotification(startCount)
+    CoreRestartNotification(startCount)
   }
 }

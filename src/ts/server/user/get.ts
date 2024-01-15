@@ -7,6 +7,7 @@ import { getServerUrl } from "../util";
 
 export async function getUsers(): Promise<AllUsers> {
   Log("server/user/get", "Getting users");
+
   const cache = UserCache.get();
 
   if (cache && Object.entries(cache).length) return cache;
@@ -29,4 +30,18 @@ export async function getUsers(): Promise<AllUsers> {
   UserCache.set(allUsers);
 
   return allUsers as AllUsers;
+}
+
+export async function getUserList(): Promise<PartialUser[]> {
+  const url = getServerUrl(Endpoints.Users);
+
+  if (!url) return [];
+
+  const response = await axios.get(url);
+
+  if (response.status !== 200) return [];
+
+  const userList = response.data.data as PartialUser[]; // Don't ask.
+
+  return userList
 }

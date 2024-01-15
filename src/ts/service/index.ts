@@ -1,4 +1,5 @@
 import { Process, ProcessHandler } from "$ts/process";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { ProcessStack } from "$ts/stores/process";
 import { serviceStore } from "$ts/stores/service";
 import { Store } from "$ts/writable";
@@ -113,7 +114,9 @@ export class ServiceManager extends Process {
     this.loadStore(serviceStore);
     this.initialRun();
 
-    ProcessStack.processes.subscribe(() => this.verifyServicesProcesses())
+    ProcessStack.processes.subscribe(() => this.verifyServicesProcesses());
+
+    this.Services.subscribe(() => GlobalDispatch.dispatch("services-flush"))
   }
 
   public async verifyServicesProcesses() {

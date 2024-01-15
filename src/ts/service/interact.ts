@@ -1,6 +1,6 @@
 import { ProcessStack } from "$ts/stores/process";
 import { Nullable } from "$types/common";
-import { Service, ServiceStartResult } from "$types/service";
+import { Service, ServiceStartResult, ServiceStore } from "$types/service";
 import { ServiceManager, ServiceManagerPid } from ".";
 
 export async function stopService(id: string) {
@@ -39,4 +39,15 @@ export function getService(id: string): Nullable<Service> {
   const services = manager.Services.get();
 
   return services.has(id) ? services.get(id) : null
+}
+
+export function getAllServices(): Nullable<ServiceStore> {
+  const managerPid = ServiceManagerPid.get();
+  const manager = ProcessStack.getProcess<ServiceManager>(managerPid);
+
+  if (!managerPid || !manager) return null;
+
+  const services = manager.Services.get();
+
+  return services
 }

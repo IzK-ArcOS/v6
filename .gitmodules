@@ -40,3 +40,6 @@
 [submodule "src/apps/Qlorb"]
 	path = src/apps/Qlorb
 	url = https://github.com/IzK-ArcOS/v6-Qlorb
+[submodule "src/apps/SecureContext"]
+	path = src/apps/SecureContext
+	url = https://github.com/IzK-ArcOS/v6-SecureContext

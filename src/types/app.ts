@@ -19,7 +19,8 @@ export interface App {
   glass?: boolean;
   isOverlay?: boolean;
   noOverlayShade?: boolean;
-  loadCondition?: () => boolean | Promise<boolean>;
+  loadCondition?: () => MaybePromise<boolean>;
+  spawnCondition?: () => MaybePromise<boolean>;
   singleInstance?: boolean;
   autoOpen?: boolean;
   contextMenu?: AppContextMenu;

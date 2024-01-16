@@ -54,7 +54,7 @@ export class ServiceManager extends Process {
 
     if (!services.has(id)) return "err_noExist";
 
-    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(service));
+    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(service), ProcessStack);
 
     if (!elevation) return "err_elevation";
 
@@ -83,13 +83,13 @@ export class ServiceManager extends Process {
 
     if (!services.has(id) || !service.pid) return false;
 
-    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(service));
+    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(service), ProcessStack);
 
     if (!elevation) return false;
 
     this._holdRestart = true
 
-    await ProcessStack.kill(service.pid);
+    await ProcessStack.kill(service.pid, true);
 
     service.pid = null;
     service.changedAt = new Date().getTime();
@@ -107,7 +107,7 @@ export class ServiceManager extends Process {
 
     if (!services.has(id)) return "err_noExist";
 
-    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(services.get(id)));
+    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(services.get(id)), ProcessStack);
 
     if (!elevation) return "err_elevation";
 

@@ -43,7 +43,9 @@ const defaultUserData: UserData = {
     noGlass: false,
     noQuickSettings: false,
     compactContext: false,
-    showHiddenApps: false
+    showHiddenApps: false,
+    securityNoPassword: false,
+    elevationDisabled: false
   },
   disabledApps: [],
   autoLoads: [],

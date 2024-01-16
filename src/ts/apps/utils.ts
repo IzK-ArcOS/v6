@@ -18,10 +18,11 @@ export function getAppById(id: string, override?: App): Nullable<App> {
   const app = override || library.get(id);
   const runtime = app.runtime;
   const content = app.content;
-  const loadCondition = app.loadCondition
+  const loadCondition = app.loadCondition;
+  const spawnCondition = app.spawnCondition;
   const contextMenu = { ...app.contextMenu, ...BaseAppContext };
   const accelerators = app.accelerators;
   const isolated = JSON.parse(JSON.stringify(app));
 
-  return { ...isolated, runtime, content, loadCondition, contextMenu, accelerators };
+  return { ...isolated, runtime, content, loadCondition, spawnCondition, contextMenu, accelerators };
 }

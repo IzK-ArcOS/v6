@@ -49,6 +49,7 @@ export interface UserData {
     compactContext: boolean;
     showHiddenApps?: boolean; // halfway
     securityNoPassword: boolean; // halfway
+    elevationDisabled: boolean
   };
 
   disabledApps: string[];

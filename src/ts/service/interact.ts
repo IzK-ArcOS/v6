@@ -51,3 +51,14 @@ export function getAllServices(): Nullable<ServiceStore> {
 
   return services
 }
+
+export function isServiceRunning(id: string): boolean {
+  const managerPid = ServiceManagerPid.get();
+  const manager = ProcessStack.getProcess<ServiceManager>(managerPid);
+
+  if (!managerPid || !manager) return false;
+
+  const services = manager.Services.get();
+
+  return services.has(id) ? !!services.get(id).pid : false
+}

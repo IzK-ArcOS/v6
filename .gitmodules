@@ -43,3 +43,6 @@
 [submodule "src/apps/SecureContext"]
 	path = src/apps/SecureContext
 	url = https://github.com/IzK-ArcOS/v6-SecureContext
+[submodule "src/apps/ServiceInfo"]
+	path = src/apps/ServiceInfo
+	url = https://github.com/IzK-ArcOS/v6-ServiceInfo

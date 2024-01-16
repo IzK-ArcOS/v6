@@ -34,9 +34,15 @@ export async function spawnApp(id: string, parent?: number, args?: any[], proces
   }
 
   if (app.elevated) {
-    const elevated = await GetUserElevation(ElevatedAppLaunchData(app));
+    const elevated = await GetUserElevation(ElevatedAppLaunchData(app), ProcessStack);
 
     if (!elevated) return false;
+  }
+
+  if (app.spawnCondition) {
+    const canSpawn = await app.spawnCondition();
+
+    if (!canSpawn) return false;
   }
 
   const proc = await processHandler.spawn({
@@ -59,7 +65,7 @@ export async function spawnOverlay(app: App, parent: number, args?: any[], noSha
   app = { ...app, isOverlay: true, noOverlayShade: noShade };
 
   if (app.elevated) {
-    const elevated = await GetUserElevation(ElevatedAppLaunchData(app));
+    const elevated = await GetUserElevation(ElevatedAppLaunchData(app), ProcessStack);
 
     if (!elevated) return false;
   }

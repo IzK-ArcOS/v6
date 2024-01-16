@@ -36,6 +36,17 @@ export function ElevationKillProcess(proc: Process): ElevationData {
   }
 }
 
+
+export function ElevationKillAppProcesses(id: string): ElevationData {
+  return {
+    what: "ArcOS needs your permission to kill processes of the following app:",
+    image: ShutdownIcon,
+    title: id,
+    description: `From the Library`,
+    level: ElevationLevel.medium
+  }
+}
+
 export function ElevationChangeServiceState(service: Service): ElevationData {
   return {
     what: "ArcOS needs your permission to change the state of the following service:",

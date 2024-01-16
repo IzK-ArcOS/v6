@@ -71,12 +71,12 @@ export class ProcessHandler {
   // ### END SECTION SPAWN ###
 
   // ### SECTION KILL ###
-  public async kill(pid: number): Promise<boolean> {
+  public async kill(pid: number, elevated: boolean): Promise<boolean> {
     this.Log(`Killing process with PID ${pid}`);
 
     const procs = this.processes.get();
 
-    if (!procs.has(pid)) return false;
+    if (!procs.has(pid) || !elevated) return false;
 
     const proc = procs.get(pid);
 
@@ -104,7 +104,7 @@ export class ProcessHandler {
     for (const [pid, proc] of procs) {
       if (proc._disposed) continue;
 
-      this.kill(pid)
+      this.kill(pid, true)
     }
   }
 

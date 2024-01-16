@@ -1,5 +1,6 @@
 import { GetUserElevation } from "$ts/elevation";
 import { ChangeDisabledStateData } from "$ts/stores/elevation";
+import { ProcessStack } from "$ts/stores/process";
 import { UserDataStore } from "$ts/stores/user";
 
 export async function disableApp(id: string) {
@@ -7,7 +8,7 @@ export async function disableApp(id: string) {
 
   if (userdata.disabledApps.includes(id)) return false;
 
-  const elevated = await GetUserElevation(ChangeDisabledStateData(id));
+  const elevated = await GetUserElevation(ChangeDisabledStateData(id), ProcessStack);
 
   if (!elevated) return false;
 
@@ -23,7 +24,7 @@ export async function enableApp(id: string) {
 
   if (!userdata.disabledApps.includes(id)) return false;
 
-  const elevated = await GetUserElevation(ChangeDisabledStateData(id));
+  const elevated = await GetUserElevation(ChangeDisabledStateData(id), ProcessStack);
 
   if (!elevated) return false;
 

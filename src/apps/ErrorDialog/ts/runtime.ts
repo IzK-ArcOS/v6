@@ -10,7 +10,7 @@ export class Runtime extends AppRuntime {
     super(app, mutator, process);
 
     function stop() {
-      process.handler.kill(process.pid);
+      process.handler.kill(process.pid, true);
 
       sendNotification({
         title: "Can't open Error",
@@ -46,6 +46,6 @@ export class Runtime extends AppRuntime {
 
     await suggested.action();
 
-    this.process.handler.kill(this.process.pid);
+    this.process.handler.kill(this.process.pid, true);
   }
 }

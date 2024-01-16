@@ -1,34 +1,22 @@
-import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
-import { Process } from "$ts/process";
-import { GlobalDispatch } from "$ts/process/dispatch/global";
-import { ProcessStack } from "$ts/stores/process";
+import { SecurityHighIcon } from "$ts/images/general";
+import { sendNotification } from "$ts/notif";
+import { ProcessHandler } from "$ts/process";
+import { ES, ElevationPid } from "$ts/services/sc";
 import { ElevationData } from "$types/elevation";
 
-export async function GetUserElevation(data: ElevationData): Promise<boolean> {
-  const id = Math.floor(Math.random() * 1e6);
-  const shellPid = ProcessStack.getAppPids("ArcShell")[0];
+export async function GetUserElevation(data: ElevationData, stack: ProcessHandler): Promise<boolean> {
+  const elevation = ElevationPid.get();
+  const manager = stack.getProcess<ES>(elevation);
 
-  const app = getAppById("SecureContext");
+  if (!elevation || !manager) {
+    sendNotification({
+      title: "Elevation failed",
+      message: "The Elevation Service isn't running anymore. Without it, you can't access the ArcOS Secure Context. Please restart to resolve this problem.",
+      image: SecurityHighIcon
+    })
 
-  if (!app) return false // No secure context!
-
-  let proc: number | Process | false;
-
-  if (!shellPid) {
-    proc = await spawnApp("SecureContext", 0, [id, data])
-  } else {
-    proc = await spawnOverlay(app, shellPid || 0, [id, data]);
+    return false;
   }
 
-  if (!proc) return false; // No Elevation process, so can't permit
-
-  return new Promise((resolve) => {
-    GlobalDispatch.subscribe("elevation-accept", (data) => {
-      if (data[0] && data[0] === id) resolve(true);
-    });
-
-    GlobalDispatch.subscribe("elevation-reject", (data) => {
-      if (data[0] && data[0] === id) resolve(false);
-    });
-  });
+  return await manager.GetUserElevation(data);
 }

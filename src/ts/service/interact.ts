@@ -1,9 +1,12 @@
+import { Log } from "$ts/console";
 import { ProcessStack } from "$ts/stores/process";
 import { Nullable } from "$types/common";
 import { Service, ServiceStartResult, ServiceStore } from "$types/service";
 import { ServiceManager, ServiceManagerPid } from ".";
 
 export async function stopService(id: string) {
+  Log("service/interact", `Attempting to stop ${id}`);
+
   const managerPid = ServiceManagerPid.get();
   const manager = ProcessStack.getProcess<ServiceManager>(managerPid);
 
@@ -13,6 +16,8 @@ export async function stopService(id: string) {
 }
 
 export async function startService(id: string): Promise<ServiceStartResult> {
+  Log("service/interact", `Attempting to start ${id}`);
+
   const managerPid = ServiceManagerPid.get();
   const manager = ProcessStack.getProcess<ServiceManager>(managerPid);
 
@@ -22,6 +27,8 @@ export async function startService(id: string): Promise<ServiceStartResult> {
 }
 
 export async function restartService(id: string) {
+  Log("service/interact", `Attempting to restart ${id}`);
+
   const managerPid = ServiceManagerPid.get();
   const manager = ProcessStack.getProcess<ServiceManager>(managerPid);
 

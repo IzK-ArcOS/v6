@@ -21,6 +21,8 @@ export class ES extends Process {
   }
 
   public async GetUserElevation(data: ElevationData): Promise<boolean> {
+    this.Log(`Getting user elevation: ${data.what}`);
+
     if (this.pauseCheck()) return false;
 
     const id = Math.floor(Math.random() * 1e6);
@@ -42,11 +44,19 @@ export class ES extends Process {
 
     return new Promise((resolve) => {
       GlobalDispatch.subscribe("elevation-accept", (data) => {
-        if (data[0] && data[0] === id) resolve(true);
+        if (!data[0] || data[0] !== id) return;
+
+        this.Log(`Approving ID ${id}`)
+
+        resolve(true);
       });
 
       GlobalDispatch.subscribe("elevation-reject", (data) => {
-        if (data[0] && data[0] === id) resolve(false);
+        if (!data[0] || data[0] !== id) return;
+
+        this.Log(`Denying ID ${id}`)
+
+        resolve(false);
       });
     });
   }

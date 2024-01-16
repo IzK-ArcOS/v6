@@ -23,3 +23,6 @@ export { default as UpdateIcon } from "$assets/general/update.svg";
 export { default as UploadIcon } from "$assets/general/upload.svg";
 export { default as WaveIcon } from "$assets/general/wave.svg";
 export { default as WindowSettingsIcon } from "$assets/general/windowsettings.svg";
+export { default as SecurityHighIcon } from "$assets/general/security-high.svg";
+export { default as SecurityMediumIcon } from "$assets/general/security-medium.svg";
+export { default as SecurityLowIcon } from "$assets/general/security-low.svg";

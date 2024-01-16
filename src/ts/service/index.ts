@@ -1,5 +1,7 @@
+import { GetUserElevation } from "$ts/elevation";
 import { Process, ProcessHandler } from "$ts/process";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
+import { ElevationChangeServiceState } from "$ts/stores/elevation";
 import { ProcessStack } from "$ts/stores/process";
 import { serviceStore } from "$ts/stores/service";
 import { Store } from "$ts/writable";
@@ -46,11 +48,15 @@ export class ServiceManager extends Process {
     return this._storeLoaded = true;
   }
 
-  public async startService(id: string): Promise<ServiceStartResult> {
+  public async startService(id: string, fromSystem = false): Promise<ServiceStartResult> {
     const services = this.Services.get();
     const service = services.get(id);
 
     if (!services.has(id)) return "err_noExist";
+
+    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(service));
+
+    if (!elevation) return "err_elevation";
 
     const canStart = service.startCondition ? await service.startCondition() : true;
 
@@ -69,13 +75,17 @@ export class ServiceManager extends Process {
     return "started";
   }
 
-  public async stopService(id: string): Promise<boolean> {
+  public async stopService(id: string, fromSystem = false): Promise<boolean> {
     this.Log(`Stopping ${id}`);
 
     const services = this.Services.get();
     const service = services.get(id);
 
     if (!services.has(id) || !service.pid) return false;
+
+    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(service));
+
+    if (!elevation) return false;
 
     this._holdRestart = true
 
@@ -92,9 +102,17 @@ export class ServiceManager extends Process {
     return true;
   }
 
-  public async restartService(id: string): Promise<ServiceStartResult> {
-    const stopped = await this.stopService(id);
-    const started = await this.startService(id);
+  public async restartService(id: string, fromSystem = false): Promise<ServiceStartResult> {
+    const services = this.Services.get();
+
+    if (!services.has(id)) return "err_noExist";
+
+    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(services.get(id)));
+
+    if (!elevation) return "err_elevation";
+
+    const stopped = await this.stopService(id, true);
+    const started = await this.startService(id, true);
 
     return started;
   }
@@ -105,8 +123,7 @@ export class ServiceManager extends Process {
     for (const [id, service] of [...services]) {
       if (!service.initialState || service.initialState != "started") continue;
 
-      this.startService(id);
-
+      this.startService(id, true);
     }
   }
 
@@ -129,7 +146,7 @@ export class ServiceManager extends Process {
 
       this.Log(`Process of ${id} doesn't exist anymore! Restarting service...`, LogLevel.warn)
 
-      await this.restartService(id)
+      await this.restartService(id, true)
     }
   }
 }

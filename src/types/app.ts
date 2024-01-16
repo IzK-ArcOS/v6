@@ -23,7 +23,8 @@ export interface App {
   singleInstance?: boolean;
   autoOpen?: boolean;
   contextMenu?: AppContextMenu;
-  accelerators?: AppKeyCombinations
+  accelerators?: AppKeyCombinations;
+  elevated?: boolean;
 }
 
 export type AppMutator = ReadableStore<App>;

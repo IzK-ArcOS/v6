@@ -1,4 +1,5 @@
-import { killAllAppInstances } from "$ts/process/kill";
+import { GetUserElevation } from "$ts/elevation";
+import { ChangeDisabledStateData } from "$ts/stores/elevation";
 import { UserDataStore } from "$ts/stores/user";
 
 export async function disableApp(id: string) {
@@ -6,7 +7,9 @@ export async function disableApp(id: string) {
 
   if (userdata.disabledApps.includes(id)) return false;
 
-  await killAllAppInstances(id);
+  const elevated = await GetUserElevation(ChangeDisabledStateData(id));
+
+  if (!elevated) return false;
 
   userdata.disabledApps.push(id);
   UserDataStore.set(userdata);
@@ -14,11 +17,15 @@ export async function disableApp(id: string) {
   return true;
 }
 
-export function enableApp(id: string) {
+export async function enableApp(id: string) {
   const userdata = UserDataStore.get();
   const index = userdata.disabledApps.indexOf(id);
 
   if (!userdata.disabledApps.includes(id)) return false;
+
+  const elevated = await GetUserElevation(ChangeDisabledStateData(id));
+
+  if (!elevated) return false;
 
   userdata.disabledApps.splice(index, 1);
   UserDataStore.set(userdata);

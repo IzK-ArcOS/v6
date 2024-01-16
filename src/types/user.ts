@@ -48,6 +48,7 @@ export interface UserData {
     userThemes?: ThemeStore; // added
     compactContext: boolean;
     showHiddenApps?: boolean; // halfway
+    securityNoPassword: boolean; // halfway
   };
 
   disabledApps: string[];

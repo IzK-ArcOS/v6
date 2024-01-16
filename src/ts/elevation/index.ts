@@ -1,17 +1,26 @@
-import { spawnApp } from "$ts/apps";
+import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
+import { Process } from "$ts/process";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { ProcessStack } from "$ts/stores/process";
 import { ElevationData } from "$types/elevation";
 
-export async function GetUserElevation(data: ElevationData) {
+export async function GetUserElevation(data: ElevationData): Promise<boolean> {
   const id = Math.floor(Math.random() * 1e6);
   const shellPid = ProcessStack.getAppPids("ArcShell")[0];
 
-  if (!shellPid) return false; // No shell so can't permit
+  const app = getAppById("SecureContext");
 
-  const pid = await spawnApp("Elevation", shellPid, [id, data]);
+  if (!app) return false // No secure context!
 
-  if (!pid) return false; // No Elevation process, so can't permit
+  let proc: number | Process | false;
+
+  if (!shellPid) {
+    proc = await spawnApp("SecureContext", 0, [id, data])
+  } else {
+    proc = await spawnOverlay(app, shellPid || 0, [id, data]);
+  }
+
+  if (!proc) return false; // No Elevation process, so can't permit
 
   return new Promise((resolve) => {
     GlobalDispatch.subscribe("elevation-accept", (data) => {

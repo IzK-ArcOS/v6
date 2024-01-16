@@ -1,7 +1,9 @@
 import { Log } from "$ts/console";
+import { GetUserElevation } from "$ts/elevation";
 import { Process, ProcessHandler } from "$ts/process";
 import { focusedPid } from "$ts/stores/apps";
 import { BaseAppContext } from "$ts/stores/apps/context";
+import { ElevatedAppLaunchData } from "$ts/stores/elevation";
 import { ProcessStack } from "$ts/stores/process";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
@@ -31,6 +33,12 @@ export async function spawnApp(id: string, parent?: number, args?: any[], proces
     return instances[0];
   }
 
+  if (app.elevated) {
+    const elevated = await GetUserElevation(ElevatedAppLaunchData(app));
+
+    if (!elevated) return false;
+  }
+
   const proc = await processHandler.spawn({
     proc: AppProcess,
     name: `app#${id}`,
@@ -43,12 +51,18 @@ export async function spawnApp(id: string, parent?: number, args?: any[], proces
   return proc.pid;
 }
 
-export function spawnOverlay(app: App, parent: number, args?: any[], noShade?: boolean, processHandler = ProcessStack) {
+export async function spawnOverlay(app: App, parent: number, args?: any[], noShade?: boolean, processHandler = ProcessStack) {
   Log("apps/spawn", `Spawning overlay with ID ${app.id} on handler ${processHandler.id}`);
 
   if (!app) return;
 
   app = { ...app, isOverlay: true, noOverlayShade: noShade };
+
+  if (app.elevated) {
+    const elevated = await GetUserElevation(ElevatedAppLaunchData(app));
+
+    if (!elevated) return false;
+  }
 
   if (!processHandler.isPid(parent)) return false;
 
@@ -60,5 +74,5 @@ export function spawnOverlay(app: App, parent: number, args?: any[], noShade?: b
     }
   }
 
-  processHandler.spawn({ proc: OverlayProcess, name: `overlay#${app.id}`, app, args });
+  return await processHandler.spawn({ proc: OverlayProcess, name: `overlay#${app.id}`, app, args });
 }

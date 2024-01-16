@@ -22,5 +22,5 @@ export type ServiceStartResult =
   "err_alreadyRunning" |
   "err_startCondition" |
   "err_spawnFailed" |
-  "err_noManager" |
+  "err_noManager" | "err_elevation" |
   "started"

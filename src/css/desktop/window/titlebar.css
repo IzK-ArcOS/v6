@@ -10,12 +10,14 @@ window div.titlebar {
   height: var(--titlebar-height);
 
   z-index: 100;
-  background-color: var(--win-bg);
   padding: 5px;
   font-size: 12px;
   position: relative;
 }
 
+window div.titlebar.glass {
+  background-color: transparent !important;
+}
 window:not(.glass) > div.titlebar {
   border-bottom: var(--win-border-light);
 }

@@ -52,6 +52,7 @@ export interface AppMetaData {
   appGroup?: string;
   core?: boolean;
   hidden?: boolean;
+  noCloseAccelerator?: boolean;
 }
 
 export interface AppState {

@@ -1,0 +1,18 @@
+window div.body button.elevated-button:not(.reset) {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+}
+
+window div.body button.elevated-button:not(.reset) > span {
+  padding: 0 10px;
+  padding-left: 0;
+  text-align: center;
+  flex-grow: 1;
+  display: block;
+}
+
+window div.body button.elevated-button:not(.reset) > img.secure-icon {
+  height: 20px;
+}

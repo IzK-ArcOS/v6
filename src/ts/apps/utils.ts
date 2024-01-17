@@ -1,5 +1,6 @@
 import { appLibrary } from "$ts/stores/apps";
 import { BaseAppContext } from "$ts/stores/apps/context";
+import { ProcessStack } from "$ts/stores/process";
 import { UserDataStore } from "$ts/stores/user";
 import { App } from "$types/app";
 import { Nullable } from "$types/common";
@@ -8,6 +9,10 @@ export function isPopulatable(app: App, includeOverlays?: boolean) {
   const showHidden = UserDataStore.get().sh.showHiddenApps || includeOverlays;
 
   return (!app.metadata.core && !app.isOverlay && !app.metadata.hidden) || showHidden;
+}
+
+export function isOpened(id: string): boolean {
+  return ProcessStack.getAppPids(id).length > 0
 }
 
 export function getAppById(id: string, override?: App): Nullable<App> {

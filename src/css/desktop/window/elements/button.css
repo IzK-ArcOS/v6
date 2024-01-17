@@ -1,3 +1,5 @@
+@import url("./secure.css");
+
 window div.body button:not(.reset) {
   border: none;
   border-radius: var(--button-border-rad);

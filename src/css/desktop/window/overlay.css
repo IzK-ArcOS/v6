@@ -4,6 +4,7 @@ window.overlay {
   left: 50%;
   transform: translate(-50%, -50%) !important;
   z-index: 100;
+  --titlebar-height: 0px !important;
 }
 
 window.overlay,

@@ -18,7 +18,7 @@ div.desktop .html-spinner {
   vertical-align: middle;
 }
 
-window div.body button:not(.reset) > div.html-spinner {
+window div.body button:not(.reset) div.html-spinner {
   margin: 0 auto;
 }
 

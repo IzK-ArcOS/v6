@@ -1,4 +1,5 @@
 import { GetUserElevation } from "$ts/elevation";
+import { killAllAppInstances } from "$ts/process/kill";
 import { ChangeDisabledStateData } from "$ts/stores/elevation";
 import { ProcessStack } from "$ts/stores/process";
 import { UserDataStore } from "$ts/stores/user";
@@ -11,6 +12,8 @@ export async function disableApp(id: string) {
   const elevated = await GetUserElevation(ChangeDisabledStateData(id), ProcessStack);
 
   if (!elevated) return false;
+
+  await killAllAppInstances(id, true)
 
   userdata.disabledApps.push(id);
   UserDataStore.set(userdata);

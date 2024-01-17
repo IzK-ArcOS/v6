@@ -1,9 +1,10 @@
 import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
+import { manualCrash } from "$ts/bugrep/crash";
 import { Process, ProcessHandler } from "$ts/process";
 import { GlobalDispatch, GlobalDispatcher } from "$ts/process/dispatch/global";
 import { ProcessStack } from "$ts/stores/process";
 import { Store } from "$ts/writable";
-import { App } from "$types/app";
+import { App, AppSpawnResult } from "$types/app";
 import { ElevationData } from "$types/elevation";
 import { Service } from "$types/service";
 
@@ -20,6 +21,10 @@ export class ES extends Process {
     ElevationPid.set(this.pid);
   }
 
+  public stop() {
+    manualCrash("ElevationService", "Critical process died!");
+  }
+
   public async GetUserElevation(data: ElevationData): Promise<boolean> {
     this.Log(`Getting user elevation: ${data.what}`);
 
@@ -32,7 +37,7 @@ export class ES extends Process {
 
     if (!app) return false;
 
-    let proc: number | Process | false;
+    let proc: number | AppSpawnResult | Process | false;
 
     if (!shellPid) {
       proc = await spawnApp("SecureContext", 0, [id, data])
@@ -40,7 +45,7 @@ export class ES extends Process {
       proc = await spawnOverlay(app, shellPid || 0, [id, data]);
     }
 
-    if (!proc) return false;
+    if (!proc || typeof proc == "string") return false;
 
     return new Promise((resolve) => {
       GlobalDispatch.subscribe("elevation-accept", (data) => {

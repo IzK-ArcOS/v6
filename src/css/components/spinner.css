@@ -5,3 +5,28 @@ img.spinner-svg {
 div.desktop[class*="light"] img.spinner-svg {
   filter: brightness(0.4);
 }
+
+div.desktop .html-spinner {
+  --size: 20px;
+
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  border-top: 2px solid transparent;
+  width: var(--size);
+  height: var(--size);
+  animation: spin 1s linear infinite !important;
+  vertical-align: middle;
+}
+
+window div.body button:not(.reset) > div.html-spinner {
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

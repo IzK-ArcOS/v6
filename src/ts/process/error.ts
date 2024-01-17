@@ -36,7 +36,7 @@ export async function createErrorDialog(
     app,
   });
 
-  if (!process) return null;
+  if (typeof process == "string") return null;
 
   if (options.sound) ArcSoundBus.playSound(options.sound)
 

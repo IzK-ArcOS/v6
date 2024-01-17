@@ -4,7 +4,7 @@ import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
 import { Nullable } from "$types/common";
 import { LogLevel } from "$types/console";
-import { ProcessMap, ProcessSpawnArguments, Processes } from "$types/process";
+import { ProcessKillResult, ProcessMap, ProcessSpawnArguments, ProcessSpawnResult, Processes } from "$types/process";
 import { ProcessDispatcher } from "./dispatch";
 import { Process } from "./instance";
 
@@ -25,20 +25,20 @@ export class ProcessHandler {
   }
 
   // ### SECTION SPAWN ###
-  public async spawn({ proc, name, parentPid, app, args }: ProcessSpawnArguments): Promise<Process> {
+  public async spawn({ proc, name, parentPid, app, args }: ProcessSpawnArguments): Promise<Process | ProcessSpawnResult> {
     this.Log(`Spawning process ${proc.name} (isApp = ${!!app})`);
 
     if (app && isDisabled(app.id)) {
       this.Log(`Not spawning disabled application ${app.id}!`, LogLevel.error)
 
-      return null;
+      return "err_disabled";
     }
 
     const aboveLimit = this.checkProcessLimit(!!app);
     const procs = this.processes.get();
     const pid = Math.floor(Math.random() * 1e6); // 0 - 1000000
 
-    if (aboveLimit) return null;
+    if (aboveLimit) return "err_aboveLimit";
 
     if (procs.has(pid)) return await this.spawn({ proc, name, parentPid, app, args }) // Try to get another pid
 
@@ -71,16 +71,17 @@ export class ProcessHandler {
   // ### END SECTION SPAWN ###
 
   // ### SECTION KILL ###
-  public async kill(pid: number, elevated: boolean): Promise<boolean> {
+  public async kill(pid: number, elevated: boolean): Promise<ProcessKillResult> {
     this.Log(`Killing process with PID ${pid}`);
 
     const procs = this.processes.get();
-
-    if (!procs.has(pid) || !elevated) return false;
-
     const proc = procs.get(pid);
 
-    if (proc._disposed || proc._criticalProcess) return false;
+    if (proc && proc._disposed) return "err_disposed"
+    if (!procs.has(pid)) return "err_noExist";
+    if (!elevated) return "err_elevation";
+    if (proc._criticalProcess) return "err_criticalProcess";
+
     if (proc.stop) await proc.stop();
 
     await this._killSubProcesses(pid)
@@ -88,12 +89,11 @@ export class ProcessHandler {
     this.dispatch.unsubscribe(pid)
 
     proc._disposed = true
-
     procs.set(pid, proc);
 
     this.processes.set(procs);
 
-    return true;
+    return "success";
   }
 
   private async _killSubProcesses(pid: number) {

@@ -7,7 +7,7 @@ import { serviceStore } from "$ts/stores/service";
 import { Store } from "$ts/writable";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
-import { ReadableServiceStore, ServiceStartResult, ServiceStore } from "$types/service";
+import { ReadableServiceStore, ServiceChangeResult, ServiceStore } from "$types/service";
 
 export const ServiceManagerPid = Store<number>();
 
@@ -48,7 +48,7 @@ export class ServiceManager extends Process {
     return this._storeLoaded = true;
   }
 
-  public async startService(id: string, fromSystem = false): Promise<ServiceStartResult> {
+  public async startService(id: string, fromSystem = false): Promise<ServiceChangeResult> {
     const services = this.Services.get();
     const service = services.get(id);
 
@@ -61,10 +61,11 @@ export class ServiceManager extends Process {
     const canStart = service.startCondition ? await service.startCondition() : true;
 
     if (!canStart) return "err_startCondition";
+    if (service.pid) return "err_alreadyRunning";
 
     const instance = await ProcessStack.spawn({ proc: service.process, name: `svc#${id}`, parentPid: this.pid });
 
-    if (!instance) return "err_spawnFailed";
+    if (typeof instance == "string") return "err_spawnFailed";
 
     service.pid = instance.pid;
     service.changedAt = new Date().getTime();
@@ -72,20 +73,22 @@ export class ServiceManager extends Process {
     services.set(id, service);
     this.Services.set(services);
 
-    return "started";
+    return "success";
   }
 
-  public async stopService(id: string, fromSystem = false): Promise<boolean> {
+  public async stopService(id: string, fromSystem = false): Promise<ServiceChangeResult> {
     this.Log(`Stopping ${id}`);
 
     const services = this.Services.get();
     const service = services.get(id);
 
-    if (!services.has(id) || !service.pid) return false;
+    if (!services.has(id)) return "err_noExist";
+
+    if (!service.pid) return "err_notRunning"
 
     const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(service), ProcessStack);
 
-    if (!elevation) return false;
+    if (!elevation) return "err_elevation";
 
     this._holdRestart = true
 
@@ -99,10 +102,10 @@ export class ServiceManager extends Process {
 
     this._holdRestart = false;
 
-    return true;
+    return "success";
   }
 
-  public async restartService(id: string, fromSystem = false): Promise<ServiceStartResult> {
+  public async restartService(id: string, fromSystem = false): Promise<ServiceChangeResult> {
     const services = this.Services.get();
 
     if (!services.has(id)) return "err_noExist";

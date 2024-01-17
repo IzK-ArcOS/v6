@@ -29,6 +29,13 @@ export interface App {
 }
 
 export type AppMutator = ReadableStore<App>;
+export type AppSpawnResult = "success" |
+  "err_elevation" |
+  "err_parentNoExist" |
+  "err_noExist" |
+  "err_spawnCondition" |
+  "err_disabled" |
+  "err_aboveLimit";
 
 export interface WindowControls {
   minimize: boolean;

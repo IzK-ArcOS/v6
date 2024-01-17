@@ -46,3 +46,6 @@
 [submodule "src/apps/ServiceInfo"]
 	path = src/apps/ServiceInfo
 	url = https://github.com/IzK-ArcOS/v6-ServiceInfo
+[submodule "src/apps/LightsOff"]
+	path = src/apps/LightsOff
+	url = https://github.com/IzK-ArcOS/v6-LightsOff

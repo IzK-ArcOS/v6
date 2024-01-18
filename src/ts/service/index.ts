@@ -120,7 +120,7 @@ export class ServiceManager extends Process {
     return started;
   }
 
-  private initialRun() {
+  public initialRun() {
     const services = this.Services.get();
 
     for (const [id, service] of [...services]) {

@@ -4,9 +4,10 @@ import Crash from "$state/Crash/Crash.svelte";
 import Desktop from "$state/Desktop/Desktop.svelte";
 import FirstTimeSetup from "$state/FirstTimeSetup/FirstTimeSetup.svelte";
 import Login from "$state/Login/Login.svelte";
-import { States } from "$types/state";
+import { ArcSoundBus } from "$ts/soundbus";
+import { State, States } from "$types/state";
 
-export const primaryStates: States = new Map([
+export const primaryStates: States = new Map<string, State>([
   [
     "boot",
     {
@@ -40,7 +41,23 @@ export const primaryStates: States = new Map([
       name: "Login",
       key: "login",
       content: Login,
-      attribs: {},
+      attribs: {
+        noProcesssRenderer: true
+      },
+    },
+  ],
+  [
+    "logoff",
+    {
+      name: "Logoff",
+      content: Login,
+      attribs: {
+        continuation: "logoff",
+      },
+      key: "logoff",
+      onload() {
+        ArcSoundBus.playSound("arcos.system.logoff");
+      },
     },
   ],
   [

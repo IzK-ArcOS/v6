@@ -2,7 +2,7 @@ import { Cache } from "$ts/cache";
 import { Store } from "$ts/writable";
 import { AllUsers, UserData } from "$types/user";
 
-const defaultUserData: UserData = {
+export const defaultUserData: UserData = {
   sh: {
     taskbar: {
       centered: false,

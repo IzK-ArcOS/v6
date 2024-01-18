@@ -4,7 +4,7 @@ import { Nullable } from "$types/common";
 import { Service, ServiceChangeResult, ServiceStore } from "$types/service";
 import { ServiceManager, ServiceManagerPid } from ".";
 
-export async function stopService(id: string): Promise<ServiceChangeResult> {
+export async function stopService(id: string, fromSystem = false): Promise<ServiceChangeResult> {
   Log("service/interact", `Attempting to stop ${id}`);
 
   const managerPid = ServiceManagerPid.get();
@@ -12,7 +12,7 @@ export async function stopService(id: string): Promise<ServiceChangeResult> {
 
   if (!managerPid || !manager) return "err_noManager";
 
-  return await manager.stopService(id);
+  return await manager.stopService(id, fromSystem);
 }
 
 export async function startService(id: string): Promise<ServiceChangeResult> {
@@ -68,4 +68,14 @@ export function isServiceRunning(id: string): boolean {
   const services = manager.Services.get();
 
   return services.has(id) ? !!services.get(id).pid : false
+}
+
+
+export async function startInitialServices() {
+  const managerPid = ServiceManagerPid.get();
+  const manager = ProcessStack.getProcess<ServiceManager>(managerPid);
+
+  if (!managerPid || !manager) return;
+
+  manager.initialRun();
 }

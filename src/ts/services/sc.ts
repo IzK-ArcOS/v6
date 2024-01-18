@@ -1,7 +1,6 @@
 import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
-import { manualCrash } from "$ts/bugrep/crash";
 import { Process, ProcessHandler } from "$ts/process";
-import { GlobalDispatch, GlobalDispatcher } from "$ts/process/dispatch/global";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { ProcessStack } from "$ts/stores/process";
 import { Store } from "$ts/writable";
 import { App, AppSpawnResult } from "$types/app";
@@ -19,10 +18,6 @@ export class ES extends Process {
 
   public start() {
     ElevationPid.set(this.pid);
-  }
-
-  public stop() {
-    manualCrash("ElevationService", "Critical process died!");
   }
 
   public async GetUserElevation(data: ElevationData): Promise<boolean> {

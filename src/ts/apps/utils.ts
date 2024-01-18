@@ -6,7 +6,11 @@ import { App } from "$types/app";
 import { Nullable } from "$types/common";
 
 export function isPopulatable(app: App, includeOverlays?: boolean) {
-  const showHidden = UserDataStore.get().sh.showHiddenApps || includeOverlays;
+  const userdata = UserDataStore.get();
+
+  if (!userdata) return false;
+
+  const showHidden = userdata.sh.showHiddenApps || includeOverlays;
 
   return (!app.metadata.core && !app.isOverlay && !app.metadata.hidden) || showHidden;
 }

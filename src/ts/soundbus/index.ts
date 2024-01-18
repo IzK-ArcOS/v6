@@ -20,40 +20,24 @@ export class SoundBus {
     this.store = store;
   }
 
-  public playSound(id: string) {
+  public playSound(id: string, volume = 1) {
     if (!this.store[id]) return false;
 
     Log("soundbus", `Playing sound ${id} from store`);
 
     const element = document.createElement("audio");
 
-    element.muted = true;
     element.src = this.store[id];
-    element.volume = 1;
-
-    try {
-      element.play();
-
-      setTimeout(() => {
-        element.muted = false;
-      }, 10);
-    } catch (e) {
-      Log(
-        "soundbus",
-        `Can't play ${id}: User didn't interact with the page first`,
-        LogLevel.error
-      );
-
-      return false;
-    }
+    element.volume = volume;
+    element.autoplay = true;
 
     if (!this._bus[id]) this._bus[id] = [];
 
     this._bus[id].push(element);
 
-    setTimeout(() => {
-      element.onended = () => delete this._bus[id];
-    }, 10);
+    element.onended = () => setTimeout(() => {
+      delete this._bus[id];
+    }, 1000);
 
     return true;
   }

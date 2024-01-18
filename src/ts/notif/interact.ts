@@ -41,10 +41,7 @@ export function deleteNotification(id: string) {
 }
 
 export function clearNotifications() {
-  console.log("clearNotifications")
   if (!procCheck()) return;
-  console.log("procCheck finished")
-
 
   notifProc.store.set(new Map([]))
 }

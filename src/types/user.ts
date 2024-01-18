@@ -64,7 +64,14 @@ export interface UserData {
     muted: boolean;
   };
 
+  security?: SecuritySettings
+
   appdata: AppData;
+}
+
+interface SecuritySettings {
+  bypassElevation?: boolean;
+
 }
 
 interface AccountInfo {

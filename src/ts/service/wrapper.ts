@@ -12,7 +12,7 @@ export async function stopServiceNotified(id: string): Promise<ServiceChangeResu
 
     sendNotification({
       title: "Service Stop Failed",
-      message: `${caption} (${status})`,
+      message: `ArcOS failed to stop ${id}: ${caption} (${status})`,
       image: WarningIcon
     })
   }
@@ -28,7 +28,7 @@ export async function startServiceNotified(id: string): Promise<ServiceChangeRes
 
     sendNotification({
       title: "Service Start Failed",
-      message: `${caption} (${status})`,
+      message: `ArcOS failed to start ${id}: ${caption} (${status})`,
       image: WarningIcon
     })
   }

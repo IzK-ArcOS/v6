@@ -1,4 +1,5 @@
 import { BrowserCheck } from "$ts/services/bc";
+import { MessagingService } from "$ts/services/ms";
 import { NotificationService } from "$ts/services/ns";
 import { ElevationService } from "$ts/services/sc";
 import { UserDataCommitter } from "$ts/services/udc";
@@ -8,5 +9,6 @@ export const serviceStore: ServiceStore = new Map([
   ["UserDataCommitter", UserDataCommitter],
   ["NotificationService", NotificationService],
   ["BrowserCheck", BrowserCheck],
-  ["ElevationService", ElevationService]
+  ["ElevationService", ElevationService],
+  ["MessagingService", MessagingService]
 ])

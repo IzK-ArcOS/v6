@@ -76,3 +76,13 @@ export function ElevationChangeUsername(): ElevationData {
     level: ElevationLevel.high
   }
 }
+
+export function ElevationChangeUserData(): ElevationData {
+  return {
+    what: "ArcOS needs your permission to make changes to your user data:",
+    image: AccountIcon,
+    title: `Change User Data`,
+    description: `Of ${UserName.get()}`,
+    level: ElevationLevel.high
+  }
+}

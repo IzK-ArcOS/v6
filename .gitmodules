@@ -49,3 +49,6 @@
 [submodule "src/apps/LightsOff"]
 	path = src/apps/LightsOff
 	url = https://github.com/IzK-ArcOS/v6-LightsOff
+[submodule "src/apps/Exit"]
+	path = src/apps/Exit
+	url = https://github.com/IzK-ArcOS/v6-ExitApp

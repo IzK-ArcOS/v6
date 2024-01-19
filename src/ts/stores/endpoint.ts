@@ -11,7 +11,8 @@ export const Endpoints = {
   UserData: "/v2/users/me",
   Users: "/users/get", // v1
   UserRename: "/user/rename", // v1
-  UserChangePassword: "/user/changepswd" // v1
+  UserChangePassword: "/user/changepswd", // v1
+  LogoffToken: "/logoff" // v1
 };
 
 export function isStoredEndpoint(endpoint: string) {

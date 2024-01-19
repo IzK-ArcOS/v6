@@ -1,0 +1,4 @@
+window:not(.core).fullscreen {
+  border-radius: 0;
+  border: none;
+}

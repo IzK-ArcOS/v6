@@ -3,6 +3,7 @@ import Boot from "$state/Boot/Boot.svelte";
 import Crash from "$state/Crash/Crash.svelte";
 import Desktop from "$state/Desktop/Desktop.svelte";
 import FirstTimeSetup from "$state/FirstTimeSetup/FirstTimeSetup.svelte";
+import TurnedOff from "$state/TurnedOff/TurnedOff.svelte";
 import Login from "$state/Login/Login.svelte";
 import { ArcSoundBus } from "$ts/soundbus";
 import { State, States } from "$types/state";
@@ -53,8 +54,39 @@ export const primaryStates: States = new Map<string, State>([
       content: Login,
       attribs: {
         continuation: "logoff",
+        noProcesssRenderer: true
       },
       key: "logoff",
+      onload() {
+        ArcSoundBus.playSound("arcos.system.logoff");
+      },
+    },
+  ],
+  [
+    "restart",
+    {
+      name: "Restart",
+      content: Login,
+      attribs: {
+        continuation: "restart",
+        noProcesssRenderer: true
+      },
+      key: "restart",
+      onload() {
+        ArcSoundBus.playSound("arcos.system.logoff");
+      },
+    },
+  ],
+  [
+    "shutdown",
+    {
+      name: "Shutdown",
+      content: Login,
+      attribs: {
+        continuation: "shutdown",
+        noProcesssRenderer: true
+      },
+      key: "shutdown",
       onload() {
         ArcSoundBus.playSound("arcos.system.logoff");
       },
@@ -80,6 +112,20 @@ export const primaryStates: States = new Map<string, State>([
       attribs: {
         noProcesssRenderer: true,
         classes: "sharp noani theme-amoled"
+      },
+    },
+  ],
+  [
+    "turnedoff",
+    {
+      name: "Turned off",
+      content: TurnedOff,
+      attribs: {
+        noProcesssRenderer: true
+      },
+      key: "turnedoff",
+      onload() {
+        window.close();
       },
     },
   ],

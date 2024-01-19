@@ -5,10 +5,10 @@ import { getUsers } from "./get";
 
 const pfpCache: Params = {};
 
-export async function getUserPfp(username: string): Promise<string> {
+export async function getUserPfp(username: string, fallback = ""): Promise<string> {
   const server = ConnectedServer.get();
 
-  if (!server) return ProfilePictures.def;
+  if (!server) return fallback || ProfilePictures.def;
 
   if (pfpCache[username]) return getProfilePicture(pfpCache[username]);
 
@@ -16,7 +16,7 @@ export async function getUserPfp(username: string): Promise<string> {
 
   const user = users[username];
 
-  if (!user) return ProfilePictures.def;
+  if (!user) return fallback || ProfilePictures.def;
 
   pfpCache[username] = getProfilePicture(users[username].acc.profilePicture);
 

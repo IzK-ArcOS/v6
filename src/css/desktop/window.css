@@ -9,6 +9,7 @@
 @import url("./window/bigtb.css");
 @import url("./window/overlay.css");
 @import url("./window/colored.css");
+@import url("./window/fullscreen.css");
 
 window:not(.core) {
   --titlebar-height: 30px;

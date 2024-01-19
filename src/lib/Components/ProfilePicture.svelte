@@ -2,16 +2,17 @@
   import { getProfilePicture } from "$ts/stores/pfp";
   import { UserDataStore } from "$ts/stores/user";
 
-  export let src: string = "";
+  export let fallback = "";
+  export let src: string = fallback || "";
   export let height: number;
   export let className: string = "";
 
   let url = "";
 
   UserDataStore.subscribe((v) => {
-    if (!v) return;
+    if (!v || src) return (url = src);
 
-    url = getProfilePicture(v.acc.profilePicture);
+    url = fallback || getProfilePicture(v.acc.profilePicture);
   });
 </script>
 

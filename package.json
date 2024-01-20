@@ -30,7 +30,7 @@
     "colorsea": "^1.2.1",
     "dayjs": "^1.11.10",
     "fuse.js": "^6.6.2",
-    "human-filetypes": "^0.2.1",
+    "human-filetypes": "^1.1.3",
     "marked-emoji": "^1.0.1",
     "marked-extended-tables": "^1.0.5",
     "math.js": "^1.1.46",

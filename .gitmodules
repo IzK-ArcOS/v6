@@ -52,3 +52,6 @@
 [submodule "src/apps/Exit"]
 	path = src/apps/Exit
 	url = https://github.com/IzK-ArcOS/v6-ExitApp
+[submodule "src/apps/FileManager"]
+	path = src/apps/FileManager
+	url = https://github.com/IzK-ArcOS/v6-FileManager

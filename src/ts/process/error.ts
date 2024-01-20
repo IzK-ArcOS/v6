@@ -3,7 +3,7 @@ import { ArcSoundBus } from "$ts/soundbus";
 import { ProcessStack } from "$ts/stores/process";
 import { App } from "$types/app";
 import { Nullable } from "$types/common";
-import { ErrorDialog } from "$types/error";
+import { ConfirmationDialog, ErrorDialog } from "$types/error";
 import { ProcessHandler } from "./handler";
 import { Process } from "./instance";
 
@@ -41,4 +41,15 @@ export async function createErrorDialog(
   if (options.sound) ArcSoundBus.playSound(options.sound)
 
   return process.pid;
+}
+
+export async function GetConfirmation(options: ConfirmationDialog, parentPid: number, overlay?: boolean): Promise<boolean> {
+  return new Promise((resolve) => {
+    createErrorDialog({
+      ...options, buttons: [
+        { caption: "No", action() { resolve(false) } },
+        { caption: "Yes", action() { resolve(true) }, suggested: true }
+      ]
+    }, parentPid, overlay)
+  })
 }

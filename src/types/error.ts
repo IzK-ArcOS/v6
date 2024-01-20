@@ -8,6 +8,8 @@ export interface ErrorDialog {
   sound?: string;
 }
 
+export type ConfirmationDialog = Omit<ErrorDialog, "buttons">;
+
 export interface ErrorButton {
   caption: string;
   action: () => void;

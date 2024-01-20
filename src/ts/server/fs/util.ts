@@ -16,7 +16,7 @@ export async function fileExists(path: string): Promise<boolean> {
 export function pathToFriendlyName(path: string) {
   if (!path) return path;
 
-  if (path === "./") return "Home";
+  if (path === "./" || path === ".") return "Home";
 
   return getFilenameFromPath(path);
 }
@@ -24,7 +24,7 @@ export function pathToFriendlyName(path: string) {
 export function pathToFriendlyPath(path: string) {
   if (!path) return path;
 
-  if (path === "./") return "Home";
+  if (path === "./" || path === ".") return "Home";
 
   return path.replace("./", "");
 }

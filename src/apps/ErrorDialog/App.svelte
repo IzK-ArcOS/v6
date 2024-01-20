@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import "./css/main.css";
   import { Runtime } from "./ts/runtime";
+  import { focusedPid } from "$ts/stores/apps";
 
   export let runtime: Runtime;
 
@@ -20,6 +21,8 @@
   }
 
   function closeThis() {
+    focusedPid.set(runtime.process.parentPid);
+
     runtime.process.handler.kill(runtime.process.pid, true);
   }
 </script>

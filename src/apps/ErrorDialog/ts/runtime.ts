@@ -2,6 +2,7 @@ import { AppRuntime } from "$ts/apps/runtime";
 import { WarningIcon } from "$ts/images/dialog";
 import { sendNotification } from "$ts/notif";
 import { Process } from "$ts/process";
+import { focusedPid } from "$ts/stores/apps";
 import type { App, AppMutator } from "$types/app";
 import { ErrorDialog } from "$types/error";
 
@@ -31,6 +32,7 @@ export class Runtime extends AppRuntime {
       v.metadata.name = data.title;
       v.metadata.icon = data.image || WarningIcon;
       v.maxSize.w = data.component && !data.shrunk ? 500 : 400;
+
       return v;
     })
 
@@ -45,6 +47,8 @@ export class Runtime extends AppRuntime {
     const suggested = data.buttons.filter((a) => !a.suggested)[0] || data.buttons[0];
 
     await suggested.action();
+
+    focusedPid.set(this.process.parentPid);
 
     this.process.handler.kill(this.process.pid, true);
   }

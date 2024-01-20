@@ -5,6 +5,7 @@ import { UserToken } from "$ts/stores/user";
 import { UserDirectory } from "$types/fs";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 
 export async function readDirectory(path: string): Promise<UserDirectory> {
   Log("server/fs/dir", `Reading directory ${path}`);
@@ -19,7 +20,6 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 
     if (response.status !== 200) return null;
 
-    //!! THIS CODE IS NOT AT ALL DEFINITIVE OR WORKING
     return response.data.data as UserDirectory;
   } catch {
     return null;
@@ -35,6 +35,8 @@ export async function createDirectory(path: string): Promise<boolean> {
   if (!url || !token) return false;
 
   const response = await axios.get(url, makeTokenOptions(token));
+
+  GlobalDispatch.dispatch("fs-flush");
 
   return response.status === 200;
 }

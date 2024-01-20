@@ -2,6 +2,7 @@ import { AppInfo } from "$apps/AppInfo/ts/app";
 import { ArcTermApp as ArcTerm } from "$apps/ArcTerm/ts/app";
 import { ErrorDialog } from "$apps/ErrorDialog/ts/app";
 import { ExitApp } from "$apps/Exit/ts/app";
+import { FileManager } from "$apps/FileManager/ts/app";
 import { LightsOff } from "$apps/LightsOff/ts/app";
 import { LoggerApp } from "$apps/LoggerApp/ts/app";
 import { ProcessManager } from "$apps/ProcessManager/ts/app";
@@ -26,5 +27,6 @@ export const builtinApps: Record<string, App> = {
   SecureContext,
   ServiceInfo,
   LightsOff,
-  ExitApp
+  ExitApp,
+  FileManager
 }

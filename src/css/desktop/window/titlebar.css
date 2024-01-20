@@ -26,7 +26,7 @@ window div.titlebar.left {
   flex-direction: row-reverse;
 }
 
-window div.titlebar.center div.title {
+window div.titlebar div.title {
   max-width: 80%;
 }
 

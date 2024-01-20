@@ -5,6 +5,13 @@ window div.titlebar div.title {
   line-height: 18px;
 }
 
+window div.titlebar span.title-text {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 window div.titlebar div.title img {
   height: 16px;
 }

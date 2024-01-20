@@ -9,6 +9,7 @@ import { Notification } from "$types/notif";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 import { getParentDirectory, readDirectory } from "./dir";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 
 export async function readFile(path: string): Promise<ArcFile> {
   Log("server/fs/file", `Reading file ${path}`);
@@ -67,6 +68,8 @@ export async function writeFile(
     blob,
     makeTokenOptions(token, { onUploadProgress })
   );
+
+  GlobalDispatch.dispatch("fs-flush");
 
   return response.status === 200;
 }

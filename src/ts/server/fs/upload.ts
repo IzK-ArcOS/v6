@@ -59,7 +59,7 @@ export async function multipleFileUpload(files: FileList, dir: string): Promise<
 
     if (!valid) return false;
 
-    await sleep(500) // rate-limit cooldown
+    await sleep(350) // rate-limit cooldown
   }
 
   return true

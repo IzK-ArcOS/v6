@@ -1,4 +1,5 @@
 import { Log } from "$ts/console";
+import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
 import { arrayToBlob } from "./convert";
 import { writeFile } from "./file";
@@ -33,7 +34,7 @@ export async function directSingleUpload(path: string, accept?: string) {
   });
 }
 
-async function fileUpload(file: File, dir: string): Promise<string> {
+export async function fileUpload(file: File, dir: string): Promise<string> {
   Log(
     "server/fs/upload",
     `Uploading ${file.name} to ${dir}`,
@@ -46,4 +47,20 @@ async function fileUpload(file: File, dir: string): Promise<string> {
   if (!valid) return "";
 
   return path;
+}
+
+export async function multipleFileUpload(files: FileList, dir: string): Promise<boolean> {
+  Log("server/fs/upload", `Uploading ${files.length} files to ${dir}`);
+
+  for (const file of files) {
+    const content = arrayToBlob(await file.arrayBuffer())
+    const path = `${dir}/${file.name}`.replaceAll("//", "/");
+    const valid = await writeFile(path, content);
+
+    if (!valid) return false;
+
+    await sleep(500) // rate-limit cooldown
+  }
+
+  return true
 }

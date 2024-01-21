@@ -63,15 +63,19 @@ export async function writeFile(
 
   if (!url) return null;
 
-  const response = await axios.post(
-    url,
-    blob,
-    makeTokenOptions(token, { onUploadProgress })
-  );
+  try {
+    const response = await axios.post(
+      url,
+      blob,
+      makeTokenOptions(token, { onUploadProgress })
+    );
 
-  GlobalDispatch.dispatch("fs-flush");
+    GlobalDispatch.dispatch("fs-flush")
 
-  return response.status === 200;
+    return response.status === 200;
+  } catch {
+    return false;
+  }
 }
 
 export async function writeFileAnnounced(path: string, blob: Blob, notif: Notification) {

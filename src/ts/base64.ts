@@ -1,6 +1,11 @@
 import { LogLevel } from "$types/console";
 import { Log } from "./console";
 
+/**
+ * Converts the input to Base64
+ * @param input The input
+ * @returns The base64
+ */
 export function toBase64(input: string) {
   try {
     return btoa(input);
@@ -14,6 +19,11 @@ export function toBase64(input: string) {
   }
 }
 
+/**
+ * Converts the Base64 to string
+ * @param input The base64
+ * @returns The string
+ */
 export function fromBase64(input: string) {
   try {
     return atob(input);

@@ -47,5 +47,5 @@ export async function wallpaperFromFS(path: string): Promise<Wallpaper> {
 
   const url = URL.createObjectURL(file.data);
 
-  return { url, thumb: url, author: UserName.get(), name: "Uploaded", source: "" };
+  return { url, thumb: url, author: UserName.get(), name: file.name, source: "" };
 }

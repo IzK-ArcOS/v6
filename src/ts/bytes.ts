@@ -10,6 +10,11 @@ export const sizeUnits = [
   "YB",
 ];
 
+/**
+ * Formats the incoming bytes to a human-readable format
+ * @param bytes The bytes to format
+ * @returns The formatted size
+ */
 export function formatBytes(bytes: number) {
   let l = 0,
     n = bytes;

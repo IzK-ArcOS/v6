@@ -1,11 +1,11 @@
 import { toBase64 } from "$ts/base64";
+import { Log } from "$ts/console";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { Endpoints } from "$ts/stores/endpoint";
 import { UserToken } from "$ts/stores/user";
+import { sleep } from "$ts/util";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
-import { GlobalDispatch } from "$ts/process/dispatch/global";
-import { Log } from "$ts/console";
-import { sleep } from "$ts/util";
 
 export async function deleteItem(path: string, dispatch = true): Promise<boolean> {
   Log("server/fs/delete", `Deleting ${path}`);

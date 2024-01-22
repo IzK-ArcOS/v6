@@ -1,5 +1,5 @@
 import { Log } from "$ts/console";
-import { readDirectory } from "./dir"
+import { readDirectory } from "./dir";
 import { getFilenameFromPath, readFile } from "./file";
 
 export async function pathExists(path: string): Promise<boolean> {

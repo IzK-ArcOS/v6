@@ -2,12 +2,10 @@ import { Log } from "$ts/console";
 import { GetUserElevation } from "$ts/elevation";
 import { Process, ProcessHandler } from "$ts/process";
 import { focusedPid } from "$ts/stores/apps";
-import { BaseAppContext } from "$ts/stores/apps/context";
 import { ElevatedAppLaunchData } from "$ts/stores/elevation";
 import { ProcessStack } from "$ts/stores/process";
 import { App, AppSpawnResult } from "$types/app";
 import { LogLevel } from "$types/console";
-import { ProcessSpawnResult } from "$types/process";
 import { getAppById } from "./utils";
 
 export async function spawnApp(id: string, parent?: number, args?: any[], processHandler = ProcessStack, data: App = null): Promise<number | AppSpawnResult> {

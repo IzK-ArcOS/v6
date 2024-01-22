@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Runtime } from "./ts/runtime";
   import "./css/main.css";
+  import { Runtime } from "./ts/runtime";
 
   export let runtime: Runtime;
 

@@ -2,7 +2,7 @@ import { WarningIcon } from "$ts/images/dialog";
 import { sendNotification } from "$ts/notif";
 import { ServiceChangeResultCaptions } from "$ts/stores/service/captions";
 import { ServiceChangeResult } from "$types/service";
-import { startService, stopService } from "./interact"
+import { startService, stopService } from "./interact";
 
 export async function stopServiceNotified(id: string): Promise<ServiceChangeResult> {
   const status = await stopService(id);

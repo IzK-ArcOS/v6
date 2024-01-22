@@ -1,11 +1,11 @@
-import { Service } from "$types/service";
 import { setNotificationProc } from "$ts/notif/interact";
 import { Process, ProcessHandler } from "$ts/process";
+import { PrimaryState } from "$ts/states";
 import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
 import { App } from "$types/app";
 import { Notification, NotificationStore } from "$types/notif";
-import { PrimaryState } from "$ts/states";
+import { Service } from "$types/service";
 
 export class NotificationProcess extends Process {
   constructor(handler: ProcessHandler, pid: number, name: string, app: App, args: any[]) {

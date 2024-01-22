@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { focusedPid } from "$ts/stores/apps";
   import { ErrorDialog } from "$types/error";
   import { onMount } from "svelte";
   import "./css/main.css";
   import { Runtime } from "./ts/runtime";
-  import { focusedPid } from "$ts/stores/apps";
 
   export let runtime: Runtime;
 

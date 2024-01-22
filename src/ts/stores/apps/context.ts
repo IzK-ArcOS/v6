@@ -1,5 +1,5 @@
 import { SEP_ITEM } from "$state/Desktop/ts/store";
-import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
+import { getAppById, spawnOverlay } from "$ts/apps";
 import { AppInfoIcon } from "$ts/images/apps";
 import { ShutdownIcon } from "$ts/images/power";
 import { AppContextMenu } from "$types/app";

@@ -1,5 +1,6 @@
 import { Process, ProcessHandler } from "$ts/process";
 import { setUserData } from "$ts/server/user/data";
+import { appLibrary } from "$ts/stores/apps";
 import { UserDataStore } from "$ts/stores/user";
 import { App } from "$types/app";
 import { Service } from "$types/service";
@@ -24,13 +25,29 @@ class UDC extends Process {
     if (!this.unsubscribe) return;
 
     this.unsubscribe();
-    this.unsubscribe = null
+    this.unsubscribe = null;
+
+    return true
   }
 
   async commit(data: UserData) {
     if (this._paused) return;
 
+    data = this._validateAppdata(data);
+
     await setUserData(data);
+  }
+
+  private _validateAppdata(data: UserData): UserData {
+    if (!data.appdata) data.appdata = { experiments: {} };
+
+    const library = appLibrary.get();
+
+    for (const [id] of library) {
+      if (!data.appdata[id]) data.appdata[id] = {};
+    }
+
+    return data;
   }
 }
 

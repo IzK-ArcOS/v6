@@ -6,6 +6,7 @@ import { writeFile } from "./file";
 
 export async function directSingleUpload(path: string, accept?: string) {
   if (path.endsWith("/")) path.slice(0, -1);
+
   const uploader = document.createElement("input");
 
   uploader.type = "file";

@@ -28,3 +28,9 @@ export function pathToFriendlyPath(path: string) {
 
   return path.replace("./", "");
 }
+
+export function parseFilename(path: string) {
+  const split = path.split("/");
+
+  return split[split.length - 1];
+}

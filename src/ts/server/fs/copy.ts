@@ -5,11 +5,16 @@ import { UserToken } from "$ts/stores/user";
 import { sleep } from "$ts/util";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
+import { parseFilename } from "./util";
 
 export async function copyItem(source: string, destination: string) {
   Log(`server/fs/copy`, `Copying ${source} to ${destination}`);
 
-  const url = getServerUrl(Endpoints.FsCp, { path: toBase64(source), target: toBase64(destination) });
+  const filename = parseFilename(source);
+
+  const dest = destination.replace(`/${filename}`, "");
+
+  const url = getServerUrl(Endpoints.FsCp, { path: toBase64(source), target: toBase64(dest) });
   const token = UserToken.get();
 
   if (!url || !token) return false;

@@ -1,26 +1,26 @@
 window div.alt-menu {
   margin-bottom: 0;
   display: flex;
-  gap: 5px;
+  gap: 10px;
   border-left: var(--button-glass-hover-bg) 1px solid;
-  padding-left: 5px;
+  padding-left: 10px;
   align-items: center;
 }
 
 window div.alt-menu > button.menu-item {
   margin: 0;
   border-radius: 0;
-  height: px;
-  padding: 0 10px;
+  height: 20px;
   box-shadow: none;
-  transform: unset;
+  transform: unset !important;
   background-color: transparent;
   color: var(--fg);
   border: none;
   border-radius: 5px;
-  padding: 0 10px;
+  padding: 0 5px;
   height: inherit;
   height: 20px;
+  font-size: 12px;
 }
 
 window div.alt-menu > div.sep {

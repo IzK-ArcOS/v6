@@ -1,0 +1,64 @@
+window:not(.core).snapped {
+  position: static !important;
+  transform: none !important;
+  width: revert !important;
+  max-height: unset !important;
+  min-height: unset !important;
+  border-radius: 0;
+  resize: none;
+}
+
+window:not(.core).snapped.left.tb-vertical-right,
+window:not(.core).snapped.top-left.tb-vertical-right,
+window:not(.core).snapped.bottom-left.tb-vertical-right,
+window:not(.core).snapped.right.tb-vertical,
+window:not(.core).snapped.top-right.tb-vertical,
+window:not(.core).snapped.bottom-right.tb-vertical,
+window:not(.core).snapped.bottom.tb-top,
+window:not(.core).snapped.top.tb-,
+window:not(.core).snapped.top-left.tb-,
+window:not(.core).snapped.top-right.tb-,
+window:not(.core).snapped.bottom-left.tb-top,
+window:not(.core).snapped.bottom-right.tb-top {
+  --size-secondary: 0 !important;
+}
+
+window:not(.core).snapped.top-left {
+  grid-row: top;
+  grid-column: left;
+}
+
+window:not(.core).snapped.top {
+  grid-row: top;
+  grid-column: 1 / span 2;
+}
+
+window:not(.core).snapped.bottom {
+  grid-row: bottom;
+  grid-column: 1 / span 2;
+}
+
+window:not(.core).snapped.left {
+  grid-row: 1 / span 2;
+  grid-column: left;
+}
+
+window:not(.core).snapped.right {
+  grid-row: 1 / span 2;
+  grid-column: right;
+}
+
+window:not(.core).snapped.top-right {
+  grid-row: top;
+  grid-column: right;
+}
+
+window:not(.core).snapped.bottom-left {
+  grid-row: bottom;
+  grid-column: left;
+}
+
+window:not(.core).snapped.bottom-right {
+  grid-row: bottom;
+  grid-column: right;
+}

@@ -11,6 +11,7 @@
 @import url("./window/colored.css");
 @import url("./window/fullscreen.css");
 @import url("./window/altmenu.css");
+@import url("./window/snapping.css");
 
 window:not(.core) {
   --titlebar-height: 30px;

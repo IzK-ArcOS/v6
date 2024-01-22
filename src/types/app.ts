@@ -26,7 +26,7 @@ export interface App {
   contextMenu?: AppContextMenu;
   accelerators?: AppKeyCombinations;
   elevated?: boolean;
-  altMenu?: ContextMenuItem[]
+  altMenu?: ContextMenuItem[];
 }
 
 export type AppMutator = ReadableStore<App>;
@@ -62,7 +62,11 @@ export interface AppState {
   headless: boolean;
   fullscreen: boolean;
   resizable: boolean;
+  snapping?: boolean;
+  snapState?: SnapState
 }
+
+export type SnapState = "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right";
 
 export type AppLibrary = ReadableStore<Map<string, App>>; // [id, instance]
 export type Coordinate = { x: number; y: number };

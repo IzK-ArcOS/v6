@@ -33,6 +33,70 @@ export const BaseAppContext: AppContextMenu = {
         ProcessStack.dispatch.dispatchToPid(window.pid, "maximize");
       }
     },
+    SEP_ITEM,
+    {
+      caption: "Window Snapping",
+      disabled: (window) => !!window.isOverlay,
+      subItems: [
+        {
+          caption: "None",
+          action(window) {
+            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-disable");
+          }
+        },
+        SEP_ITEM,
+        {
+          caption: "Left",
+          action(window) {
+            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "left");
+          }
+        },
+        {
+          caption: "Right",
+          action(window) {
+            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "right");
+          }
+        },
+        SEP_ITEM,
+        {
+          caption: "Top",
+          action(window) {
+            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "top");
+          }
+        }, {
+          caption: "Bottom",
+          action(window) {
+            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "bottom");
+          },
+        },
+        SEP_ITEM,
+        {
+          caption: "Top Left",
+          action(window) {
+            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "top-left");
+          }
+        }, {
+          caption: "Top Right",
+          action(window) {
+            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "top-right");
+          }
+        },
+        SEP_ITEM,
+        {
+          caption: "Bottom Left",
+          action(window) {
+            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "bottom-left");
+          }
+        },
+        {
+          caption: "Bottom Right",
+          action(window) {
+            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "bottom-right");
+          }
+        }
+      ]
+    },
+    SEP_ITEM,
     {
       caption: "close",
       image: ShutdownIcon,

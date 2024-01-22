@@ -19,9 +19,13 @@ export async function copyItem(source: string, destination: string) {
 
   if (!url || !token) return false;
 
-  const response = await axios.get(url, makeTokenOptions(token));
+  try {
+    const response = await axios.get(url, makeTokenOptions(token));
 
-  return response.status === 200;
+    return response.status === 200;
+  } catch {
+    return false;
+  }
 }
 
 export async function copyMultiple(items: Record<string, string>) {
@@ -42,9 +46,13 @@ export async function renameItem(oldPath: string, newPath: string) {
 
   if (!url || !token) return false;
 
-  const response = await axios.get(url, makeTokenOptions(token));
+  try {
+    const response = await axios.get(url, makeTokenOptions(token));
 
-  return response.status === 200;
+    return response.status === 200;
+  } catch {
+    return false;
+  }
 }
 
 export async function renameMultiple(items: Record<string, string>) {

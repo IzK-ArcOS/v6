@@ -11,6 +11,21 @@ export function RuntimeScopedDispatches(runtime: AppRuntime): Record<string, (da
     "minimize": () => runtime.minimize(),
     "maximize": () => runtime.maximize(),
     "restore": () => runtime.restore(),
-    "open-file": (file: string) => runtime.handleOpenFile(file)
+    "open-file": (file: string) => runtime.handleOpenFile(file),
+    "snapping-disable": () => {
+      runtime.appMutator.update((v) => {
+        v.state.snapping = false;
+
+        return v;
+      })
+    },
+    "snapping-set": (state) => {
+      runtime.appMutator.update((v) => {
+        v.state.snapState = state;
+        v.state.snapping = true;
+
+        return v;
+      })
+    }
   }
 }

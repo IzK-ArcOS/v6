@@ -1,4 +1,5 @@
-window:not(.core).bigtb {
+window:not(.core).bigtb,
+window:not(.core).bigtb * {
   --titlebar-height: 40px;
 }
 

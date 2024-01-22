@@ -33,3 +33,11 @@ export interface FSQuota {
   free: number;
   used: number;
 }
+
+export interface FileHandler {
+  extensions: string[];
+  name: string;
+  description: string;
+  image: string;
+  handler: (file: PartialArcFile) => void
+}

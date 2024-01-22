@@ -55,3 +55,6 @@
 [submodule "src/apps/FileManager"]
 	path = src/apps/FileManager
 	url = https://github.com/IzK-ArcOS/v6-FileManager
+[submodule "src/apps/LoadSaveDialog"]
+	path = src/apps/LoadSaveDialog
+	url = https://github.com/IzK-ArcOS/v6-LoadSaveDialog

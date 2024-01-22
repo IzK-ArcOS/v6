@@ -12,6 +12,7 @@ export class AppRuntime {
   public PAGES = [];
   public readonly CurrentPage = Store<string>("");
   public pid: number;
+  public openedFile = Store<string>();
 
   constructor(
     appData: App,
@@ -106,8 +107,11 @@ export class AppRuntime {
     }
 
     for (const event in scoped) {
-      this.process.handler.dispatch.subscribe(this.pid, event, () => scoped[event]())
+      this.process.handler.dispatch.subscribe(this.pid, event, (data: any[]) => scoped[event](data))
     }
   }
 
+  public async handleOpenFile(path: string) {
+    this.openedFile.set(path);
+  }
 }

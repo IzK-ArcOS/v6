@@ -6,10 +6,11 @@ export function RuntimeGlobalDispatches(runtime: AppRuntime): Record<string, () 
   }
 }
 
-export function RuntimeScopedDispatches(runtime: AppRuntime): Record<string, () => void> {
+export function RuntimeScopedDispatches(runtime: AppRuntime): Record<string, (data: any) => void> {
   return {
     "minimize": () => runtime.minimize(),
     "maximize": () => runtime.maximize(),
     "restore": () => runtime.restore(),
+    "open-file": (file: string) => runtime.handleOpenFile(file)
   }
 }

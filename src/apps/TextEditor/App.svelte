@@ -1,32 +1,29 @@
 <script lang="ts">
-  import { getAppById, spawnOverlay } from "$ts/apps";
-  import { PersonalizationIcon } from "$ts/images/general";
   import { Runtime } from "./ts/runtime";
+  import "./css/main.css";
 
   export let runtime: Runtime;
 
-  let contents = "";
-  let path = "";
+  const { File, wordWrap, monospace, buffer } = runtime;
 
-  runtime.File.subscribe((v) => {
+  let contents = "";
+
+  File.subscribe((v) => {
     if (!v) return;
 
-    path = v.path;
-    contents = runtime.buffer.get();
+    contents = $buffer;
   });
 
-  function load() {
-    spawnOverlay(getAppById("LoadSaveDialog"), runtime.pid, [
-      {
-        title: "Load File",
-        icon: PersonalizationIcon,
-      },
-    ]);
+  function update() {
+    buffer.set(contents);
   }
 </script>
 
-<p>{path}</p>
-<button on:click={load}>Load</button>
-
-<button on:click={() => runtime.save(contents)}>Save</button>
-<textarea bind:value={contents}></textarea>
+<textarea
+  bind:value={contents}
+  on:input={update}
+  on:keydown={update}
+  class:nowrap={!$wordWrap}
+  class:monospace={$monospace}
+  wrap="soft"
+/>

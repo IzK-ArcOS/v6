@@ -26,6 +26,7 @@ export interface App {
   contextMenu?: AppContextMenu;
   accelerators?: AppKeyCombinations;
   elevated?: boolean;
+  altMenu?: ContextMenuItem[]
 }
 
 export type AppMutator = ReadableStore<App>;
@@ -95,4 +96,5 @@ export interface ContextMenuInstance {
   scope?: string;
   scopeMap?: DOMStringMap;
   app?: App;
+  artificial?: boolean;
 }

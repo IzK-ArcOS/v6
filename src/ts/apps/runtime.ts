@@ -3,7 +3,7 @@ import { Process } from "$ts/process";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { RuntimeGlobalDispatches, RuntimeScopedDispatches } from "$ts/stores/process/dispatch";
 import { Store } from "$ts/writable";
-import { App } from "$types/app";
+import { App, ContextMenuItem } from "$types/app";
 import { LogLevel } from "$types/console";
 import { ReadableStore } from "$types/writable";
 
@@ -13,6 +13,7 @@ export class AppRuntime {
   public readonly CurrentPage = Store<string>("");
   public pid: number;
   public openedFile = Store<string>();
+  public APP_NAME = "";
 
   constructor(
     appData: App,
@@ -29,6 +30,7 @@ export class AppRuntime {
       return;
     }
 
+    this.APP_NAME = appData.metadata.name;
     this.app = appData;
     this.setPid(process.pid);
     this._subscribeToDispatch();
@@ -111,7 +113,23 @@ export class AppRuntime {
     }
   }
 
-  public async handleOpenFile(path: string) {
+  public handleOpenFile(path: string) {
     this.openedFile.set(path);
+  }
+
+  public loadAltMenu(...menu: ContextMenuItem[]) {
+    this.appMutator.update((v) => {
+      v.altMenu = menu;
+
+      return v;
+    })
+  }
+
+  public setWindowTitle(text: string, afterAppName = false) {
+    this.appMutator.update((v) => {
+      v.metadata.name = afterAppName ? `${this.APP_NAME} - ${text}` : text;
+
+      return v
+    })
   }
 }

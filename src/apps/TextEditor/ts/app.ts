@@ -15,9 +15,9 @@ export const TextEditor: App = {
   runtime: Runtime,
   content: AppSvelte,
   id: "TextEditor",
-  size: { w: 400, h: 300 },
-  minSize: { w: 300, h: 200 },
-  maxSize: { w: 1200, h: 800 },
+  size: { w: 700, h: 450 },
+  minSize: { w: 700, h: 450 },
+  maxSize: { w: 1300, h: 900 },
   pos: { x: 60, y: 60 },
   state: {
     minimized: false,

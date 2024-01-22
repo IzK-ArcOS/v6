@@ -7,6 +7,14 @@ window.overlay {
   transition: all 0.3s, width 0s, height 0.3s !important;
 }
 
+window.overlay div.titlebar > * {
+  opacity: 1 !important;
+}
+
+window.overlay div.titlebar div.controls button:disabled {
+  display: none;
+}
+
 window.overlay,
 window.overlay * {
   pointer-events: initial;

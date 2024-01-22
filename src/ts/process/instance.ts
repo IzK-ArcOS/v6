@@ -48,8 +48,9 @@ export class Process {
     // PLACEHOLDER
   }
 
-  stop(): any {
+  stop(): boolean {
     // PLACEHOLDER
+    return true;
   }
 
   protected pauseCheck() {

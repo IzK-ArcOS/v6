@@ -1,0 +1,38 @@
+window div.alt-menu {
+  margin-bottom: 0;
+  display: flex;
+  gap: 5px;
+  border-left: var(--button-glass-hover-bg) 1px solid;
+  padding-left: 5px;
+  align-items: center;
+}
+
+window div.alt-menu > button.menu-item {
+  margin: 0;
+  border-radius: 0;
+  height: px;
+  padding: 0 10px;
+  box-shadow: none;
+  transform: unset;
+  background-color: transparent;
+  color: var(--fg);
+  border: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  height: inherit;
+  height: 20px;
+}
+
+window div.alt-menu > div.sep {
+  height: 20px;
+  width: 1px;
+  background-color: var(--button-glass-hover-bg);
+}
+
+window div.alt-menu > button.menu-item:hover {
+  background-color: var(--button-glass-bg);
+}
+window div.alt-menu > button.menu-item:active {
+  background-color: var(--button-glass-active-bg);
+  opacity: 1;
+}

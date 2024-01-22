@@ -82,7 +82,11 @@ export class ProcessHandler {
     if (!elevated) return "err_elevation";
     if (proc._criticalProcess) return "err_criticalProcess";
 
-    if (proc.stop) await proc.stop();
+    if (proc.stop) {
+      const cancelStop = !(await proc.stop());
+
+      if (cancelStop) return "err_killCancel";
+    }
 
     await this._killSubProcesses(pid)
     await this._close(pid);

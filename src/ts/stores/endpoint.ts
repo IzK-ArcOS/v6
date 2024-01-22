@@ -5,6 +5,8 @@ export const Endpoints = {
   FsFileWrite: "/fs/file/write", // v1
   FsQuota: "/fs/quota", // v1
   FsRm: "/fs/rm", // v1
+  FsCp: "/fs/cp", // v1
+  FsRename: "/fs/rename", // v1
   MetaData: "/v2/",
   NewUsers: "/v2/users/",
   Token: "/v2/token/",

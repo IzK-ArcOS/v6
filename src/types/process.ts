@@ -17,4 +17,4 @@ export type ProcessKillResult = "success" |
   "err_elevation" |
   "err_criticalProcess" |
   "err_disposed" |
-  "err_noExist";
+  "err_noExist" | "err_killCancel";

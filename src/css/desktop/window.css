@@ -10,6 +10,7 @@
 @import url("./window/overlay.css");
 @import url("./window/colored.css");
 @import url("./window/fullscreen.css");
+@import url("./window/altmenu.css");
 
 window:not(.core) {
   --titlebar-height: 30px;
@@ -27,6 +28,10 @@ window:not(.core) {
   opacity: 0;
   visibility: hidden;
   scale: 0.9;
+}
+
+window *::selection {
+  background-color: var(--accent-transparent);
 }
 
 div:not(.noani) window:not(.core) {

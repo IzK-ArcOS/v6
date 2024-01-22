@@ -58,3 +58,6 @@
 [submodule "src/apps/LoadSaveDialog"]
 	path = src/apps/LoadSaveDialog
 	url = https://github.com/IzK-ArcOS/v6-LoadSaveDialog
+[submodule "src/apps/TextEditor"]
+	path = src/apps/TextEditor
+	url = https://github.com/IzK-ArcOS/v6-TextEditor

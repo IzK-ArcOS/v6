@@ -47,7 +47,7 @@ export async function deleteMultipleProgressy(paths: string[]) {
     mutateDone(+1);
     updateSubtitle(`${friendly} ...`);
 
-    await sleep(350) // rate-limit cooldown
+    await sleep(110) // rate-limit cooldown
   }
 
   mutateDone(+1);

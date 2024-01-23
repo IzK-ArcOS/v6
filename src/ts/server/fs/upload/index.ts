@@ -3,14 +3,16 @@ import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
 import { arrayToBlob } from "../convert";
 import { writeFile } from "../file";
+import { fileUploadProgressy, multipleFileUploadProgressy } from "./progress";
 
-export async function directSingleUpload(path: string, accept?: string) {
+export async function directSingleUpload(path: string, multi = false, accept?: string) {
   if (path.endsWith("/")) path.slice(0, -1);
 
   const uploader = document.createElement("input");
 
   uploader.type = "file";
   uploader.accept = accept;
+  uploader.multiple = multi;
 
   const target = Store<string>();
 
@@ -19,9 +21,17 @@ export async function directSingleUpload(path: string, accept?: string) {
 
     if (!files.length) target.set("");
 
-    const file = uploader.files[0];
+    if (!multi) {
+      const file = uploader.files[0];
 
-    target.set(await fileUpload(file, path));
+      target.set(await fileUploadProgressy(file, path));
+
+      return;
+    }
+
+    await multipleFileUploadProgressy(uploader.files, path)
+
+    target.set(path)
   };
 
   uploader.click();
@@ -60,7 +70,7 @@ export async function multipleFileUpload(files: FileList, dir: string): Promise<
 
     if (!valid) return false;
 
-    await sleep(350) // rate-limit cooldown
+    await sleep(110) // rate-limit cooldown
   }
 
   return true

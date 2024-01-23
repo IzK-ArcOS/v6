@@ -1,12 +1,53 @@
 import { Log } from "$ts/console";
+import { UploadIcon } from "$ts/images/general";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
+import { Plural as P, sleep } from "$ts/util";
+import { Store } from "$ts/writable";
 import { AxiosProgressEvent } from "axios";
 import { arrayToBlob } from "../convert";
 import { writeFile } from "../file";
 import { CreateFileProgress } from "../progress";
-import { UploadIcon } from "$ts/images/general";
-import { Plural as P, sleep } from "$ts/util";
 import { pathToFriendlyName } from "../util";
-import { GlobalDispatch } from "$ts/process/dispatch/global";
+
+export async function directUploadProgressy(path: string, multi = false, accept?: string) {
+  if (path.endsWith("/")) path.slice(0, -1);
+
+  const uploader = document.createElement("input");
+
+  uploader.type = "file";
+  uploader.accept = accept;
+  uploader.multiple = multi;
+
+  const target = Store<string>();
+
+  uploader.onchange = async () => {
+    const files = uploader.files;
+
+    if (!files.length) target.set(path);
+
+    if (!multi) {
+      const file = uploader.files[0];
+
+      target.set(await fileUploadProgressy(file, path));
+
+      return;
+    }
+
+    await multipleFileUploadProgressy(uploader.files, path)
+
+    target.set(path)
+  };
+
+  uploader.click();
+
+  return new Promise<string>((resolve) => {
+    target.subscribe((v) => {
+      if (!v) return;
+
+      resolve(v);
+    });
+  });
+}
 
 export async function fileUploadProgressy(file: File, dir: string) {
   Log(
@@ -55,19 +96,20 @@ export async function multipleFileUploadProgressy(files: FileList, dir: string):
     icon: UploadIcon
   })
 
-  for (const file of files) {
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
     const content = arrayToBlob(await file.arrayBuffer())
     const path = `${dir}/${file.name}`.replaceAll("//", "/");
 
-    updateSubtitle(file.name);
+    updateSubtitle(`(${i + 1} / ${files.length}) ${file.name}`);
 
     const valid = await writeFile(path, content, false, (p: AxiosProgressEvent) => {
       mutateDone(p.bytes);
     });
 
-    updateSubtitle(`${file.name} ${valid ? "..." : "(!!)"}`);
+    updateSubtitle(`(${i + 1} / ${files.length}) ${file.name} ${valid ? "..." : "(!!)"}`);
 
-    await sleep(350) // rate-limit cooldown
+    await sleep(110) // rate-limit cooldown
   }
 
   mutateDone(+200);

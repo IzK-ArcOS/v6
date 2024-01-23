@@ -31,7 +31,7 @@ export async function renameMultipleProgressy(items: Record<string, string>) {
     mutateDone(+1);
     updateSubtitle(`${friendly} ...`)
 
-    await sleep(350);
+    await sleep(110);
   }
 }
 
@@ -62,6 +62,6 @@ export async function copyMultipleProgressy(items: Record<string, string>) {
     mutateDone(+1);
     updateSubtitle(`${friendly} ...`)
 
-    await sleep(350);
+    await sleep(110);
   }
 }

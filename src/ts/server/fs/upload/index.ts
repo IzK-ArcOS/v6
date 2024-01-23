@@ -1,8 +1,8 @@
 import { Log } from "$ts/console";
 import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
-import { arrayToBlob } from "./convert";
-import { writeFile } from "./file";
+import { arrayToBlob } from "../convert";
+import { writeFile } from "../file";
 
 export async function directSingleUpload(path: string, accept?: string) {
   if (path.endsWith("/")) path.slice(0, -1);

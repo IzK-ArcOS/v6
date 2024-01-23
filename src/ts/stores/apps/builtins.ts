@@ -3,6 +3,7 @@ import { ArcTermApp as ArcTerm } from "$apps/ArcTerm/ts/app";
 import { ErrorDialog } from "$apps/ErrorDialog/ts/app";
 import { ExitApp } from "$apps/Exit/ts/app";
 import { FileManager } from "$apps/FileManager/ts/app";
+import { FsProgress } from "$apps/FsProgress/ts/app";
 import { LightsOff } from "$apps/LightsOff/ts/app";
 import { LoadSaveDialog } from "$apps/LoadSaveDialog/ts/app";
 import { LoggerApp } from "$apps/LoggerApp/ts/app";
@@ -33,5 +34,5 @@ export const builtinApps: Record<string, App> = {
   FileManager,
   TextEditor,
   LoadSaveDialog,
+  FsProgress
 }
-

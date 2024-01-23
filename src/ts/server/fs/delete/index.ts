@@ -5,7 +5,7 @@ import { Endpoints } from "$ts/stores/endpoint";
 import { UserToken } from "$ts/stores/user";
 import { sleep } from "$ts/util";
 import axios from "axios";
-import { getServerUrl, makeTokenOptions } from "../util";
+import { getServerUrl, makeTokenOptions } from "../../util";
 
 export async function deleteItem(path: string, dispatch = true): Promise<boolean> {
   Log("server/fs/delete", `Deleting ${path}`);

@@ -132,4 +132,12 @@ export class AppRuntime {
       return v
     })
   }
+
+  public setWindowIcon(path: string) {
+    this.appMutator.update((v) => {
+      v.metadata.icon = path;
+
+      return v
+    })
+  }
 }

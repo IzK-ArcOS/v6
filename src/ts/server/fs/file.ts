@@ -54,7 +54,8 @@ export async function getPartialFile(path: string): Promise<PartialArcFile> {
 export async function writeFile(
   path: string,
   blob: Blob,
-  onUploadProgress?: (progress: any) => any
+  dispatch = true,
+  onUploadProgress?: (progress: any) => any,
 ) {
   Log("server/fs/file", `Writing ${blob.size} bytes to ${path}`);
 
@@ -70,7 +71,7 @@ export async function writeFile(
       makeTokenOptions(token, { onUploadProgress })
     );
 
-    GlobalDispatch.dispatch("fs-flush")
+    if (dispatch) GlobalDispatch.dispatch("fs-flush")
 
     return response.status === 200;
   } catch {

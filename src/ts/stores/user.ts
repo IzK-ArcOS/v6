@@ -61,7 +61,23 @@ export const defaultUserData: UserData = {
     muted: false
   },
   appdata: {
-    experiments: {}
+    experiments: {},
+    "ArcShell": {},
+    "QlorbApp": {},
+    "LightsOff": {},
+    "FileManager": {},
+    "ArcTerm": {},
+    "SettingsApp": {},
+    "AppInfo": {},
+    "LoggerApp": {},
+    "ErrorDialog": {},
+    "ProcessManager": {},
+    "SecureContext": {},
+    "ServiceInfo": {},
+    "ExitApp": {},
+    "TextEditor": {},
+    "LoadSaveDialog": {},
+    "desktopWallpaper": {}
   }
 }
 export const UserName = Store<string>();

@@ -80,7 +80,7 @@ export class AppRuntime {
 
   public maximize() {
     this.appMutator.update((v) => {
-      if (v.metadata.core) return v;
+      if (v.metadata.core || v.state.snapping) return v;
 
       v.state.maximized = true;
       v.state.minimized = false;

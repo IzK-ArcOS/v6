@@ -61,3 +61,6 @@
 [submodule "src/apps/TextEditor"]
 	path = src/apps/TextEditor
 	url = https://github.com/IzK-ArcOS/v6-TextEditor
+[submodule "src/apps/FsProgress"]
+	path = src/apps/FsProgress
+	url = https://github.com/IzK-ArcOS/v6-FsProgress

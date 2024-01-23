@@ -1,5 +1,6 @@
 import { SEP_ITEM } from "$state/Desktop/ts/store";
 import { getAppById, spawnOverlay } from "$ts/apps";
+import { CompileSnappingContextOption } from "$ts/apps/snapping";
 import { AppInfoIcon } from "$ts/images/apps";
 import { ShutdownIcon } from "$ts/images/power";
 import { AppContextMenu } from "$types/app";
@@ -28,74 +29,13 @@ export const BaseAppContext: AppContextMenu = {
     {
       caption: "Maximize",
       icon: "crop_square",
-      disabled: (window) => !window.controls.maximize || window.state.maximized,
+      disabled: (window) => !window.controls.maximize,
       action: (window) => {
         ProcessStack.dispatch.dispatchToPid(window.pid, "maximize");
       }
     },
     SEP_ITEM,
-    {
-      caption: "Window Snapping",
-      disabled: (window) => !!window.isOverlay,
-      subItems: [
-        {
-          caption: "None",
-          action(window) {
-            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-disable");
-          }
-        },
-        SEP_ITEM,
-        {
-          caption: "Left",
-          action(window) {
-            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "left");
-          }
-        },
-        {
-          caption: "Right",
-          action(window) {
-            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "right");
-          }
-        },
-        SEP_ITEM,
-        {
-          caption: "Top",
-          action(window) {
-            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "top");
-          }
-        }, {
-          caption: "Bottom",
-          action(window) {
-            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "bottom");
-          },
-        },
-        SEP_ITEM,
-        {
-          caption: "Top Left",
-          action(window) {
-            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "top-left");
-          }
-        }, {
-          caption: "Top Right",
-          action(window) {
-            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "top-right");
-          }
-        },
-        SEP_ITEM,
-        {
-          caption: "Bottom Left",
-          action(window) {
-            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "bottom-left");
-          }
-        },
-        {
-          caption: "Bottom Right",
-          action(window) {
-            ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", "bottom-right");
-          }
-        }
-      ]
-    },
+    CompileSnappingContextOption(),
     SEP_ITEM,
     {
       caption: "close",

@@ -29,3 +29,13 @@ export function RuntimeScopedDispatches(runtime: AppRuntime): Record<string, (da
     }
   }
 }
+
+export const KnownGlobalDispatchers = [
+  "fs-flush",
+  "services-flush",
+  "desktop-show",
+  "desktop-hide",
+  "elevation-accept",
+  "elevation-reject",
+  "minimize-all"
+]

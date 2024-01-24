@@ -28,7 +28,7 @@ export async function deleteMultiple(paths: string[]) {
   for (const path of paths) {
     await deleteItem(path, false);
 
-    await sleep(110) // rate-limit cooldown
+    await sleep(55) // rate-limit cooldown
   }
 
   GlobalDispatch.dispatch("fs-flush")

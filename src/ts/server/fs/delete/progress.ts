@@ -3,54 +3,70 @@ import { TrashIcon } from "$ts/images/general";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { sleep } from "$ts/util";
 import { deleteItem } from ".";
-import { CreateFileProgress } from "../progress";
+import { FileProgress } from "../progress";
 import { pathToFriendlyName, pathToFriendlyPath } from "../util";
 
-export async function deleteItemProgressy(path: string, dispatch = true): Promise<boolean> {
+export async function deleteItemProgressy(path: string, dispatch = true, pid?: number): Promise<boolean> {
   Log("server/fs/delete", `Deleting ${path}`);
 
-  const { mutateDone } = await CreateFileProgress({
+  const { mutDone, setWork, mutErr } = await FileProgress({
     type: "quantity",
     icon: TrashIcon,
-    caption: `Permanently deleting ${pathToFriendlyName(path)}...`,
+    caption: `Permanently deleting ${pathToFriendlyName(path)}`,
     subtitle: pathToFriendlyName(path),
     done: 0,
-    max: 1
-  })
+    max: 1,
+    working: false,
+    waiting: false,
+    errors: 0
+  }, pid)
+
+  setWork(true);
 
   const deleted = await deleteItem(path, dispatch)
 
-  mutateDone(+1);
+  if (!deleted) mutErr(+1);
+
+  setWork(false);
+  mutDone(+1);
 
   return deleted;
 }
 
-export async function deleteMultipleProgressy(paths: string[]) {
+export async function deleteMultipleProgressy(paths: string[], pid?: number) {
   Log("server/fs/delete", `Deleting ${paths.length} items`);
 
-  const { mutateDone, updateSubtitle } = await CreateFileProgress({
+  const { mutDone, updSub, setWork, setWait, mutErr } = await FileProgress({
     type: "quantity",
     icon: TrashIcon,
-    caption: `Permanently deleting ${paths.length} items...`,
+    caption: `Permanently deleting ${paths.length} items`,
     subtitle: "Starting...",
     done: 0,
-    max: paths.length
-  })
+    max: paths.length,
+    working: false,
+    waiting: false,
+    errors: 0
+  }, pid)
 
   for (const path of paths) {
     const friendly = pathToFriendlyPath(path);
 
-    updateSubtitle(friendly);
+    setWait(false);
+    setWork(true);
+    updSub(friendly);
 
-    await deleteItem(path, false);
+    const deleted = await deleteItem(path, false);
 
-    mutateDone(+1);
-    updateSubtitle(`${friendly} ...`);
+    if (!deleted) mutErr(+1)
 
-    await sleep(110) // rate-limit cooldown
+    setWork(false);
+    setWait(true);
+    mutDone(+1);
+
+    await sleep(55) // rate-limit cooldown
   }
 
-  mutateDone(+1);
+  mutDone(+1);
 
   GlobalDispatch.dispatch("fs-flush")
 }

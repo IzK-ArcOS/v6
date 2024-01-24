@@ -5,7 +5,7 @@ import { arrayToBlob } from "../convert";
 import { writeFile } from "../file";
 import { fileUploadProgressy, multipleFileUploadProgressy } from "./progress";
 
-export async function directSingleUpload(path: string, multi = false, accept?: string) {
+export async function directSingleUpload(path: string, multi = false, pid?: number, accept?: string) {
   if (path.endsWith("/")) path.slice(0, -1);
 
   const uploader = document.createElement("input");
@@ -24,12 +24,12 @@ export async function directSingleUpload(path: string, multi = false, accept?: s
     if (!multi) {
       const file = uploader.files[0];
 
-      target.set(await fileUploadProgressy(file, path));
+      target.set(await fileUploadProgressy(file, path, pid));
 
       return;
     }
 
-    await multipleFileUploadProgressy(uploader.files, path)
+    await multipleFileUploadProgressy(uploader.files, path, pid)
 
     target.set(path)
   };
@@ -70,7 +70,7 @@ export async function multipleFileUpload(files: FileList, dir: string): Promise<
 
     if (!valid) return false;
 
-    await sleep(110) // rate-limit cooldown
+    await sleep(55) // rate-limit cooldown
   }
 
   return true

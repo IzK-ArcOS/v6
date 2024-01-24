@@ -1,20 +1,27 @@
 import { FileOperation, FileProgressMutator } from "$apps/FsProgress/ts/types";
-import { spawnApp } from "$ts/apps";
+import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
 import { Store } from "$ts/writable";
-import { ReadableStore } from "$types/writable";
 
-export async function CreateFileProgress(initialData: FileOperation): Promise<FileProgressMutator> {
+export async function FileProgress(initialData: FileOperation, parentPid?: number): Promise<FileProgressMutator> {
   const progress = Store<FileOperation>(initialData);
-  const process = await spawnApp("FsProgress", 0, [progress]);
 
-  if (typeof process == "string") return null
+  if (!parentPid) {
+
+    const process = await spawnApp("FsProgress", 0, [progress]);
+
+    if (typeof process == "string") return null
+  } else {
+    const process = await spawnOverlay(getAppById("FsProgress"), parentPid, [progress], true);
+
+    if (typeof process == "string") return null
+  }
 
   const mutateMax = (mutator: number) => progress.update((v) => {
     v.max += mutator;
     return v;
   })
 
-  const mutateDone = (mutator: number) => progress.update((v) => {
+  const mutDone = (mutator: number) => progress.update((v) => {
     v.done += mutator;
     return v;
   })
@@ -34,10 +41,42 @@ export async function CreateFileProgress(initialData: FileOperation): Promise<Fi
     return v;
   })
 
-  const updateSubtitle = (subtitle: string) => progress.update((v) => {
+  const updSub = (subtitle: string) => progress.update((v) => {
     v.subtitle = subtitle;
     return v;
   })
 
-  return { progress, mutateMax, mutateDone, updateCaption, updateSubtitle, setMax, setDone };
+  const setWait = (waiting: boolean) => progress.update((v) => {
+    v.waiting = waiting;
+    return v;
+  })
+
+  const setWork = (working: boolean) => progress.update((v) => {
+    v.working = working;
+    return v;
+  })
+
+  const mutErr = (mutator: number) => progress.update((v) => {
+    v.errors += mutator;
+    return v;
+  })
+
+  const setErrors = (value: number) => progress.update((v) => {
+    v.errors = value;
+    return v;
+  })
+
+  return {
+    progress,
+    mutateMax,
+    mutDone,
+    updateCaption,
+    updSub,
+    setMax,
+    setDone,
+    setWait,
+    setWork,
+    mutErr,
+    setErrors
+  };
 }

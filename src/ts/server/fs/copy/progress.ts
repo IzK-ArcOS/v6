@@ -1,67 +1,74 @@
 import { FileManagerIcon } from "$ts/images/apps";
+import { MultiUploadProgress } from "$ts/stores/filesystem/progress";
 import { sleep } from "$ts/util";
-import { renameItem } from ".";
-import { CreateFileProgress } from "../progress";
+import { copyItem, renameItem } from ".";
+import { FileProgress } from "../progress";
 import { pathToFriendlyName, pathToFriendlyPath } from "../util";
 
-export async function renameMultipleProgressy(items: Record<string, string>) {
+export async function renameMultipleProgressy(items: Record<string, string>, pid?: number) {
   const values = Object.values(items);
 
   if (!values.length) return;
 
   const length = values.length;
   const target = pathToFriendlyName(values[0]);
-  const { mutateDone, updateSubtitle } = await CreateFileProgress({
-    type: "quantity",
-    icon: FileManagerIcon,
-    caption: `Moving ${length} files to ${target}...`,
-    subtitle: "Waiting...",
-    done: 0,
-    max: length
-  })
+  const { mutDone, updSub, setWork, mutErr, setWait } = await FileProgress(MultiUploadProgress(length, target), pid)
 
   for (const source in items) {
     const friendly = pathToFriendlyPath(source);
     const dest = items[source];
 
-    updateSubtitle(friendly);
+    updSub(friendly);
+    setWork(true);
+    setWait(false);
 
-    await renameItem(source, dest);
+    const renamed = await renameItem(source, dest);
 
-    mutateDone(+1);
-    updateSubtitle(`${friendly} ...`)
+    if (!renamed) mutErr(+1);
 
-    await sleep(110);
+    mutDone(+1);
+    setWait(true);
+    setWork(false);
+
+    await sleep(55);
   }
 }
 
-export async function copyMultipleProgressy(items: Record<string, string>) {
+export async function copyMultipleProgressy(items: Record<string, string>, pid?: number) {
   const values = Object.values(items);
 
   if (!values.length) return;
 
   const length = values.length;
   const target = pathToFriendlyName(values[0]);
-  const { mutateDone, updateSubtitle } = await CreateFileProgress({
+  const { mutDone, updSub, setWork, mutErr, setWait } = await FileProgress({
     type: "quantity",
     icon: FileManagerIcon,
-    caption: `Copying ${length} files to ${target}...`,
+    caption: `Copying ${length} files to ${target}`,
     subtitle: "Starting...",
     done: 0,
-    max: length
-  })
+    max: length,
+    waiting: false,
+    working: false,
+    errors: 0
+  }, pid)
 
   for (const source in items) {
     const friendly = pathToFriendlyPath(source);
     const dest = items[source];
 
-    updateSubtitle(friendly);
+    updSub(friendly);
+    setWork(true);
+    setWait(false);
 
-    await renameItem(source, dest);
+    const copied = await copyItem(source, dest);
 
-    mutateDone(+1);
-    updateSubtitle(`${friendly} ...`)
+    if (!copied) mutErr(+1);
 
-    await sleep(110);
+    mutDone(+1);
+    setWait(true);
+    setWork(false);
+
+    await sleep(55);
   }
 }

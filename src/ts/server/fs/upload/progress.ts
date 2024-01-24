@@ -6,10 +6,10 @@ import { Store } from "$ts/writable";
 import { AxiosProgressEvent } from "axios";
 import { arrayToBlob } from "../convert";
 import { writeFile } from "../file";
-import { CreateFileProgress } from "../progress";
+import { FileProgress } from "../progress";
 import { pathToFriendlyName } from "../util";
 
-export async function directUploadProgressy(path: string, multi = false, accept?: string) {
+export async function directUploadProgressy(path: string, multi = false, pid?: number, accept?: string) {
   if (path.endsWith("/")) path.slice(0, -1);
 
   const uploader = document.createElement("input");
@@ -28,12 +28,12 @@ export async function directUploadProgressy(path: string, multi = false, accept?
     if (!multi) {
       const file = uploader.files[0];
 
-      target.set(await fileUploadProgressy(file, path));
+      target.set(await fileUploadProgressy(file, path, pid));
 
       return;
     }
 
-    await multipleFileUploadProgressy(uploader.files, path)
+    await multipleFileUploadProgressy(uploader.files, path, pid)
 
     target.set(path)
   };
@@ -49,20 +49,23 @@ export async function directUploadProgressy(path: string, multi = false, accept?
   });
 }
 
-export async function fileUploadProgressy(file: File, dir: string) {
+export async function fileUploadProgressy(file: File, dir: string, pid?: number) {
   Log(
     "server/fs/upload/progress",
     `Uploading ${file.name} to ${dir}`,
   );
 
-  const { setMax, setDone } = await CreateFileProgress({
+  const { setMax, setDone, mutErr } = await FileProgress({
     type: "size",
-    caption: `Uploading ${file.name}...`,
+    caption: `Uploading ${file.name}`,
     subtitle: `To ${dir}`,
     max: file.size,
     done: 0,
-    icon: UploadIcon
-  })
+    icon: UploadIcon,
+    working: true,
+    waiting: false,
+    errors: 0
+  }, pid)
 
   const content = arrayToBlob(await file.arrayBuffer());
   const path = `${dir}/${file.name}`.split("//").join("/");
@@ -71,6 +74,8 @@ export async function fileUploadProgressy(file: File, dir: string) {
     setMax(p.total)
   });
 
+  if (!valid) mutErr(+1);
+
   GlobalDispatch.dispatch("fs-flush")
 
   if (!valid) return "";
@@ -78,7 +83,7 @@ export async function fileUploadProgressy(file: File, dir: string) {
   return path;
 }
 
-export async function multipleFileUploadProgressy(files: FileList, dir: string): Promise<boolean> {
+export async function multipleFileUploadProgressy(files: FileList, dir: string, pid?: number): Promise<boolean> {
   Log("server/fs/upload", `Uploading ${files.length} files to ${dir}`);
 
   let total = 0;
@@ -87,32 +92,41 @@ export async function multipleFileUploadProgressy(files: FileList, dir: string):
     total += file.size;
   }
 
-  const { updateSubtitle, mutateDone } = await CreateFileProgress({
+  const { updSub, mutDone, setWork, setWait, mutErr } = await FileProgress({
     type: "size",
     caption: `Uploading ${files.length} ${P("file", files.length)} to ${pathToFriendlyName(dir)}`,
     subtitle: `To ${dir}`,
     max: total + 100,
     done: 0,
-    icon: UploadIcon
-  })
+    icon: UploadIcon,
+    working: false,
+    waiting: true,
+    errors: 0
+  }, pid)
 
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
     const content = arrayToBlob(await file.arrayBuffer())
     const path = `${dir}/${file.name}`.replaceAll("//", "/");
 
-    updateSubtitle(`(${i + 1} / ${files.length}) ${file.name}`);
+    updSub(`(${i + 1} / ${files.length}) ${file.name}`);
 
-    const valid = await writeFile(path, content, false, (p: AxiosProgressEvent) => {
-      mutateDone(p.bytes);
+    setWait(false);
+    setWork(true);
+
+    const written = await writeFile(path, content, false, (p: AxiosProgressEvent) => {
+      mutDone(p.bytes);
     });
 
-    updateSubtitle(`(${i + 1} / ${files.length}) ${file.name} ${valid ? "..." : "(!!)"}`);
+    if (!written) mutErr(+1)
 
-    await sleep(110) // rate-limit cooldown
+    setWork(false);
+    setWait(true);
+
+    await sleep(55) // rate-limit cooldown
   }
 
-  mutateDone(+200);
+  mutDone(+200);
 
   GlobalDispatch.dispatch("fs-flush")
 

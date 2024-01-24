@@ -12,7 +12,7 @@ input:hover,
 input:hover *,
 select:hover,
 select:hover * {
-  cursor: var(--cur-hand);
+  cursor: var(--cur-hand) !important;
 }
 
 input:not([type*="checkbox"]),

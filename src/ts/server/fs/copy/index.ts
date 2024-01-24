@@ -34,7 +34,7 @@ export async function copyMultiple(items: Record<string, string>) {
 
     await copyItem(source, dest);
 
-    await sleep(110) // rate-limit cooldown
+    await sleep(55) // rate-limit cooldown
   }
 }
 
@@ -61,6 +61,6 @@ export async function renameMultiple(items: Record<string, string>) {
 
     await renameItem(source, dest);
 
-    await sleep(110) // rate-limit cooldown
+    await sleep(55) // rate-limit cooldown
   }
 }

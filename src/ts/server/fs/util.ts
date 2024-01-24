@@ -34,3 +34,9 @@ export function parseFilename(path: string) {
 
   return split[split.length - 1];
 }
+
+export function parseExtension(path: string) {
+  const split = path.split(".");
+
+  return `.${split[split.length - 1]}`;
+}

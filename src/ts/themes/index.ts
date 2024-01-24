@@ -6,10 +6,19 @@ import { writeFileAnnounced } from "$ts/server/fs/file";
 import { BuiltinThemes } from "$ts/stores/themes/builtins";
 import { UserThemeKeys } from "$ts/stores/themes/values";
 import { UserDataStore, UserName } from "$ts/stores/user";
+import { LogLevel } from "$types/console";
 import { UserTheme } from "$types/theme";
 
 
 export function loadTheme(context: UserTheme) {
+  const valid = verifyTheme(context);
+
+  if (!valid) {
+    Log("themes", `Not loading invalid theme!`, LogLevel.error);
+
+    return false;
+  }
+
   UserDataStore.update((udata) => {
     udata.sh.anim = context.anim;
     udata.sh.noGlass = context.noGlass;
@@ -34,6 +43,8 @@ export function loadTheme(context: UserTheme) {
 
     return udata;
   });
+
+  return true;
 }
 
 export function saveCurrentTheme(name: string) {
@@ -41,7 +52,7 @@ export function saveCurrentTheme(name: string) {
 
   UserDataStore.update((udata) => {
     const context: UserTheme = {
-      version: "1.0.0",
+      version: "1.0",
       name,
       author: UserName.get(),
       anim: udata.sh.anim,
@@ -123,7 +134,7 @@ export function applySystemTheme(id: string) {
 }
 
 export async function saveThemeToFilesystem(theme: UserTheme, name: string): Promise<boolean> {
-  const blob = textToBlob(JSON.stringify(theme), "application/json");
+  const blob = textToBlob(JSON.stringify(theme, null, 2), "application/json");
   const filename = `${name}.arctheme`;
   const path = `./Themes/${filename}`;
 

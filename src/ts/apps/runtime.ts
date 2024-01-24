@@ -68,6 +68,12 @@ export class AppRuntime {
     this.pid = pid;
   }
 
+  public closeApp() {
+    this.process.handler.kill(this.pid, true);
+
+    return this;
+  }
+
   public minimize() {
     this.appMutator.update((v) => {
       if (v.metadata.core) return v;

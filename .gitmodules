@@ -64,3 +64,6 @@
 [submodule "src/apps/FsProgress"]
 	path = src/apps/FsProgress
 	url = https://github.com/IzK-ArcOS/v6-FsProgress
+[submodule "src/apps/OpenWith"]
+	path = src/apps/OpenWith
+	url = https://github.com/IzK-ArcOS/v6-OpenWithApp

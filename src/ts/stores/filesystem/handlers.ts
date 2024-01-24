@@ -1,6 +1,8 @@
 import { TextEditorIcon } from "$ts/images/apps";
 import { ThemesIcon } from "$ts/images/general";
+import { CompressMimeIcon } from "$ts/images/mime";
 import { tryJsonConvert } from "$ts/json";
+import { DownloadFile } from "$ts/server/fs/download";
 import { readFile } from "$ts/server/fs/file";
 import { openFileWithApp } from "$ts/server/fs/open";
 import { loadTheme } from "$ts/themes";
@@ -30,9 +32,20 @@ export const FileHandlers: FileHandler[] = [
       const content = await arcfile.data.text();
       const json = tryJsonConvert(content) as UserTheme;
 
-      if (typeof json !== "object") return;
+      if (!json || typeof json !== "object") return;
 
       loadTheme(json)
+    }
+  },
+  {
+    extensions: [".zip"],
+    name: "Download Archive",
+    description: "Download this ZIP file to extract it outside ArcOS",
+    image: CompressMimeIcon,
+    async handler(file) {
+      const arcfile = await readFile(file.scopedPath);
+
+      DownloadFile(arcfile)
     }
   }
 ]

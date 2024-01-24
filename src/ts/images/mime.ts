@@ -9,4 +9,5 @@ export { default as ArcTermMimeIcon } from "$assets/mimetypes/arcterm-conf.svg";
 export { default as AudioMimeIcon } from "$assets/mimetypes/audio-x-generic.svg";
 export { default as ImageMimeIcon } from "$assets/mimetypes/image-x-generic.svg";
 export { default as TextMimeIcon } from "$assets/mimetypes/text-plain.svg";
+export { default as UnknownFileIcon } from "$assets/mimetypes/unknown-file.svg";
 

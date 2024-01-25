@@ -67,3 +67,6 @@
 [submodule "src/apps/OpenWith"]
 	path = src/apps/OpenWith
 	url = https://github.com/IzK-ArcOS/v6-OpenWithApp
+[submodule "src/apps/MarkDownViewer"]
+	path = src/apps/MarkDownViewer
+	url = https://github.com/IzK-ArcOS/v6-MarkDownViewer

@@ -7,6 +7,7 @@ import { FsProgress } from "$apps/FsProgress/ts/app";
 import { LightsOff } from "$apps/LightsOff/ts/app";
 import { LoadSaveDialog } from "$apps/LoadSaveDialog/ts/app";
 import { LoggerApp } from "$apps/LoggerApp/ts/app";
+import { MarkDownViewer } from "$apps/MarkDownViewer/ts/app";
 import { OpenWith } from "$apps/OpenWith/ts/app";
 import { ProcessManager } from "$apps/ProcessManager/ts/app";
 import { QlorbApp } from "$apps/Qlorb/ts/app";
@@ -36,5 +37,6 @@ export const builtinApps: Record<string, App> = {
   TextEditor,
   LoadSaveDialog,
   FsProgress,
-  OpenWith
+  OpenWith,
+  MarkDownViewer
 }

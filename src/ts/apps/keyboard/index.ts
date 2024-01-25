@@ -53,7 +53,6 @@ export class AcceleratorHandler {
     if (state != "desktop") return;
 
     for (const combo of this.store) {
-
       const alt = combo.alt ? e.altKey : true;
       const ctrl = combo.ctrl ? e.ctrlKey : true;
       const shift = combo.shift ? e.shiftKey : true;
@@ -68,6 +67,8 @@ export class AcceleratorHandler {
       if (!modifiers || (key != pK && key) || !isFocused) continue;
 
       combo.action(this.process);
+
+      break;
     }
   }
 

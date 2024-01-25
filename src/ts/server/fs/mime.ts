@@ -2,6 +2,8 @@ import { DefaultMimeIcon } from "$ts/images/mime";
 import { MimeTypeIcons } from "$ts/stores/filesystem";
 
 export function getMimeIcon(filename: string): string {
+  filename = filename.toLowerCase();
+
   for (const icon in MimeTypeIcons) {
     const extensions = MimeTypeIcons[icon];
 

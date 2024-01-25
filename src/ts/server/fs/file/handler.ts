@@ -9,7 +9,7 @@ import { createErrorDialog } from "$ts/process/error";
 import { UnknownFileIcon } from "$ts/images/mime";
 
 export async function OpenFile(file: PartialArcFile, parentPid?: number) {
-  const handlers = getCompatibleHandlers(file.scopedPath);
+  const handlers = getCompatibleHandlers(file.scopedPath, false);
 
   if (!handlers.length) {
     if (!parentPid) return;
@@ -39,9 +39,9 @@ export async function OpenFile(file: PartialArcFile, parentPid?: number) {
   return await handlers[0].handler(file);
 }
 
-export function getCompatibleHandlers(path: string) {
+export function getCompatibleHandlers(path: string, wildcards = true) {
   const extension = parseExtension(path);
-  const handlers = FileHandlers.filter((h) => h.extensions.includes(extension));
+  const handlers = FileHandlers.filter((h) => h.extensions.includes(extension) || (wildcards && h.extensions.includes("*.*")));
 
   return handlers;
 }
@@ -53,7 +53,7 @@ export function getHandlerByName(name: string): Nullable<FileHandler> {
 }
 
 export async function OpenWith(file: PartialArcFile, parentPid: number): Promise<AppSpawnResult> {
-  const compatibles = getCompatibleHandlers(file.scopedPath);
+  const compatibles = getCompatibleHandlers(file.scopedPath, false);
 
   if (compatibles.length == 1) {
     OpenFile(file);

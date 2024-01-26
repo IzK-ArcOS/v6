@@ -12,11 +12,29 @@ import * as Status from "./status";
 export function getAllImages(): Record<string, string> {
   Log("images", "Getting all images");
 
-  return { ...Branding, ...General, ...Apps, ...Filesystem, ...Power, ...Dialog, ...Status, ...Mimetypes };
+  return {
+    ...Branding,
+    ...General,
+    ...Apps,
+    ...Filesystem,
+    ...Power,
+    ...Dialog,
+    ...Status,
+    ...Mimetypes
+  };
 }
 
 export function getGroupedIcons() {
-  return { Branding, Apps, Filesystem, Mimetypes, General, Dialog, Power, Status, };
+  return {
+    Branding,
+    Apps,
+    Filesystem,
+    Mimetypes,
+    General,
+    Dialog,
+    Power,
+    Status
+  };
 
 }
 

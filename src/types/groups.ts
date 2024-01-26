@@ -2,6 +2,7 @@ export interface AppGroup {
   name: string;
   icon?: string;
   id?: string;
+  index: number;
 }
 
 export interface CompiledAppGroup {
@@ -9,6 +10,7 @@ export interface CompiledAppGroup {
   name: string;
   icon?: string;
   id: string;
+  index: number;
 }
 
 export type CompiledAppGroupStore = { [key: string]: CompiledAppGroup };

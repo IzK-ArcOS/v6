@@ -1,5 +1,5 @@
 import { appGroups, appLibrary } from "$ts/stores/apps";
-import { CompiledAppGroupStore } from "$types/groups";
+import { AppGroupStore, CompiledAppGroupStore } from "$types/groups";
 import { isPopulatable } from "./utils";
 
 export function getAppGroups(): {
@@ -38,18 +38,18 @@ export function getAppGroups(): {
 
   rest = rest.filter((a) => !grouped.includes(a));
 
-  result = Object.fromEntries(
-    Object.entries(result).map((g) => {
-      g[1].apps = g[1].apps.sort((a, b) => {
-        const appA = library.get(a);
-        const appB = library.get(b);
+  const entries = Object.entries(result).map((g) => {
+    g[1].apps = g[1].apps.sort((a, b) => {
+      const appA = library.get(a);
+      const appB = library.get(b);
 
-        return appA.metadata.name > appB.metadata.name ? 1 : -1;
-      });
+      return appA.metadata.name > appB.metadata.name ? 1 : -1;
+    });
 
-      return g;
-    })
-  ) as CompiledAppGroupStore;
+    return g;
+  })
+
+  result = Object.fromEntries(entries.sort((a, b) => a[1].index - b[1].index)) as CompiledAppGroupStore;
 
   return { groups: result, rest };
 }

@@ -4,6 +4,8 @@ import { ErrorDialog } from "$apps/ErrorDialog/ts/app";
 import { ExitApp } from "$apps/Exit/ts/app";
 import { FileManager } from "$apps/FileManager/ts/app";
 import { FsProgress } from "$apps/FsProgress/ts/app";
+import { IconLibrary } from "$apps/IconLibrary/ts/app";
+import { ImageViewer } from "$apps/ImageViewer/ts/app";
 import { LightsOff } from "$apps/LightsOff/ts/app";
 import { LoadSaveDialog } from "$apps/LoadSaveDialog/ts/app";
 import { LoggerApp } from "$apps/LoggerApp/ts/app";
@@ -38,5 +40,7 @@ export const builtinApps: Record<string, App> = {
   LoadSaveDialog,
   FsProgress,
   OpenWith,
-  MarkDownViewer
+  MarkDownViewer,
+  ImageViewer,
+  IconLibrary
 }

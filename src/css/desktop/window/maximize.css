@@ -6,6 +6,7 @@ window:not(.core).maximized {
   min-height: unset !important;
   border-width: 0px;
   border-radius: 0;
+  resize: none !important;
 }
 
 div.desktop:not(.noani) window:not(.core).maximized {

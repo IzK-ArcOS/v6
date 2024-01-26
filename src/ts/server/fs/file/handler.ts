@@ -14,24 +14,7 @@ export async function OpenFile(file: PartialArcFile, parentPid?: number) {
   if (!handlers.length) {
     if (!parentPid) return;
 
-    createErrorDialog({
-      title: `Unknown file type`,
-      message: `ArcOS doesn't have any compatible file handlers to open ${file.filename}. Do you want to select from a list of all handlers instead?`,
-      buttons: [
-        {
-          caption: "Cancel",
-          action() { }
-        },
-        {
-          caption: "Open With...",
-          action() {
-            OpenWith(file, parentPid);
-          },
-          suggested: true
-        }],
-      image: UnknownFileIcon,
-      sound: "arcos.dialog.warning"
-    }, parentPid, true)
+    noCompatibleHandlers(file, parentPid);
 
     return;
   }
@@ -66,4 +49,25 @@ export async function OpenWith(file: PartialArcFile, parentPid: number): Promise
   if (typeof proc === "string") return proc;
 
   return "success";
+}
+
+export function noCompatibleHandlers(file: PartialArcFile, parentPid?: number) {
+  createErrorDialog({
+    title: `Unknown file type`,
+    message: `ArcOS doesn't have any compatible file handlers to open ${file.filename}. Do you want to select from a list of all handlers instead?`,
+    buttons: [
+      {
+        caption: "Cancel",
+        action() { }
+      },
+      {
+        caption: "Open With...",
+        action() {
+          OpenWith(file, parentPid);
+        },
+        suggested: true
+      }],
+    image: UnknownFileIcon,
+    sound: "arcos.dialog.warning"
+  }, parentPid, true)
 }

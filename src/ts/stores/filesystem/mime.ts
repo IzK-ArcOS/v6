@@ -23,7 +23,7 @@ export const MimeTypeIcons: Record<string, string[]> = { // <icon, .ext>
   [SvgMimeIcon]: [".svg"],
   [CompressMimeIcon]: [".zip", ".tar.xz", ".7z", ".rar"],
   [AudioMimeIcon]: [".mp3", ".opus", ".wav", ".m4a", ".flac"],
-  [ImageMimeIcon]: [".png", ".jpg", ".gif", ".webp", ".ico", ".bmp", ".tif", ".tiff"],
+  [ImageMimeIcon]: [".png", ".jpg", ".gif", ".webp", ".ico", ".bmp", ".tif", ".tiff", ".jpeg"],
   [TextMimeIcon]: [".txt"],
   [ArcTermMimeIcon]: ["arcterm.conf", ".arcterm"],
   [ArcThemeMimeIcon]: [".arctheme"],

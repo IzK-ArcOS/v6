@@ -70,3 +70,9 @@
 [submodule "src/apps/MarkDownViewer"]
 	path = src/apps/MarkDownViewer
 	url = https://github.com/IzK-ArcOS/v6-MarkDownViewer
+[submodule "src/apps/ImageViewer"]
+	path = src/apps/ImageViewer
+	url = https://github.com/IzK-ArcOS/v6-ImageViewer
+[submodule "src/apps/IconLibrary"]
+	path = src/apps/IconLibrary
+	url = https://github.com/IzK-ArcOS/v6-IconLibrary

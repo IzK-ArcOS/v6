@@ -15,6 +15,11 @@ export function getAllImages(): Record<string, string> {
   return { ...Branding, ...General, ...Apps, ...Filesystem, ...Power, ...Dialog, ...Status, ...Mimetypes };
 }
 
+export function getGroupedIcons() {
+  return { Branding, Apps, Filesystem, Mimetypes, General, Dialog, Power, Status, };
+
+}
+
 export function getIconPath(id: string) {
   const icons = getAllImages();
 

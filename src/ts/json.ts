@@ -8,10 +8,10 @@ export function tryParse(content: string): any | false {
   }
 }
 
-export function tryJsonConvert<T>(content: string): Nullable<T> {
+export function tryJsonConvert<T>(content: string): Nullable<T | string> {
   try {
     return JSON.parse(content) as T;
   } catch {
-    return null;
+    return content;
   }
 }

@@ -4,7 +4,7 @@ import { Store } from "$ts/writable";
 import { App, AppMutator } from "$types/app";
 import { Nullable } from "$types/common";
 import { LogLevel } from "$types/console";
-import { ProcessHandler } from "./handler";
+import { ProcessHandler } from ".";
 
 export class Process {
   public _disposed = false;
@@ -29,6 +29,7 @@ export class Process {
 
     if (this.app) {
       this.accelerator = new AcceleratorHandler(this);
+      this.mutator.set(app);
     }
   }
 
@@ -36,10 +37,6 @@ export class Process {
     if (!this.handler.isPid(pid) || this.parentPid) return false;
 
     this.parentPid = pid;
-  }
-
-  public setMutator(mutator: AppMutator) {
-    mutator.subscribe((v) => this.mutator.set(v));
   }
 
   public Log(text: string, level?: LogLevel) {

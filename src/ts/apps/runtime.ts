@@ -1,5 +1,4 @@
 import { Log } from "$ts/console";
-import { Process } from "$ts/process";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { RuntimeGlobalDispatches, RuntimeScopedDispatches } from "$ts/stores/process/dispatch";
 import { Store } from "$ts/writable";
@@ -18,7 +17,7 @@ export class AppRuntime {
   constructor(
     appData: App,
     public appMutator: ReadableStore<App>,
-    public process: Process
+    public process
   ) {
     if (!appData.id) {
       this.Log(

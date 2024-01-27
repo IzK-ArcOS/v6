@@ -1,10 +1,11 @@
 window div.alt-menu {
-  margin-bottom: 0;
   display: flex;
   gap: 10px;
+  align-items: center;
+  margin-bottom: 0;
+  margin-left: 5px;
   border-left: var(--button-glass-hover-bg) 1px solid;
   padding-left: 10px;
-  align-items: center;
 }
 
 window div.alt-menu > button.menu-item {

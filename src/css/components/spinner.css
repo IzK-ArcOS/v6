@@ -2,20 +2,34 @@ img.spinner-svg {
   vertical-align: middle;
 }
 
+img.spinner-svg.hide {
+  opacity: 0 !important;
+}
+
 div.desktop[class*="light"] img.spinner-svg {
   filter: brightness(0.4);
 }
 
-div.desktop .html-spinner {
+.html-spinner {
   --size: 20px;
-
-  border: 2px solid currentColor;
+  --t: 2px;
+  --pri: currentColor;
+  --sec: transparent;
   border-radius: 50%;
-  border-top: 2px solid transparent;
+  border: var(--t) solid #0000;
+  border-top: var(--t) solid #0000;
   width: var(--size);
   height: var(--size);
-  animation: spin 1s linear infinite !important;
   vertical-align: middle;
+  opacity: 0;
+  transition: all 0.3s !important;
+}
+
+.html-spinner.going {
+  border: var(--t) solid var(--pri);
+  border-top: var(--t) solid var(--sec);
+  animation: spin 1s linear infinite;
+  opacity: 1;
 }
 
 window div.body button:not(.reset) div.html-spinner {

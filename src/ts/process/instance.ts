@@ -1,6 +1,7 @@
 import { AcceleratorHandler } from "$ts/apps/keyboard";
 import { Log } from "$ts/console";
-import { App } from "$types/app";
+import { Store } from "$ts/writable";
+import { App, AppMutator } from "$types/app";
 import { Nullable } from "$types/common";
 import { LogLevel } from "$types/console";
 import { ProcessHandler } from "./handler";
@@ -11,6 +12,7 @@ export class Process {
   public _pausedError = "Not executing code in paused process";
   public _criticalProcess = false;
   public app: Nullable<App> = null;
+  public mutator: AppMutator = Store<App>(null);
   public parentPid: Nullable<number> = null;
   public args: any[] = [];
   public accelerator: AcceleratorHandler;
@@ -34,6 +36,10 @@ export class Process {
     if (!this.handler.isPid(pid) || this.parentPid) return false;
 
     this.parentPid = pid;
+  }
+
+  public setMutator(mutator: AppMutator) {
+    mutator.subscribe((v) => this.mutator.set(v));
   }
 
   public Log(text: string, level?: LogLevel) {

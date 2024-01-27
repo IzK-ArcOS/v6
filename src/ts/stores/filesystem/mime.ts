@@ -11,6 +11,7 @@ import {
   PdfMimeIcon,
   SvgMimeIcon,
   TextMimeIcon,
+  UnknownFileIcon,
   VideoMimeIcon,
   WebpageMimeIcon,
   XmlMimeIcon
@@ -31,5 +32,6 @@ export const MimeTypeIcons: Record<string, string[]> = { // <icon, .ext>
   [VideoMimeIcon]: [".mp4", ".mkv", ".mov", ".avi"],
   [WebpageMimeIcon]: [".html", ".htm"],
   [JavascriptMimeIcon]: [".js", ".ts", ".d.ts", ".mjs"],
-  [XmlMimeIcon]: [".xml"]
+  [XmlMimeIcon]: [".xml"],
+  [UnknownFileIcon]: [".$new"],
 }

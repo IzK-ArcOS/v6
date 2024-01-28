@@ -8,6 +8,7 @@ import * as General from "./general";
 import * as Mimetypes from "./mime";
 import * as Power from "./power";
 import * as Status from "./status";
+import * as Snapping from './snapping';
 
 export function getAllImages(): Record<string, string> {
   Log("images", "Getting all images");
@@ -20,6 +21,7 @@ export function getAllImages(): Record<string, string> {
     ...Power,
     ...Dialog,
     ...Status,
+    ...Snapping,
     ...Mimetypes
   };
 }
@@ -33,7 +35,8 @@ export function getGroupedIcons() {
     General,
     Dialog,
     Power,
-    Status
+    Status,
+    Snapping
   };
 
 }

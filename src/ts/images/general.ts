@@ -27,3 +27,5 @@ export { default as UploadIcon } from "$assets/general/upload.svg";
 export { default as WaveIcon } from "$assets/general/wave.svg";
 export { default as WindowSettingsIcon } from "$assets/general/windowsettings.svg";
 export { default as ComponentIcon } from "$assets/general/component.svg";
+export { default as InfoIcon } from "$assets/general/info.svg";
+export { default as WindowSnapIcon } from "$assets/general/windowsnap.svg";

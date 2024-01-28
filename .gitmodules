@@ -76,3 +76,6 @@
 [submodule "src/apps/IconLibrary"]
 	path = src/apps/IconLibrary
 	url = https://github.com/IzK-ArcOS/v6-IconLibrary
+[submodule "src/apps/DonutApp"]
+	path = src/apps/DonutApp
+	url = https://github.com/IzK-ArcOS/v6-DonutApp

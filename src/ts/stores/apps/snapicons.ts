@@ -1,15 +1,13 @@
-import * as Icons from '$ts/images/snapping';
-
 export const WindowSnappingIcons: Record<string, string> = {
-  left: Icons.Left,
-  right: Icons.Right,
+  left: "arrow_backward",
+  right: "arrow_forward",
   "$1": "",
-  top: Icons.Top,
-  bottom: Icons.Bottom,
+  top: "arrow_upward",
+  bottom: "arrow_downward",
   "$2": "",
-  "top-left": Icons.TopLeft,
-  "top-right": Icons.TopRight,
+  "top-left": "north_west",
+  "top-right": "north_east",
   "$3": "",
-  "bottom-left": Icons.BottomLeft,
-  "bottom-right": Icons.BottomRight
+  "bottom-left": "south_west",
+  "bottom-right": "south_east"
 }

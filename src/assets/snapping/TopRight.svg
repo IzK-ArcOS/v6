@@ -1,23 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 948.03 948.03">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #fff;
-        stroke: #fff;
-      }
-
-      .cls-1, .cls-2 {
-        stroke-miterlimit: 10;
-        stroke-width: 20px;
-      }
-
-      .cls-2 {
-        fill: none;
-        stroke: #231f20;
-      }
-    </style>
-  </defs>
-  <rect class="cls-2" x="10" y="10" width="928.03" height="928.03" rx="90" ry="90"/>
-  <rect class="cls-1" x="326.42" y="60.94" width="563.43" height="413.07" rx="90" ry="90"/>
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd"
+    d="M24 16H72C76.4 16 80 19.6 80 24V72C80 76.4 76.4 80 72 80H24C19.6 80 16 76.4 16 72V24C16 19.6 19.6 16 24 16ZM24 68C24 70.2 25.8 72 28 72H68C70.2 72 72 70.2 72 68V48H48V24H28C25.8 24 24 25.8 24 28V68Z"
+    fill="currentColor" />
 </svg>
+  

@@ -1,9 +1,8 @@
 import { SEP_ITEM } from "$state/Desktop/ts/store";
-import { ErrorIcon } from "$ts/images/dialog";
-import { SpinnerIcon, WindowSnapIcon } from "$ts/images/general";
-import { BadStatusIcon } from "$ts/images/status";
-import { WindowSnappingStates } from "$ts/stores/apps/snapping";
+import { WindowSnapIcon } from "$ts/images/general";
+import { Disable } from "$ts/images/snapping";
 import { WindowSnappingIcons } from "$ts/stores/apps/snapicons";
+import { WindowSnappingStates } from "$ts/stores/apps/snapping";
 import { ProcessStack } from "$ts/stores/process";
 import { ContextMenuItem } from "$types/app";
 
@@ -12,11 +11,10 @@ export function CompileSnappingContextOption(): ContextMenuItem {
     caption: "Window Snapping",
     image: WindowSnapIcon,
     disabled: (window) => !!window.isOverlay || !window.controls.maximize,
-
     subItems: [
       {
         caption: "None",
-        image: BadStatusIcon,
+        image: Disable,
         action(window) {
           ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-disable");
         }
@@ -24,7 +22,7 @@ export function CompileSnappingContextOption(): ContextMenuItem {
       SEP_ITEM
     ]
   }
-  
+
   for (const state in WindowSnappingStates) {
     const caption = WindowSnappingStates[state];
 
@@ -36,13 +34,13 @@ export function CompileSnappingContextOption(): ContextMenuItem {
 
     root.subItems.push({
       caption,
-      image: WindowSnappingIcons[state],
+      icon: WindowSnappingIcons[state],
       action(window) {
         ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", state)
       }
     })
   }
-  
+
 
   return root;
 }

@@ -1,8 +1,6 @@
 import { SEP_ITEM } from "$state/Desktop/ts/store";
 import { getAppById, spawnOverlay } from "$ts/apps";
 import { CompileSnappingContextOption } from "$ts/apps/snapping";
-import { AppInfoIcon } from "$ts/images/apps";
-import { InfoIcon } from "$ts/images/general";
 import { ShutdownIcon } from "$ts/images/power";
 import { AppContextMenu } from "$types/app";
 import { ProcessStack } from "../process";
@@ -11,7 +9,7 @@ export const BaseAppContext: AppContextMenu = {
   "titlebar": [
     {
       caption: "App Info",
-      image: InfoIcon,
+      icon: "info_outline",
       action(window) {
         const AppInfo = getAppById("AppInfo");
 

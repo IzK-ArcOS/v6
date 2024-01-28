@@ -38,7 +38,7 @@ export const BaseAppContext: AppContextMenu = {
     CompileSnappingContextOption(),
     SEP_ITEM,
     {
-      caption: "close",
+      caption: "Close",
       image: ShutdownIcon,
       disabled: (window) => window.metadata.core,
       action: (window) => {

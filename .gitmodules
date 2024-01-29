@@ -79,3 +79,6 @@
 [submodule "src/apps/DonutApp"]
 	path = src/apps/DonutApp
 	url = https://github.com/IzK-ArcOS/v6-DonutApp
+[submodule "src/apps/AcceleratorOverview"]
+	path = src/apps/AcceleratorOverview
+	url = https://github.com/IzK-ArcOS/v6-AcceleratorOverview

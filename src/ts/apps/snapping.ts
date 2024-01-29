@@ -39,6 +39,5 @@ export function CompileSnappingContextOption(): ContextMenuItem {
     })
   }
 
-
   return root;
 }

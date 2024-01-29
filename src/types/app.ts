@@ -27,6 +27,7 @@ export interface App {
   accelerators?: AppKeyCombinations;
   elevated?: boolean;
   altMenu?: ContextMenuItem[];
+  acceleratorDescriptions?: Record<string, string>; // <[combo in One+Two+Key format], description>
 }
 
 export type AppMutator = ReadableStore<App>;

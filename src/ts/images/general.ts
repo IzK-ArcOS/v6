@@ -29,3 +29,4 @@ export { default as WindowSettingsIcon } from "$assets/general/windowsettings.sv
 export { default as ComponentIcon } from "$assets/general/component.svg";
 export { default as InfoIcon } from "$assets/general/info.svg";
 export { default as WindowSnapIcon } from "$assets/general/windowsnap.svg";
+export { default as KeyboardIcon } from "$assets/general/keyboard.svg";

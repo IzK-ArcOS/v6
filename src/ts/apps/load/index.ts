@@ -5,6 +5,7 @@ import { appLibrary } from "$ts/stores/apps";
 import { sleep } from "$ts/util";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
+import { splitAcceleratorString } from "../accelerators";
 import { spawnApp } from "../spawn";
 import { loadConditionFailed } from "./fail";
 
@@ -37,6 +38,12 @@ export async function loadApp(id: string, data: App): Promise<boolean> {
   appLibrary.set(library);
 
   if (data.metadata.core) spawnApp(id);
+
+  if (data.acceleratorDescriptions) {
+    const keys = Object.keys(data.acceleratorDescriptions);
+
+    console.log(JSON.stringify(keys.map((a) => splitAcceleratorString(a)), null, 4))
+  }
 
   return true;
 }

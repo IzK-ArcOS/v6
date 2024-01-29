@@ -1,6 +1,4 @@
 import { SEP_ITEM } from "$state/Desktop/ts/store";
-import { WindowSnapIcon } from "$ts/images/general";
-import { Disable } from "$ts/images/snapping";
 import { WindowSnappingIcons } from "$ts/stores/apps/snapicons";
 import { WindowSnappingStates } from "$ts/stores/apps/snapping";
 import { ProcessStack } from "$ts/stores/process";
@@ -9,12 +7,12 @@ import { ContextMenuItem } from "$types/app";
 export function CompileSnappingContextOption(): ContextMenuItem {
   const root: ContextMenuItem = {
     caption: "Window Snapping",
-    image: WindowSnapIcon,
+    icon: "center_focus_weak",
     disabled: (window) => !!window.isOverlay || !window.controls.maximize,
     subItems: [
       {
         caption: "None",
-        image: Disable,
+        icon: "close",
         action(window) {
           ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-disable");
         }

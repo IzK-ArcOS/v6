@@ -35,10 +35,10 @@ export function getHandlerByName(name: string): Nullable<FileHandler> {
   return handlers[0];
 }
 
-export async function OpenWith(file: PartialArcFile, parentPid: number): Promise<AppSpawnResult> {
+export async function OpenWith(file: PartialArcFile, parentPid: number, bypassAuto = false): Promise<AppSpawnResult> {
   const compatibles = getCompatibleHandlers(file.scopedPath, false);
 
-  if (compatibles.length == 1) {
+  if (compatibles.length == 1 && !bypassAuto) {
     OpenFile(file);
 
     return "success";

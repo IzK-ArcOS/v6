@@ -47,7 +47,7 @@ export async function spawnApp(id: string, parent?: number, args?: any[], proces
   const proc = await processHandler.spawn({
     proc: AppProcess,
     name: `app#${id}`,
-    app,
+    app: app,
     args
   });
 
@@ -61,7 +61,7 @@ export async function spawnOverlay(app: App, parent: number, args?: any[], noSha
 
   if (!app) return;
 
-  app = { ...app, isOverlay: true, noOverlayShade: noShade };
+  app = getAppById(null, { ...app, isOverlay: true, noOverlayShade: noShade });
 
   if (app.elevated) {
     const elevated = await GetUserElevation(ElevatedAppLaunchData(app), ProcessStack);

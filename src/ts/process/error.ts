@@ -1,4 +1,5 @@
 import { ErrorDialog as AppData } from "$apps/ErrorDialog/ts/app";
+import { getAppById } from "$ts/apps";
 import { ArcSoundBus } from "$ts/soundbus";
 import { ProcessStack } from "$ts/stores/process";
 import { App } from "$types/app";
@@ -26,7 +27,7 @@ export async function createErrorDialog(
     }
   }
 
-  const app = { ...AppData, isOverlay: overlay };
+  const app = getAppById(null, { ...AppData, isOverlay: overlay });
 
   const process = await ProcessStack.spawn({
     proc: DialogProcess,

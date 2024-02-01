@@ -82,3 +82,6 @@
 [submodule "src/apps/AcceleratorOverview"]
 	path = src/apps/AcceleratorOverview
 	url = https://github.com/IzK-ArcOS/v6-AcceleratorOverview
+[submodule "src/apps/MediaPlayer"]
+	path = src/apps/MediaPlayer
+	url = https://github.com/IzK-ArcOS/v6-MediaPlayer

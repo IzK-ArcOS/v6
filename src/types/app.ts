@@ -82,6 +82,7 @@ export interface ContextMenuItem {
   action?: ContextMenuCallback;
   subItems?: ContextMenuItem[];
   disabled?: ContextMenuCallback<boolean>;
+  accelerator?: string;
 }
 
 export type ContextMenuCallback<T = void> = (window: App, data: DOMStringMap, scope: string) => MaybePromise<T>;

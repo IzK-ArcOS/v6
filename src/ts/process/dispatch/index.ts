@@ -13,7 +13,6 @@ export class ProcessDispatcher {
   }
 
   subscribe<T = any[]>(pid: number, event: string, callback: (data: T) => void) {
-    this.Log(`Subscribing on PID ${pid} to event ${event}`);
     if (!this.subscribers[pid]) this.subscribers[pid] = { [event]: [] };
 
     if (!this.subscribers[pid][event])

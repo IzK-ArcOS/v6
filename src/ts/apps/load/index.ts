@@ -32,7 +32,7 @@ export async function loadApp(id: string, data: App): Promise<boolean> {
 
   library.set(id, data);
 
-  await sleep(100);
+  await sleep();
 
   appLibrary.set(library);
 

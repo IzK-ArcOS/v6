@@ -1,4 +1,4 @@
-:root .cursor-custom {
+:root {
   --cur-normal: url("../../assets/cursors/cursor.png"), auto;
   --cur-hand: url("../../assets/cursors/hand.cur"), auto;
   --cur-busy: url("../../assets/cursors/busy.png"), auto;

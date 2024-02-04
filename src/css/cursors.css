@@ -4,14 +4,14 @@
   cursor: var(--cur-normal);
 }
 
-a:hover,
-a:hover *,
-button:hover,
-button:hover *,
-input:hover,
-input:hover *,
-select:hover,
-select:hover * {
+window > div.body a,
+window > div.body a *,
+window > div.body button,
+window > div.body button *,
+window > div.body input,
+window > div.body input *,
+window > div.body select,
+window > div.body select * {
   cursor: var(--cur-hand) !important;
 }
 

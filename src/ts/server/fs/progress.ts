@@ -2,7 +2,7 @@ import { FileOperation, FileProgressMutator } from "$apps/FsProgress/ts/types";
 import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
 import { Store } from "$ts/writable";
 
-export async function FileProgress(initialData: FileOperation, parentPid?: number): Promise<FileProgressMutator> {
+export async function FileProgress(initialData: FileOperation, parentPid?: number, noShade = true): Promise<FileProgressMutator> {
   const progress = Store<FileOperation>(initialData);
 
   if (!parentPid) {
@@ -11,7 +11,7 @@ export async function FileProgress(initialData: FileOperation, parentPid?: numbe
 
     if (typeof process == "string") return null
   } else {
-    const process = await spawnOverlay(getAppById("FsProgress"), parentPid, [progress], true);
+    const process = await spawnOverlay(getAppById("FsProgress"), parentPid, [progress], noShade);
 
     if (typeof process == "string") return null
   }

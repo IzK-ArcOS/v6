@@ -6,7 +6,7 @@ import { deleteItem } from ".";
 import { FileProgress } from "../progress";
 import { pathToFriendlyName, pathToFriendlyPath } from "../util";
 
-export async function deleteItemProgressy(path: string, dispatch = true, pid?: number): Promise<boolean> {
+export async function deleteItemProgressy(path: string, dispatch = true, pid?: number, noShade = false): Promise<boolean> {
   Log("server/fs/delete", `Deleting ${path}`);
 
   const { mutDone, setWork, mutErr } = await FileProgress({
@@ -19,7 +19,7 @@ export async function deleteItemProgressy(path: string, dispatch = true, pid?: n
     working: false,
     waiting: false,
     errors: 0
-  }, pid)
+  }, pid, noShade)
 
   setWork(true);
 
@@ -33,7 +33,7 @@ export async function deleteItemProgressy(path: string, dispatch = true, pid?: n
   return deleted;
 }
 
-export async function deleteMultipleProgressy(paths: string[], pid?: number) {
+export async function deleteMultipleProgressy(paths: string[], pid?: number, noShade = false) {
   Log("server/fs/delete", `Deleting ${paths.length} items`);
 
   const { mutDone, updSub, setWork, setWait, mutErr } = await FileProgress({
@@ -46,7 +46,7 @@ export async function deleteMultipleProgressy(paths: string[], pid?: number) {
     working: false,
     waiting: false,
     errors: 0
-  }, pid)
+  }, pid, noShade)
 
   for (const path of paths) {
     const friendly = pathToFriendlyPath(path);

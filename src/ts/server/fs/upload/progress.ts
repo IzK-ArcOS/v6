@@ -49,7 +49,7 @@ export async function directUploadProgressy(path: string, multi = false, pid?: n
   });
 }
 
-export async function fileUploadProgressy(file: File, dir: string, pid?: number) {
+export async function fileUploadProgressy(file: File, dir: string, pid?: number, noShade = false) {
   Log(
     "server/fs/upload/progress",
     `Uploading ${file.name} to ${dir}`,
@@ -65,7 +65,7 @@ export async function fileUploadProgressy(file: File, dir: string, pid?: number)
     working: true,
     waiting: false,
     errors: 0
-  }, pid)
+  }, pid, noShade)
 
   const content = arrayToBlob(await file.arrayBuffer());
   const path = `${dir}/${file.name}`.split("//").join("/");
@@ -83,7 +83,7 @@ export async function fileUploadProgressy(file: File, dir: string, pid?: number)
   return path;
 }
 
-export async function multipleFileUploadProgressy(files: FileList, dir: string, pid?: number): Promise<boolean> {
+export async function multipleFileUploadProgressy(files: FileList, dir: string, pid?: number, noShade = false): Promise<boolean> {
   Log("server/fs/upload", `Uploading ${files.length} files to ${dir}`);
 
   let total = 0;
@@ -102,7 +102,7 @@ export async function multipleFileUploadProgressy(files: FileList, dir: string, 
     working: false,
     waiting: true,
     errors: 0
-  }, pid)
+  }, pid, noShade)
 
   for (let i = 0; i < files.length; i++) {
     const file = files[i];

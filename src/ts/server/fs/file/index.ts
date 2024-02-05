@@ -10,6 +10,8 @@ import { Notification } from "$types/notif";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../../util";
 import { getParentDirectory, readDirectory } from "../dir";
+import { pathToFriendlyName } from "../util";
+import { LogLevel } from "$types/console";
 
 export async function readFile(path: string): Promise<ArcFile> {
   Log("server/fs/file", `Reading file ${path}`);
@@ -18,6 +20,8 @@ export async function readFile(path: string): Promise<ArcFile> {
     path: toBase64(path),
   });
   const token = UserToken.get();
+
+  if (path.startsWith("@client/")) return await readClientFile(path);
 
   if (!url || !token) return null;
 
@@ -40,6 +44,27 @@ export async function readFile(path: string): Promise<ArcFile> {
   return file;
 }
 
+export async function readClientFile(path: string): Promise<ArcFile> {
+  if (!path.startsWith("@client/")) return null;
+
+  const data: ArcFile = {
+    name: pathToFriendlyName(path),
+    path,
+    data: null,
+    mime: null,
+  }
+
+  const clientUrl = path.replace("@client/", "./");
+  const response = await axios.get(clientUrl, { responseType: "blob" });
+
+  if (response.status !== 200) return null;
+
+  data.mime = response.headers["content-type"] || "text/plain";
+  data.data = response.data;
+
+  return data;
+}
+
 export async function getPartialFile(path: string): Promise<PartialArcFile> {
   Log("server/fs/file", `Getting partial file of ${path}`)
   const parent = getParentDirectory(path);
@@ -57,6 +82,13 @@ export async function writeFile(
   dispatch = true,
   onUploadProgress?: (progress: any) => any,
 ) {
+  if (path.startsWith("@client")) {
+
+    Log("server/fs/file", `Not attempting to write to client file "${path}" as it is read-only!`, LogLevel.warn);
+
+    return true;
+  }
+
   Log("server/fs/file", `Writing ${blob.size} bytes to ${path}`);
 
   const url = getServerUrl(Endpoints.FsFileWrite, { path: toBase64(path) });

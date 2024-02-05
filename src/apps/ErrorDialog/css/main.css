@@ -39,6 +39,10 @@
 
 #ErrorDialog div.top h3.error-title {
   margin-top: 0;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #ErrorDialog div.bottom {

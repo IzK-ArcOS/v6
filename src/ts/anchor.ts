@@ -9,12 +9,14 @@ const registered = [];
 function attachDisableAnchorRedirection() {
   const anchors = document.querySelectorAll("a");
 
-  for (let i = 0; i < anchors.length; i++) {
-    if (registered.includes(anchors[i])) continue;
+  for (const anchor of anchors) {
+    const href = anchor.getAttribute("href");
 
-    registered.push(anchors[i]);
+    if (registered.includes(anchor) || href.startsWith("@client/")) continue;
 
-    anchors[i].addEventListener("click", (e) => {
+    registered.push(anchor);
+
+    anchor.addEventListener("click", (e) => {
       const currentState = PrimaryState.current.get().key;
 
       e.preventDefault();
@@ -25,7 +27,7 @@ function attachDisableAnchorRedirection() {
 
       createErrorDialog({
         title: "Open this page?",
-        message: `You're about to leave ArcOS to navigate to <code>${anchors[i].href}</code> in a <b>new tab</b>. Are you sure you want to continue?`,
+        message: `You're about to leave ArcOS to navigate to <code>${anchor.href}</code> in a <b>new tab</b>. Are you sure you want to continue?`,
         buttons: [
           {
             caption: "Stay here",
@@ -34,7 +36,7 @@ function attachDisableAnchorRedirection() {
           {
             caption: "Proceed",
             action() {
-              window.open(anchors[i].href, "_blank")
+              window.open(anchor.href, "_blank")
             },
             suggested: true
           },

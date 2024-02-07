@@ -25,6 +25,9 @@ window div.titlebar div.controls button.titlebar-control:active {
   opacity: 0.2;
 }
 
-window.headless div.titlebar div.controls button.titlebar-control:disabled {
+window.headless.overlay
+  div.titlebar
+  div.controls
+  button.titlebar-control:disabled {
   display: none !important;
 }

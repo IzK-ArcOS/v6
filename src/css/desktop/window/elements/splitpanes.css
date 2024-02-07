@@ -1,0 +1,17 @@
+window div.splitpanes {
+  background-color: inherit;
+}
+
+window div.splitpanes > div {
+  transition: none !important;
+}
+
+window div.splitpanes.default-theme > div.splitpanes__pane {
+  background-color: inherit;
+}
+
+window div.splitpanes.default-theme > div.splitpanes__splitter {
+  width: 1px;
+  border-left: var(--win-border) !important;
+  background-color: transparent;
+}

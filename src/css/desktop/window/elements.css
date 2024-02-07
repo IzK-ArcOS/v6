@@ -5,6 +5,7 @@
 @import url("./elements/suggested.css");
 @import url("./elements/link.css");
 @import url("./elements/text.css");
+@import url("./elements/splitpanes.css");
 
 window div.body button:not(.reset):not(.material-icons-round):hover,
 window div.body input:hover,

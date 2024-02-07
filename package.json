@@ -39,6 +39,7 @@
     "svelte-click-outside": "^1.0.0",
     "svelte-markdown": "^0.2.3",
     "svelte-preprocess-markdown": "^2.7.3",
+    "svelte-splitpanes": "^0.8.0",
     "svelte-zoom": "^1.0.16",
     "tsparticles": "^2.12.0",
     "tsparticles-preset-fire": "^2.12.0",

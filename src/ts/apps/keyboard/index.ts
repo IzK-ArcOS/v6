@@ -13,7 +13,10 @@ export class AcceleratorHandler {
     this.Log(`Creating new AcceleratorHandler for PID ${process.pid}`);
 
     if (!process.app || !process.app.accelerators) {
-      this.Log("No app data to go off of! Assuming later injection.", LogLevel.warn);
+      this.Log(
+        "No app data to go off of! Assuming later injection.",
+        LogLevel.warn
+      );
     }
 
     this.store = this.process.app.accelerators || [];
@@ -22,19 +25,23 @@ export class AcceleratorHandler {
   }
 
   public Log(message: string, level?: LogLevel) {
-    Log("apps/keyboard", `AcceleratorHandler[${this.process.pid}]: ${message}`, level)
+    Log(
+      "apps/keyboard",
+      `AcceleratorHandler[${this.process.pid}]: ${message}`,
+      level
+    );
   }
 
   public startListener() {
     this.Log("Starting listener!");
 
-    document.addEventListener("keydown", (e) => this.processor(e))
+    document.addEventListener("keydown", (e) => this.processor(e));
   }
 
   public stopListener() {
     this.Log("Stopping listener!", LogLevel.warn);
 
-    document.removeEventListener("keydown", (e) => this.processor(e))
+    document.removeEventListener("keydown", (e) => this.processor(e));
   }
 
   private processor(e: KeyboardEvent) {
@@ -61,10 +68,12 @@ export class AcceleratorHandler {
       /** */
       const pK = e.key.toLowerCase().trim();
       const key = combo.key.trim().toLowerCase();
+      const codedKey = String.fromCharCode(e.keyCode).toLowerCase();
       /** */
       const isFocused = focusedPid.get() == this.process.pid || combo.global;
 
-      if (!modifiers || (key != pK && key) || !isFocused) continue;
+      if (!modifiers || (key != pK && key && key != codedKey) || !isFocused)
+        continue;
 
       combo.action(this.process);
 

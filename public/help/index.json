@@ -10,6 +10,273 @@
     ]
   },
   {
+    "name": "Settings",
+    "path": "@client/help/Settings.md",
+    "subitems": [
+      {
+        "name": "Changing your username or password",
+        "path": "@client/help/Settings/credentials.md"
+      },
+      {
+        "name": "Changing your profile picture",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Deleting your account",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Themes",
+        "path": "@client/help/$unfinished.md",
+        "subitems": [
+          {
+            "name": "Saving/Deleting a theme",
+            "path": "@client/help/$unfinished.md"
+          },
+          {
+            "name": "Visual Styles",
+            "path": "@client/help/$unfinished.md"
+          }
+        ]
+      },
+      {
+        "name": "Wallpaper",
+        "path": "@client/help/$unfinished.md",
+        "subitems": [
+          {
+            "name": "Uploading your own wallpapers",
+            "path": "@client/help/$unfinished.md"
+          },
+          {
+            "name": "Using a URL as a wallpaper",
+            "path": "@client/help/$unfinished.md"
+          }
+        ]
+      },
+      {
+        "name": "Login Background",
+        "path": "@client/help/$unfinished.md",
+        "subitems": [
+          {
+            "name": "Using a URL as a login background",
+            "path": "@client/help/$unfinished.md"
+          },
+          {
+            "name": "Resetting the login background",
+            "path": "@client/help/$unfinished.md"
+          }
+        ]
+      },
+      {
+        "name": "Visuals",
+        "path": "@client/help/$unfinished.md",
+        "subitems": [
+          {
+            "name": "Disabling visual aspects",
+            "path": "@client/help/$unfinished.md"
+          },
+          {
+            "name": "Disabling custom cursors",
+            "path": "@client/help/$unfinished.md"
+          },
+          {
+            "name": "Enabling broad accent colors",
+            "path": "@client/help/$unfinished.md"
+          }
+        ]
+      },
+      {
+        "name": "Shell",
+        "path": "@client/help/$unfinished.md",
+        "subitems": [
+          {
+            "name": "Customizing the taskbar",
+            "path": "@client/help/$unfinished.md"
+          },
+          {
+            "name": "Customizing the start menu",
+            "path": "@client/help/$unfinished.md"
+          },
+          {
+            "name": "Compacting the shell",
+            "path": "@client/help/$unfinished.md"
+          }
+        ]
+      },
+      {
+        "name": "Windows",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Apps",
+        "path": "@client/help/$unfinished.md"
+      }
+    ]
+  },
+  {
+    "name": "Logging",
+    "path": "@client/help/$unfinished.md",
+    "subitems": [
+      {
+        "name": "Categories",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Logging-levels",
+        "path": "@client/help/$unfinished.md"
+      }
+    ]
+  },
+  {
+    "name": "Process Manager",
+    "path": "@client/help/$unfinished.md",
+    "subitems": [
+      {
+        "name": "Stopping processes",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Starting, stopping and managing services",
+        "path": "@client/help/$unfinished.md"
+      }
+    ]
+  },
+  {
+    "name": "Qlorb",
+    "path": "@client/help/$unfinished.md"
+  },
+  {
+    "name": "Lights Off",
+    "path": "@client/help/$unfinished.md"
+  },
+  {
+    "name": "File Manager",
+    "path": "@client/help/$unfinished.md",
+    "subitems": [
+      {
+        "name": "What are system folders?",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Creating files/folders",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "View modes",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Uploading files",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Opening a file in another program",
+        "path": "@client/help/$unfinished.md"
+      }
+    ]
+  },
+  {
+    "name": "Writer",
+    "path": "@client/help/$unfinished.md",
+    "subitems": [
+      {
+        "name": "View options",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Opening a file in another program",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Searching and replacing text",
+        "path": "@client/help/$unfinished.md"
+      }
+    ]
+  },
+  {
+    "name": "Markdown Viewer",
+    "path": "@client/help/$unfinished.md",
+    "subitems": [
+      {
+        "name": "Editing a markdown file",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Supported file types",
+        "path": "@client/help/$unfinished.md"
+      }
+    ]
+  },
+  {
+    "name": "Image Viewer",
+    "path": "@client/help/$unfinished.md",
+    "subitems": [
+      {
+        "name": "Set image as wallpaper",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Supported file types",
+        "path": "@client/help/$unfinished.md"
+      }
+    ]
+  },
+  {
+    "name": "Media Player",
+    "path": "@client/help/$unfinished.md",
+    "subitems": [
+      {
+        "name": "Playing video files",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Playing audio files",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Supported file types",
+        "path": "@client/help/$unfinished.md"
+      }
+    ]
+  },
+  {
+    "name": "Keyboard Shortcuts",
+    "path": "@client/help/$unfinished.md"
+  },
+  {
+    "name": "Services",
+    "path": "@client/help/$unfinished.md",
+    "subitems": [
+      {
+        "name": "What are services?",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Stopping/starting services",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "The service manager",
+        "path": "@client/help/$unfinished.md"
+      }
+    ]
+  },
+  {
+    "name": "Notifications",
+    "path": "@client/help/$unfinished.md",
+    "subitems": [
+      {
+        "name": "What can send notifications?",
+        "path": "@client/help/$unfinished.md"
+      },
+      {
+        "name": "Deleting notifications",
+        "path": "@client/help/$unfinished.md"
+      }
+    ]
+  },
+
+  {
     "name": "Contact Us",
     "path": "@client/help/Contact.md"
   }

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Home",
+    "path": "@client/help/Home.md",
+    "subitems": [
+      {
+        "name": "Debug",
+        "path": "@client/help/Debug.md"
+      }
+    ]
+  },
+  {
+    "name": "Contact Us",
+    "path": "@client/help/Contact.md"
+  }
+]

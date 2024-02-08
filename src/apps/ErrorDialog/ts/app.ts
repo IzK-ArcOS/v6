@@ -18,7 +18,7 @@ export const ErrorDialog: App = {
   id: "ErrorDialog",
   size: { w: NaN, h: NaN },
   minSize: { w: NaN, h: 120 },
-  maxSize: { w: 500, h: NaN },
+  maxSize: { w: 700, h: NaN },
   pos: { x: 60, y: 60 },
   state: {
     minimized: false,

@@ -52,6 +52,7 @@
   border-top: var(--win-border);
   padding: 10px;
   background-color: var(--button-bg);
+  min-height: 50px;
 }
 
 #ErrorDialog div.bottom div.buttons {

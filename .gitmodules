@@ -85,3 +85,6 @@
 [submodule "src/apps/MediaPlayer"]
 	path = src/apps/MediaPlayer
 	url = https://github.com/IzK-ArcOS/v6-MediaPlayer
+[submodule "src/apps/HelpSupport"]
+	path = src/apps/HelpSupport
+	url = https://github.com/IzK-ArcOS/v6-HelpSupport

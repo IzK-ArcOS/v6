@@ -45,6 +45,12 @@
   text-overflow: ellipsis;
 }
 
+#ErrorDialog div.top p {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 #ErrorDialog div.bottom {
   display: flex;
   margin-top: auto;

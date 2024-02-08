@@ -6,6 +6,7 @@ import { ErrorDialog } from "$apps/ErrorDialog/ts/app";
 import { ExitApp } from "$apps/Exit/ts/app";
 import { FileManager } from "$apps/FileManager/ts/app";
 import { FsProgress } from "$apps/FsProgress/ts/app";
+import { HelpSupport } from "$apps/HelpSupport/ts/app";
 import { IconLibrary } from "$apps/IconLibrary/ts/app";
 import { ImageViewer } from "$apps/ImageViewer/ts/app";
 import { LightsOff } from "$apps/LightsOff/ts/app";
@@ -48,5 +49,6 @@ export const builtinApps: Record<string, App> = {
   IconLibrary,
   DonutApp,
   KeyboardShortcuts,
-  MediaPlayer
+  MediaPlayer,
+  HelpSupport
 }

@@ -29,19 +29,23 @@ export async function readFile(path: string): Promise<ArcFile> {
 
   if (!partial) return null;
 
-  const contents = await axios.get(
-    url,
-    makeTokenOptions(token, { responseType: "blob" })
-  );
+  try {
+    const contents = await axios.get(
+      url,
+      makeTokenOptions(token, { responseType: "blob" })
+    );
 
-  const file: ArcFile = {
-    name: partial.filename,
-    path,
-    data: contents.data,
-    mime: partial.mime,
-  };
+    const file: ArcFile = {
+      name: partial.filename,
+      path,
+      data: contents.data,
+      mime: partial.mime,
+    };
 
-  return file;
+    return file;
+  } catch {
+    return null;
+  }
 }
 
 export async function readClientFile(path: string): Promise<ArcFile> {
@@ -54,15 +58,20 @@ export async function readClientFile(path: string): Promise<ArcFile> {
     mime: null,
   }
 
-  const clientUrl = path.replace("@client/", "./");
-  const response = await axios.get(clientUrl, { responseType: "blob" });
+  try {
+    const clientUrl = path.replace("@client/", "./");
+    const response = await axios.get(clientUrl, { responseType: "blob" });
 
-  if (response.status !== 200) return null;
+    if (response.status !== 200) return null;
 
-  data.mime = response.headers["content-type"] || "text/plain";
-  data.data = response.data;
+    data.mime = response.headers["content-type"] || "text/plain";
+    data.data = response.data;
 
-  return data;
+    return data;
+  } catch {
+    return null;
+  }
+
 }
 
 export async function getPartialFile(path: string): Promise<PartialArcFile> {

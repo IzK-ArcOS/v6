@@ -32,13 +32,13 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus voluptatem m
 - [Debug](@client/help/Home.md)
 - [Contact](@client/help/Home.md)
 
-> ![](#InfoIcon) **Note** <hr/>
+> ![icon](#InfoIcon) **Note** <hr/>
 > Useful information that users should know, even when skimming content.
 
-> ![](#WarningIcon) **Warning** <hr/>
+> ![icon](#WarningIcon) **Warning** <hr/>
 > Urgent info that needs immediate user attention to avoid problems.
 
-> ![](#ErrorIcon) **Caution** <hr/>
+> ![icon](#ErrorIcon) **Caution** <hr/>
 > Advises about risks or negative outcomes of certain actions.
 
 | asdf | asdf | asdf |

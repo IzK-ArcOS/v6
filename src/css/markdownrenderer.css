@@ -105,3 +105,12 @@ div.markdownrenderer hr {
   background-color: var(--button-bg);
   border: 0;
 }
+
+div.markdownrenderer img {
+  box-sizing: content-box;
+  border-radius: 5px;
+}
+
+div.markdownrenderer img:not([alt*="icon"]) {
+  margin: 10px 0;
+}

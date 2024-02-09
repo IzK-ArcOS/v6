@@ -1,5 +1,5 @@
 <h1 class="image-header">
-  <img src="#ReleaseLogo"/>
+  <img src="#ReleaseLogo" alt="icon" />
   <span>
     Welcome to Help & Support!
   </span>
@@ -9,10 +9,10 @@ Here you'll find articles to help you get the most out of your ArcOS installatio
 
 ## Common Articles
 
-- [The quick brown fox]()
+- [Change settings using the Settings App](@client/help/Settings.md)
 - [Jumps over the]()
 - [Lazy doggidy dog.]()
 
 > Did you run into a problem that we haven't covered here, or do you have a question? Feel free to contact us using the contact details provided [here](@client/help/Contact.md).
 
-> ![Not finished](#WarningIcon) Not finished yet
+> ![icon](#WarningIcon) Not finished yet

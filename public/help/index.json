@@ -14,102 +14,36 @@
     "path": "@client/help/Settings.md",
     "subitems": [
       {
-        "name": "Changing your username or password",
-        "path": "@client/help/Settings/credentials.md"
+        "name": "Managing your account",
+        "path": "@client/help/Settings/account.md"
       },
       {
-        "name": "Changing your profile picture",
-        "path": "@client/help/$unfinished.md"
+        "name": "Changing the theme",
+        "path": "@client/help/Settings/themes.md"
       },
       {
-        "name": "Deleting your account",
-        "path": "@client/help/$unfinished.md"
+        "name": "The Desktop Wallpaper",
+        "path": "@client/help/Settings/wallpaper.md"
       },
       {
-        "name": "Themes",
-        "path": "@client/help/$unfinished.md",
-        "subitems": [
-          {
-            "name": "Saving/Deleting a theme",
-            "path": "@client/help/$unfinished.md"
-          },
-          {
-            "name": "Visual Styles",
-            "path": "@client/help/$unfinished.md"
-          }
-        ]
+        "name": "The Login Background",
+        "path": "@client/help/Settings/login.md"
       },
       {
-        "name": "Wallpaper",
-        "path": "@client/help/$unfinished.md",
-        "subitems": [
-          {
-            "name": "Uploading your own wallpapers",
-            "path": "@client/help/$unfinished.md"
-          },
-          {
-            "name": "Using a URL as a wallpaper",
-            "path": "@client/help/$unfinished.md"
-          }
-        ]
+        "name": "Changing visual aspects",
+        "path": "@client/help/Settings/visuals.md"
       },
       {
-        "name": "Login Background",
-        "path": "@client/help/$unfinished.md",
-        "subitems": [
-          {
-            "name": "Using a URL as a login background",
-            "path": "@client/help/$unfinished.md"
-          },
-          {
-            "name": "Resetting the login background",
-            "path": "@client/help/$unfinished.md"
-          }
-        ]
+        "name": "The Shell",
+        "path": "@client/help/Settings/shell.md"
       },
       {
-        "name": "Visuals",
-        "path": "@client/help/$unfinished.md",
-        "subitems": [
-          {
-            "name": "Disabling visual aspects",
-            "path": "@client/help/$unfinished.md"
-          },
-          {
-            "name": "Disabling custom cursors",
-            "path": "@client/help/$unfinished.md"
-          },
-          {
-            "name": "Enabling broad accent colors",
-            "path": "@client/help/$unfinished.md"
-          }
-        ]
-      },
-      {
-        "name": "Shell",
-        "path": "@client/help/$unfinished.md",
-        "subitems": [
-          {
-            "name": "Customizing the taskbar",
-            "path": "@client/help/$unfinished.md"
-          },
-          {
-            "name": "Customizing the start menu",
-            "path": "@client/help/$unfinished.md"
-          },
-          {
-            "name": "Compacting the shell",
-            "path": "@client/help/$unfinished.md"
-          }
-        ]
-      },
-      {
-        "name": "Windows",
-        "path": "@client/help/$unfinished.md"
+        "name": "Changing Windows",
+        "path": "@client/help/Settings/windows.md"
       },
       {
         "name": "Apps",
-        "path": "@client/help/$unfinished.md"
+        "path": "@client/help/Settings/apps.md"
       }
     ]
   },

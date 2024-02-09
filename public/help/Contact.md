@@ -1,5 +1,5 @@
 <h2 class="image-header">
-  <img src="#WaveIcon"/>
+  <img src="#WaveIcon" alt="icon"/>
   <span>Contact the team</span>
 </h2>
 

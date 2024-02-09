@@ -21,6 +21,6 @@ window div.body button.link:hover {
 window div.body code {
   padding: 0 2.5px;
   border-radius: var(--button-border-rad);
-  background-color: var(--button-active-bg);
+  background-color: var(--button-bg);
   font-family: "Source Code Pro", monospace;
 }

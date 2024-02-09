@@ -53,7 +53,7 @@ div.markdownrenderer blockquote hr {
 
 div.markdownrenderer pre {
   padding: 16px;
-  background-color: var(--button-active-bg);
+  background-color: var(--button-bg);
   line-height: 1.45;
   overflow: auto;
   border-radius: var(--win-border-rad);
@@ -69,7 +69,8 @@ div.markdownrenderer pre code {
 div.markdownrenderer code {
   font-family: "Source Code Pro", monospace !important;
   background-color: var(--button-active-bg);
-  padding: 2px;
+  padding: 1px 5px !important;
+  margin: 0 2px;
   border-radius: 5px;
 }
 
@@ -84,18 +85,23 @@ div.markdownrenderer table {
 }
 
 div.markdownrenderer table tr {
-  background-color: var(--button-active-bg);
+  background-color: inherit;
   border-top: var(--button-bg) 1px solid;
 }
+
+div.markdownrenderer table tr:not(:nth-child(even)) code {
+  background-color: var(--win-bg);
+}
+
 div.markdownrenderer table th,
 div.markdownrenderer table td {
   padding: 6px 13px;
-  border: 1px solid var(--button-bg);
+  border: 1px solid var(--button-hover-bg);
   text-align: left !important;
 }
 
-div.markdownrenderer table tr:nth-child(2n) {
-  background-color: var(--button-bg) 1px solid;
+div.markdownrenderer table tr:nth-child(even) {
+  background-color: var(--button-bg);
 }
 
 div.markdownrenderer hr {

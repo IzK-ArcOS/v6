@@ -89,7 +89,7 @@ div.markdownrenderer table tr {
   border-top: var(--button-bg) 1px solid;
 }
 
-div.markdownrenderer table tr:not(:nth-child(even)) code {
+div.markdownrenderer table tr:nth-child(even) code {
   background-color: var(--win-bg);
 }
 

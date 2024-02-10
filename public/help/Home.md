@@ -13,6 +13,8 @@ Here you'll find articles to help you get the most out of your ArcOS installatio
 - [Jumps over the]()
 - [Lazy doggidy dog.]()
 
-> Did you run into a problem that we haven't covered here, or do you have a question? Feel free to contact us using the contact details provided [here](@client/help/Contact.md).
+---
 
-> ![icon](#WarningIcon) Not finished yet
+### Contact Us!
+
+Did you run into a problem that we haven't covered here, or do you have a question? Feel free to contact us using the contact details provided [here](@client/help/Contact.md).

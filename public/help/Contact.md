@@ -34,5 +34,6 @@ You can do this too, but do note that I'm a busy man with a lot to do in a day. 
 - My Discord: [@izkuipers](https://discord.com/users/656469722526908427)
 - Website: [izkuipers.nl](https://izkuipers.nl/)
 
-> ![icon](#WarningIcon) **I'm always busy!** <hr/>
+> ### ![icon](#WarningIcon) **I'm always busy!**
+>
 > I work from really early in the morning to really late at night, so it could take a while before I see- or have time to respond to your message. Please be patient, one message is more than enough!

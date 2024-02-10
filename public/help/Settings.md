@@ -15,7 +15,7 @@ From here you can manage all your ArcOS settings, conveniently put in one place.
 - What pages are there?
 - [Managing your account](@client/help/Settings/account.md)
 - [Changing the theme](@client/help/Settings/themes.md)
-- [The Desktop Wallpaper](@client/help/Settings/wallaper.md)
+- [The Desktop Wallpaper](@client/help/Settings/wallpaper.md)
 - [The Login Background](@client/help/Settings/login.md)
 - [Changing visual aspects](@client/help/Settings/visuals.md)
 - [The Shell](@client/help/Settings/shell.md)

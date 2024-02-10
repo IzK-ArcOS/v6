@@ -1,3 +1,4 @@
+import { ArticlePath } from "$apps/HelpSupport/ts/types";
 import { AppRuntime } from "$ts/apps/runtime";
 import { AppKeyCombinations } from "./accelerator";
 import { MaybePromise, Nullable } from "./common";
@@ -28,6 +29,7 @@ export interface App {
   elevated?: boolean;
   altMenu?: ContextMenuItem[];
   acceleratorDescriptions?: Record<string, string>; // <[combo in One+Two+Key format], description>
+  helpArticle?: ArticlePath;
 }
 
 export type AppMutator = ReadableStore<App>;

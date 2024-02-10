@@ -41,6 +41,9 @@ All images not listed above are created by or licensed to the ArcOS Team.
 
 ## Screenshots
 
+## Note about the help articles
+Help articles are written specifically for the Help & Support application in ArcOS. These files will have broken icons, links and styling when viewed outside Help & Support.
+
 ![ArcOS Desktop](https://user-images.githubusercontent.com/76709090/223267524-aca68c8f-dcd2-4e27-99b7-8d6442ba2fc3.png)
 ![ArcFind](https://user-images.githubusercontent.com/76709090/223268177-4ef2be20-8f40-4401-9fd5-841f1236c827.png)
 ![Boot Screen](https://user-images.githubusercontent.com/76709090/223268411-da2675e1-03ec-4e34-b3cc-e14e02a29402.png)

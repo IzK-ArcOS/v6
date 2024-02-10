@@ -4,7 +4,7 @@ The desktop wallpaper is the beautiful image you see every time you log in. It's
 
 - Apply a wallpaper
 - Upload a wallpaper from your device
-- Use a Internet Address (URL) as a wallpaper
+- Use an Internet Address (URL) as a wallpaper
 
 Before you continue, first open the **Settings App**. More information about opening the settings app can be found in the [Settings](@client/help/Settings.md) article under **"Opening the settings app"**. Once opened, make sure you're on the **Wallpaper** page by clicking on **Wallpaper** in the sidebar.
 

@@ -29,7 +29,7 @@ export interface App {
   elevated?: boolean;
   altMenu?: ContextMenuItem[];
   acceleratorDescriptions?: Record<string, string>; // <[combo in One+Two+Key format], description>
-  helpArticle?: ArticlePath;
+  helpArticle?: ArticlePath | string;
 }
 
 export type AppMutator = ReadableStore<App>;

@@ -89,19 +89,16 @@ div.markdownrenderer table tr {
   border-top: var(--button-bg) 1px solid;
 }
 
-div.markdownrenderer table tr:nth-child(even) code {
-  background-color: var(--win-bg);
-}
-
 div.markdownrenderer table th,
 div.markdownrenderer table td {
   padding: 6px 13px;
   border: 1px solid var(--button-hover-bg);
-  text-align: left !important;
+  text-align: left;
 }
 
-div.markdownrenderer table tr:nth-child(even) {
+div.markdownrenderer table th {
   background-color: var(--button-bg);
+  text-align: center;
 }
 
 div.markdownrenderer hr {

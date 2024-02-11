@@ -1,4 +1,4 @@
-:root {
+:root .desktop.cursor-custom * {
   --cur-normal: url("../../assets/cursors/cursor.png"), auto;
   --cur-hand: url("../../assets/cursors/hand.cur"), auto;
   --cur-busy: url("../../assets/cursors/busy.png"), auto;
@@ -6,9 +6,9 @@
   --cur-forbidden: url("../../assets/cursors/forbidden.cur"), auto;
 }
 
-:root :not(.cursor-custom) {
-  --cur-normal: normal;
-  --cur-hand: hand;
+:root .desktop * {
+  --cur-normal: auto;
+  --cur-hand: pointer;
   --cur-busy: progress;
   --cur-beam: text;
   --cur-forbidden: not-allowed;

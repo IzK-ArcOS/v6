@@ -1,11 +1,24 @@
-import { ArticlePath } from "$apps/HelpSupport/ts/types";
 
-export const HelpArticles: Record<string, ArticlePath> = {
+export const HelpArticles = {
   home: `@client/help/Home.md`,
   settings: `@client/help/Settings.md`,
   settingsAccount: `@client/help/Settings/account.md`,
+  settingsAccountProfile: `@client/help/Settings/account/changeprofile.md`,
+  settingsAccountCredentials: `@client/help/Settings/account/credentials.md`,
+  settingsAccountDelete: `@client/help/Settings/account/delete.md`,
   settingsThemes: `@client/help/Settings/themes.md`,
+  settingsThemesStyle: `@client/help/Settings/themes/style.md`,
+  settingsThemesApply: `@client/help/Settings/themes/apply.md`,
+  settingsThemesSave: `@client/help/Settings/themes/save.md`,
+  settingsThemesDelete: `@client/help/Settings/themes/delete.md`,
   settingsWallpaper: `@client/help/Settings/wallpaper.md`,
+  settingsWallpaperApply: `@client/help/Settings/wallpaper/apply.md`,
+  settingsWallpaperUpload: `@client/help/Settings/wallpaper/upload.md`,
+  settingsWallpaperUrl: `@client/help/Settings/wallpaper/url.md`,
+  settingsLogin: `@client/help/Settings/login.md`,
+  settingsLoginApply: `@client/help/Settings/apply.md`,
+  settingsLoginUrl: `@client/help/Settings/url.md`,
+  settingsLoginReset: `@client/help/Settings/reset.md`,
   contact: `@client/help/Contact.md`,
   debug: `@client/help/Debug.md`,
   $unfinished: `@client/help/$unfinished.md`

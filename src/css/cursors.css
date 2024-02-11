@@ -4,24 +4,24 @@
   cursor: var(--cur-normal);
 }
 
-window > div.body a,
-window > div.body a *,
-window > div.body button,
-window > div.body button *,
-window > div.body input,
-window > div.body input *,
-window > div.body select,
-window > div.body select * {
-  cursor: var(--cur-hand) !important;
+.desktop a,
+.desktop a *,
+.desktop button,
+.desktop button *,
+.desktop input,
+.desktop input *,
+.desktop select,
+.desktop select * {
+  cursor: var(--cur-hand);
 }
 
-input:not([type*="checkbox"]),
-textarea {
+.desktop input:not([type*="checkbox"]),
+.desktop textarea {
   cursor: var(--cur-beam) !important;
 }
 
-:disabled,
-:disabled * {
+.desktop :disabled,
+.desktop :disabled * {
   cursor: var(--cur-forbidden) !important;
 }
 

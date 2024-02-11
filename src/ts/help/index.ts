@@ -3,7 +3,7 @@ import { spawnApp } from "$ts/apps";
 import { focusedPid } from "$ts/stores/apps";
 import { ProcessStack } from "$ts/stores/process";
 
-export async function GetHelp(article: ArticlePath) {
+export async function GetHelp(article: string | ArticlePath) {
   const helpPid = ProcessStack.getAppPids("HelpSupport")[0];
 
   if (!helpPid) {

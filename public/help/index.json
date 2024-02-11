@@ -7,15 +7,18 @@
         "name": "Debug",
         "path": "@client/help/Debug.md"
       }
-    ]
+    ],
+    "icon": "HomeIcon"
   },
   {
     "name": "Settings",
     "path": "@client/help/Settings.md",
+    "icon": "SettingsIcon",
     "subitems": [
       {
         "name": "Managing your account",
         "path": "@client/help/Settings/account.md",
+        "icon": "AccountIcon",
         "subitems": [
           {
             "name": "Changing your profile picture",
@@ -34,6 +37,7 @@
       {
         "name": "Changing the theme",
         "path": "@client/help/Settings/themes.md",
+        "icon": "ThemesIcon",
         "subitems": [
           {
             "name": "Accent color and Style",
@@ -56,6 +60,7 @@
       {
         "name": "The Desktop Wallpaper",
         "path": "@client/help/Settings/wallpaper.md",
+        "icon": "DesktopIcon",
         "subitems": [
           {
             "name": "Applying a wallpaper",
@@ -74,6 +79,7 @@
       {
         "name": "The Login Background",
         "path": "@client/help/Settings/login.md",
+        "icon": "PasswordIcon",
         "subitems": [
           {
             "name": "Applying a login background",
@@ -91,19 +97,23 @@
       },
       {
         "name": "Changing visual aspects",
-        "path": "@client/help/Settings/visuals.md"
+        "path": "@client/help/Settings/visuals.md",
+        "icon": "PersonalizationIcon"
       },
       {
         "name": "The Shell",
-        "path": "@client/help/Settings/shell.md"
+        "path": "@client/help/Settings/shell.md",
+        "icon": "TaskbarIcon"
       },
       {
         "name": "Changing Windows",
-        "path": "@client/help/Settings/windows.md"
+        "path": "@client/help/Settings/windows.md",
+        "icon": "WindowSettingsIcon"
       },
       {
         "name": "Apps",
-        "path": "@client/help/Settings/apps.md"
+        "path": "@client/help/Settings/apps.md",
+        "icon": "AppsIcon"
       }
     ]
   },

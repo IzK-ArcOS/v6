@@ -1,6 +1,7 @@
 import { SEP_ITEM } from "$state/Desktop/ts/store";
 import { getAppById, spawnOverlay } from "$ts/apps";
 import { CompileSnappingContextOption } from "$ts/apps/snapping";
+import { GetHelp } from "$ts/help";
 import { ShutdownIcon } from "$ts/images/power";
 import { AppContextMenu } from "$types/app";
 import { ProcessStack } from "../process";
@@ -15,6 +16,14 @@ export const BaseAppContext: AppContextMenu = {
 
         spawnOverlay(AppInfo, window.pid, [window.id])
       },
+    },
+    {
+      caption: "Get Help",
+      icon: "question_mark",
+      disabled: (window) => !window.helpArticle,
+      action(window) {
+        GetHelp(window.helpArticle);
+      }
     },
     SEP_ITEM,
     {

@@ -63,15 +63,15 @@
   },
   {
     "name": "Logging",
-    "path": "@client/help/$unfinished.md",
+    "path": "@client/help/Logging.md",
     "subitems": [
       {
         "name": "Categories",
-        "path": "@client/help/$unfinished.md"
+        "path": "@client/help/Logging/categories.md"
       },
       {
         "name": "Logging-levels",
-        "path": "@client/help/$unfinished.md"
+        "path": "@client/help/Logging/levels.md"
       }
     ]
   },

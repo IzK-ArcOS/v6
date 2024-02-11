@@ -33,15 +33,61 @@
       },
       {
         "name": "Changing the theme",
-        "path": "@client/help/Settings/themes.md"
+        "path": "@client/help/Settings/themes.md",
+        "subitems": [
+          {
+            "name": "Accent color and Style",
+            "path": "@client/help/Settings/themes/style.md"
+          },
+          {
+            "name": "Applying a theme",
+            "path": "@client/help/Settings/themes/apply.md"
+          },
+          {
+            "name": "Saving a theme",
+            "path": "@client/help/Settings/themes/save.md"
+          },
+          {
+            "name": "Deleting a theme",
+            "path": "@client/help/Settings/themes/delete.md"
+          }
+        ]
       },
       {
         "name": "The Desktop Wallpaper",
-        "path": "@client/help/Settings/wallpaper.md"
+        "path": "@client/help/Settings/wallpaper.md",
+        "subitems": [
+          {
+            "name": "Applying a wallpaper",
+            "path": "@client/help/Settings/wallpaper/apply.md"
+          },
+          {
+            "name": "Uploading a wallpaper",
+            "path": "@client/help/Settings/wallpaper/upload.md"
+          },
+          {
+            "name": "Using a URL as wallpaper",
+            "path": "@client/help/Settings/wallpaper/url.md"
+          }
+        ]
       },
       {
         "name": "The Login Background",
-        "path": "@client/help/Settings/login.md"
+        "path": "@client/help/Settings/login.md",
+        "subitems": [
+          {
+            "name": "Applying a login background",
+            "path": "@client/help/Settings/login/apply.md"
+          },
+          {
+            "name": "Using a URL as login background",
+            "path": "@client/help/Settings/login/url.md"
+          },
+          {
+            "name": "Resetting the login background",
+            "path": "@client/help/Settings/login/reset.md"
+          }
+        ]
       },
       {
         "name": "Changing visual aspects",

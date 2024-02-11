@@ -211,5 +211,5 @@ export const Wallpapers: { [key: string]: Wallpaper } = {
   /**Izaak Kuipers */
   img06: { url: img06, thumb: img06Thumb, author: "Izaak Kuipers", name: "ArcOS Beta Dark", builtin: true },
   img07: { url: img07, thumb: img07Thumb, author: "Izaak Kuipers", name: "ArcOS Beta Light", builtin: true },
-  img0: { url: img0, thumb: img0Thumb, author: "Izaak Kuipers", name: "Blank", builtin: true },
+  img0: { url: img0, thumb: img0Thumb, author: "The Void", name: "Blank", builtin: true },
 };

@@ -15,7 +15,21 @@
     "subitems": [
       {
         "name": "Managing your account",
-        "path": "@client/help/Settings/account.md"
+        "path": "@client/help/Settings/account.md",
+        "subitems": [
+          {
+            "name": "Changing your profile picture",
+            "path": "@client/help/Settings/account/changeprofile.md"
+          },
+          {
+            "name": "Changing username or password",
+            "path": "@client/help/Settings/account/credentials.md"
+          },
+          {
+            "name": "Deleting your account",
+            "path": "@client/help/Settings/account/delete.md"
+          }
+        ]
       },
       {
         "name": "Changing the theme",

@@ -40,3 +40,7 @@ Enabling this setting will apply the [Accent Color](@client/help/Settings/themes
 | Without Broad Accent Colors                                          | With Broad Accent Colors                                            |
 | -------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | ![medium](@client/help/assets/settings-visuals-broad-accent-off.png) | ![medium](@client/help/assets/settings-visuals-broad-accent-on.png) |
+
+---
+
+[Back to **Settings**](@client/help/Settings.md)

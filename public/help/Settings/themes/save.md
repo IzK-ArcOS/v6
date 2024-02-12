@@ -2,7 +2,8 @@
 
 Saving a theme can be read in two ways. One is to save it on the Themes page by clicking **Save Theme**, the other is to save it to your filesystem. Here are these two explained:
 
-1. **Saving the theme on the Themes Page** <br/>
+1. ### Saving the theme on the Themes Page
+
    On the Themes page, click on the **Save Theme** button:
    ![large](@client/help/assets/settings-themes-save-button.png)
 
@@ -15,7 +16,8 @@ Saving a theme can be read in two ways. One is to save it on the Themes page by 
 
    The theme will then be saved to your user account.
 
-2. **Saving an existing theme to your filesystem** <br/>
+2. ### Saving an existing theme to your filesystem
+
    Saving a theme to your filesystem is quite easy. Right-click any theme, and select the **Save to ArcFS** option:
    ![large](@client/help/assets/settings-themes-save-to-arcfs.png)
 

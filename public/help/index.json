@@ -133,15 +133,15 @@
   },
   {
     "name": "Process Manager",
-    "path": "@client/help/$unfinished.md",
+    "path": "@client/help/ProcessManager.md",
     "subitems": [
       {
-        "name": "Stopping processes",
-        "path": "@client/help/$unfinished.md"
+        "name": "Managing processes",
+        "path": "@client/help/ProcessManager/processes.md"
       },
       {
-        "name": "Starting, stopping and managing services",
-        "path": "@client/help/$unfinished.md"
+        "name": "Managing services",
+        "path": "@client/help/ProcessManager/services.md"
       }
     ]
   },

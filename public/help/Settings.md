@@ -26,8 +26,8 @@ From here you can manage all your ArcOS settings, conveniently put in one place.
 
 Opening it is quite easy. The easiest method is by simply pressing the `Alt`+`Shift`+`I` keyboard shortcut. Pressing these will either open or focus the Settings app. Alternatively, you can open Settings using one of these interactive options:
 
-1. **Pressing the settings gear**
-   <br/>
+1. ### Pressing the settings gear
+
    The Settings gear is located in both the Start Menu and Action Center:
    <br/>
 
@@ -37,8 +37,7 @@ Opening it is quite easy. The easiest method is by simply pressing the `Alt`+`Sh
 
    ![Settings gear in the action center](@client/help/assets/settings-gear-action-center.png)
 
-2. **Launching it from ArcTerm (Technical)**
-   <br/>
+2. ### Launching it from ArcTerm (Technical)
 
    You can also use the `spawn` command in [ArcTerm](@client/help/ArcTerm.md) to open the Settings App:
 

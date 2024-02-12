@@ -30,3 +30,36 @@ Enabling this setting will change your start button to match your accent color:
 | Disabled                                                       | Enabled                                                       |
 | -------------------------------------------------------------- | ------------------------------------------------------------- |
 | ![medium](@client/help/assets/settings-shell-accented-off.png) | ![medium](@client/help/assets/settings-shell-accented-on.png) |
+
+<br/>
+
+## Start menu groups
+
+Start groups are like folders in the start menu. They organize the start menu so that you can more easily open what you're looking for. However, it is possible to disable these groups and to just display a full list of apps instead. To do this, enable **Don't group start** on the Shell page. Here is a preview:
+
+| With groups                                                       | Without groups                                                     |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| ![medium](@client/help/assets/settings-shell-start-groups-on.png) | ![medium](@client/help/assets/settings-shell-start-groups-off.png) |
+
+<br/>
+
+## Dock the shell
+
+When the shell is docked, the taskbar will no longer have space between it and the screen. This saves space on smaller screen sizes, or you might just prefer this over the "floating" taskbar. To enable docking, turn on **Dock shell** on the Shell page. Here is a preview:
+
+|          |                                                               |
+| -------- | ------------------------------------------------------------- |
+| Undocked | ![medium](@client/help/assets/settings-shell-docking-off.png) |
+| Docked   | ![medium](@client/help/assets/settings-shell-docking-on.png)  |
+
+## Compact Context Menu
+
+The Context Menu is the menu you see when you right click somewhere. This menu always reflects the style of the Shell, which is also why it's on this page. The Context Menu can be made smaller if you're on a smaller screen. To make the Context Menu smaller, enable **Compact context menu** on the Shell page. Here is another preview:
+
+| Uncompacted                                                          | Compact Context Menu                                                |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![large](@client/help/assets/settings-shell-compact-context-off.png) | ![large](@client/help/assets/settings-shell-compact-context-on.png) |
+
+---
+
+[Back to **Settings**](@client/help/Settings.md)

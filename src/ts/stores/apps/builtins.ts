@@ -14,6 +14,7 @@ import { LoadSaveDialog } from "$apps/LoadSaveDialog/ts/app";
 import { LoggerApp } from "$apps/LoggerApp/ts/app";
 import { MarkDownViewer } from "$apps/MarkDownViewer/ts/app";
 import { MediaPlayer } from "$apps/MediaPlayer/ts/app";
+import { MessagingApp } from "$apps/MessagingApp/ts/app";
 import { OpenWith } from "$apps/OpenWith/ts/app";
 import { ProcessManager } from "$apps/ProcessManager/ts/app";
 import { QlorbApp } from "$apps/Qlorb/ts/app";
@@ -50,5 +51,6 @@ export const builtinApps: Record<string, App> = {
   DonutApp,
   KeyboardShortcuts,
   MediaPlayer,
-  HelpSupport
+  HelpSupport,
+  MessagingApp
 }

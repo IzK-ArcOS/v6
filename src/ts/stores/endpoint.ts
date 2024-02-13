@@ -14,7 +14,13 @@ export const Endpoints = {
   Users: "/users/get", // v1
   UserRename: "/user/rename", // v1
   UserChangePassword: "/user/changepswd", // v1
-  LogoffToken: "/logoff" // v1
+  LogoffToken: "/logoff", // v1
+  MessagesSend: "/messages/send",
+  MessagesReply: "/messages/reply",
+  MessagesThread: "/messages/thread",
+  MessagesList: "/messages/list",
+  MessagesGet: "/messages/get",
+  MessagesDelete: "/messages/delete"
 };
 
 export function isStoredEndpoint(endpoint: string) {

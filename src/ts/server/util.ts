@@ -2,6 +2,7 @@ import { manualCrash } from "$ts/bugrep/crash";
 import { isStoredEndpoint } from "$ts/stores/endpoint";
 import { ConnectedServer } from "$ts/stores/server";
 import { Params, Server } from "$types/server";
+import { AxiosRequestConfig } from "axios";
 
 /**
  * Get endpoint URL of the current server
@@ -10,16 +11,9 @@ import { Params, Server } from "$types/server";
  * @param server Optionally the server to use
  * @returns A string containing the full URL, or `null` if no server can be used.
  */
-export function getServerUrl(
-  path: string,
-  params?: Params,
-  server?: Server
-): string {
+export function getServerUrl(path: string, params?: Params, server?: Server): string {
   if (!isStoredEndpoint(path)) {
-    manualCrash(
-      "src/ts/server/util.ts",
-      "getServerUrl: The path must be part of the Endpoints store."
-    );
+    manualCrash("src/ts/server/util.ts", "getServerUrl: The path must be part of the Endpoints store.");
 
     return null;
   }
@@ -54,7 +48,7 @@ export function compileParams(params: Params): string {
   return result;
 }
 
-export function makeTokenOptions(token: string, additional?: object): object {
+export function makeTokenOptions(token: string, additional?: AxiosRequestConfig<any>): object {
   return {
     headers: {
       Authorization: `Bearer ${token}`,

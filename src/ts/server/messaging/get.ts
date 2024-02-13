@@ -1,10 +1,11 @@
 import { Endpoints } from "$ts/stores/endpoint";
-import { UserName, UserToken } from "$ts/stores/user";
+import { UserDataStore, UserName, UserToken } from "$ts/stores/user";
 import { Message, PartialMessage } from "$types/messaging";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 import { Nullable } from "$types/common";
 import { toBase64 } from "$ts/base64";
+import { getMessageArchive } from "./archive";
 
 export async function getAllMessages(): Promise<PartialMessage[]> {
   const token = UserToken.get();
@@ -12,7 +13,7 @@ export async function getAllMessages(): Promise<PartialMessage[]> {
 
   if (!url || !token) return [];
 
-  const response = await axios.get(url, makeTokenOptions(token));;
+  const response = await axios.get(url, makeTokenOptions(token));
 
   if (response.status !== 200) return [];
 
@@ -32,6 +33,12 @@ export async function getMessage(id: string): Promise<Nullable<Message>> {
   return response.data.data as Message;
 }
 
+export async function getInboxMessages() {
+  const messages = await getAllMessages();
+  const archive = getMessageArchive();
+
+  return messages.filter((m) => !archive.includes(m.id));
+}
 
 export async function getSentMessages() {
   const messages = await getAllMessages();
@@ -51,11 +58,7 @@ export async function getReceivedMessages() {
   let returnValue: PartialMessage[] = [];
 
   for (let i = 0; i < messages.length; i++) {
-    if (
-      messages[i].receiver == UserName.get() &&
-      messages[i].sender != UserName.get()
-    )
-      returnValue.push(messages[i]);
+    if (messages[i].receiver == UserName.get() && messages[i].sender != UserName.get()) returnValue.push(messages[i]);
   }
 
   return returnValue;

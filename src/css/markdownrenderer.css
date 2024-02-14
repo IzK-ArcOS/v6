@@ -112,6 +112,7 @@ div.markdownrenderer hr {
 div.markdownrenderer img {
   box-sizing: content-box;
   border-radius: 5px;
+  max-height: 25em;
 }
 
 div.markdownrenderer img:not([alt*="icon"]) {

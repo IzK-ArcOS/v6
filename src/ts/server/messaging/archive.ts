@@ -1,3 +1,4 @@
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { UserDataStore } from "$ts/stores/user";
 import { getAllMessages } from "./get";
 
@@ -21,7 +22,7 @@ export function archiveMessage(id: string) {
 
   if (!udata.appdata.MessagingApp) udata.appdata.MessagingApp = { archive: [] };
 
-  const archive = udata.appdata.MessagingApp.archive as string[];
+  const archive = udata.appdata.MessagingApp.archive as string[] || [];
 
   if (archive.includes(id)) return;
 
@@ -30,6 +31,8 @@ export function archiveMessage(id: string) {
   udata.appdata.MessagingApp.archive = archive;
 
   UserDataStore.set(udata);
+
+  GlobalDispatch.dispatch("message-flush");
 }
 
 export function unarchiveMessage(id: string) {
@@ -37,7 +40,7 @@ export function unarchiveMessage(id: string) {
 
   if (!udata.appdata.MessagingApp) udata.appdata.MessagingApp = { archive: [] };
 
-  const archive = udata.appdata.MessagingApp.archive as string[];
+  const archive = udata.appdata.MessagingApp.archive as string[] || [];
 
   if (!archive.includes(id)) return;
 
@@ -48,4 +51,16 @@ export function unarchiveMessage(id: string) {
   udata.appdata.MessagingApp.archive = archive;
 
   UserDataStore.set(udata);
+
+  GlobalDispatch.dispatch("message-flush");
+}
+
+export function isArchived(id: string) {
+  const udata = UserDataStore.get();
+
+  if (!udata.appdata.MessagingApp) return false;
+
+  const archive = udata.appdata.MessagingApp.archive as string[] || [];
+
+  return archive && archive.includes(id);
 }

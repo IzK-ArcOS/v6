@@ -4,6 +4,7 @@ import { ConnectedServer } from "$ts/stores/server";
 import { UserToken } from "$ts/stores/user";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 
 export async function sendMessage(receivers: string[], body: string): Promise<boolean> {
   const token = UserToken.get();
@@ -14,8 +15,14 @@ export async function sendMessage(receivers: string[], body: string): Promise<bo
     const url = getServerUrl(Endpoints.MessagesSend, { target: toBase64(receiver) });
     const response = await axios.post(url, body, makeTokenOptions(token));
 
-    if (response.status !== 200) return false;
+    if (response.status !== 200) {
+      GlobalDispatch.dispatch("message-flush");
+
+      return false;
+    }
   }
+
+  GlobalDispatch.dispatch("message-flush");
 
   return true;
 }
@@ -28,5 +35,9 @@ export async function replyToMessage(id: string, receiver: string, body: string)
 
   const response = await axios.post(url, body, makeTokenOptions(token));
 
-  return response.status === 200;
+  if (response.status !== 200) return false;
+
+  GlobalDispatch.dispatch("message-flush");
+
+  return true;
 }

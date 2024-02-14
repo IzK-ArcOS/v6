@@ -3,6 +3,7 @@ import { UserToken } from "$ts/stores/user";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 import { toBase64 } from "$ts/base64";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 
 export async function deleteMessage(id: string) {
   const url = getServerUrl(Endpoints.MessagesDelete, { id: toBase64(id) });
@@ -13,6 +14,8 @@ export async function deleteMessage(id: string) {
   const response = await axios.get(url, makeTokenOptions(token));
 
   if (response.status !== 200) return false;
+
+  GlobalDispatch.dispatch("message-flush");
 
   return true;
 }

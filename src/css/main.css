@@ -15,7 +15,7 @@
   min-width: 0; /* Fix Flexbox weirdness, somehow*/
 }
 
-*:not(.material-icons-round) {
+*:not([class*="material-icons"]) {
   font-family: var(--font);
 }
 

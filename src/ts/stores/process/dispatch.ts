@@ -2,22 +2,22 @@ import { AppRuntime } from "$ts/apps/runtime";
 
 export function RuntimeGlobalDispatches(runtime: AppRuntime): Record<string, () => void> {
   return {
-    "minimize-all": () => runtime.minimize()
-  }
+    "minimize-all": () => runtime.minimize(),
+  };
 }
 
 export function RuntimeScopedDispatches(runtime: AppRuntime): Record<string, (data: any) => void> {
   return {
-    "minimize": () => runtime.minimize(),
-    "maximize": () => runtime.maximize(),
-    "restore": () => runtime.restore(),
+    minimize: () => runtime.minimize(),
+    maximize: () => runtime.maximize(),
+    restore: () => runtime.restore(),
     "open-file": (file: string) => runtime.handleOpenFile(file),
     "snapping-disable": () => {
       runtime.appMutator.update((v) => {
         v.state.snapping = false;
 
         return v;
-      })
+      });
     },
     "snapping-set": (state) => {
       runtime.appMutator.update((v) => {
@@ -25,17 +25,9 @@ export function RuntimeScopedDispatches(runtime: AppRuntime): Record<string, (da
         v.state.snapping = true;
 
         return v;
-      })
-    }
-  }
+      });
+    },
+  };
 }
 
-export const KnownGlobalDispatchers = [
-  "fs-flush",
-  "services-flush",
-  "desktop-show",
-  "desktop-hide",
-  "elevation-accept",
-  "elevation-reject",
-  "minimize-all"
-]
+export const KnownGlobalDispatchers = ["fs-flush", "services-flush", "desktop-show", "desktop-hide", "elevation-accept", "elevation-reject", "minimize-all", "message-flush"];

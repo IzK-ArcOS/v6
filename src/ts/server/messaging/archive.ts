@@ -10,7 +10,7 @@ export function getMessageArchive(): string[] {
 }
 
 export async function getArchivedMessages() {
-  const archived = getMessageArchive();
+  const archived = getMessageArchive() || [];
   const messages = await getAllMessages();
 
   return messages.filter((m) => archived.includes(m.id));

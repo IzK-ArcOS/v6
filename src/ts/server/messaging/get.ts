@@ -35,9 +35,10 @@ export async function getMessage(id: string): Promise<Nullable<Message>> {
 
 export async function getInboxMessages() {
   const messages = await getAllMessages();
-  const archive = getMessageArchive();
+  const archive = getMessageArchive() || [];
+  const username = UserName.get();
 
-  return messages.filter((m) => !archive.includes(m.id));
+  return messages.filter((m) => !archive.includes(m.id) && (username != m.sender || (username == m.receiver && username == m.sender)));
 }
 
 export async function getSentMessages() {

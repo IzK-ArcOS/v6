@@ -11,11 +11,15 @@ export async function deleteMessage(id: string) {
 
   if (!url || !token) return false;
 
-  const response = await axios.get(url, makeTokenOptions(token));
+  try {
+    const response = await axios.get(url, makeTokenOptions(token));
 
-  if (response.status !== 200) return false;
+    if (response.status !== 200) return false;
 
-  GlobalDispatch.dispatch("message-flush");
+    GlobalDispatch.dispatch("message-flush");
 
-  return true;
+    return true;
+  } catch {
+    return false;
+  }
 }

@@ -13,11 +13,12 @@ export async function sendMessage(receivers: string[], body: string): Promise<bo
 
   for (const receiver of receivers) {
     const url = getServerUrl(Endpoints.MessagesSend, { target: toBase64(receiver) });
-    const response = await axios.post(url, body, makeTokenOptions(token));
 
-    if (response.status !== 200) {
-      GlobalDispatch.dispatch("message-flush");
+    try {
+      const response = await axios.post(url, body, makeTokenOptions(token));
 
+      if (response.status !== 200) return false;
+    } catch {
       return false;
     }
   }
@@ -33,11 +34,15 @@ export async function replyToMessage(id: string, receiver: string, body: string)
 
   if (!token || !url) return false;
 
-  const response = await axios.post(url, body, makeTokenOptions(token));
+  try {
+    const response = await axios.post(url, body, makeTokenOptions(token));
 
-  if (response.status !== 200) return false;
+    if (response.status !== 200) return false;
 
-  GlobalDispatch.dispatch("message-flush");
+    GlobalDispatch.dispatch("message-flush");
 
-  return true;
+    return true;
+  } catch {
+    return false;
+  }
 }

@@ -20,7 +20,7 @@ export const Endpoints = {
   MessagesThread: "/messages/thread",
   MessagesList: "/messages/list",
   MessagesGet: "/messages/get",
-  MessagesDelete: "/messages/delete"
+  MessagesDelete: "/messages/delete",
 };
 
 export function isStoredEndpoint(endpoint: string) {

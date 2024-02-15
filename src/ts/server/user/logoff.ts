@@ -12,11 +12,15 @@ export async function LogoffToken() {
 
   if (!url || !token) return false;
 
-  const response = await axios.get(url, makeTokenOptions(token));
+  try {
+    const response = await axios.get(url, makeTokenOptions(token));
 
-  if (response.status !== 200) return false;
+    if (response.status !== 200) return false;
 
-  UserToken.set(null);
+    UserToken.set(null);
 
-  return true;
+    return true;
+  } catch {
+    return true;
+  }
 }

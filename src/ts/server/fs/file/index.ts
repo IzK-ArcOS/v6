@@ -30,10 +30,7 @@ export async function readFile(path: string): Promise<ArcFile> {
   if (!partial) return null;
 
   try {
-    const contents = await axios.get(
-      url,
-      makeTokenOptions(token, { responseType: "blob" })
-    );
+    const contents = await axios.get(url, makeTokenOptions(token, { responseType: "blob" }));
 
     const file: ArcFile = {
       name: partial.filename,
@@ -56,7 +53,7 @@ export async function readClientFile(path: string): Promise<ArcFile> {
     path,
     data: null,
     mime: null,
-  }
+  };
 
   try {
     const clientUrl = path.replace("@client/", "./");
@@ -71,11 +68,10 @@ export async function readClientFile(path: string): Promise<ArcFile> {
   } catch {
     return null;
   }
-
 }
 
 export async function getPartialFile(path: string): Promise<PartialArcFile> {
-  Log("server/fs/file", `Getting partial file of ${path}`)
+  Log("server/fs/file", `Getting partial file of ${path}`);
   const parent = getParentDirectory(path);
   const dir = await readDirectory(parent);
   const filename = getFilenameFromPath(path);
@@ -89,30 +85,33 @@ export async function writeFile(
   path: string,
   blob: Blob,
   dispatch = true,
-  onUploadProgress?: (progress: any) => any,
+  onUploadProgress?: (progress: any) => any
 ) {
   if (path.startsWith("@client")) {
-
-    Log("server/fs/file", `Not attempting to write to client file "${path}" as it is read-only!`, LogLevel.warn);
+    Log(
+      "server/fs/file",
+      `Not attempting to write to client file "${path}" as it is read-only!`,
+      LogLevel.warn
+    );
 
     return true;
   }
 
   Log("server/fs/file", `Writing ${blob.size} bytes to ${path}`);
 
-  const url = getServerUrl(Endpoints.FsFileWrite, { path: toBase64(path) });
+  const base64 = toBase64(path);
+
+  if (base64 == path) return null;
+
+  const url = getServerUrl(Endpoints.FsFileWrite, { path: base64 });
   const token = UserToken.get();
 
   if (!url) return null;
 
   try {
-    const response = await axios.post(
-      url,
-      blob,
-      makeTokenOptions(token, { onUploadProgress })
-    );
+    const response = await axios.post(url, blob, makeTokenOptions(token, { onUploadProgress }));
 
-    if (dispatch) GlobalDispatch.dispatch("fs-flush")
+    if (dispatch) GlobalDispatch.dispatch("fs-flush");
 
     return response.status === 200;
   } catch {

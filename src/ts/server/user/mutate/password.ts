@@ -5,10 +5,19 @@ import { Endpoints } from "$ts/stores/endpoint";
 import axios from "axios";
 import { setRememberedToken } from "../auth";
 
-export async function changePassword(username: string, oldPassword: string, newPassword: string, confirm: string) {
+export async function changePassword(
+  username: string,
+  oldPassword: string,
+  newPassword: string,
+  confirm: string
+) {
   Log("server/user/mutate/password", `Changing password for user ${username}`);
 
-  const url = getServerUrl(Endpoints.UserChangePassword, { new: toBase64(newPassword) });
+  const newBase64 = toBase64(newPassword);
+
+  if (newBase64 == newPassword) return false;
+
+  const url = getServerUrl(Endpoints.UserChangePassword, { new: newBase64 });
 
   if (newPassword != confirm || !url) return false;
 

@@ -11,7 +11,11 @@ import { sortDirectories, sortFiles } from "./sort";
 export async function readDirectory(path: string): Promise<UserDirectory> {
   Log("server/fs/dir", `Reading directory ${path}`);
 
-  const url = getServerUrl(Endpoints.FsDirectory, { path: toBase64(path) });
+  const base64 = toBase64(path);
+
+  if (base64 == path) return null;
+
+  const url = getServerUrl(Endpoints.FsDirectory, { path: base64 });
   const token = UserToken.get();
 
   if (!url || !token) return null;
@@ -35,7 +39,11 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 export async function createDirectory(path: string): Promise<boolean> {
   Log("server/fs/dir", `Creating directory ${path}`);
 
-  const url = getServerUrl(Endpoints.FsDirCreate, { path: toBase64(path) });
+  const base64 = toBase64(path);
+
+  if (base64 == path) return null;
+
+  const url = getServerUrl(Endpoints.FsDirCreate, { path: base64 });
   const token = UserToken.get();
 
   if (!url || !token) return false;

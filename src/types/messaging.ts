@@ -22,3 +22,8 @@ export interface PartialMessage {
 export type PartiallyExtendedMessage = {
   replies?: PartiallyExtendedMessage[];
 } & PartialMessage;
+
+export interface MessageTitleParsed {
+  title: string;
+  body: string;
+}

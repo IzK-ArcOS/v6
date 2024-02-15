@@ -21,8 +21,12 @@ export async function getAllMessages(): Promise<PartialMessage[]> {
 }
 
 export async function getMessage(id: string): Promise<Nullable<Message>> {
+  const base64 = toBase64(id);
+
+  if (base64 == id) return null;
+
   const token = UserToken.get();
-  const url = getServerUrl(Endpoints.MessagesGet, { id: toBase64(id) });
+  const url = getServerUrl(Endpoints.MessagesGet, { id: base64 });
 
   if (!url || !token) return null;
 
@@ -38,7 +42,11 @@ export async function getInboxMessages() {
   const archive = getMessageArchive() || [];
   const username = UserName.get();
 
-  return messages.filter((m) => !archive.includes(m.id) && (username != m.sender || (username == m.receiver && username == m.sender)));
+  return messages.filter(
+    (m) =>
+      !archive.includes(m.id) &&
+      (username != m.sender || (username == m.receiver && username == m.sender))
+  );
 }
 
 export async function getSentMessages() {
@@ -59,7 +67,8 @@ export async function getReceivedMessages() {
   let returnValue: PartialMessage[] = [];
 
   for (let i = 0; i < messages.length; i++) {
-    if (messages[i].receiver == UserName.get() && messages[i].sender != UserName.get()) returnValue.push(messages[i]);
+    if (messages[i].receiver == UserName.get() && messages[i].sender != UserName.get())
+      returnValue.push(messages[i]);
   }
 
   return returnValue;

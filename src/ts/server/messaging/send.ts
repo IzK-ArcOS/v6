@@ -12,7 +12,11 @@ export async function sendMessage(receivers: string[], body: string): Promise<bo
   if (!ConnectedServer.get() || !token) return false;
 
   for (const receiver of receivers) {
-    const url = getServerUrl(Endpoints.MessagesSend, { target: toBase64(receiver) });
+    const base64 = toBase64(receiver);
+
+    if (base64 == receiver) return false;
+
+    const url = getServerUrl(Endpoints.MessagesSend, { target: base64 });
 
     try {
       const response = await axios.post(url, body, makeTokenOptions(token));
@@ -29,7 +33,11 @@ export async function sendMessage(receivers: string[], body: string): Promise<bo
 }
 
 export async function replyToMessage(id: string, receiver: string, body: string): Promise<boolean> {
-  const url = getServerUrl(Endpoints.MessagesReply, { target: toBase64(receiver), id });
+  const base64 = toBase64(receiver);
+
+  if (base64 == id) return false;
+
+  const url = getServerUrl(Endpoints.MessagesReply, { target: base64, id });
   const token = UserToken.get();
 
   if (!token || !url) return false;

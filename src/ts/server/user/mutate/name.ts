@@ -9,7 +9,11 @@ import { setRememberedToken } from "../auth";
 export async function changeUsername(oldName: string, newName: string) {
   Log("server/user/mutate/name", `Changing username from ${oldName} to ${newName}`);
 
-  const url = getServerUrl(Endpoints.UserRename, { newname: toBase64(newName) });
+  const base64 = toBase64(newName);
+
+  if (base64 == newName) return false;
+
+  const url = getServerUrl(Endpoints.UserRename, { newname: base64 });
   const token = UserToken.get();
 
   if (!url || !token) return false;
@@ -23,7 +27,7 @@ export async function changeUsername(oldName: string, newName: string) {
     const password = fromBase64(remembered).split(":")[1];
 
     setRememberedToken(newName, password);
-    UserName.set(newName)
+    UserName.set(newName);
 
     return response.status === 200;
   } catch {

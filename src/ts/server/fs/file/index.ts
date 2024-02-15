@@ -16,8 +16,12 @@ import { LogLevel } from "$types/console";
 export async function readFile(path: string): Promise<ArcFile> {
   Log("server/fs/file", `Reading file ${path}`);
 
+  const base64 = toBase64(path);
+
+  if (base64 == path) return null;
+
   const url = getServerUrl(Endpoints.FsFileGet, {
-    path: toBase64(path),
+    path: base64,
   });
   const token = UserToken.get();
 

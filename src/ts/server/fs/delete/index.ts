@@ -10,7 +10,11 @@ import { getServerUrl, makeTokenOptions } from "../../util";
 export async function deleteItem(path: string, dispatch = true): Promise<boolean> {
   Log("server/fs/delete", `Deleting ${path}`);
 
-  const url = getServerUrl(Endpoints.FsRm, { path: toBase64(path) });
+  const base64 = toBase64(path);
+
+  if (path == base64) return false;
+
+  const url = getServerUrl(Endpoints.FsRm, { path: base64 });
   const token = UserToken.get();
 
   if (!url || !token) return false;
@@ -28,8 +32,8 @@ export async function deleteMultiple(paths: string[]) {
   for (const path of paths) {
     await deleteItem(path, false);
 
-    await sleep(55) // rate-limit cooldown
+    await sleep(55); // rate-limit cooldown
   }
 
-  GlobalDispatch.dispatch("fs-flush")
+  GlobalDispatch.dispatch("fs-flush");
 }

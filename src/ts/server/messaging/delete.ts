@@ -6,7 +6,11 @@ import { toBase64 } from "$ts/base64";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
 
 export async function deleteMessage(id: string) {
-  const url = getServerUrl(Endpoints.MessagesDelete, { id: toBase64(id) });
+  const base64 = toBase64(id);
+
+  if (base64 == id) return false;
+
+  const url = getServerUrl(Endpoints.MessagesDelete, { id: base64 });
   const token = UserToken.get();
 
   if (!url || !token) return false;

@@ -5,16 +5,16 @@ import { UserToken } from "$ts/stores/user";
 import { sleep } from "$ts/util";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../../util";
-import { parseFilename } from "../util";
 
 export async function copyItem(source: string, destination: string) {
   Log(`server/fs/copy`, `Copying ${source} to ${destination}`);
 
-  const filename = parseFilename(source);
+  const sourceBase64 = toBase64(source);
+  const targetBase64 = toBase64(destination);
 
-  const dest = destination.replace(`/${filename}`, "");
+  if (sourceBase64 == source || targetBase64 == destination) return false;
 
-  const url = getServerUrl(Endpoints.FsCp, { path: toBase64(source), target: toBase64(dest) });
+  const url = getServerUrl(Endpoints.FsCp, { path: sourceBase64, target: targetBase64 });
   const token = UserToken.get();
 
   if (!url || !token) return false;
@@ -34,14 +34,22 @@ export async function copyMultiple(items: Record<string, string>) {
 
     await copyItem(source, dest);
 
-    await sleep(55) // rate-limit cooldown
+    await sleep(55); // rate-limit cooldown
   }
 }
 
 export async function renameItem(oldPath: string, newPath: string) {
   Log(`server/fs/copy`, `Renaming ${oldPath} to ${newPath}`);
 
-  const url = getServerUrl(Endpoints.FsRename, { oldpath: toBase64(oldPath), newpath: toBase64(newPath) });
+  const oldBase64 = toBase64(oldPath);
+  const newBase64 = toBase64(newPath);
+
+  if (oldBase64 == oldPath || newBase64 == newPath) return false;
+
+  const url = getServerUrl(Endpoints.FsRename, {
+    oldpath: oldBase64,
+    newpath: newBase64,
+  });
   const token = UserToken.get();
 
   if (!url || !token) return false;
@@ -61,6 +69,6 @@ export async function renameMultiple(items: Record<string, string>) {
 
     await renameItem(source, dest);
 
-    await sleep(55) // rate-limit cooldown
+    await sleep(55); // rate-limit cooldown
   }
 }

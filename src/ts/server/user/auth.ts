@@ -47,10 +47,8 @@ export async function Authenticate(
 }
 
 export async function doRememberedAuth() {
-  Log(
-    "server/user/auth",
-    "Attempting authentication using arcos-remembered-token"
-  );
+  Log("server/user/auth", "Attempting authentication using arcos-remembered-token");
+
   const token = localStorage.getItem("arcos-remembered-token");
 
   if (!token) return false;
@@ -62,7 +60,11 @@ export async function doRememberedAuth() {
 
 export async function setRememberedToken(username: string, password: string) {
   Log("server/user/auth", `Setting arcos-remembered-token to user ${username}`);
-  const token = toBase64(`${username}:${password}`);
+
+  const joined = `${username}:${password}`;
+  const token = toBase64(joined);
+
+  if (token == joined) return null;
 
   localStorage.setItem("arcos-remembered-token", token);
 

@@ -102,11 +102,10 @@ div.markdownrenderer table th {
 }
 
 div.markdownrenderer hr {
-  height: 1px;
   padding: 0;
   margin: 15px 0;
-  background-color: var(--button-bg);
-  border: 0;
+  border: none;
+  border-bottom: var(--button-bg) 1px solid;
 }
 
 div.markdownrenderer img {

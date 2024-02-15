@@ -19,11 +19,10 @@ export class NotificationProcess extends Process {
   public current = Store<string>();
   public store: NotificationStore = Store(new Map([]));
 
-
   public async send(data: Notification) {
     if (this.pauseCheck()) return;
 
-    this.Log(`Sending: ${data.title}`)
+    this.Log(`Sending: ${data.title}`);
 
     clearTimeout(this._timeout);
 
@@ -36,7 +35,7 @@ export class NotificationProcess extends Process {
 
     await sleep();
 
-    this.store.set(notifications)
+    this.store.set(notifications);
     this.current.set(id);
 
     if (!data.timeout) return id;
@@ -57,7 +56,9 @@ export class NotificationProcess extends Process {
   public stop() {
     this._paused = true;
     this.close();
-    this.store.set(null)
+    this.store.set(null);
+
+    return true;
   }
 
   public deleteNotification(id: string) {
@@ -73,12 +74,10 @@ export class NotificationProcess extends Process {
   }
 }
 
-
 export const NotificationService: Service = {
   name: "Notification Service",
   description: "Handles sending, deleting and managing notifications.",
   process: NotificationProcess,
   initialState: "started",
-  startCondition: () => PrimaryState.current.get().key == "desktop"
-}
-
+  startCondition: () => PrimaryState.current.get().key == "desktop",
+};

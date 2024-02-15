@@ -9,12 +9,11 @@ import { UserDataStore, UserName } from "$ts/stores/user";
 import { LogLevel } from "$types/console";
 import { UserTheme } from "$types/theme";
 
-
 export function loadTheme(context: UserTheme) {
-  const valid = verifyTheme(context);
+  const verifier = verifyTheme(context);
 
-  if (!valid) {
-    Log("themes", `Not loading invalid theme!`, LogLevel.error);
+  if (verifier !== "themeIsValid") {
+    Log("themes", `Not loading invalid theme! Missing ${verifier}`, LogLevel.error);
 
     return false;
   }
@@ -38,8 +37,7 @@ export function loadTheme(context: UserTheme) {
     udata.sh.window.centertb = !!context.titlebarCentered;
     udata.sh.taskbar.isLauncher = !!context.isLauncher;
 
-    if (context.loginBackground)
-      udata.acc.loginBackground = context.loginBackground;
+    if (context.loginBackground) udata.acc.loginBackground = context.loginBackground;
 
     return udata;
   });
@@ -101,10 +99,10 @@ export function verifyTheme(json: object) {
   const keys = Object.keys(json);
 
   for (const key of UserThemeKeys) {
-    if (!keys.includes(key)) return false;
+    if (!keys.includes(key)) return key;
   }
 
-  return true;
+  return "themeIsValid";
 }
 
 export function applyUserTheme(id: string) {
@@ -121,7 +119,6 @@ export function applyUserTheme(id: string) {
 
   return true;
 }
-
 
 export function applySystemTheme(id: string) {
   Log("themes", `Applying Built-in theme "${id}"`);
@@ -143,7 +140,7 @@ export async function saveThemeToFilesystem(theme: UserTheme, name: string): Pro
   const written = await writeFileAnnounced(path, blob, {
     title: "Saving Theme",
     message: `ArcOS is now saving ${name} to ArcFS. Please wait...`,
-    image: SaveIcon
+    image: SaveIcon,
   });
 
   return written;

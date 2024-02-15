@@ -13,4 +13,4 @@ export { default as QlorbIcon } from "$assets/apps/qlorb.svg";
 export { default as ServiceInfoIcon } from "$assets/apps/serviceinfo.svg";
 export { default as SettingsIcon } from "$assets/apps/settings.svg";
 export { default as TextEditorIcon } from "$assets/apps/texteditor.svg";
-
+export { default as MessagingIcon } from "$assets/apps/messaging.svg";

@@ -91,3 +91,6 @@
 [submodule "src/apps/MessagingApp"]
 	path = src/apps/MessagingApp
 	url = https://github.com/IzK-ArcOS/v6-MessagingApp
+[submodule "src/apps/BugReports"]
+	path = src/apps/BugReports
+	url = https://github.com/IzK-ArcOS/v6-BugReportsApp

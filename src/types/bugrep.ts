@@ -18,6 +18,7 @@ export interface Report {
   location: object;
   metaenv: object;
   frontend: string;
+  id?: string;
 }
 
 export type ReportRecord = Report & Record;

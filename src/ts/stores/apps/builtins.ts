@@ -1,6 +1,7 @@
 import { KeyboardShortcuts } from "$apps/AcceleratorOverview/ts/app";
 import { AppInfo } from "$apps/AppInfo/ts/app";
 import { ArcTermApp as ArcTerm } from "$apps/ArcTerm/ts/app";
+import { BugReports } from "$apps/BugReports/ts/app";
 import { DonutApp } from "$apps/DonutApp/ts/app";
 import { ErrorDialog } from "$apps/ErrorDialog/ts/app";
 import { ExitApp } from "$apps/Exit/ts/app";
@@ -52,5 +53,6 @@ export const builtinApps: Record<string, App> = {
   KeyboardShortcuts,
   MediaPlayer,
   HelpSupport,
-  MessagingApp
-}
+  MessagingApp,
+  BugReports,
+};

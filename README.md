@@ -38,18 +38,12 @@ I want to thank all of these authors for providing their photos, images and othe
 | Cursors           | [@PosyMusic](https://www.youtube.com/@PosyMusic)     | [Home > Other > Posy's improved cursors](http://www.michieldb.nl/other/cursors/) |
 
 All images not listed above are created by or licensed to the ArcOS Team.
-
-## Screenshots
-
-## Note about the help articles
-Help articles are written specifically for the Help & Support application in ArcOS. These files will have broken icons, links and styling when viewed outside Help & Support.
-
-![ArcOS Desktop](https://user-images.githubusercontent.com/76709090/223267524-aca68c8f-dcd2-4e27-99b7-8d6442ba2fc3.png)
-![ArcFind](https://user-images.githubusercontent.com/76709090/223268177-4ef2be20-8f40-4401-9fd5-841f1236c827.png)
-![Boot Screen](https://user-images.githubusercontent.com/76709090/223268411-da2675e1-03ec-4e34-b3cc-e14e02a29402.png)
-![First Time Setup](https://user-images.githubusercontent.com/76709090/223268591-4b1ec5f8-9277-4f36-82d9-0051adbf7931.png)
-![Darkmode](https://user-images.githubusercontent.com/76709090/223270165-513f63ad-0eec-4c66-a3dc-e353d057dddd.png)
-![Lightmode](https://user-images.githubusercontent.com/76709090/223270414-c3f137a6-7feb-43e0-a556-9051098c01b9.png)
-![File manager and messaging app](https://user-images.githubusercontent.com/76709090/223271853-cb539319-fb3b-479b-a4aa-c62ecd3d737e.png)
-![Create new user](https://user-images.githubusercontent.com/76709090/223274923-8cde40bf-7960-4940-b917-cc42538efaff.png)
 -->
+## Screenshots
+![ArcOS Desktop](https://github.com/IzK-ArcOS/v6/assets/76709090/e3003420-0a6a-4e7c-8175-13603d8e5d80)
+![Boot screen](https://github.com/IzK-ArcOS/v6/assets/76709090/2fa96b75-817b-40ca-8d30-b6a0f14f116d)
+![First Time Setup](https://github.com/IzK-ArcOS/v6/assets/76709090/00987881-f482-41b0-b010-df5aee412717)
+![Darkmode](https://github.com/IzK-ArcOS/v6/assets/76709090/f479e541-401b-42ab-bdd3-d50025c808f7)
+![Lightmode](https://github.com/IzK-ArcOS/v6/assets/76709090/bb973cd9-3bf4-47b3-b4a3-e9c90052c369)
+![Messages and File Manager](https://github.com/IzK-ArcOS/v6/assets/76709090/97ea223d-2a5f-4ed4-b373-0705fef6f86b)
+![New API User](https://github.com/IzK-ArcOS/v6/assets/76709090/e81f270a-096e-40c4-9f39-dccf7f8cd22a)

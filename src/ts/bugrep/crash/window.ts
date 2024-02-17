@@ -41,8 +41,7 @@ export function handleWindowError(
     includeUserData: false,
     includeApi: true,
     title: "Crash by irrecoverable unhandled exception",
-    body: `File: ${filename} ${position}\n\n${message}\n\n${stack || "  at ArcOS (no stack)"
-      }`,
+    body: `File: ${filename} ${position}\n\n${message}\n\n${stack || "  at ArcOS (no stack)"}`,
   };
 
   const report = createReport(options);
@@ -52,13 +51,13 @@ export function handleWindowError(
   Log(`bugrep/crash/window`, `Error: ${filename}: ${message}`, LogLevel.error);
 
   PrimaryState.navigate("crash");
-
+  /* 
   if (import.meta.env.DEV)
     return Log(
       "bugrep/crash/window",
       "Not sending bug report in Vite environment!",
       LogLevel.warn
-    );
+    ); */
 
   sendReport(options);
 }

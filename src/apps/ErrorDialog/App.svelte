@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { focusedPid } from "$ts/stores/apps";
   import { ErrorDialog } from "$types/error";
   import { onMount } from "svelte";
   import "./css/main.css";
   import { Runtime } from "./ts/runtime";
+  import { focusedPid } from "$ts/stores/apps/focus";
 
   export let runtime: Runtime;
 
@@ -41,11 +41,7 @@
       <p class="error-message">
         {#if data.component}
           <div class="component">
-            <svelte:component
-              this={data.component}
-              error={data}
-              bind:disabled
-            />
+            <svelte:component this={data.component} error={data} bind:disabled />
           </div>
         {:else}
           {@html data.message || "$error.message"}

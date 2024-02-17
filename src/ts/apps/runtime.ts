@@ -1,6 +1,7 @@
 import { Log } from "$ts/console";
 import { Process } from "$ts/process";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
+import { focusedPid } from "$ts/stores/apps/focus";
 import { RuntimeGlobalDispatches, RuntimeScopedDispatches } from "$ts/stores/process/dispatch";
 import { Store } from "$ts/writable";
 import { App, ContextMenuItem } from "$types/app";
@@ -15,17 +16,9 @@ export class AppRuntime {
   public openedFile = Store<string>();
   public APP_NAME = "";
 
-  constructor(
-    appData: App,
-    public appMutator: ReadableStore<App>,
-    public process: Process
-  ) {
+  constructor(appData: App, public appMutator: ReadableStore<App>, public process: Process) {
     if (!appData.id) {
-      this.Log(
-        `Can't create AppRuntime without valid app ID`,
-        "constructor",
-        LogLevel.error
-      );
+      this.Log(`Can't create AppRuntime without valid app ID`, "constructor", LogLevel.error);
 
       return;
     }
@@ -36,11 +29,7 @@ export class AppRuntime {
     this._subscribeToDispatch();
   }
 
-  public Log(
-    message: string,
-    fn: string = "<anonymous>",
-    level = LogLevel.info
-  ) {
+  public Log(message: string, fn: string = "<anonymous>", level = LogLevel.info) {
     Log(`${this.app.id}Runtime`, `${fn}: ${message}`, level);
   }
 
@@ -64,12 +53,15 @@ export class AppRuntime {
   }
 
   public setPid(pid: number) {
-    this.Log(`Setting PID to ${pid}`, "setPid")
+    this.Log(`Setting PID to ${pid}`, "setPid");
     this.pid = pid;
   }
 
-  public closeApp() {
-    this.process.handler.kill(this.pid, true);
+  public async closeApp() {
+    const parent = this.process.parentPid;
+    const result = await this.process.handler.kill(this.pid, true);
+
+    if (result == "success" && parent) focusedPid.set(parent);
 
     return this;
   }
@@ -80,8 +72,8 @@ export class AppRuntime {
 
       v.state.minimized = true;
 
-      return v
-    })
+      return v;
+    });
   }
 
   public maximize() {
@@ -91,8 +83,8 @@ export class AppRuntime {
       v.state.maximized = true;
       v.state.minimized = false;
 
-      return v
-    })
+      return v;
+    });
   }
 
   public restore() {
@@ -101,10 +93,9 @@ export class AppRuntime {
 
       v.state.maximized = false;
 
-      return v
-    })
+      return v;
+    });
   }
-
 
   private _subscribeToDispatch() {
     const globals = RuntimeGlobalDispatches(this);
@@ -115,7 +106,9 @@ export class AppRuntime {
     }
 
     for (const event in scoped) {
-      this.process.handler.dispatch.subscribe(this.pid, event, (data: any[]) => scoped[event](data))
+      this.process.handler.dispatch.subscribe(this.pid, event, (data: any[]) =>
+        scoped[event](data)
+      );
     }
   }
 
@@ -128,22 +121,22 @@ export class AppRuntime {
       v.altMenu = menu;
 
       return v;
-    })
+    });
   }
 
   public setWindowTitle(text: string, afterAppName = false) {
     this.appMutator.update((v) => {
       v.metadata.name = afterAppName ? `${this.APP_NAME} - ${text}` : text;
 
-      return v
-    })
+      return v;
+    });
   }
 
   public setWindowIcon(path: string) {
     this.appMutator.update((v) => {
       v.metadata.icon = path;
 
-      return v
-    })
+      return v;
+    });
   }
 }

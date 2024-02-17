@@ -1,14 +1,20 @@
 import { Log } from "$ts/console";
 import { GetUserElevation } from "$ts/elevation";
 import { Process, ProcessHandler } from "$ts/process";
-import { focusedPid } from "$ts/stores/apps";
+import { focusedPid } from "$ts/stores/apps/focus";
 import { ElevatedAppLaunchData } from "$ts/stores/elevation";
 import { ProcessStack } from "$ts/stores/process";
 import { App, AppSpawnResult } from "$types/app";
 import { LogLevel } from "$types/console";
 import { getAppById } from "./utils";
 
-export async function spawnApp(id: string, parent?: number, args?: any[], processHandler = ProcessStack, data: App = null): Promise<number | AppSpawnResult> {
+export async function spawnApp(
+  id: string,
+  parent?: number,
+  args?: any[],
+  processHandler = ProcessStack,
+  data: App = null
+): Promise<number | AppSpawnResult> {
   Log("apps/spawn", `Spawning app with ID ${id} on handler ${processHandler.id}`);
   class AppProcess extends Process {
     constructor(handler: ProcessHandler, pid: number, name: string, app: App, args: any[] = []) {
@@ -27,7 +33,11 @@ export async function spawnApp(id: string, parent?: number, args?: any[], proces
   if (app.singleInstance && instances.length) {
     focusedPid.set(instances[0]);
 
-    Log("apps/spawn", `Not spawning as ${id} is SingleInstance, focussing opened instance instead.`, LogLevel.warn)
+    Log(
+      "apps/spawn",
+      `Not spawning as ${id} is SingleInstance, focussing opened instance instead.`,
+      LogLevel.warn
+    );
 
     return instances[0];
   }
@@ -48,7 +58,7 @@ export async function spawnApp(id: string, parent?: number, args?: any[], proces
     proc: AppProcess,
     name: `app#${id}`,
     app: app,
-    args
+    args,
   });
 
   if (typeof proc == "string") return proc;
@@ -56,7 +66,13 @@ export async function spawnApp(id: string, parent?: number, args?: any[], proces
   return proc.pid;
 }
 
-export async function spawnOverlay(app: App, parent: number, args?: any[], noShade?: boolean, processHandler = ProcessStack): Promise<Process | AppSpawnResult> {
+export async function spawnOverlay(
+  app: App,
+  parent: number,
+  args?: any[],
+  noShade?: boolean,
+  processHandler = ProcessStack
+): Promise<Process | AppSpawnResult> {
   Log("apps/spawn", `Spawning overlay with ID ${app.id} on handler ${processHandler.id}`);
 
   if (!app) return;

@@ -2,7 +2,7 @@ import { AppRuntime } from "$ts/apps/runtime";
 import { WarningIcon } from "$ts/images/dialog";
 import { sendNotification } from "$ts/notif";
 import { Process } from "$ts/process";
-import { focusedPid } from "$ts/stores/apps";
+import { focusedPid } from "$ts/stores/apps/focus";
 import type { App, AppMutator } from "$types/app";
 import { ErrorDialog } from "$types/error";
 
@@ -18,7 +18,7 @@ export class Runtime extends AppRuntime {
         message: `No valid data was specified to use in the dialog. Aborting.`,
         image: WarningIcon,
         timeout: 3000,
-      })
+      });
     }
 
     const data: ErrorDialog = process.args[0];
@@ -28,18 +28,19 @@ export class Runtime extends AppRuntime {
       return;
     }
 
-    mutator.update((v) => { // Adapt the window properties to the error dialog's data
+    mutator.update((v) => {
+      // Adapt the window properties to the error dialog's data
       v.metadata.name = data.title;
       v.metadata.icon = data.image || WarningIcon;
       v.maxSize.w = data.component && !data.shrunk ? 500 : 400;
 
       return v;
-    })
+    });
 
     process.accelerator.store.push({
       key: "escape",
-      action: () => this.defaultAction()
-    })
+      action: () => this.defaultAction(),
+    });
   }
 
   public async defaultAction() {

@@ -1,7 +1,7 @@
 import { Log } from "$ts/console";
 import { Process } from "$ts/process";
 import { PrimaryState } from "$ts/states";
-import { focusedPid } from "$ts/stores/apps";
+import { focusedPid } from "$ts/stores/apps/focus";
 import { bannedKeys } from "$ts/stores/apps/keyboard";
 import { AppKeyCombinations } from "$types/accelerator";
 import { LogLevel } from "$types/console";
@@ -13,10 +13,7 @@ export class AcceleratorHandler {
     this.Log(`Creating new AcceleratorHandler for PID ${process.pid}`);
 
     if (!process.app || !process.app.accelerators) {
-      this.Log(
-        "No app data to go off of! Assuming later injection.",
-        LogLevel.warn
-      );
+      this.Log("No app data to go off of! Assuming later injection.", LogLevel.warn);
     }
 
     this.store = this.process.app.accelerators || [];
@@ -25,11 +22,7 @@ export class AcceleratorHandler {
   }
 
   public Log(message: string, level?: LogLevel) {
-    Log(
-      "apps/keyboard",
-      `AcceleratorHandler[${this.process.pid}]: ${message}`,
-      level
-    );
+    Log("apps/keyboard", `AcceleratorHandler[${this.process.pid}]: ${message}`, level);
   }
 
   public startListener() {
@@ -72,8 +65,7 @@ export class AcceleratorHandler {
       /** */
       const isFocused = focusedPid.get() == this.process.pid || combo.global;
 
-      if (!modifiers || (key != pK && key && key != codedKey) || !isFocused)
-        continue;
+      if (!modifiers || (key != pK && key && key != codedKey) || !isFocused) continue;
 
       combo.action(this.process);
 
@@ -84,12 +76,7 @@ export class AcceleratorHandler {
   public unfocusActiveElement() {
     const el = document.activeElement as HTMLButtonElement;
 
-    if (
-      !el ||
-      el instanceof HTMLInputElement ||
-      el instanceof HTMLTextAreaElement
-    )
-      return;
+    if (!el || el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) return;
 
     el.blur();
   }

@@ -15,10 +15,18 @@ export interface Report {
   mode_file?: string;
   desktop: boolean;
   useragent?: string;
-  location: object;
-  metaenv: object;
+  location: Location;
+  metaenv: {
+    BASE_URL: string;
+    DEV: boolean;
+    MODE: string;
+    PROD: boolean;
+    SSR: boolean;
+  };
   frontend: string;
   id?: string;
+  created_at: string;
+  modified_at: string;
 }
 
 export type ReportRecord = Report & Record;

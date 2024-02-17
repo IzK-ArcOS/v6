@@ -5,6 +5,7 @@ import { isDesktop } from "$ts/metadata/desktop";
 import { getServer } from "$ts/server/multi";
 import { UserDataStore, UserName } from "$ts/stores/user";
 import {
+  LocalReportData,
   Report,
   ReportOptions,
   ReportRecord,
@@ -12,23 +13,20 @@ import {
 } from "$types/bugrep";
 import PocketBase from "pocketbase";
 import { removeApiSensitive } from "./obfuscate";
+import { getAppPreference, setAppPreference } from "$ts/server/user/pref";
 
 const pb = new PocketBase("https://pb.arcapi.nl/");
 
-export async function sendReport(
-  options: ReportOptions = defaultReportOptions
-) {
+export async function sendReport(options: ReportOptions = defaultReportOptions) {
   const report = createReport(options);
-  const id = (
-    await pb.collection("bugrep").create<ReportRecord>(report, { br: "true" })
-  ).id;
+  const id = (await pb.collection("bugrep").create<ReportRecord>(report, { br: "true" })).id;
+
+  if (report.author) saveReportToUser(id);
 
   return id;
 }
 
-export function createReport(
-  options: ReportOptions = defaultReportOptions
-): Report {
+export function createReport(options: ReportOptions = defaultReportOptions): Report {
   const rnd = () => Math.floor(Math.random() * 1e6);
 
   const x = {
@@ -48,6 +46,8 @@ export function createReport(
     frontend: isDesktop() ? "<desktop>" : location.host,
     location: location,
     metaenv: import.meta.env,
+    created_at: "",
+    modified_at: "",
   };
 
   return x;
@@ -66,4 +66,12 @@ export async function getReport(id: string) {
 
 export async function reportExists(id: string) {
   return !!(await getReport(id));
+}
+
+export function saveReportToUser(id: string) {
+  const reports = (getAppPreference("Reporting", "reports") as LocalReportData[]) || [];
+
+  reports.push({ id, timestamp: new Date().getTime() });
+
+  setAppPreference("Reporting", "reports", reports);
 }

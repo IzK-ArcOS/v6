@@ -2,6 +2,7 @@ import { spawnApp } from "$ts/apps";
 import { MessagingIcon } from "$ts/images/apps";
 import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { getUnreadMessages } from "$ts/server/messaging/get";
 import { filterPartialMessageBody } from "$ts/server/messaging/utils";
 import { getUserPfp } from "$ts/server/user/pfp";
@@ -38,6 +39,7 @@ export class MessageNotifierProcess extends Process {
 
   public async Tick() {
     console.log("MNS TICK!");
+
     const unreads = (await getUnreadMessages())
       .sort((a, b) => b.timestamp - a.timestamp)
       .filter((m) => !this.BLACKLIST.includes(m.id));
@@ -45,6 +47,8 @@ export class MessageNotifierProcess extends Process {
     const message = unreads[0];
 
     if (!unreads.length || !message) return console.log("MNS TICK ERROR!", unreads, message);
+
+    GlobalDispatch.dispatch("message-flush");
 
     this.BLACKLIST.push(message.id);
 

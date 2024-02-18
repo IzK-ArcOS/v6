@@ -30,13 +30,9 @@ export function manualCrash(source: string, reason: string, stack?: string) {
   CRASHING.set(true);
 
   PrimaryState.navigate("crash");
-  /* 
+
   if (import.meta.env.DEV)
-    return Log(
-      "bugrep/crash",
-      "Not sending bug report in Vite environment!",
-      LogLevel.warn
-    );
- */
+    return Log("bugrep/crash", "Not sending bug report in Vite environment!", LogLevel.warn);
+
   sendReport(options);
 }

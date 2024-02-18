@@ -7,9 +7,9 @@ import { Nullable } from "$types/common";
 import { toBase64 } from "$ts/base64";
 import { getMessageArchive } from "./archive";
 
-export async function getAllMessages(): Promise<PartialMessage[]> {
+export async function getAllMessages(length = 30): Promise<PartialMessage[]> {
   const token = UserToken.get();
-  const url = getServerUrl(Endpoints.MessagesList);
+  const url = getServerUrl(Endpoints.MessagesList, { preview_length: length });
 
   if (!url || !token) return [];
 
@@ -61,8 +61,8 @@ export async function getSentMessages() {
   return returnValue;
 }
 
-export async function getReceivedMessages() {
-  const messages = await getAllMessages();
+export async function getReceivedMessages(length = 30) {
+  const messages = await getAllMessages(length);
 
   let returnValue: PartialMessage[] = [];
 
@@ -74,8 +74,8 @@ export async function getReceivedMessages() {
   return returnValue;
 }
 
-export async function getUnreadMessages() {
-  const messages = await getReceivedMessages();
+export async function getUnreadMessages(length = 30) {
+  const messages = await getReceivedMessages(length);
 
   let returnValue: PartialMessage[] = [];
 

@@ -3,6 +3,7 @@ import { ConnectIcon } from "$ts/images/general";
 import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
+import { PrimaryState } from "$ts/states";
 import { App } from "$types/app";
 import { Service } from "$types/service";
 
@@ -35,4 +36,5 @@ export const RateLimitNotifierService: Service = {
   description: "Informs you when you're rate limited",
   process: RateLimitNotifierProcess,
   initialState: "started",
+  startCondition: () => PrimaryState.current.get().key == "desktop",
 };

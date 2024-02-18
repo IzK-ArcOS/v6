@@ -1,0 +1,72 @@
+window div.body div.info-block {
+  background-color: var(--button-bg);
+  border-radius: var(--win-border-rad);
+}
+
+window div.body div.info-block div.row {
+  display: flex;
+  gap: 30px;
+  padding: 10px 15px;
+}
+
+window div.body div.info-block div.segment {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+window div.body div.info-block div.segment > p {
+  margin: 0;
+}
+
+window div.body div.info-block div.segment p.title {
+  opacity: 0.5;
+  font-weight: bold;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+window div.body div.info-block div.segment p.title button.help {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+window div.body div.info-block div.segment p.title button.help:hover {
+  color: var(--accent-light);
+}
+
+window div.body div.info-block div.segment.right {
+  margin-left: auto;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  justify-content: center;
+  border-left: var(--win-border);
+  padding-left: 15px;
+}
+
+window div.body div.info-block div.segment code {
+  background-color: transparent;
+}
+
+window div.body div.info-block div.row + div.row {
+  border-top: var(--win-border);
+}
+
+window div.body div.info-block div.row > button.action {
+  margin-left: auto;
+}
+
+window div.body div.info-block div.segment.mode p.value,
+window div.body div.info-block div.segment.version p.value {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+window div.body div.info-block div.segment.mode p.value img,
+window div.body div.info-block div.segment.version p.value img {
+  height: 16px;
+}

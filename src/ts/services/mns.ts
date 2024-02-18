@@ -4,8 +4,9 @@ import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { getUnreadMessages } from "$ts/server/messaging/get";
-import { filterPartialMessageBody } from "$ts/server/messaging/utils";
+import { filterPartialMessageBody, parseTitle } from "$ts/server/messaging/utils";
 import { getUserPfp } from "$ts/server/user/pfp";
+import { PrimaryState } from "$ts/states";
 import { ProcessStack } from "$ts/stores/process";
 import { sleep } from "$ts/util";
 import { App } from "$types/app";
@@ -40,7 +41,7 @@ export class MessageNotifierProcess extends Process {
   public async Tick() {
     console.log("MNS TICK!");
 
-    const unreads = (await getUnreadMessages())
+    const unreads = (await getUnreadMessages(200))
       .sort((a, b) => b.timestamp - a.timestamp)
       .filter((m) => !this.BLACKLIST.includes(m.id));
 
@@ -60,9 +61,11 @@ export class MessageNotifierProcess extends Process {
 
     const pfp = await getUserPfp(message.sender, MessagingIcon);
 
+    const { title, body } = parseTitle(message.partialBody);
+
     sendNotification({
-      title: `${message.sender}`,
-      message: `${filterPartialMessageBody(message.partialBody)}...`,
+      title: `${message.sender}: ${title}`,
+      message: `${filterPartialMessageBody(body)}`,
       image: pfp,
       buttons: [{ caption: "Open Message", action: () => this._open(message.id) }],
     });
@@ -84,4 +87,5 @@ export const MessageNotifierService: Service = {
   initialState: "started",
   name: "Message Notifier Service",
   description: "Continuously checks for incoming ArcOS messages",
+  startCondition: () => PrimaryState.current.get().key == "desktop",
 };

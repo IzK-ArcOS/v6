@@ -51,13 +51,9 @@ export function handleWindowError(
   Log(`bugrep/crash/window`, `Error: ${filename}: ${message}`, LogLevel.error);
 
   PrimaryState.navigate("crash");
-  /* 
+
   if (import.meta.env.DEV)
-    return Log(
-      "bugrep/crash/window",
-      "Not sending bug report in Vite environment!",
-      LogLevel.warn
-    ); */
+    return Log("bugrep/crash/window", "Not sending bug report in Vite environment!", LogLevel.warn);
 
   sendReport(options);
 }

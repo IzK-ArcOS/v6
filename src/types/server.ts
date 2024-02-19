@@ -13,3 +13,9 @@ export interface ServerMeta {
 }
 
 export type Params = Record<string, any>;
+
+export interface ServerSelectOption {
+  private: boolean;
+  hostname: string;
+  authCode: string;
+}

@@ -4,6 +4,7 @@ import Crash from "$state/Crash/Crash.svelte";
 import Desktop from "$state/Desktop/Desktop.svelte";
 import FirstTimeSetup from "$state/FirstTimeSetup/FirstTimeSetup.svelte";
 import Login from "$state/Login/Login.svelte";
+import ServerSelect from "$state/ServerSelect/ServerSelect.svelte";
 import TurnedOff from "$state/TurnedOff/TurnedOff.svelte";
 import { ArcSoundBus } from "$ts/soundbus";
 import { State, States } from "$types/state";
@@ -43,7 +44,7 @@ export const primaryStates: States = new Map<string, State>([
       key: "login",
       content: Login,
       attribs: {
-        noProcesssRenderer: true
+        noProcesssRenderer: true,
       },
     },
   ],
@@ -54,7 +55,7 @@ export const primaryStates: States = new Map<string, State>([
       content: Login,
       attribs: {
         continuation: "logoff",
-        noProcesssRenderer: true
+        noProcesssRenderer: true,
       },
       key: "logoff",
       onload() {
@@ -69,7 +70,7 @@ export const primaryStates: States = new Map<string, State>([
       content: Login,
       attribs: {
         continuation: "restart",
-        noProcesssRenderer: true
+        noProcesssRenderer: true,
       },
       key: "restart",
       onload() {
@@ -84,7 +85,7 @@ export const primaryStates: States = new Map<string, State>([
       content: Login,
       attribs: {
         continuation: "shutdown",
-        noProcesssRenderer: true
+        noProcesssRenderer: true,
       },
       key: "shutdown",
       onload() {
@@ -99,7 +100,7 @@ export const primaryStates: States = new Map<string, State>([
       key: "desktop",
       content: Desktop,
       attribs: {
-        noProcesssRenderer: true
+        noProcesssRenderer: true,
       },
     },
   ],
@@ -111,7 +112,7 @@ export const primaryStates: States = new Map<string, State>([
       content: Crash,
       attribs: {
         noProcesssRenderer: true,
-        classes: "sharp noani theme-amoled"
+        classes: "sharp noani theme-amoled",
       },
     },
   ],
@@ -121,12 +122,23 @@ export const primaryStates: States = new Map<string, State>([
       name: "Turned off",
       content: TurnedOff,
       attribs: {
-        noProcesssRenderer: true
+        noProcesssRenderer: true,
       },
       key: "turnedoff",
       onload() {
         window.close();
       },
+    },
+  ],
+  [
+    "serverselect",
+    {
+      name: "Choose Server",
+      content: ServerSelect,
+      attribs: {
+        noProcesssRenderer: true,
+      },
+      key: "serverselect",
     },
   ],
 ]);

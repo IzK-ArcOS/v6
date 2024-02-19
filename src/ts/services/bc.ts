@@ -1,9 +1,11 @@
 import { createTrayIcon } from "$apps/Shell/ts/tray";
-import { FirefoxIcon } from "$ts/images/general";
+import { FirefoxIcon, GlobeIcon } from "$ts/images/general";
 import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";
+import { createErrorDialog } from "$ts/process/error";
 import { stopService } from "$ts/service/interact";
 import { PrimaryState } from "$ts/states";
+import { ProcessStack } from "$ts/stores/process";
 import { sleep } from "$ts/util";
 import { App } from "$types/app";
 import { Notification } from "$types/notif";
@@ -16,6 +18,38 @@ export class BrowserCheckProcess extends Process {
       message:
         "As of January 10th 2024, support for Firefox is still experimental. You can expect visual imperfections and bugs until further notice.",
       image: FirefoxIcon,
+      buttons: [
+        {
+          caption: "Ignore",
+          action() {},
+          suggested: true,
+        },
+      ],
+    },
+    "safari/": {
+      title: "Safari",
+      message:
+        "ArcOS doesn't officially support Safari. For the best experience, please resort to a Chromium-based or Firefox browser.",
+      image: GlobeIcon,
+      buttons: [
+        {
+          caption: "Chrome",
+          action() {
+            window.open("https://chrome.google.com/", "_blank");
+          },
+        },
+        {
+          caption: "Firefox",
+          action() {
+            window.open("https://mozilla.org/firefox", "_blank");
+          },
+        },
+        {
+          caption: "Ignore",
+          action() {},
+          suggested: true,
+        },
+      ],
     },
   };
 
@@ -33,17 +67,23 @@ export class BrowserCheckProcess extends Process {
 
       const warning = this.warnings[browser];
 
-      sendNotification(warning);
+      function send() {
+        createErrorDialog(
+          { ...warning, buttons: [...(warning.buttons || [])], sound: "arcos.dialog.warning" },
+          ProcessStack.getAppPids("ArcShell")[0] || 0,
+          true
+        );
+      }
 
       createTrayIcon({
         title: warning.title,
 
         image: warning.image,
-        onOpen() {
-          sendNotification(warning);
-        },
+        onOpen: () => send(),
         identifier: `BrowserCheck_Warning#${browser}`,
       });
+
+      send();
     }
 
     stopService("BrowserCheck", true);

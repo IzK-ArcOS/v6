@@ -10,7 +10,7 @@ import { Notification } from "$types/notif";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../../util";
 import { getParentDirectory, readDirectory } from "../dir";
-import { pathToFriendlyName } from "../util";
+import { parseFilename, pathToFriendlyName } from "../util";
 import { LogLevel } from "$types/console";
 
 export async function readFile(path: string): Promise<ArcFile> {
@@ -76,6 +76,17 @@ export async function readClientFile(path: string): Promise<ArcFile> {
 
 export async function getPartialFile(path: string): Promise<PartialArcFile> {
   Log("server/fs/file", `Getting partial file of ${path}`);
+
+  if (path.startsWith("@client")) {
+    return {
+      scopedPath: path,
+      filename: parseFilename(path),
+      mime: "text/plain",
+      dateCreated: new Date().getTime(),
+      dateModified: new Date().getTime(),
+    };
+  }
+
   const parent = getParentDirectory(path);
   const dir = await readDirectory(parent);
   const filename = getFilenameFromPath(path);

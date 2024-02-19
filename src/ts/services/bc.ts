@@ -2,6 +2,7 @@ import { createTrayIcon } from "$apps/Shell/ts/tray";
 import { FirefoxIcon } from "$ts/images/general";
 import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";
+import { stopService } from "$ts/service/interact";
 import { PrimaryState } from "$ts/states";
 import { sleep } from "$ts/util";
 import { App } from "$types/app";
@@ -10,12 +11,13 @@ import { Service } from "$types/service";
 
 export class BrowserCheckProcess extends Process {
   warnings: Record<string, Notification> = {
-    "firefox": {
+    firefox: {
       title: "Firefox support",
-      message: "As of January 10th 2024, support for Firefox is still experimental. You can expect visual imperfections and bugs until further notice.",
-      image: FirefoxIcon
-    }
-  }
+      message:
+        "As of January 10th 2024, support for Firefox is still experimental. You can expect visual imperfections and bugs until further notice.",
+      image: FirefoxIcon,
+    },
+  };
 
   constructor(handler: ProcessHandler, pid: number, name: string, app: App, args: any[]) {
     super(handler, pid, name, app, args);
@@ -40,9 +42,11 @@ export class BrowserCheckProcess extends Process {
         onOpen() {
           sendNotification(warning);
         },
-        identifier: `BrowserCheck_Warning#${browser}`
-      })
+        identifier: `BrowserCheck_Warning#${browser}`,
+      });
     }
+
+    stopService("BrowserCheck", true);
   }
 }
 
@@ -51,5 +55,5 @@ export const BrowserCheck: Service = {
   description: "Performs checks to ensure your browser is compatible",
   process: BrowserCheckProcess,
   initialState: "started",
-  startCondition: () => PrimaryState.current.get().key == "desktop"
-}
+  startCondition: () => PrimaryState.current.get().key == "desktop",
+};

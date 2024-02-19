@@ -18,7 +18,7 @@
 
 <div
   class="pfprenderer {className} pfp"
-  style="background-image:url('{src || url}'); height:{height}px;"
+  style="background-image:url('{src || url}'); --h: {height}px;"
 />
 
 <style scoped>
@@ -30,5 +30,10 @@
     background-position: center;
     display: inline-block;
     background-color: var(--button-glass-bg);
+    min-width: var(--h);
+    max-width: var(--h);
+    height: var(--h);
+    min-height: var(--h);
+    max-height: var(--h);
   }
 </style>

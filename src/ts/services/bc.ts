@@ -26,7 +26,7 @@ export class BrowserCheckProcess extends Process {
         },
       ],
     },
-    "safari/": {
+    "safari/,mac": {
       title: "Safari",
       message:
         "ArcOS doesn't officially support Safari. For the best experience, please resort to a Chromium-based or Firefox browser.",
@@ -63,7 +63,13 @@ export class BrowserCheckProcess extends Process {
     const ua = navigator.userAgent.toLowerCase();
 
     for (const browser in this.warnings) {
-      if (!ua.includes(browser)) continue;
+      const split = browser.split(",");
+
+      if (!browser.includes(",") && !ua.includes(browser)) continue;
+
+      for (const item of split) {
+        if (!ua.includes(item)) continue;
+      }
 
       const warning = this.warnings[browser];
 

@@ -65,11 +65,15 @@ export class BrowserCheckProcess extends Process {
     for (const browser in this.warnings) {
       const split = browser.split(",");
 
-      if (!browser.includes(",") && !ua.includes(browser)) continue;
+      if (browser.includes("safari") && !window["safari"]) continue;
+
+      let browserApplies = true;
 
       for (const item of split) {
-        if (!ua.includes(item)) continue;
+        if (!ua.includes(item)) browserApplies = false;
       }
+
+      if (!browserApplies) continue;
 
       const warning = this.warnings[browser];
 

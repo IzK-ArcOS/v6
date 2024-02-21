@@ -18,18 +18,13 @@ export class MessageNotifierProcess extends Process {
   FREQUENCY = 1000 * 60; // Every 60 seconds
 
   constructor(handler: ProcessHandler, pid: number, name: string, app: App, args: any[]) {
-    console.log("MNS CONSTRUCT!");
-
     super(handler, pid, name, app, args);
   }
 
   public async start() {
-    console.log("MNS START!");
     await sleep(500);
 
     setInterval(async () => {
-      console.log("MNS INTERVAL!");
-
       if (this._paused) return;
 
       await this.Tick();
@@ -39,15 +34,13 @@ export class MessageNotifierProcess extends Process {
   }
 
   public async Tick() {
-    console.log("MNS TICK!");
-
     const unreads = (await getUnreadMessages(200))
       .sort((a, b) => b.timestamp - a.timestamp)
       .filter((m) => !this.BLACKLIST.includes(m.id));
 
     const message = unreads[0];
 
-    if (!unreads.length || !message) return console.log("MNS TICK ERROR!", unreads, message);
+    if (!unreads.length || !message) return;
 
     GlobalDispatch.dispatch("message-flush");
 
@@ -57,8 +50,6 @@ export class MessageNotifierProcess extends Process {
   }
 
   private async _notify(message: PartialMessage) {
-    console.log("MNS NOTIFY!");
-
     const pfp = await getUserPfp(message.sender, MessagingIcon);
 
     const { title, body } = parseTitle(message.partialBody);
@@ -72,8 +63,6 @@ export class MessageNotifierProcess extends Process {
   }
 
   private async _open(id: string) {
-    console.log("MNS OPEN!");
-
     const pids = ProcessStack.getAppPids("MessagingApp");
 
     if (!pids.length) return await spawnApp("MessagingApp", 0, [id]);

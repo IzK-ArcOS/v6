@@ -11,6 +11,6 @@ export function MultiUploadProgress(length: number, target: string): FileOperati
     max: length,
     waiting: false,
     working: false,
-    errors: 0
-  }
+    errors: 0,
+  };
 }

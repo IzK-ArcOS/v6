@@ -45,7 +45,7 @@ export class ServiceManager extends Process {
 
     this.Services.set(store);
 
-    return this._storeLoaded = true;
+    return (this._storeLoaded = true);
   }
 
   public async startService(id: string, fromSystem = false): Promise<ServiceChangeResult> {
@@ -54,7 +54,8 @@ export class ServiceManager extends Process {
 
     if (!services.has(id)) return "err_noExist";
 
-    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(service), ProcessStack);
+    const elevation =
+      fromSystem || (await GetUserElevation(ElevationChangeServiceState(service), ProcessStack));
 
     if (!elevation) return "err_elevation";
 
@@ -63,7 +64,11 @@ export class ServiceManager extends Process {
     if (!canStart) return "err_startCondition";
     if (service.pid) return "err_alreadyRunning";
 
-    const instance = await ProcessStack.spawn({ proc: service.process, name: `svc#${id}`, parentPid: this.pid });
+    const instance = await ProcessStack.spawn({
+      proc: service.process,
+      name: `svc#${id}`,
+      parentPid: this.pid,
+    });
 
     if (typeof instance == "string") return "err_spawnFailed";
 
@@ -84,13 +89,14 @@ export class ServiceManager extends Process {
 
     if (!services.has(id)) return "err_noExist";
 
-    if (!service.pid) return "err_notRunning"
+    if (!service.pid) return "err_notRunning";
 
-    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(service), ProcessStack);
+    const elevation =
+      fromSystem || (await GetUserElevation(ElevationChangeServiceState(service), ProcessStack));
 
     if (!elevation) return "err_elevation";
 
-    this._holdRestart = true
+    this._holdRestart = true;
 
     await ProcessStack.kill(service.pid, true);
 
@@ -110,7 +116,9 @@ export class ServiceManager extends Process {
 
     if (!services.has(id)) return "err_noExist";
 
-    const elevation = fromSystem || await GetUserElevation(ElevationChangeServiceState(services.get(id)), ProcessStack);
+    const elevation =
+      fromSystem ||
+      (await GetUserElevation(ElevationChangeServiceState(services.get(id)), ProcessStack));
 
     if (!elevation) return "err_elevation";
 
@@ -136,7 +144,7 @@ export class ServiceManager extends Process {
 
     ProcessStack.processes.subscribe(() => this.verifyServicesProcesses());
 
-    this.Services.subscribe(() => GlobalDispatch.dispatch("services-flush"))
+    this.Services.subscribe(() => GlobalDispatch.dispatch("services-flush"));
   }
 
   public async verifyServicesProcesses() {
@@ -147,9 +155,9 @@ export class ServiceManager extends Process {
     for (const [id, service] of [...services]) {
       if (!service.pid || ProcessStack.isPid(service.pid, true)) continue;
 
-      this.Log(`Process of ${id} doesn't exist anymore! Restarting service...`, LogLevel.warn)
+      this.Log(`Process of ${id} doesn't exist anymore! Restarting service...`, LogLevel.warn);
 
-      await this.restartService(id, true)
+      await this.restartService(id, true);
     }
   }
 }

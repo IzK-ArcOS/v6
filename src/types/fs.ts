@@ -39,5 +39,5 @@ export interface FileHandler {
   name: string;
   description: string;
   image: string;
-  handler: (file: PartialArcFile) => void
+  handler: (file: PartialArcFile) => void;
 }

@@ -49,7 +49,7 @@ export interface UserData {
     compactContext: boolean;
     showHiddenApps?: boolean; // halfway
     securityNoPassword: boolean; // halfway
-    elevationDisabled: boolean
+    elevationDisabled: boolean;
   };
 
   disabledApps: string[];
@@ -64,14 +64,13 @@ export interface UserData {
     muted: boolean;
   };
 
-  security?: SecuritySettings
+  security?: SecuritySettings;
 
   appdata: AppData;
 }
 
 interface SecuritySettings {
   bypassElevation?: boolean;
-
 }
 
 interface AccountInfo {

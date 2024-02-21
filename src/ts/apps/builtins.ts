@@ -3,7 +3,7 @@ import { builtinApps } from "$ts/stores/apps/builtins";
 import { loadApp } from "./load";
 
 export async function loadBuiltinApps() {
-  Log("apps/builtins", "Loading built-in applications...")
+  Log("apps/builtins", "Loading built-in applications...");
 
   const entries = Object.entries(builtinApps);
 

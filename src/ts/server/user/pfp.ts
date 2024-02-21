@@ -6,7 +6,11 @@ import { getUsers } from "./get";
 
 const pfpCache: Params = {};
 
-export async function getUserPfp(username: string, fallback = "", store?: AllUsers): Promise<string> {
+export async function getUserPfp(
+  username: string,
+  fallback = "",
+  store?: AllUsers
+): Promise<string> {
   const server = ConnectedServer.get();
 
   if (!server) return fallback || ProfilePictures.def;

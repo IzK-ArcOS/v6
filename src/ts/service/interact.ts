@@ -45,7 +45,7 @@ export function getService(id: string): Nullable<Service> {
 
   const services = manager.Services.get();
 
-  return services.has(id) ? services.get(id) : null
+  return services.has(id) ? services.get(id) : null;
 }
 
 export function getAllServices(): Nullable<ServiceStore> {
@@ -56,7 +56,7 @@ export function getAllServices(): Nullable<ServiceStore> {
 
   const services = manager.Services.get();
 
-  return services
+  return services;
 }
 
 export function isServiceRunning(id: string): boolean {
@@ -67,9 +67,8 @@ export function isServiceRunning(id: string): boolean {
 
   const services = manager.Services.get();
 
-  return services.has(id) ? !!services.get(id).pid : false
+  return services.has(id) ? !!services.get(id).pid : false;
 }
-
 
 export async function startInitialServices() {
   const managerPid = ServiceManagerPid.get();

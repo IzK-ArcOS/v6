@@ -9,11 +9,7 @@ export class SoundBus {
 
   constructor(store: SoundStore) {
     if (!store) {
-      Log(
-        "soundbus",
-        `Can't create SoundBus without valid store.`,
-        LogLevel.error
-      );
+      Log("soundbus", `Can't create SoundBus without valid store.`, LogLevel.error);
       return;
     }
 
@@ -35,9 +31,10 @@ export class SoundBus {
 
     this._bus[id].push(element);
 
-    element.onended = () => setTimeout(() => {
-      delete this._bus[id];
-    }, 1000);
+    element.onended = () =>
+      setTimeout(() => {
+        delete this._bus[id];
+      }, 1000);
 
     return true;
   }

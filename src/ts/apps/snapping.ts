@@ -15,17 +15,17 @@ export function CompileSnappingContextOption(): ContextMenuItem {
         icon: "close",
         action(window) {
           ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-disable");
-        }
+        },
       },
-      SEP_ITEM
-    ]
-  }
+      SEP_ITEM,
+    ],
+  };
 
   for (const state in WindowSnappingStates) {
     const caption = WindowSnappingStates[state];
 
     if (state.startsWith("$")) {
-      root.subItems.push(SEP_ITEM)
+      root.subItems.push(SEP_ITEM);
 
       continue;
     }
@@ -34,9 +34,9 @@ export function CompileSnappingContextOption(): ContextMenuItem {
       caption,
       icon: WindowSnappingIcons[state],
       action(window) {
-        ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", state)
-      }
-    })
+        ProcessStack.dispatch.dispatchToPid(window.pid, "snapping-set", state);
+      },
+    });
   }
 
   return root;

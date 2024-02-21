@@ -1,5 +1,5 @@
 import { appGroups, appLibrary } from "$ts/stores/apps";
-import { AppGroupStore, CompiledAppGroupStore } from "$types/groups";
+import { CompiledAppGroupStore } from "$types/groups";
 import { isPopulatable } from "./utils";
 
 export function getAppGroups(): {
@@ -47,9 +47,11 @@ export function getAppGroups(): {
     });
 
     return g;
-  })
+  });
 
-  result = Object.fromEntries(entries.sort((a, b) => a[1].index - b[1].index)) as CompiledAppGroupStore;
+  result = Object.fromEntries(
+    entries.sort((a, b) => a[1].index - b[1].index)
+  ) as CompiledAppGroupStore;
 
   return { groups: result, rest };
 }

@@ -14,10 +14,11 @@ import {
   UnknownFileIcon,
   VideoMimeIcon,
   WebpageMimeIcon,
-  XmlMimeIcon
+  XmlMimeIcon,
 } from "$ts/images/mime";
 
-export const MimeTypeIcons: Record<string, string[]> = { // <icon, .ext>
+export const MimeTypeIcons: Record<string, string[]> = {
+  // <icon, .ext>
   [ArcAppMimeIcon]: [".appmod"],
   [JsonMimeIcon]: [".json"],
   [PdfMimeIcon]: [".pdf"],
@@ -34,4 +35,4 @@ export const MimeTypeIcons: Record<string, string[]> = { // <icon, .ext>
   [JavascriptMimeIcon]: [".js", ".ts", ".d.ts", ".mjs"],
   [XmlMimeIcon]: [".xml"],
   [UnknownFileIcon]: [".$new"],
-}
+};

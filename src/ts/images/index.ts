@@ -1,5 +1,3 @@
-import { Log } from "$ts/console";
-
 import * as Apps from "./apps";
 import * as Branding from "./branding";
 import * as Dialog from "./dialog";
@@ -7,8 +5,8 @@ import * as Filesystem from "./filesystem";
 import * as General from "./general";
 import * as Mimetypes from "./mime";
 import * as Power from "./power";
+import * as Snapping from "./snapping";
 import * as Status from "./status";
-import * as Snapping from './snapping';
 
 export function getAllImages(): Record<string, string> {
   return {
@@ -20,7 +18,7 @@ export function getAllImages(): Record<string, string> {
     ...Dialog,
     ...Status,
     ...Snapping,
-    ...Mimetypes
+    ...Mimetypes,
   };
 }
 
@@ -34,9 +32,8 @@ export function getGroupedIcons() {
     Dialog,
     Power,
     Status,
-    Snapping
+    Snapping,
   };
-
 }
 
 export function getIconPath(id: string) {

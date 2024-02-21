@@ -22,5 +22,5 @@ export const ThemeCaptions = {
   amoled: "AMOLED",
   amber: "Amber Monochrome",
   scifi: "Science Fiction",
-  hc: "High Contrast"
-}
+  hc: "High Contrast",
+};

@@ -11,5 +11,5 @@ export async function GetSaveFilePath(pid: number, data: LoadSaveDialogData): Pr
   return new Promise<string>((r) => {
     ProcessStack.dispatch.subscribe(pid, "save-file", (v: string) => r(v));
     ProcessStack.dispatch.subscribe(pid, "ls-dialog-cancel", () => r(""));
-  })
+  });
 }

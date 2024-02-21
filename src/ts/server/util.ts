@@ -13,7 +13,10 @@ import { AxiosRequestConfig } from "axios";
  */
 export function getServerUrl(path: string, params?: Params, server?: Server): string {
   if (!isStoredEndpoint(path)) {
-    manualCrash("src/ts/server/util.ts", "getServerUrl: The path must be part of the Endpoints store.");
+    manualCrash(
+      "src/ts/server/util.ts",
+      "getServerUrl: The path must be part of the Endpoints store."
+    );
 
     return null;
   }

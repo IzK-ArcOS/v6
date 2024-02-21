@@ -9,11 +9,11 @@ export async function StartCoreProcesses(restart = false, handler = ProcessStack
   let startCount = 0;
 
   for (const service of StartupProcesses) {
-    const processes = [...handler.processes.get()]
+    const processes = [...handler.processes.get()];
     const sameNames = processes.filter(([_, proc]) => {
       return proc.name == service.name && !proc._disposed;
-    })
-    const isRunning = !!(sameNames.length)
+    });
+    const isRunning = !!sameNames.length;
 
     if (isRunning) continue;
 
@@ -23,6 +23,6 @@ export async function StartCoreProcesses(restart = false, handler = ProcessStack
   }
 
   if (restart && startCount) {
-    CoreRestartNotification(startCount)
+    CoreRestartNotification(startCount);
   }
 }

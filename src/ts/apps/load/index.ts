@@ -41,11 +41,7 @@ export async function loadApp(id: string, data: App): Promise<boolean> {
   return true;
 }
 
-export async function loadExternal(
-  tag: string,
-  module: string,
-  app: App
-): Promise<boolean> {
+export async function loadExternal(tag: string, module: string, app: App): Promise<boolean> {
   app.sideload = { tag, module };
   app.content = null;
   app.id = tag;

@@ -18,9 +18,11 @@ export type ServiceStore = Map<string, Service>;
 export type ReadableServiceStore = ReadableStore<ServiceStore>;
 export type InitialServiceState = "stopped" | "started";
 export type ServiceChangeResult =
-  "err_noExist" |
-  "err_alreadyRunning" | "err_notRunning" |
-  "err_startCondition" |
-  "err_spawnFailed" |
-  "err_noManager" | "err_elevation" |
-  "success";
+  | "err_noExist"
+  | "err_alreadyRunning"
+  | "err_notRunning"
+  | "err_startCondition"
+  | "err_spawnFailed"
+  | "err_noManager"
+  | "err_elevation"
+  | "success";

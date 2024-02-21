@@ -6,5 +6,5 @@ export const ICON_GROUP_CAPTIONS = {
   Power: "Power icons",
   Dialog: "Dialog icons",
   Status: "Status indicators",
-  Mimetypes: "File mimetypes"
-}
+  Mimetypes: "File mimetypes",
+};

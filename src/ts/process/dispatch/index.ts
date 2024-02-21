@@ -9,20 +9,19 @@ export class ProcessDispatcher {
   }
 
   private Log(text: string, level?: LogLevel) {
-    Log("process/dispatch", `ProcessDispatcher[${this.handler.id}]: ${text}`, level)
+    Log("process/dispatch", `ProcessDispatcher[${this.handler.id}]: ${text}`, level);
   }
 
   subscribe<T = any[]>(pid: number, event: string, callback: (data: T) => void) {
     if (!this.subscribers[pid]) this.subscribers[pid] = { [event]: [] };
 
-    if (!this.subscribers[pid][event])
-      this.subscribers[pid][event] = [callback]
+    if (!this.subscribers[pid][event]) this.subscribers[pid][event] = [callback];
     else this.subscribers[pid][event].push(callback);
   }
 
   unsubscribe(pid: number) {
     this.Log(`Unsubscribing all of PID ${pid}`);
-    delete this.subscribers[pid]
+    delete this.subscribers[pid];
   }
 
   dispatchToApp<T = any[]>(id: string, caller: string, data: T) {

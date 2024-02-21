@@ -13,23 +13,30 @@ export function loadConditionFailed(app: App) {
 
   const dialog: ErrorDialog = {
     title: "App load aborted",
-    message: `Loading application <code>${app.id}</code> was stopped because the necessary load condition failed. Try restarting to resolve this problem. If it persists, contact the ArcOS Team for more information.<br><br>Condition: <code>${app.loadCondition.toString()}</code>`,
-    buttons: [{ caption: "Okay", action() { } }],
+    message: `Loading application <code>${
+      app.id
+    }</code> was stopped because the necessary load condition failed. Try restarting to resolve this problem. If it persists, contact the ArcOS Team for more information.<br><br>Condition: <code>${app.loadCondition.toString()}</code>`,
+    buttons: [{ caption: "Okay", action() {} }],
     image: WarningIcon,
-    sound: "arcos.dialog.warning"
-  }
+    sound: "arcos.dialog.warning",
+  };
 
   function onOpen(icon: TrayIcon) {
-    createErrorDialog(dialog, shellPid, true)
+    createErrorDialog(dialog, shellPid, true);
 
-    disposeTrayIcon(icon.identifier)
+    disposeTrayIcon(icon.identifier);
   }
 
-  if (shellPid) createTrayIcon({
-    identifier: `lcFail#${app.id}`,
-    image: WarningIcon,
-    onOpen,
-  })
+  if (shellPid)
+    createTrayIcon({
+      identifier: `lcFail#${app.id}`,
+      image: WarningIcon,
+      onOpen,
+    });
 
-  Log("apps/load", `Aborted ${app.id} because the load condition failed: ${app.loadCondition.toString()}`, LogLevel.error);
+  Log(
+    "apps/load",
+    `Aborted ${app.id} because the load condition failed: ${app.loadCondition.toString()}`,
+    LogLevel.error
+  );
 }

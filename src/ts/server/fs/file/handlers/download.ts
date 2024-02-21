@@ -11,6 +11,6 @@ export const DownloadHandler: FileHandler = {
   async handler(file) {
     const arcfile = await readFile(file.scopedPath);
 
-    DownloadFile(arcfile)
-  }
-}
+    DownloadFile(arcfile);
+  },
+};

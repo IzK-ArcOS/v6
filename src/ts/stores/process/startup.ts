@@ -4,6 +4,6 @@ import { ProcessSpawnArguments } from "$types/process";
 export const StartupProcesses: ProcessSpawnArguments[] = [
   {
     proc: ServiceManager,
-    name: "ServiceManager"
+    name: "ServiceManager",
   },
-]
+];

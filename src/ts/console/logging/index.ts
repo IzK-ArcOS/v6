@@ -37,7 +37,5 @@ export function Log(source: string, msg: string, level = LogLevel.info) {
 
   pushToStack(source);
 
-  console.log(
-    `ArcOS: ${timestamp} [${levelCaption}] ${data.source}: ${data.msg}`
-  );
+  console.log(`ArcOS: ${timestamp} [${levelCaption}] ${data.source}: ${data.msg}`);
 }

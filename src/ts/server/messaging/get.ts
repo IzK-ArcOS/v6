@@ -1,10 +1,10 @@
+import { toBase64 } from "$ts/base64";
 import { Endpoints } from "$ts/stores/endpoint";
-import { UserDataStore, UserName, UserToken } from "$ts/stores/user";
+import { UserName, UserToken } from "$ts/stores/user";
+import { Nullable } from "$types/common";
 import { Message, PartialMessage } from "$types/messaging";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
-import { Nullable } from "$types/common";
-import { toBase64 } from "$ts/base64";
 import { getMessageArchive } from "./archive";
 
 export async function getAllMessages(length = 30): Promise<PartialMessage[]> {

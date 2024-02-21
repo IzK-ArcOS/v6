@@ -20,10 +20,7 @@ export function collectLogsBySource(reverse = false): CollectorResult {
       sources.push(log.source);
     }
 
-    items[log.source] = Array.prototype.concat(
-      items[log.source] || [],
-      [log]
-    );
+    items[log.source] = Array.prototype.concat(items[log.source] || [], [log]);
   }
 
   return items;

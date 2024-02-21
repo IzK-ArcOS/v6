@@ -26,8 +26,8 @@ export async function FileToArcFile(file: File, target: string, mime?: string): 
     name: file.name,
     path: target,
     data: arrayToBlob(await file.arrayBuffer()),
-    mime: mime || "text/plain"
-  }
+    mime: mime || "text/plain",
+  };
 
   return data;
 }

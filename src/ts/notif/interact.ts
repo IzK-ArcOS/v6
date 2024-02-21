@@ -6,18 +6,24 @@ import { Notification } from "$types/notif";
 let notifProc: NotificationProcess = null;
 
 function procCheck() {
-  if (!notifProc) Log(`notif/interact`, `Can't handle notifications without a NotificationService to interact with.`, LogLevel.error);
+  if (!notifProc)
+    Log(
+      `notif/interact`,
+      `Can't handle notifications without a NotificationService to interact with.`,
+      LogLevel.error
+    );
 
   return !!notifProc;
 }
 
-export const getNotificationStore = () => notifProc ? notifProc.store : null;
-export const getNotifCurrentStore = () => notifProc ? notifProc.current : null;
+export const getNotificationStore = () => (notifProc ? notifProc.store : null);
+export const getNotifCurrentStore = () => (notifProc ? notifProc.current : null);
 
 export function setNotificationProc(proc: NotificationProcess) {
   Log(`notif/interact`, `Setting notification process to ${proc.pid}`);
 
-  if (!proc) return Log("notif/interact", "Can't set NotifProc to invalid process!", LogLevel.error);
+  if (!proc)
+    return Log("notif/interact", "Can't set NotifProc to invalid process!", LogLevel.error);
 
   notifProc = proc;
 }
@@ -31,7 +37,7 @@ export async function sendNotification(data: Notification) {
 export function closeNotification() {
   if (!procCheck()) return;
 
-  notifProc.close()
+  notifProc.close();
 }
 
 export function deleteNotification(id: string) {
@@ -43,9 +49,9 @@ export function deleteNotification(id: string) {
 export function clearNotifications() {
   if (!procCheck()) return;
 
-  notifProc.store.set(new Map([]))
+  notifProc.store.set(new Map([]));
 }
 
 export function isNotificationServiceActive() {
-  return notifProc && !notifProc._disposed && !notifProc._paused
+  return notifProc && !notifProc._disposed && !notifProc._paused;
 }

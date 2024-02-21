@@ -8,7 +8,8 @@ export async function killAllAppInstances(id: string, fromSystem = false): Promi
   Log("process/kill", `Killing all instances of ${id}`);
 
   const pids = ProcessStack.getAppPids(id);
-  const elevated = fromSystem || await GetUserElevation(ElevationKillAppProcesses(id), ProcessStack)
+  const elevated =
+    fromSystem || (await GetUserElevation(ElevationKillAppProcesses(id), ProcessStack));
 
   if (!elevated) return false;
 
@@ -16,7 +17,7 @@ export async function killAllAppInstances(id: string, fromSystem = false): Promi
     ProcessStack.kill(pid, elevated);
   }
 
-  return true
+  return true;
 }
 
 export async function killAllApps(fromSystem = false) {

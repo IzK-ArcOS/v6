@@ -14,13 +14,13 @@ export const defaultUserData: UserData = {
       clockSecs: false,
       clockDate: false,
       clock12hr: false,
-      accentedStart: false
+      accentedStart: false,
     },
     window: {
       bigtb: true,
       lefttb: false,
       buttons: "default",
-      centertb: false
+      centertb: false,
     },
     desktop: {
       wallpaper: "img04",
@@ -33,11 +33,11 @@ export const defaultUserData: UserData = {
       pinnedFolders: [],
       noCustomCursor: false,
       noIconGrid: false,
-      lockIcons: false
+      lockIcons: false,
     },
     start: {
       small: true,
-      noGroups: false
+      noGroups: false,
     },
     anim: true,
     noGlass: false,
@@ -45,7 +45,7 @@ export const defaultUserData: UserData = {
     compactContext: false,
     showHiddenApps: false,
     securityNoPassword: false,
-    elevationDisabled: false
+    elevationDisabled: false,
   },
   disabledApps: [],
   autoLoads: [],
@@ -54,32 +54,32 @@ export const defaultUserData: UserData = {
   acc: {
     admin: false,
     enabled: true,
-    profilePicture: 3
+    profilePicture: 3,
   },
   volume: {
     level: 1,
-    muted: false
+    muted: false,
   },
   appdata: {
     experiments: {},
-    "ArcShell": {},
-    "QlorbApp": {},
-    "LightsOff": {},
-    "FileManager": {},
-    "ArcTerm": {},
-    "SettingsApp": {},
-    "AppInfo": {},
-    "LoggerApp": {},
-    "ErrorDialog": {},
-    "ProcessManager": {},
-    "SecureContext": {},
-    "ServiceInfo": {},
-    "ExitApp": {},
-    "TextEditor": {},
-    "LoadSaveDialog": {},
-    "desktopWallpaper": {}
-  }
-}
+    ArcShell: {},
+    QlorbApp: {},
+    LightsOff: {},
+    FileManager: {},
+    ArcTerm: {},
+    SettingsApp: {},
+    AppInfo: {},
+    LoggerApp: {},
+    ErrorDialog: {},
+    ProcessManager: {},
+    SecureContext: {},
+    ServiceInfo: {},
+    ExitApp: {},
+    TextEditor: {},
+    LoadSaveDialog: {},
+    desktopWallpaper: {},
+  },
+};
 export const UserName = Store<string>();
 export const UserDataStore = Store<UserData>(defaultUserData);
 export const UserToken = Store<string>();

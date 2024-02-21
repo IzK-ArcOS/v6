@@ -16,7 +16,7 @@ export function lightenColor(color: string, modifier: number = 5) {
  * @returns A 6-digit hex code
  */
 export function hex3to6(color: string): string {
-  return colorsea(`#${color}`).hex()
+  return colorsea(`#${color}`).hex();
 }
 
 /**
@@ -37,8 +37,5 @@ export function darkenColor(color: string, modifier: number = 5) {
 export function invertColor(hex: string) {
   hex = hex.replace("#", "");
   if (hex.length !== 6) return hex;
-  return `#${(Number(`0x1${hex}`) ^ 0xffffff)
-    .toString(16)
-    .substring(1)
-    .toUpperCase()}`;
+  return `#${(Number(`0x1${hex}`) ^ 0xffffff).toString(16).substring(1).toUpperCase()}`;
 }

@@ -11,7 +11,7 @@ export const ErrorDialog: App = {
     version: "1.0.0",
     icon: WarningIcon,
     appGroup: "internal",
-    hidden: true
+    hidden: true,
   },
   runtime: Runtime,
   content: AppSvelte,
@@ -32,5 +32,4 @@ export const ErrorDialog: App = {
     maximize: false,
     close: false,
   },
-
 };

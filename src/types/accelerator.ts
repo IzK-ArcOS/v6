@@ -1,6 +1,5 @@
 import { Process } from "$ts/process";
 
-
 export interface AppKeyCombination {
   alt?: boolean;
   ctrl?: boolean;

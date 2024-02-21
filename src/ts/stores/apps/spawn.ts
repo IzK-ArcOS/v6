@@ -7,5 +7,5 @@ export const AppSpawnResultCaptions: Record<AppSpawnResult, string> = {
   err_noExist: "The Application doesn't exist.",
   err_spawnCondition: "The spawn condition failed.",
   err_parentNoExist: "The parent process doesn't exist.",
-  ...ProcessSpawnResultCaptions
-}
+  ...ProcessSpawnResultCaptions,
+};

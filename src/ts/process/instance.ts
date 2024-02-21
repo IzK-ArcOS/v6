@@ -40,11 +40,7 @@ export class Process {
   }
 
   public Log(text: string, level?: LogLevel) {
-    Log(
-      "process/instance",
-      `ProcessHandler[${this.handler.id}][${this.name}]: ${text}`,
-      level
-    );
+    Log("process/instance", `ProcessHandler[${this.handler.id}][${this.name}]: ${text}`, level);
   }
 
   start(): any {
@@ -77,7 +73,7 @@ export class Process {
   }
 
   protected resume() {
-    this.Log(`Resuming ${this.pid}`)
+    this.Log(`Resuming ${this.pid}`);
 
     if (!this._paused) {
       this.Log(`Attempted to resume unpaused process`, LogLevel.warn);
@@ -92,7 +88,6 @@ export class Process {
     const subprocesses = [...this.handler.getSubProcesses(this.pid)];
 
     for (const [_, process] of subprocesses) {
-
       if (process._disposed) continue;
       if (process.app && process.app.id == id) return true;
     }

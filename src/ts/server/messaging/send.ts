@@ -1,10 +1,10 @@
 import { toBase64 } from "$ts/base64";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { Endpoints } from "$ts/stores/endpoint";
 import { ConnectedServer } from "$ts/stores/server";
 import { UserToken } from "$ts/stores/user";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
-import { GlobalDispatch } from "$ts/process/dispatch/global";
 
 export async function sendMessage(receivers: string[], body: string): Promise<boolean> {
   const token = UserToken.get();

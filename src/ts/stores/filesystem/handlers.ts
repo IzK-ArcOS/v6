@@ -12,5 +12,5 @@ export const FileHandlers: FileHandler[] = [
   ImageViewerHandler,
   MediaPlayerHandler,
   ThemeHandler,
-  DownloadHandler
+  DownloadHandler,
 ];

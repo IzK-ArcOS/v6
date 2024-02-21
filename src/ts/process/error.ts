@@ -14,13 +14,7 @@ export async function createErrorDialog(
   overlay?: boolean
 ): Promise<Nullable<number>> {
   class DialogProcess extends Process {
-    constructor(
-      handler: ProcessHandler,
-      pid: number,
-      name: string,
-      app?: App,
-      args: any[] = []
-    ) {
+    constructor(handler: ProcessHandler, pid: number, name: string, app?: App, args: any[] = []) {
       super(handler, pid, name, app, args);
 
       this.setParentPid(pid);
@@ -39,18 +33,38 @@ export async function createErrorDialog(
 
   if (typeof process == "string") return null;
 
-  if (options.sound) ArcSoundBus.playSound(options.sound)
+  if (options.sound) ArcSoundBus.playSound(options.sound);
 
   return process.pid;
 }
 
-export async function GetConfirmation(options: ConfirmationDialog, parentPid: number, overlay?: boolean): Promise<boolean> {
+export async function GetConfirmation(
+  options: ConfirmationDialog,
+  parentPid: number,
+  overlay?: boolean
+): Promise<boolean> {
   return new Promise((resolve) => {
-    createErrorDialog({
-      ...options, buttons: [
-        { caption: "No", action() { resolve(false) } },
-        { caption: "Yes", action() { resolve(true) }, suggested: true }
-      ]
-    }, parentPid, overlay)
-  })
+    createErrorDialog(
+      {
+        ...options,
+        buttons: [
+          {
+            caption: "No",
+            action() {
+              resolve(false);
+            },
+          },
+          {
+            caption: "Yes",
+            action() {
+              resolve(true);
+            },
+            suggested: true,
+          },
+        ],
+      },
+      parentPid,
+      overlay
+    );
+  });
 }

@@ -12,12 +12,7 @@ export class StateHandler {
   public readonly startState: string;
   public readonly id: string;
 
-  constructor(
-    id: string,
-    store: States,
-    startState: string,
-    preNavigate = true
-  ) {
+  constructor(id: string, store: States, startState: string, preNavigate = true) {
     this.id = id;
     this.store = store;
     this.startState = startState;
@@ -32,10 +27,7 @@ export class StateHandler {
   }
 
   public navigate(stateKey: string) {
-    Log(
-      "states",
-      `StateHandler.navigate[${this.id}]: Navigating to "${stateKey}"`
-    );
+    Log("states", `StateHandler.navigate[${this.id}]: Navigating to "${stateKey}"`);
 
     const has = this.store.has(stateKey);
 
@@ -44,7 +36,7 @@ export class StateHandler {
         "states",
         `StateHandler.navigate[${this.id}]: No such state ${stateKey}, falling back to ${this.startState}`,
         LogLevel.warn
-      )
+      );
 
     const state = this.store.get(has ? stateKey : this.startState);
 

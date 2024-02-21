@@ -7,17 +7,15 @@ import { LogLevel } from "$types/console";
 import { Wallpaper } from "$types/wallpaper";
 
 const getters: [string, (id: string) => Wallpaper | Promise<Wallpaper>][] = [
-  [
-    "@local:",
-    async (id) => await wallpaperFromFS(fromBase64(id.replace("@local:", ""))),
-  ],
+  ["@local:", async (id) => await wallpaperFromFS(fromBase64(id.replace("@local:", "")))],
   ["img", (id) => Wallpapers[id] || Wallpapers["img04"]],
 ];
 
 export async function getWallpaper(id: string, override?: string): Promise<Wallpaper> {
   if (!id) return Wallpapers[override || "img04"];
 
-  if (id.startsWith("http")) return { author: "The Web", name: "From the Internet", url: id, thumb: id };
+  if (id.startsWith("http"))
+    return { author: "The Web", name: "From the Internet", url: id, thumb: id };
 
   for (const [prefix, getter] of getters) {
     if (id.startsWith(prefix)) return await getter(id);
@@ -27,20 +25,12 @@ export async function getWallpaper(id: string, override?: string): Promise<Wallp
 }
 
 export async function wallpaperFromFS(path: string): Promise<Wallpaper> {
-  Log(
-    "wallpaper",
-    `Reading FS wallpaper from path "${path}"...`,
-    LogLevel.info
-  );
+  Log("wallpaper", `Reading FS wallpaper from path "${path}"...`, LogLevel.info);
 
   const file = await readFile(path);
 
   if (!file) {
-    Log(
-      "wallpaper",
-      `Unable to get wallpaper "${path}" from ArcFS`,
-      LogLevel.error
-    );
+    Log("wallpaper", `Unable to get wallpaper "${path}" from ArcFS`, LogLevel.error);
 
     return Wallpapers["img04"];
   }

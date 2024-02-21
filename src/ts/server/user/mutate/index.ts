@@ -7,10 +7,7 @@ import axios from "axios";
 export * from "./name";
 export * from "./password";
 
-export async function createUser(
-  username: string,
-  password: string
-): Promise<boolean> {
+export async function createUser(username: string, password: string): Promise<boolean> {
   Log("server/user/mutate", `Creating user "${username}"`);
 
   const url = getServerUrl(Endpoints.NewUsers);

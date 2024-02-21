@@ -24,5 +24,5 @@ export const KnownAcceleratorKeys = [
   "f11",
   "f12",
   "/",
-  "enter"
-]
+  "enter",
+];

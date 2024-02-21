@@ -17,5 +17,13 @@ export function getAppById(id: string, override?: App): Nullable<App> {
   const accelerators = app.accelerators;
   const isolated = JSON.parse(JSON.stringify(app));
 
-  return { ...isolated, runtime, content, loadCondition, spawnCondition, contextMenu, accelerators };
+  return {
+    ...isolated,
+    runtime,
+    content,
+    loadCondition,
+    spawnCondition,
+    contextMenu,
+    accelerators,
+  };
 }

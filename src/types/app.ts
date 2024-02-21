@@ -33,13 +33,14 @@ export interface App {
 }
 
 export type AppMutator = ReadableStore<App>;
-export type AppSpawnResult = "success" |
-  "err_elevation" |
-  "err_parentNoExist" |
-  "err_noExist" |
-  "err_spawnCondition" |
-  "err_disabled" |
-  "err_aboveLimit";
+export type AppSpawnResult =
+  | "success"
+  | "err_elevation"
+  | "err_parentNoExist"
+  | "err_noExist"
+  | "err_spawnCondition"
+  | "err_disabled"
+  | "err_aboveLimit";
 
 export interface WindowControls {
   minimize: boolean;
@@ -66,10 +67,18 @@ export interface AppState {
   fullscreen: boolean;
   resizable: boolean;
   snapping?: boolean;
-  snapState?: SnapState
+  snapState?: SnapState;
 }
 
-export type SnapState = "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right";
+export type SnapState =
+  | "top"
+  | "top-left"
+  | "top-right"
+  | "bottom"
+  | "bottom-left"
+  | "bottom-right"
+  | "left"
+  | "right";
 
 export type AppLibrary = ReadableStore<Map<string, App>>; // [id, instance]
 export type Coordinate = { x: number; y: number };
@@ -87,7 +96,11 @@ export interface ContextMenuItem {
   accelerator?: string;
 }
 
-export type ContextMenuCallback<T = void> = (window: App, data: DOMStringMap, scope: string) => MaybePromise<T>;
+export type ContextMenuCallback<T = void> = (
+  window: App,
+  data: DOMStringMap,
+  scope: string
+) => MaybePromise<T>;
 
 export type AppContextMenu = { [key: string]: ContextMenuItem[] };
 

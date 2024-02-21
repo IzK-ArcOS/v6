@@ -1,9 +1,9 @@
+import { toBase64 } from "$ts/base64";
 import { Endpoints } from "$ts/stores/endpoint";
 import { UserToken } from "$ts/stores/user";
 import { Message, PartialMessage, PartiallyExtendedMessage } from "$types/messaging";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
-import { toBase64 } from "$ts/base64";
 import { getAllMessages, getMessage } from "./get";
 
 export async function getFullMessageTree(): Promise<PartiallyExtendedMessage[]> {

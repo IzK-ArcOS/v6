@@ -8,9 +8,9 @@ export function getMimeIcon(filename: string): string {
     const extensions = MimeTypeIcons[icon];
 
     for (const extension of extensions) {
-      if (filename.endsWith(extension)) return icon
+      if (filename.endsWith(extension)) return icon;
     }
   }
 
-  return DefaultMimeIcon
+  return DefaultMimeIcon;
 }

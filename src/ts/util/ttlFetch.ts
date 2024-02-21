@@ -1,10 +1,6 @@
 import { Log } from "$ts/console";
 
-export default function (
-  url: string,
-  init: RequestInit,
-  ms: number = 3000
-): Promise<Response> {
+export default function (url: string, init: RequestInit, ms: number = 3000): Promise<Response> {
   Log("util/ttlFetch", url);
 
   return new Promise((resolve, reject) => {

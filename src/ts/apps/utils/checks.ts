@@ -13,5 +13,5 @@ export function isPopulatable(app: App, includeOverlays?: boolean) {
 }
 
 export function isOpened(id: string): boolean {
-  return ProcessStack.getAppPids(id).length > 0
+  return ProcessStack.getAppPids(id).length > 0;
 }

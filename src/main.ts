@@ -4,7 +4,7 @@ import { setCrashHooks } from "$ts/bugrep/hooks";
 import { setLoggingHooks } from "$ts/console/hooks";
 import App from "./App.svelte";
 
-AcceleratorHandler
+AcceleratorHandler;
 
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 

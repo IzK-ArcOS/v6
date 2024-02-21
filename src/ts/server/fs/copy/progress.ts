@@ -5,14 +5,22 @@ import { copyItem, renameItem } from ".";
 import { FileProgress } from "../progress";
 import { pathToFriendlyName, pathToFriendlyPath } from "../util";
 
-export async function renameMultipleProgressy(items: Record<string, string>, pid?: number, noShade = false) {
+export async function renameMultipleProgressy(
+  items: Record<string, string>,
+  pid?: number,
+  noShade = false
+) {
   const values = Object.values(items);
 
   if (!values.length) return;
 
   const length = values.length;
   const target = pathToFriendlyName(values[0]);
-  const { mutDone, updSub, setWork, mutErr, setWait } = await FileProgress(MultiUploadProgress(length, target), pid, noShade)
+  const { mutDone, updSub, setWork, mutErr, setWait } = await FileProgress(
+    MultiUploadProgress(length, target),
+    pid,
+    noShade
+  );
 
   for (const source in items) {
     const friendly = pathToFriendlyPath(source);
@@ -34,24 +42,32 @@ export async function renameMultipleProgressy(items: Record<string, string>, pid
   }
 }
 
-export async function copyMultipleProgressy(items: Record<string, string>, pid?: number, noShade = true) {
+export async function copyMultipleProgressy(
+  items: Record<string, string>,
+  pid?: number,
+  noShade = true
+) {
   const values = Object.values(items);
 
   if (!values.length) return;
 
   const length = values.length;
   const target = pathToFriendlyName(values[0]);
-  const { mutDone, updSub, setWork, mutErr, setWait } = await FileProgress({
-    type: "quantity",
-    icon: FileManagerIcon,
-    caption: `Copying ${length} files to ${target}`,
-    subtitle: "Starting...",
-    done: 0,
-    max: length,
-    waiting: false,
-    working: false,
-    errors: 0
-  }, pid, noShade)
+  const { mutDone, updSub, setWork, mutErr, setWait } = await FileProgress(
+    {
+      type: "quantity",
+      icon: FileManagerIcon,
+      caption: `Copying ${length} files to ${target}`,
+      subtitle: "Starting...",
+      done: 0,
+      max: length,
+      waiting: false,
+      working: false,
+      errors: 0,
+    },
+    pid,
+    noShade
+  );
 
   for (const source in items) {
     const friendly = pathToFriendlyPath(source);

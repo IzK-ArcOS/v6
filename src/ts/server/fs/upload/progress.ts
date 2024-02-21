@@ -9,7 +9,12 @@ import { writeFile } from "../file";
 import { FileProgress } from "../progress";
 import { pathToFriendlyName } from "../util";
 
-export async function directUploadProgressy(path: string, multi = false, pid?: number, accept?: string) {
+export async function directUploadProgressy(
+  path: string,
+  multi = false,
+  pid?: number,
+  accept?: string
+) {
   if (path.endsWith("/")) path.slice(0, -1);
 
   const uploader = document.createElement("input");
@@ -33,9 +38,9 @@ export async function directUploadProgressy(path: string, multi = false, pid?: n
       return;
     }
 
-    await multipleFileUploadProgressy(uploader.files, path, pid)
+    await multipleFileUploadProgressy(uploader.files, path, pid);
 
-    target.set(path)
+    target.set(path);
   };
 
   uploader.click();
@@ -50,40 +55,46 @@ export async function directUploadProgressy(path: string, multi = false, pid?: n
 }
 
 export async function fileUploadProgressy(file: File, dir: string, pid?: number, noShade = false) {
-  Log(
-    "server/fs/upload/progress",
-    `Uploading ${file.name} to ${dir}`,
-  );
+  Log("server/fs/upload/progress", `Uploading ${file.name} to ${dir}`);
 
-  const { setMax, setDone, mutErr } = await FileProgress({
-    type: "size",
-    caption: `Uploading ${file.name}`,
-    subtitle: `To ${dir}`,
-    max: file.size,
-    done: 0,
-    icon: UploadIcon,
-    working: true,
-    waiting: false,
-    errors: 0
-  }, pid, noShade)
+  const { setMax, setDone, mutErr } = await FileProgress(
+    {
+      type: "size",
+      caption: `Uploading ${file.name}`,
+      subtitle: `To ${dir}`,
+      max: file.size,
+      done: 0,
+      icon: UploadIcon,
+      working: true,
+      waiting: false,
+      errors: 0,
+    },
+    pid,
+    noShade
+  );
 
   const content = arrayToBlob(await file.arrayBuffer());
   const path = `${dir}/${file.name}`.split("//").join("/");
   const valid = await writeFile(path, content, false, (p: AxiosProgressEvent) => {
     setDone(p.loaded);
-    setMax(p.total)
+    setMax(p.total);
   });
 
   if (!valid) mutErr(+1);
 
-  GlobalDispatch.dispatch("fs-flush")
+  GlobalDispatch.dispatch("fs-flush");
 
   if (!valid) return "";
 
   return path;
 }
 
-export async function multipleFileUploadProgressy(files: FileList, dir: string, pid?: number, noShade = false): Promise<boolean> {
+export async function multipleFileUploadProgressy(
+  files: FileList,
+  dir: string,
+  pid?: number,
+  noShade = false
+): Promise<boolean> {
   Log("server/fs/upload", `Uploading ${files.length} files to ${dir}`);
 
   let total = 0;
@@ -92,21 +103,25 @@ export async function multipleFileUploadProgressy(files: FileList, dir: string, 
     total += file.size;
   }
 
-  const { updSub, mutDone, setWork, setWait, mutErr } = await FileProgress({
-    type: "size",
-    caption: `Uploading ${files.length} ${P("file", files.length)} to ${pathToFriendlyName(dir)}`,
-    subtitle: `To ${dir}`,
-    max: total + 100,
-    done: 0,
-    icon: UploadIcon,
-    working: false,
-    waiting: true,
-    errors: 0
-  }, pid, noShade)
+  const { updSub, mutDone, setWork, setWait, mutErr } = await FileProgress(
+    {
+      type: "size",
+      caption: `Uploading ${files.length} ${P("file", files.length)} to ${pathToFriendlyName(dir)}`,
+      subtitle: `To ${dir}`,
+      max: total + 100,
+      done: 0,
+      icon: UploadIcon,
+      working: false,
+      waiting: true,
+      errors: 0,
+    },
+    pid,
+    noShade
+  );
 
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
-    const content = arrayToBlob(await file.arrayBuffer())
+    const content = arrayToBlob(await file.arrayBuffer());
     const path = `${dir}/${file.name}`.replaceAll("//", "/");
 
     updSub(`(${i + 1} / ${files.length}) ${file.name}`);
@@ -118,17 +133,17 @@ export async function multipleFileUploadProgressy(files: FileList, dir: string, 
       mutDone(p.bytes);
     });
 
-    if (!written) mutErr(+1)
+    if (!written) mutErr(+1);
 
     setWork(false);
     setWait(true);
 
-    await sleep(55) // rate-limit cooldown
+    await sleep(55); // rate-limit cooldown
   }
 
   mutDone(+200);
 
-  GlobalDispatch.dispatch("fs-flush")
+  GlobalDispatch.dispatch("fs-flush");
 
-  return true
+  return true;
 }

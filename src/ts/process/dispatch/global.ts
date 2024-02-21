@@ -6,17 +6,17 @@ export class GlobalDispatcher {
   public subscribers: Record<string, Record<number, (data: unknown) => void>> = {};
 
   constructor() {
-    this.Log("Creating new GlobalDispatcher")
+    this.Log("Creating new GlobalDispatcher");
   }
 
   private Log(text: string, level?: LogLevel) {
-    Log("process/dispatch/global", `GlobalDispatcher: ${text}`, level)
+    Log("process/dispatch/global", `GlobalDispatcher: ${text}`, level);
   }
 
   subscribe<T = any[]>(event: string, callback: (data: T) => void) {
     const id = Math.floor(Math.random() * 1e6);
 
-    if (!this.subscribers[event]) this.subscribers[event] = {}
+    if (!this.subscribers[event]) this.subscribers[event] = {};
 
     if (this.subscribers[event][id]) return this.subscribe(event, callback); // get another ID
 
@@ -26,7 +26,10 @@ export class GlobalDispatcher {
     else this.subscribers[event][id] = callback;
 
     if (!KnownGlobalDispatchers.includes(event))
-      this.Log(`Subscribing to unknown event ${event} on Global Dispatch. Don't do that.`, LogLevel.warn)
+      this.Log(
+        `Subscribing to unknown event ${event} on Global Dispatch. Don't do that.`,
+        LogLevel.warn
+      );
 
     return id;
   }
@@ -57,7 +60,10 @@ export class GlobalDispatcher {
     }
 
     if (!KnownGlobalDispatchers.includes(caller))
-      this.Log(`Dispatching unknown event ${caller} over Global Dispatch. Don't do that.`, LogLevel.warn)
+      this.Log(
+        `Dispatching unknown event ${caller} over Global Dispatch. Don't do that.`,
+        LogLevel.warn
+      );
   }
 }
 

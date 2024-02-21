@@ -1,6 +1,5 @@
 import { createTrayIcon } from "$apps/Shell/ts/tray";
 import { FirefoxIcon, GlobeIcon } from "$ts/images/general";
-import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";
 import { createErrorDialog } from "$ts/process/error";
 import { stopService } from "$ts/service/interact";

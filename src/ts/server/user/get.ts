@@ -43,5 +43,5 @@ export async function getUserList(): Promise<PartialUser[]> {
 
   const userList = response.data.data as PartialUser[]; // Don't ask.
 
-  return userList
+  return userList;
 }

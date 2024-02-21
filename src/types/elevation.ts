@@ -1,4 +1,3 @@
-
 export interface ElevationData {
   what: string;
   image: string;

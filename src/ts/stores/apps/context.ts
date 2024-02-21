@@ -7,14 +7,14 @@ import { AppContextMenu } from "$types/app";
 import { ProcessStack } from "../process";
 
 export const BaseAppContext: AppContextMenu = {
-  "titlebar": [
+  titlebar: [
     {
       caption: "App Info",
       icon: "info_outline",
       action(window) {
         const AppInfo = getAppById("AppInfo");
 
-        spawnOverlay(AppInfo, window.pid, [window.id])
+        spawnOverlay(AppInfo, window.pid, [window.id]);
       },
     },
     {
@@ -23,7 +23,7 @@ export const BaseAppContext: AppContextMenu = {
       disabled: (window) => !window.helpArticle,
       action(window) {
         GetHelp(window.helpArticle);
-      }
+      },
     },
     SEP_ITEM,
     {
@@ -32,7 +32,7 @@ export const BaseAppContext: AppContextMenu = {
       disabled: (window) => !window.controls.minimize || window.state.minimized,
       action: (window) => {
         ProcessStack.dispatch.dispatchToPid(window.pid, "minimize");
-      }
+      },
     },
     {
       caption: "Maximize",
@@ -40,7 +40,7 @@ export const BaseAppContext: AppContextMenu = {
       disabled: (window) => !window.controls.maximize,
       action: (window) => {
         ProcessStack.dispatch.dispatchToPid(window.pid, "maximize");
-      }
+      },
     },
     SEP_ITEM,
     CompileSnappingContextOption(),
@@ -50,8 +50,8 @@ export const BaseAppContext: AppContextMenu = {
       image: ShutdownIcon,
       disabled: (window) => window.metadata.core,
       action: (window) => {
-        ProcessStack.kill(window.pid, true)
-      }
-    }
-  ]
-}
+        ProcessStack.kill(window.pid, true);
+      },
+    },
+  ],
+};

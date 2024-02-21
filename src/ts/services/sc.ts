@@ -35,7 +35,7 @@ export class ES extends Process {
     let proc: number | AppSpawnResult | Process | false;
 
     if (!shellPid) {
-      proc = await spawnApp("SecureContext", 0, [id, data])
+      proc = await spawnApp("SecureContext", 0, [id, data]);
     } else {
       proc = await spawnOverlay(app, shellPid || 0, [id, data]);
     }
@@ -46,7 +46,7 @@ export class ES extends Process {
       GlobalDispatch.subscribe("elevation-accept", (data) => {
         if (!data[0] || data[0] !== id) return;
 
-        this.Log(`Approving ID ${id}`)
+        this.Log(`Approving ID ${id}`);
 
         resolve(true);
       });
@@ -54,7 +54,7 @@ export class ES extends Process {
       GlobalDispatch.subscribe("elevation-reject", (data) => {
         if (!data[0] || data[0] !== id) return;
 
-        this.Log(`Denying ID ${id}`)
+        this.Log(`Denying ID ${id}`);
 
         resolve(false);
       });
@@ -66,5 +66,5 @@ export const ElevationService: Service = {
   name: "Elevation Serice",
   description: "Manages the ArcOS Secure Context",
   process: ES,
-  initialState: "started"
-}
+  initialState: "started",
+};

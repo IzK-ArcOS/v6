@@ -1,4 +1,3 @@
-import { WarningIcon } from "$ts/images/dialog";
 import { ConnectIcon } from "$ts/images/general";
 import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";

@@ -1,6 +1,7 @@
 export { default as AccountIcon } from "$assets/general/account.svg";
 export { default as AppsIcon } from "$assets/general/apps.svg";
 export { default as ArcFindIcon } from "$assets/general/arcfind.svg";
+export { default as BookIcon } from "$assets/general/book.svg";
 export { default as BugReportIcon } from "$assets/general/bugreports.svg";
 export { default as ComponentIcon } from "$assets/general/component.svg";
 export { default as ConnectIcon } from "$assets/general/connect.svg";
@@ -31,4 +32,3 @@ export { default as UploadIcon } from "$assets/general/upload.svg";
 export { default as WaveIcon } from "$assets/general/wave.svg";
 export { default as WindowSettingsIcon } from "$assets/general/windowsettings.svg";
 export { default as WindowSnapIcon } from "$assets/general/windowsnap.svg";
-export { default as BookIcon } from "$assets/general/book.svg";

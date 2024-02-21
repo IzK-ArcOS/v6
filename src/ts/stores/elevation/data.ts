@@ -12,8 +12,8 @@ export function ElevatedAppLaunchData(app: App): ElevationData {
     image: app.metadata.icon,
     title: app.metadata.name,
     description: app.metadata.author,
-    level: ElevationLevel.low
-  }
+    level: ElevationLevel.low,
+  };
 }
 
 export function ChangeDisabledStateData(id: string): ElevationData {
@@ -22,8 +22,8 @@ export function ChangeDisabledStateData(id: string): ElevationData {
     image: ModeIcon,
     title: "Change Disabled State",
     description: `Of ${id}`,
-    level: ElevationLevel.high
-  }
+    level: ElevationLevel.high,
+  };
 }
 
 export function ElevationKillProcess(proc: Process): ElevationData {
@@ -32,10 +32,9 @@ export function ElevationKillProcess(proc: Process): ElevationData {
     image: ShutdownIcon,
     title: proc.name,
     description: `PID ${proc.pid}`,
-    level: ElevationLevel.medium
-  }
+    level: ElevationLevel.medium,
+  };
 }
-
 
 export function ElevationKillAppProcesses(id: string): ElevationData {
   return {
@@ -43,8 +42,8 @@ export function ElevationKillAppProcesses(id: string): ElevationData {
     image: ShutdownIcon,
     title: id,
     description: `From the Library`,
-    level: ElevationLevel.medium
-  }
+    level: ElevationLevel.medium,
+  };
 }
 
 export function ElevationChangeServiceState(service: Service): ElevationData {
@@ -53,8 +52,8 @@ export function ElevationChangeServiceState(service: Service): ElevationData {
     image: WindowSettingsIcon,
     title: service.name,
     description: service.description,
-    level: ElevationLevel.high
-  }
+    level: ElevationLevel.high,
+  };
 }
 
 export function ElevationChangePassword(): ElevationData {
@@ -63,8 +62,8 @@ export function ElevationChangePassword(): ElevationData {
     image: PasswordIcon,
     title: `Change Password`,
     description: `Of ${UserName.get()}`,
-    level: ElevationLevel.high
-  }
+    level: ElevationLevel.high,
+  };
 }
 
 export function ElevationChangeUsername(): ElevationData {
@@ -73,8 +72,8 @@ export function ElevationChangeUsername(): ElevationData {
     image: AccountIcon,
     title: `Change Username`,
     description: `Of ${UserName.get()}`,
-    level: ElevationLevel.high
-  }
+    level: ElevationLevel.high,
+  };
 }
 
 export function ElevationChangeUserData(): ElevationData {
@@ -83,6 +82,6 @@ export function ElevationChangeUserData(): ElevationData {
     image: AccountIcon,
     title: `Change User Data`,
     description: `Of ${UserName.get()}`,
-    level: ElevationLevel.high
-  }
+    level: ElevationLevel.high,
+  };
 }

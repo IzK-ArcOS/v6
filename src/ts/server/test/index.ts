@@ -4,12 +4,7 @@ import { ConnectedServer, TEST_MODES } from "$ts/stores/server";
 import ttlFetch from "$ts/util/ttlFetch";
 import { Server, ServerMeta } from "$types/server";
 import { getServerUrl } from "../util";
-import {
-  connectFailureLog,
-  invalidResponseLog,
-  testingServerLog,
-  validResponseLog,
-} from "./logs";
+import { connectFailureLog, invalidResponseLog, testingServerLog, validResponseLog } from "./logs";
 
 export async function testConnection(
   host: string,
@@ -20,7 +15,10 @@ export async function testConnection(
 
   for (const [secure, port] of TEST_MODES) {
     const server: Server = {
-      secure, port, host, authCode
+      secure,
+      port,
+      host,
+      authCode,
     };
 
     testingServerLog(server);

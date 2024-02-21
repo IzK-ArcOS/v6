@@ -22,7 +22,7 @@ export function archiveMessage(id: string) {
 
   if (!udata.appdata.MessagingApp) udata.appdata.MessagingApp = { archive: [] };
 
-  const archive = udata.appdata.MessagingApp.archive as string[] || [];
+  const archive = (udata.appdata.MessagingApp.archive as string[]) || [];
 
   if (archive.includes(id)) return;
 
@@ -40,7 +40,7 @@ export function unarchiveMessage(id: string) {
 
   if (!udata.appdata.MessagingApp) udata.appdata.MessagingApp = { archive: [] };
 
-  const archive = udata.appdata.MessagingApp.archive as string[] || [];
+  const archive = (udata.appdata.MessagingApp.archive as string[]) || [];
 
   if (!archive.includes(id)) return;
 
@@ -60,7 +60,7 @@ export function isArchived(id: string) {
 
   if (!udata.appdata.MessagingApp) return false;
 
-  const archive = udata.appdata.MessagingApp.archive as string[] || [];
+  const archive = (udata.appdata.MessagingApp.archive as string[]) || [];
 
   return archive && archive.includes(id);
 }

@@ -16,7 +16,7 @@ class UDC extends Process {
 
   start() {
     this.Log(`Starting UDC`);
-    this.unsubscribe = UserDataStore.subscribe((v) => this.commit(v))
+    this.unsubscribe = UserDataStore.subscribe((v) => this.commit(v));
   }
 
   stop() {
@@ -27,7 +27,7 @@ class UDC extends Process {
     this.unsubscribe();
     this.unsubscribe = null;
 
-    return true
+    return true;
   }
 
   async commit(data: UserData) {
@@ -55,5 +55,5 @@ export const UserDataCommitter: Service = {
   name: "User Data Committer",
   description: "Saves user data changes to your server",
   process: UDC,
-  initialState: "started"
-}
+  initialState: "started",
+};

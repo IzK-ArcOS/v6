@@ -15,10 +15,7 @@ export async function getUserData(token?: string): Promise<UserData> {
   if (!bearer || !url) return;
 
   try {
-    const response = await axios.get<UserDataResponse>(
-      url,
-      makeTokenOptions(bearer)
-    );
+    const response = await axios.get<UserDataResponse>(url, makeTokenOptions(bearer));
 
     if (response.status !== 200) return null;
 

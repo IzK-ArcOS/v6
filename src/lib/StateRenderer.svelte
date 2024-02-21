@@ -17,21 +17,14 @@
       state = v;
 
       classes = (v.attribs.classes as string) || "";
-    })
+    }),
   );
 </script>
 
 {#if handler && state}
-  <div
-    class="state-renderer {classes} {handler.id} state-{handler.id}-{state.key}"
-  >
+  <div class="state-renderer {classes} {handler.id} state-{handler.id}-{state.key}">
     {#if state.content}
-      <svelte:component
-        this={state.content}
-        thisState={state}
-        {handler}
-        {runtime}
-      />
+      <svelte:component this={state.content} thisState={state} {handler} {runtime} />
     {/if}
   </div>
   {#if !state.attribs.noProcesssRenderer && renderProcesses}

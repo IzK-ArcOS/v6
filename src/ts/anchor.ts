@@ -23,26 +23,30 @@ function attachDisableAnchorRedirection() {
 
       if (currentState !== "desktop") return;
 
-      const shellPid = ProcessStack.getAppPids("ArcShell")[0]
+      const shellPid = ProcessStack.getAppPids("ArcShell")[0];
 
-      createErrorDialog({
-        title: "Open this page?",
-        message: `You're about to leave ArcOS to navigate to <code>${anchor.href}</code> in a <b>new tab</b>. Are you sure you want to continue?`,
-        buttons: [
-          {
-            caption: "Stay here",
-            action() { },
-          },
-          {
-            caption: "Proceed",
-            action() {
-              window.open(anchor.href, "_blank")
+      createErrorDialog(
+        {
+          title: "Open this page?",
+          message: `You're about to leave ArcOS to navigate to <code>${anchor.href}</code> in a <b>new tab</b>. Are you sure you want to continue?`,
+          buttons: [
+            {
+              caption: "Stay here",
+              action() {},
             },
-            suggested: true
-          },
-        ],
-        image: GlobeIcon
-      }, shellPid || 0, !!shellPid);
+            {
+              caption: "Proceed",
+              action() {
+                window.open(anchor.href, "_blank");
+              },
+              suggested: true,
+            },
+          ],
+          image: GlobeIcon,
+        },
+        shellPid || 0,
+        !!shellPid
+      );
     });
   }
 }

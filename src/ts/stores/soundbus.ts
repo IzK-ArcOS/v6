@@ -19,5 +19,5 @@ export const ArcSounds: SoundStore = {
   "arcos.system.logoff": systemLogoff,
   "arcos.click": click,
   "arcos.mwomp": mwomp,
-  "646973636F72640A": v646973636F72640A
+  "646973636F72640A": v646973636F72640A,
 };

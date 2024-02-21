@@ -1,14 +1,4 @@
-export const sizeUnits = [
-  "bytes",
-  "KB",
-  "MB",
-  "GB",
-  "TB",
-  "PB",
-  "EB",
-  "ZB",
-  "YB",
-];
+export const sizeUnits = ["bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
 /**
  * Formats the incoming bytes to a human-readable format

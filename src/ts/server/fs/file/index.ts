@@ -5,13 +5,13 @@ import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { Endpoints } from "$ts/stores/endpoint";
 import { UserToken } from "$ts/stores/user";
 import { sleep } from "$ts/util";
+import { LogLevel } from "$types/console";
 import { ArcFile, PartialArcFile } from "$types/fs";
 import { Notification } from "$types/notif";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../../util";
 import { getParentDirectory, readDirectory } from "../dir";
 import { parseFilename, pathToFriendlyName } from "../util";
-import { LogLevel } from "$types/console";
 
 export async function readFile(path: string): Promise<ArcFile> {
   Log("server/fs/file", `Reading file ${path}`);

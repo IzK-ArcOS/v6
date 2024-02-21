@@ -13,7 +13,7 @@ export async function disableApp(id: string) {
 
   if (!elevated) return false;
 
-  await killAllAppInstances(id, true)
+  await killAllAppInstances(id, true);
 
   userdata.disabledApps.push(id);
   UserDataStore.set(userdata);

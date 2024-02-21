@@ -3,13 +3,13 @@ import { readDirectory } from "./dir";
 import { getFilenameFromPath, readFile } from "./file";
 
 export async function pathExists(path: string): Promise<boolean> {
-  Log("server/fs/util", `Checking if ${path} exists`)
+  Log("server/fs/util", `Checking if ${path} exists`);
 
   return !!(await readDirectory(path));
 }
 
 export async function fileExists(path: string): Promise<boolean> {
-  Log("server/fs/util", `Checking if ${path} exists`)
+  Log("server/fs/util", `Checking if ${path} exists`);
   return !!(await readFile(path));
 }
 

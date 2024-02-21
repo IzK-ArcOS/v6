@@ -1,9 +1,9 @@
+import { toBase64 } from "$ts/base64";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { Endpoints } from "$ts/stores/endpoint";
 import { UserToken } from "$ts/stores/user";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
-import { toBase64 } from "$ts/base64";
-import { GlobalDispatch } from "$ts/process/dispatch/global";
 
 export async function deleteMessage(id: string) {
   const base64 = toBase64(id);

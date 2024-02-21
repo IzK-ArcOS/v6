@@ -20,6 +20,6 @@ export const ThemeHandler: FileHandler = {
 
     if (!json || typeof json !== "object") return;
 
-    loadTheme(json)
-  }
-}
+    loadTheme(json);
+  },
+};

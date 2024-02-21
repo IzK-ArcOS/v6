@@ -3,6 +3,7 @@ import { ArcOSVersion } from "$ts/env";
 import { ARCOS_MODE } from "$ts/metadata";
 import { isDesktop } from "$ts/metadata/desktop";
 import { getServer } from "$ts/server/multi";
+import { getAppPreference, setAppPreference } from "$ts/server/user/pref";
 import { UserDataStore, UserName } from "$ts/stores/user";
 import {
   LocalReportData,
@@ -13,7 +14,6 @@ import {
 } from "$types/bugrep";
 import PocketBase from "pocketbase";
 import { removeApiSensitive } from "./obfuscate";
-import { getAppPreference, setAppPreference } from "$ts/server/user/pref";
 
 const pb = new PocketBase("https://pb.arcapi.nl/");
 

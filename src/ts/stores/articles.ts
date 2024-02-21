@@ -1,4 +1,3 @@
-
 export const HelpArticles = {
   home: `@client/help/Home.md`,
   settings: `@client/help/Settings.md`,
@@ -21,5 +20,5 @@ export const HelpArticles = {
   settingsLoginReset: `@client/help/Settings/reset.md`,
   contact: `@client/help/Contact.md`,
   debug: `@client/help/Debug.md`,
-  $unfinished: `@client/help/$unfinished.md`
+  $unfinished: `@client/help/$unfinished.md`,
 };

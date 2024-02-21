@@ -14,4 +14,4 @@ export const RelativeTimeMod = {
     y: "1 yr",
     yy: "%d yrs",
   },
-}
+};

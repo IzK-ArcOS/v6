@@ -1,7 +1,4 @@
-export function getJsonHierarchy<T = any>(
-  object: Object,
-  hierarchy: string
-): T | null {
+export function getJsonHierarchy<T = any>(object: Object, hierarchy: string): T | null {
   const parts = hierarchy.split(".");
 
   let currentObj = object;
@@ -15,13 +12,9 @@ export function getJsonHierarchy<T = any>(
   return currentObj as T;
 }
 
-export function setJsonHierarchy<T = any>(
-  object: Object,
-  hierarchy: string,
-  value: T
-): T {
+export function setJsonHierarchy<T = any>(object: Object, hierarchy: string, value: T): T {
   const parts = hierarchy.split(".");
-  const lastIndex = parts.length - 1
+  const lastIndex = parts.length - 1;
 
   let currentObj = object;
 
@@ -35,7 +28,7 @@ export function setJsonHierarchy<T = any>(
     currentObj = currentObj[key];
   }
 
-  if (value === null) delete currentObj[parts[lastIndex]]
+  if (value === null) delete currentObj[parts[lastIndex]];
   else currentObj[parts[lastIndex]] = value;
 
   return getJsonHierarchy(object, hierarchy);

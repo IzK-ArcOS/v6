@@ -28,9 +28,7 @@ export function getAuthcode(server: string) {
   return authCodes[server];
 }
 
-export async function detectAuthcode(
-  server: string
-): Promise<"protected" | "public" | "error"> {
+export async function detectAuthcode(server: string): Promise<"protected" | "public" | "error"> {
   const cs = ConnectedServer.get();
   const test = await testConnection(server);
 

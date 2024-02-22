@@ -16,7 +16,7 @@ export const CurrentLogItem = writable<LogItem>({
 CurrentLogItem.subscribe((v) => {
   if (ARCOS_MODE != "development") return;
 
-  document.title = `ArcOS v6 | ${v.source} - ${v.msg}`;
+  document.title = `ArcOS | ${v.source} - ${v.msg}`;
 });
 
 export function Log(source: string, msg: string, level = LogLevel.info) {

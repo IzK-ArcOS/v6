@@ -41,3 +41,15 @@ export const KnownGlobalDispatchers = [
   "message-flush",
   "rate-limit",
 ];
+
+export const DispatchCaptions = {
+  "fs-flush": "Refresh all filesystem-dependent components",
+  "services-flush": "Refresh all service-dependent components",
+  "desktop-show": "Fade-in the desktop - used by auth management",
+  "desktop-hide": "Fade-out the desktop - used by auth management",
+  "elevation-accept": "Accept elevation for the specified elevation PID",
+  "elevation-reject": "Reject elevation for the specified elevation PID",
+  "minimize-all": "Minimize all opened windows",
+  "message-flush": "Refresh all messaging-dependent components (MNS handled)",
+  "rate-limit": "Triggers the RLNS to inform the user of a rate limit",
+};

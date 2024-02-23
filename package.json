@@ -6,8 +6,6 @@
   "scripts": {
     "dev": "git rev-parse --short HEAD > ./public/build && vite",
     "build": "git rev-parse --short HEAD > ./public/build && vite build",
-    "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
     "update": "git pull && git submodule update",
     "serve": "vite build && npx serve dist"
   },
@@ -36,7 +34,6 @@
     "math.js": "^1.1.46",
     "pocketbase": "^0.15.3",
     "serve": "^14.2.1",
-    "svelte-click-outside": "^1.0.0",
     "svelte-markdown": "^0.2.3",
     "svelte-preprocess-markdown": "^2.7.3",
     "svelte-splitpanes": "^0.8.0",

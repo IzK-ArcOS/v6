@@ -12,6 +12,10 @@ window div.tabs {
   overflow: hidden;
 }
 
+window div.tabs div.right {
+  margin-left: auto;
+}
+
 window div.tab-interface > div.renderer > div.tab {
   display: none;
 }

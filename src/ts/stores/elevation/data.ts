@@ -1,4 +1,4 @@
-import { AccountIcon, ModeIcon, PasswordIcon, WindowSettingsIcon } from "$ts/images/general";
+import { AccountIcon, ModeIcon, PasswordIcon, SecurityHighIcon, WindowSettingsIcon } from "$ts/images/general";
 import { ShutdownIcon } from "$ts/images/power";
 import { Process } from "$ts/process";
 import { App } from "$types/app";
@@ -84,4 +84,14 @@ export function ElevationChangeUserData(): ElevationData {
     description: `Of ${UserName.get()}`,
     level: ElevationLevel.high,
   };
+}
+
+export function ElevationEnableBypass(): ElevationData {
+  return {
+    what: "ArcOS needs your permission to disable elevation entirely. Are you insane?",
+    image: SecurityHighIcon,
+    title: `Disable elevation`,
+    description: "We do NOT recommend this",
+    level: ElevationLevel.high,
+  }
 }

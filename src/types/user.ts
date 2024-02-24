@@ -44,12 +44,12 @@ export interface UserData {
 
     anim: boolean; // added
     noGlass: boolean; // added
-    noQuickSettings: boolean;
     userThemes?: ThemeStore; // added
-    compactContext: boolean;
-    showHiddenApps?: boolean; // halfway
-    securityNoPassword: boolean; // halfway
-    elevationDisabled: boolean;
+    compactContext: boolean; // added
+    showHiddenApps?: boolean; // added
+    securityNoPassword: boolean; // added
+    elevationDisabled: boolean; // added
+    bypassElevation: boolean; // halfway
   };
 
   disabledApps: string[];

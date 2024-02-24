@@ -1,7 +1,11 @@
 import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
+import { SecurityHighIcon } from "$ts/images/general";
+import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { ProcessStack } from "$ts/stores/process";
+import { UserDataStore } from "$ts/stores/user";
+import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
 import { App, AppSpawnResult } from "$types/app";
 import { ElevationData } from "$types/elevation";
@@ -18,6 +22,10 @@ export class ES extends Process {
 
   public start() {
     ElevationPid.set(this.pid);
+
+    const userdata = UserDataStore.get();
+
+    if (userdata.sh.bypassElevation) this.bypassWarning();
   }
 
   public async GetUserElevation(data: ElevationData): Promise<boolean> {
@@ -27,8 +35,10 @@ export class ES extends Process {
 
     const id = Math.floor(Math.random() * 1e6);
     const shellPid = ProcessStack.getAppPids("ArcShell")[0];
-
     const app = getAppById("SecureContext");
+    const userdata = UserDataStore.get();
+
+    if (userdata.sh.bypassElevation) return true;
 
     if (!app) return false;
 
@@ -59,6 +69,26 @@ export class ES extends Process {
         resolve(false);
       });
     });
+  }
+
+  public async bypassWarning() {
+    await sleep(1000);
+
+    sendNotification({
+      title: "Elevation is disabled",
+      message: "ArcOS is currently not preventing any elevated requests from running without your permission. It is recommended to leave Elevation <b>enabled</b>. Click the button to solve this problem.",
+      buttons: [{
+        caption: "Re-enable elevation",
+        action() {
+          UserDataStore.update((v) => {
+            v.sh.bypassElevation = false;
+
+            return v;
+          });
+        },
+      }],
+      image: SecurityHighIcon,
+    })
   }
 }
 

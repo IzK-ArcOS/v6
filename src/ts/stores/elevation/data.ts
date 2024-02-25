@@ -1,4 +1,10 @@
-import { AccountIcon, ModeIcon, PasswordIcon, SecurityHighIcon, WindowSettingsIcon } from "$ts/images/general";
+import {
+  AccountIcon,
+  ModeIcon,
+  PasswordIcon,
+  SecurityHighIcon,
+  WindowSettingsIcon,
+} from "$ts/images/general";
 import { ShutdownIcon } from "$ts/images/power";
 import { Process } from "$ts/process";
 import { App } from "$types/app";
@@ -93,5 +99,5 @@ export function ElevationEnableBypass(): ElevationData {
     title: `Disable elevation`,
     description: "We do NOT recommend this",
     level: ElevationLevel.high,
-  }
+  };
 }

@@ -1,8 +1,7 @@
 import { SecurityHighIcon } from "$ts/images/general";
-import { sendNotification } from "$ts/notif";
-import { ProcessHandler } from "$ts/process";
+import { sendNotification } from "$ts/notif/interact";
+import { ProcessHandler } from "$ts/process/handler";
 import { ES, ElevationPid } from "$ts/services/sc";
-import { PrimaryState } from "$ts/states";
 import { ElevationData } from "$types/elevation";
 
 export async function GetUserElevation(
@@ -11,9 +10,6 @@ export async function GetUserElevation(
 ): Promise<boolean> {
   const elevation = ElevationPid.get();
   const manager = stack.getProcess<ES>(elevation);
-  const currentState = PrimaryState.current.get().key;
-
-  if (currentState != "desktop") return true;
 
   if (!elevation || !manager) {
     sendNotification({

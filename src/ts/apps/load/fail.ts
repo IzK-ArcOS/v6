@@ -1,5 +1,6 @@
 import { createTrayIcon, disposeTrayIcon } from "$apps/Shell/ts/tray";
 import { TrayIcon } from "$apps/Shell/types/tray";
+import { SafeMode } from "$state/Desktop/ts/store";
 import { Log } from "$ts/console";
 import { WarningIcon } from "$ts/images/dialog";
 import { createErrorDialog } from "$ts/process/error";
@@ -24,8 +25,18 @@ export function loadConditionFailed(app: App) {
   function onOpen(icon: TrayIcon) {
     createErrorDialog(dialog, shellPid, true);
 
+    if (!icon) return;
+
     disposeTrayIcon(icon.identifier);
   }
+
+  Log(
+    "apps/load",
+    `Aborted ${app.id} because the load condition failed: ${app.loadCondition.toString()}`,
+    LogLevel.error
+  );
+
+  if (SafeMode.get()) return onOpen(null);
 
   if (shellPid)
     createTrayIcon({
@@ -33,10 +44,4 @@ export function loadConditionFailed(app: App) {
       image: WarningIcon,
       onOpen,
     });
-
-  Log(
-    "apps/load",
-    `Aborted ${app.id} because the load condition failed: ${app.loadCondition.toString()}`,
-    LogLevel.error
-  );
 }

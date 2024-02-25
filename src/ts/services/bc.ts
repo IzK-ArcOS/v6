@@ -1,4 +1,5 @@
 import { createTrayIcon } from "$apps/Shell/ts/tray";
+import { SafeMode } from "$state/Desktop/ts/store";
 import { FirefoxIcon, GlobeIcon } from "$ts/images/general";
 import { Process, ProcessHandler } from "$ts/process";
 import { createErrorDialog } from "$ts/process/error";
@@ -104,5 +105,5 @@ export const BrowserCheck: Service = {
   description: "Performs checks to ensure your browser is compatible",
   process: BrowserCheckProcess,
   initialState: "started",
-  startCondition: () => PrimaryState.current.get().key == "desktop",
+  startCondition: () => PrimaryState.current.get().key == "desktop" && !SafeMode.get(),
 };

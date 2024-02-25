@@ -1,3 +1,4 @@
+import { SafeMode } from "$state/Desktop/ts/store";
 import { Log } from "$ts/console";
 import { ArcSounds } from "$ts/stores/soundbus";
 import { LogLevel } from "$types/console";
@@ -20,6 +21,8 @@ export class SoundBus {
     if (!this.store[id]) return false;
 
     Log("soundbus", `Playing sound ${id} from store`);
+
+    if (SafeMode.get()) return;
 
     const element = document.createElement("audio");
 

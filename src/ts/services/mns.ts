@@ -1,3 +1,4 @@
+import { SafeMode } from "$state/Desktop/ts/store";
 import { spawnApp } from "$ts/apps";
 import { MessagingIcon } from "$ts/images/apps";
 import { sendNotification } from "$ts/notif";
@@ -76,5 +77,5 @@ export const MessageNotifierService: Service = {
   initialState: "started",
   name: "Message Notifier Service",
   description: "Continuously checks for incoming ArcOS messages",
-  startCondition: () => PrimaryState.current.get().key == "desktop",
+  startCondition: () => PrimaryState.current.get().key == "desktop" && !SafeMode.get(),
 };

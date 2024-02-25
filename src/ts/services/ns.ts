@@ -1,3 +1,4 @@
+import { SafeMode } from "$state/Desktop/ts/store";
 import { setNotificationProc } from "$ts/notif/interact";
 import { Process, ProcessHandler } from "$ts/process";
 import { PrimaryState } from "$ts/states";
@@ -79,5 +80,5 @@ export const NotificationService: Service = {
   description: "Handles sending, deleting and managing notifications.",
   process: NotificationProcess,
   initialState: "started",
-  startCondition: () => PrimaryState.current.get().key == "desktop",
+  startCondition: () => PrimaryState.current.get().key == "desktop" && !SafeMode.get(),
 };

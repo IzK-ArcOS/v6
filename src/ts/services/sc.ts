@@ -76,19 +76,22 @@ export class ES extends Process {
 
     sendNotification({
       title: "Elevation is disabled",
-      message: "ArcOS is currently not preventing any elevated requests from running without your permission. It is recommended to leave Elevation <b>enabled</b>. Click the button to solve this problem.",
-      buttons: [{
-        caption: "Re-enable elevation",
-        action() {
-          UserDataStore.update((v) => {
-            v.sh.bypassElevation = false;
+      message:
+        "ArcOS is currently not preventing any elevated requests from running without your permission. It is recommended to leave Elevation <b>enabled</b>. Click the button to solve this problem.",
+      buttons: [
+        {
+          caption: "Re-enable elevation",
+          action() {
+            UserDataStore.update((v) => {
+              v.sh.bypassElevation = false;
 
-            return v;
-          });
+              return v;
+            });
+          },
         },
-      }],
+      ],
       image: SecurityHighIcon,
-    })
+    });
   }
 }
 

@@ -1,6 +1,6 @@
 import { isDisabled } from "$ts/apps/disable/utils";
-import { Log } from "$ts/console";
-import { sleep } from "$ts/util";
+import { Log } from "$ts/console/logging/index";
+import { sleep } from "$ts/util/index";
 import { Store } from "$ts/writable";
 import { Nullable } from "$types/common";
 import { LogLevel } from "$types/console";

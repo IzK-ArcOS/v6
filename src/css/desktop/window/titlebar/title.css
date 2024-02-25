@@ -20,4 +20,5 @@ window div.titlebar span.title-text {
 
 window div.titlebar div.title img {
   height: 16px;
+  min-width: 16px;
 }

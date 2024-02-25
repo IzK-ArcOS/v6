@@ -1,5 +1,6 @@
 import { Log } from "$ts/console";
 import { ProcessStack } from "$ts/stores/process";
+import { DefaultService } from "$ts/stores/service/default";
 import { Nullable } from "$types/common";
 import { Service, ServiceChangeResult, ServiceStore } from "$types/service";
 import { ServiceManager, ServiceManagerPid } from ".";
@@ -15,7 +16,7 @@ export async function stopService(id: string, fromSystem = false): Promise<Servi
   return await manager.stopService(id, fromSystem);
 }
 
-export async function startService(id: string): Promise<ServiceChangeResult> {
+export async function startService(id: string, fromSystem = false): Promise<ServiceChangeResult> {
   Log("service/interact", `Attempting to start ${id}`);
 
   const managerPid = ServiceManagerPid.get();
@@ -23,10 +24,10 @@ export async function startService(id: string): Promise<ServiceChangeResult> {
 
   if (!managerPid || !manager) return "err_noManager";
 
-  return await manager.startService(id);
+  return await manager.startService(id, fromSystem);
 }
 
-export async function restartService(id: string): Promise<ServiceChangeResult> {
+export async function restartService(id: string, fromSystem = false): Promise<ServiceChangeResult> {
   Log("service/interact", `Attempting to restart ${id}`);
 
   const managerPid = ServiceManagerPid.get();
@@ -34,18 +35,18 @@ export async function restartService(id: string): Promise<ServiceChangeResult> {
 
   if (!managerPid || !manager) return "err_noManager";
 
-  return await manager.restartService(id);
+  return await manager.restartService(id, fromSystem);
 }
 
 export function getService(id: string): Nullable<Service> {
   const managerPid = ServiceManagerPid.get();
   const manager = ProcessStack.getProcess<ServiceManager>(managerPid);
 
-  if (!managerPid || !manager) return null;
+  if (!managerPid || !manager) return DefaultService;
 
   const services = manager.Services.get();
 
-  return services.has(id) ? services.get(id) : null;
+  return services.has(id) ? services.get(id) : DefaultService;
 }
 
 export function getAllServices(): Nullable<ServiceStore> {

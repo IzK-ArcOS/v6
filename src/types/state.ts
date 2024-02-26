@@ -7,6 +7,7 @@ export interface State {
   key: string;
   onload?: () => void;
   image?: string;
+  className?: string;
 }
 
 export interface LoginState {

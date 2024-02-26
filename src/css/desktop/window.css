@@ -31,6 +31,10 @@ window:not(.core) {
   scale: 0.9;
 }
 
+.safemode window {
+  --win-border: #fb0 1px solid !important;
+}
+
 window *::selection {
   background-color: var(--accent-transparent);
 }

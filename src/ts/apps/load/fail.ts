@@ -36,7 +36,7 @@ export function loadConditionFailed(app: App) {
     LogLevel.error
   );
 
-  if (SafeMode.get()) return onOpen(null);
+  if (SafeMode.get() && app.loadCondition.toString().includes("SafeMode")) return;
 
   if (shellPid)
     createTrayIcon({

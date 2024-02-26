@@ -3,20 +3,6 @@ div#app > div.app {
   overflow: hidden;
 }
 
-div#app > div.app::before {
-  position: absolute;
-  content: "";
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 7px;
-  background: linear-gradient(135deg, #fb0 0px, #fb0 10px, #000 9px, #000 20px, #fb0 19px);
-  background-repeat: repeat-x;
-  background-size: 30px 7px;
-  z-index: 100000000000000000000000000000;
-  opacity: 0.3;
-}
-
 div#app > div.app.gray {
   filter: grayscale(100%) !important;
 }

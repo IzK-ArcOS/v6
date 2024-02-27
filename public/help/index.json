@@ -142,6 +142,10 @@
       {
         "name": "Managing services",
         "path": "@client/help/ProcessManager/services.md"
+      },
+      {
+        "name": "Security settings",
+        "path": "@client/help/ProcessManager/security.md"
       }
     ]
   },

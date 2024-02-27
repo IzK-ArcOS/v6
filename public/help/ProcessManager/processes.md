@@ -11,3 +11,7 @@ In the bottom left corner you can see the amount of processes that are currently
 - Pressing **App Info** opens the Application Information dialog of the currently selected application,
 - Pressing **Focus** brings the selected application to the front.
 - Pressing **Kill Process** (or **Kill App**, depending on the process) will stop the process entirely.
+
+---
+
+[Back to **Process Manager**](@client/help/ProcessManager.md)

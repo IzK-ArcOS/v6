@@ -11,6 +11,7 @@ The Process Manager (more commonly known as Processes) is a handy tool we added 
 - [How to stop running processes](@client/help/ProcessManager/stopping.md)
 - What process errors are
 - [How to manage ArcOS services](@client/help/ProcessManager/services.md)
+- [Managing your security settings](@client/help/ProcessManager/security.md)
 
 ## Opening the Process Manager
 

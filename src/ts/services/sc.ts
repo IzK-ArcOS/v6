@@ -1,3 +1,4 @@
+import { createTrayIcon, disposeTrayIcon } from "$apps/Shell/ts/tray";
 import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
 import { SecurityHighIcon } from "$ts/images/general";
 import { sendNotification } from "$ts/notif";
@@ -74,23 +75,39 @@ export class ES extends Process {
   public async bypassWarning() {
     await sleep(1000);
 
-    sendNotification({
-      title: "Elevation is disabled",
-      message:
-        "ArcOS is currently not preventing any elevated requests from running without your permission. It is recommended to leave Elevation <b>enabled</b>. Click the button to solve this problem.",
-      buttons: [
-        {
-          caption: "Re-enable elevation",
-          action() {
-            UserDataStore.update((v) => {
-              v.sh.bypassElevation = false;
+    function notif() {
+      sendNotification({
+        title: "Elevation is disabled",
+        message:
+          "ArcOS is currently not preventing any elevated requests from running without your permission. It is recommended to leave Elevation <b>enabled</b>. Click the button to solve this problem.",
+        buttons: [
+          {
+            caption: "Re-enable elevation",
+            action() {
+              UserDataStore.update((v) => {
+                v.sh.bypassElevation = false;
 
-              return v;
-            });
+                return v;
+              });
+            },
           },
-        },
-      ],
+        ],
+        image: SecurityHighIcon,
+      });
+    }
+
+    notif();
+
+    const id = `svc#ElevationService_disabledNotifier`;
+
+    createTrayIcon({
+      title: "Elevation is disabled",
       image: SecurityHighIcon,
+      identifier: id,
+      onOpen() {
+        disposeTrayIcon(id);
+        notif();
+      },
     });
   }
 }

@@ -87,7 +87,6 @@ export class BrowserCheckProcess extends Process {
 
       createTrayIcon({
         title: warning.title,
-
         image: warning.image,
         onOpen: () => send(),
         identifier: `BrowserCheck_Warning#${browser}`,

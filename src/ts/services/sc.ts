@@ -1,6 +1,7 @@
+import TrayPopup from "$apps/SecureContext/Components/TrayPopup.svelte";
 import { createTrayIcon, disposeTrayIcon } from "$apps/Shell/ts/tray";
 import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
-import { SecurityHighIcon } from "$ts/images/general";
+import { SecureIcon, SecurityHighIcon } from "$ts/images/general";
 import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
@@ -23,6 +24,8 @@ export class ES extends Process {
 
   public start() {
     ElevationPid.set(this.pid);
+
+    this._tray();
 
     const userdata = UserDataStore.get();
 
@@ -69,6 +72,25 @@ export class ES extends Process {
 
         resolve(false);
       });
+    });
+  }
+
+  private _tray() {
+    const id = `svc#SecureContext_${this.pid}`;
+
+    createTrayIcon({
+      identifier: id,
+      title: "Security Menu",
+      image: SecureIcon,
+      popup: {
+        width: 200,
+        height: 150,
+        component: TrayPopup,
+      },
+    });
+
+    ProcessStack.processes.subscribe(() => {
+      if (!ProcessStack.isPid(this.pid, true)) disposeTrayIcon(id);
     });
   }
 

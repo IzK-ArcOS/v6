@@ -13,19 +13,6 @@ import { Service } from "$types/service";
 
 export class BrowserCheckProcess extends Process {
   warnings: Record<string, Notification> = {
-    firefox: {
-      title: "Firefox support",
-      message:
-        "As of January 10th 2024, support for Firefox is still experimental. You can expect visual imperfections and bugs until further notice.",
-      image: FirefoxIcon,
-      buttons: [
-        {
-          caption: "Ignore",
-          action() {},
-          suggested: true,
-        },
-      ],
-    },
     "safari/,mac": {
       title: "Safari",
       message:

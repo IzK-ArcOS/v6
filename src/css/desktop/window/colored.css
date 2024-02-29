@@ -1,3 +1,7 @@
 window.shell-colored::before {
   opacity: 0.08;
 }
+
+window.snapped.shell-colored::before {
+  border-radius: 0;
+}

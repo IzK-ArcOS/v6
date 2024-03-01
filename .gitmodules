@@ -97,3 +97,6 @@
 [submodule "src/state/ServerSelect"]
 	path = src/state/ServerSelect
 	url = https://github.com/IzK-ArcOS/v6-ServerSelect
+[submodule "src/apps/ArcFind"]
+	path = src/apps/ArcFind
+	url = https://github.com/IzK-ArcOS/v6-ArcFind

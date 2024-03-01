@@ -1,4 +1,5 @@
 import { OpenWith as OpenWithApp } from "$apps/OpenWith/ts/app";
+import { ShellPid } from "$apps/Shell/ts/triggers";
 import { spawnOverlay } from "$ts/apps";
 import { UnknownFileIcon } from "$ts/images/mime";
 import { createErrorDialog } from "$ts/process/error";
@@ -8,7 +9,7 @@ import { Nullable } from "$types/common";
 import { FileHandler, PartialArcFile } from "$types/fs";
 import { parseExtension } from "../util";
 
-export async function OpenFile(file: PartialArcFile, parentPid?: number) {
+export async function OpenFile(file: PartialArcFile, parentPid: number = ShellPid()) {
   const handlers = getCompatibleHandlers(file.scopedPath, false);
 
   if (!handlers.length) {

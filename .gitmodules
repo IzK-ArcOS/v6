@@ -100,3 +100,6 @@
 [submodule "src/apps/ArcFind"]
 	path = src/apps/ArcFind
 	url = https://github.com/IzK-ArcOS/v6-ArcFind
+[submodule "src/apps/Calculator"]
+	path = src/apps/Calculator
+	url = https://github.com/IzK-ArcOS/v6-Calculator

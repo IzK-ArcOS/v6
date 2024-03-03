@@ -3,6 +3,7 @@ import { AppInfo } from "$apps/AppInfo/ts/app";
 import { ArcFind } from "$apps/ArcFind/ts/app";
 import { ArcTermApp as ArcTerm } from "$apps/ArcTerm/ts/app";
 import { BugReports } from "$apps/BugReports/ts/app";
+import { CalculatorApp } from "$apps/Calculator/ts/app";
 import { DonutApp } from "$apps/DonutApp/ts/app";
 import { ErrorDialog } from "$apps/ErrorDialog/ts/app";
 import { ExitApp } from "$apps/Exit/ts/app";
@@ -57,4 +58,5 @@ export const builtinApps: Record<string, App> = {
   MessagingApp,
   BugReports,
   ArcFind,
+  CalculatorApp,
 };

@@ -25,10 +25,10 @@ window:not(.core) {
   font-size: var(--font-size);
   font-family: var(--font);
   box-shadow: 0 5px 15px 5px #0003;
-  margin-top: 50px;
+  margin-top: 30px;
   opacity: 0;
   visibility: hidden;
-  scale: 0.9;
+  scale: 0.95;
 }
 
 .safemode window {

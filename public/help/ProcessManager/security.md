@@ -31,6 +31,10 @@ If you don't want to enter a password every time to elevate, you can opt to disa
 
 To disable the password prompt, toggle **Don't ask for password** on the Security page.
 
+## The security status menu
+
+On the system tray you can find a security icon. If you click it, a popup will appear allowing you to quickly change the Lockdown and Password modes of your ArcOS Security Settings on the fly. It will also tell you the situation you're in at the bottom of the menu, as displayed in the configuration table above.
+
 ---
 
 [Back to **Process Manager**](@client/help/ProcessManager.md)

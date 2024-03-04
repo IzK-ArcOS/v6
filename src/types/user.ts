@@ -78,6 +78,7 @@ interface AccountInfo {
   enabled: boolean; // added
   loginBackground?: string; // added
   profilePicture: Nullable<string | number>; // added
+  v6?: boolean;
 }
 
 export type AppData = {

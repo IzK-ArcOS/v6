@@ -102,6 +102,8 @@ export async function writeFile(
   dispatch = true,
   onUploadProgress?: (progress: any) => any
 ) {
+  if (!path) return null;
+
   if (path.startsWith("@client")) {
     Log(
       "server/fs/file",

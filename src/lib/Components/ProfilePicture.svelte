@@ -6,7 +6,6 @@
   export let src: string = fallback || "";
   export let height: number;
   export let className: string = "";
-  export let v6 = false;
 
   let url = "";
 
@@ -20,7 +19,6 @@
 <div
   class="pfprenderer {className} pfp"
   style="background-image:url('{src || url}'); --h: {height}px;"
-  class:v6={v6 || ($UserDataStore && $UserDataStore.acc.v6)}
 />
 
 <style scoped>
@@ -37,10 +35,5 @@
     height: var(--h);
     min-height: var(--h);
     max-height: var(--h);
-  }
-
-  div.pfprenderer.v6 {
-    outline: #b78dff 4px solid;
-    outline-offset: 1px;
   }
 </style>

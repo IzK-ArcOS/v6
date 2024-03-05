@@ -1,7 +1,10 @@
+@import url("./controls/win7.css");
+
 window div.titlebar div.controls {
   display: flex;
   gap: 2px;
   height: 20px;
+  position: relative;
 }
 
 window div.titlebar div.controls button.titlebar-control {

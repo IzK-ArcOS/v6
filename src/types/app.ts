@@ -48,6 +48,12 @@ export interface WindowControls {
   close: boolean;
 }
 
+export interface WindowControlOption {
+  caption: string;
+  author: string;
+  content: any;
+}
+
 export interface AppMetaData {
   name: string;
   description: string;

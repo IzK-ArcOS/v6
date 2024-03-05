@@ -1,0 +1,65 @@
+window div.titlebar div.controls.buttons-win7 {
+  position: relative;
+  top: -10px;
+  display: flex;
+  gap: 12px;
+}
+
+window div.titlebar.left div.controls.buttons-win7 {
+  margin-left: 5px;
+}
+
+window:not(.bigtb):not(.overlay) div.titlebar div.controls.buttons-win7 {
+  top: -5px;
+}
+
+#SettingsApp > div.body div.titlebar div.controls.buttons-win7 {
+  top: -10px !important;
+}
+
+window div.titlebar div.controls.buttons-win7 div.titlebar-button-group {
+  display: flex;
+  overflow: hidden;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: var(--win-border);
+  height: 20px;
+  border-top: 0;
+}
+
+window
+  div.titlebar
+  div.controls.buttons-win7
+  div.titlebar-button-group
+  button.material-icons-round {
+  border: none;
+  border-top: none;
+  background-color: var(--button-glass-bg);
+  color: var(--fg);
+  height: 19px;
+  width: 30px;
+  font-size: 14px;
+  text-align: center;
+  padding: 0;
+  border-radius: 0;
+  margin: 0;
+}
+
+window
+  div.titlebar
+  div.controls.buttons-win7
+  div.titlebar-button-group
+  > button.material-icons-round:not(:disabled)
+  + button {
+  border-left: var(--win-border);
+}
+
+window
+  div.titlebar
+  div.controls.buttons-win7
+  div.titlebar-button-group
+  > button.material-icons-round.close {
+  background-color: rgb(198, 72, 50);
+  width: 45px;
+  color: #fff;
+}

@@ -13,8 +13,16 @@ window:not(.bigtb):not(.overlay) div.titlebar div.controls.buttons-win7 {
   top: -5px;
 }
 
+window.overlay > div.body div.titlebar div.controls.buttons-win7 {
+  top: -5px;
+}
+
 #SettingsApp > div.body div.titlebar div.controls.buttons-win7 {
   top: -10px !important;
+}
+
+#MessagingApp > div.body div.titlebar div.controls.buttons-win7 {
+  top: -15px !important;
 }
 
 window div.titlebar div.controls.buttons-win7 div.titlebar-button-group {

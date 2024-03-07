@@ -75,7 +75,7 @@ window
   div.titlebar-button-group
   > button.material-icons-round:not(:disabled)
   + button {
-  border-left: var(--win-border);
+  border-left: var(--button-glass-hover-bg) 1px solid;
 }
 
 window
@@ -91,8 +91,20 @@ window
   div.controls.buttons-win7
   div.titlebar-button-group
   > button.material-icons-round.close {
-  background-color: rgb(198, 72, 50);
   width: 45px;
+}
+
+window.focused
+  div.titlebar
+  div.controls.buttons-win7
+  div.titlebar-button-group
+  > button.material-icons-round.close,
+window.overlay
+  div.titlebar
+  div.controls.buttons-win7
+  div.titlebar-button-group
+  > button.material-icons-round.close {
+  background-color: rgb(198, 72, 50);
   color: #fff;
 }
 

@@ -7,7 +7,7 @@ import { WindowControlOption } from "$types/app";
 export const TitlebarButtons: { [key: string]: WindowControlOption } = {
   default: {
     caption: "Default",
-    author: "ArcOS Team",
+    author: "ArcOS",
     content: Default,
   },
   traffic: {
@@ -17,13 +17,13 @@ export const TitlebarButtons: { [key: string]: WindowControlOption } = {
   },
   og: {
     caption: "O.G.",
-    author: "WebOSv3 Team",
+    author: "WebOSv3",
     content: Og,
   },
 
   win7: {
     caption: "Windows 7",
-    author: "Microsoft Corporation",
+    author: "Microsoft",
     content: Aero,
   },
 };

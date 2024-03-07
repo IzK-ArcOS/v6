@@ -1,0 +1,43 @@
+window div.titlebar div.controls.buttons-traffic {
+  display: flex;
+  align-items: center;
+  padding-right: 5px;
+}
+
+window div.titlebar div.controls.buttons-traffic button {
+  border: var(--button-bg) 1px solid;
+  width: 12px;
+  height: 12px;
+  border-radius: 11px;
+  padding: 0;
+}
+
+window div.titlebar div.controls.buttons-traffic button + button {
+  margin-left: 8px;
+}
+
+window div.titlebar div.controls.buttons-traffic button:hover {
+  opacity: 0.5;
+}
+
+window div.titlebar div.controls.buttons-traffic button:active {
+  opacity: 0.2;
+}
+window div.titlebar div.controls.buttons-traffic button:disabled {
+  background-color: var(--button-bg) !important;
+  border: var(--button-hover-bg) 0.5px solid !important;
+}
+
+window div.titlebar div.controls.buttons-traffic button.traffic-cls:not(:disabled) {
+  border: #d04e41 0.5px solid !important;
+  background-color: #ec695e !important;
+}
+window div.titlebar div.controls.buttons-traffic button.traffic-min:not(:disabled) {
+  border: #d59f3c 0.5px solid !important;
+  background-color: #f5c14f !important;
+}
+
+window div.titlebar div.controls.buttons-traffic button.traffic-max:not(:disabled) {
+  border: #4fa63b 0.5px solid !important;
+  background-color: #61c654 !important;
+}

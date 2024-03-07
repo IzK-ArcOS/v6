@@ -1,4 +1,5 @@
 @import url("./controls/win7.css");
+@import url("./controls/traffic.css");
 
 window div.titlebar div.controls {
   display: flex;

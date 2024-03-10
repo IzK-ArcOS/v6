@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Logo } from "$ts/branding";
   import { ARCOS_MODE } from "$ts/metadata";
 

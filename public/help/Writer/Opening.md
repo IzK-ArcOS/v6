@@ -6,3 +6,8 @@ You can either find it in the Start menu or on your desktop.
 # Saving
 
 Once you're done with your masterpiece *(or not)*, click on the ```File``` menu and on that menu, press ```Save``` or ```Save As```, and then pick a location to store your masterpiece of a text file.
+
+
+> ### ![icon](#WarningIcon) **Warning**
+>
+> Please remember to save your files **before** exiting ArcOS, as we are not responsible for any data loss caused.

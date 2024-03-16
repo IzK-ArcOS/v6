@@ -1,6 +1,6 @@
 # Unfinished!
 
-This help center article hasn't been created yet! Makes sense considering that the entire application is still under development... If you know that this article exists, try updating the frontend first. Run `yarn update` instead of `git pull` to prevent submodule issues. Contact Izaak if you can't pull changes for some reason.
+This help center article hasn't been created yet! Makes sense considering that the entire application is still under development... If you think that this article should exist, try updating the frontend first. Run `yarn update` instead of `git pull` to prevent submodule issues. Contact Izaak if you can't pull changes for some reason.
 
 > ### ![icon](#WarningIcon) **Don't worry!**
 >

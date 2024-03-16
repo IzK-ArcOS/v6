@@ -185,19 +185,19 @@
   },
   {
     "name": "Writer",
-    "path": "@client/help/$unfinished.md",
+    "path": "@client/help/Writer.md",
     "subitems": [
       {
         "name": "View options",
-        "path": "@client/help/$unfinished.md"
+        "path": "@client/help/Writer/View.md"
       },
       {
         "name": "Opening a file in another program",
-        "path": "@client/help/$unfinished.md"
+        "path": "@client/help/Writer/Opening.md"
       },
       {
         "name": "Searching and replacing text",
-        "path": "@client/help/$unfinished.md"
+        "path": "@client/help/Writer/SearchReplace.md"
       }
     ]
   },

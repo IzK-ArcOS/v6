@@ -30,11 +30,11 @@ window:not(.core) {
   visibility: hidden;
   scale: 0.95;
 }
-
+/* 
 .safemode window {
   --win-border: #fb0 1px solid !important;
 }
-
+ */
 window *::selection {
   background-color: var(--accent-transparent);
 }

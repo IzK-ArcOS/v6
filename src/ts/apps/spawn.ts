@@ -73,9 +73,9 @@ export async function spawnOverlay(
   noShade?: boolean,
   processHandler = ProcessStack
 ): Promise<Process | AppSpawnResult> {
-  Log("apps/spawn", `Spawning overlay with ID ${app.id} on handler ${processHandler.id}`);
-
   if (!app) return;
+
+  Log("apps/spawn", `Spawning overlay with ID ${app.id} on handler ${processHandler.id}`);
 
   app = getAppById(null, { ...app, isOverlay: true, noOverlayShade: noShade });
 

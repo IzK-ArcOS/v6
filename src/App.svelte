@@ -1,5 +1,6 @@
 <script lang="ts">
   import StateRenderer from "$lib/StateRenderer.svelte";
+  import { SafeMode } from "$state/Desktop/ts/store";
   import { Logo } from "$ts/branding";
   import { Log } from "$ts/console";
   import { ArcOSVersion } from "$ts/env";
@@ -30,7 +31,7 @@
 </svelte:head>
 
 {#if render}
-  <div class="app theme-dark fullscreen">
+  <div class="app theme-dark fullscreen" class:safemode={$SafeMode}>
     <StateRenderer handler={PrimaryState} renderProcesses />
   </div>
 {/if}

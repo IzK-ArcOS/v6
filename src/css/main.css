@@ -28,3 +28,21 @@ div#app *:not(window)::before {
 div.app {
   overflow: hidden;
 }
+
+div.app.safemode::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000000000000000000000000000000000000000000000000000000000000;
+  border: #fb0 1px solid !important;
+  pointer-events: none;
+}
+
+div.app.safemode *::after,
+div.app.safemode *::before,
+div.app.safemode * {
+  border-radius: 0 !important;
+}

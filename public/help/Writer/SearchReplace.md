@@ -8,8 +8,3 @@ It **is** pretty simple:
 **Replace** - Izaak
 
 Now, Writer will replace **all** occurences of Isaac with Izaak (in the document of course).
-
-
-~~I bet Izaak gonna love me for this one~~ 
-
-~~*..or is he?*~~

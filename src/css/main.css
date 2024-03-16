@@ -45,4 +45,6 @@ div.app.safemode *::after,
 div.app.safemode *::before,
 div.app.safemode * {
   border-radius: 0 !important;
+  transition: none !important;
+  animation: none !important;
 }

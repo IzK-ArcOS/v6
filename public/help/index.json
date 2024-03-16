@@ -159,27 +159,27 @@
   },
   {
     "name": "File Manager",
-    "path": "@client/help/$unfinished.md",
+    "path": "@client/help/FileManager.md",
     "subitems": [
       {
         "name": "What are system folders?",
-        "path": "@client/help/$unfinished.md"
+        "path": "@client/help/FileManager/SystemFolders.md"
       },
       {
         "name": "Creating files/folders",
-        "path": "@client/help/$unfinished.md"
+        "path": "@client/help/FileManager/CreateFileFolder.md"
       },
       {
         "name": "View modes",
-        "path": "@client/help/$unfinished.md"
+        "path": "@client/help/FileManager/ViewModes.md"
       },
       {
         "name": "Uploading files",
-        "path": "@client/help/$unfinished.md"
+        "path": "@client/help/FileManager/Uploading.md"
       },
       {
         "name": "Opening a file in another program",
-        "path": "@client/help/$unfinished.md"
+        "path": "@client/help/FileManager/Opening.md"
       }
     ]
   },

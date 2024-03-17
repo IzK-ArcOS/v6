@@ -1,15 +1,19 @@
 import { manualCrash } from "$ts/bugrep/crash";
 import { Log } from "$ts/console";
+import { WarningIcon } from "$ts/images/dialog";
+import { createErrorDialog } from "$ts/process/error";
 import { killAllAppInstances } from "$ts/process/kill";
 import { appLibrary } from "$ts/stores/apps";
 import { sleep } from "$ts/util";
 import { App } from "$types/app";
 import { LogLevel } from "$types/console";
 import { spawnApp } from "../spawn";
+import { appDependenciesMatch } from "./dependencies";
 import { loadConditionFailed } from "./fail";
 
 export async function loadApp(id: string, data: App): Promise<boolean> {
   Log("apps/load", `Loading application ${id}`);
+
   const library = appLibrary.get();
 
   if (library.has(id)) {
@@ -23,9 +27,25 @@ export async function loadApp(id: string, data: App): Promise<boolean> {
   }
 
   const allowLoad = data.loadCondition ? await data.loadCondition() : true;
+  const dependenciesMatch = appDependenciesMatch(data.metadata.dependendsOn || []);
 
   if (!allowLoad) {
     loadConditionFailed(data);
+
+    return false;
+  }
+
+  if (!dependenciesMatch) {
+    createErrorDialog(
+      {
+        title: "Dependency failure",
+        message: `Application ${id} failed to load because one or more of the applications it depends on aren't loaded.`,
+        image: WarningIcon,
+        buttons: [{ caption: "Okay", action() {} }],
+      },
+      0
+    );
+    console.log(`Dependencies for ${id} failed: ${data.metadata.dependendsOn}`);
 
     return false;
   }

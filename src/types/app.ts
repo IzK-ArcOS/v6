@@ -64,6 +64,7 @@ export interface AppMetaData {
   core?: boolean;
   hidden?: boolean;
   noCloseAccelerator?: boolean;
+  dependendsOn?: string[]; // App IDs on which the application depends
 }
 
 export interface AppState {

@@ -23,7 +23,7 @@
     {
       "name": "ArcOS",
       "short_name": "ArcOS",
-      "description": "The ArcOS Project",
+      "description": "The ArcOS Project, pushing the limits of web technology",
       "url": "/",
       "icons": [
         {
@@ -33,5 +33,5 @@
       ]
     }
   ],
-  "description": "The ArcOS Project"
+  "description": "The ArcOS Project, pushing the limits of web technology"
 }

@@ -10,9 +10,6 @@ There are 10 levels, starting at 0. The levels are decided based on how many poi
 level has a different color. If you mis-click at any point, you'll lose upwards of a hundred
 points. If your score is already below 100, it will be reset back down to 0.
 
-It may not seem difficult at first, but you are surely mistaken if you think that this is easy. So
-what are you waiting for? Hop on and experience this beast.
-
 ## Opening Qlorb
 
 Qlorb can be opened by clicking on its Desktop Icon or Start Menu Shortcut:

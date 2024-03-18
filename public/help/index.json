@@ -151,7 +151,8 @@
   },
   {
     "name": "Qlorb",
-    "path": "@client/help/$unfinished.md"
+    "path": "@client/help/Qlorb.md",
+    "icon": "QlorbIcon"
   },
   {
     "name": "Lights Off",

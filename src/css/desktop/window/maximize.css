@@ -9,6 +9,10 @@ window:not(.core).maximized {
   resize: none !important;
 }
 
+window:not(.core).maximized::before {
+  border-radius: 0 !important;
+}
+
 div.desktop:not(.noani) window:not(.core).maximized {
   transition: all 0.3s !important;
 }

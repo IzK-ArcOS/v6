@@ -15,3 +15,7 @@ To upload files to ArcOS, open a File Manager, and navigate to whewre you want t
 It is also possible to upload a set of files to ArcOS by dragging and dropping the file onto the File Manager's directory listing. This has the same effect as clicking on the Upload button in the toolbar.
 
 Once you drop files onto the File Manager, ArcOS will begin reading and uploading them to your account one by one.
+
+# Downloading files from ArcOS
+
+To download a file from your ArcOS account, first select the file in the File Manager, and then click on the **Download** icon in the Toolbar at the top of the window. Do note that it is not possible to download entire folders.

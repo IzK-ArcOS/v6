@@ -171,10 +171,6 @@
         "path": "@client/help/FileManager/CreateFileFolder.md"
       },
       {
-        "name": "View modes",
-        "path": "@client/help/FileManager/ViewModes.md"
-      },
-      {
         "name": "Uploading files",
         "path": "@client/help/FileManager/Uploading.md"
       },

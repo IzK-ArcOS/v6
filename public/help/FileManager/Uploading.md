@@ -19,3 +19,7 @@ Once you drop files onto the File Manager, ArcOS will begin reading and uploadin
 # Downloading files from ArcOS
 
 To download a file from your ArcOS account, first select the file in the File Manager, and then click on the **Download** icon in the Toolbar at the top of the window. Do note that it is not possible to download entire folders.
+
+---
+
+[Back to **File Manager**](@client/help/FileManager.md)

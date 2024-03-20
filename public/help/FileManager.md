@@ -8,7 +8,7 @@ With the File Manager, you can store and access your own personal files on ArcOS
 - How to open the File Manager
 - [What system folders are](@client/help/FileManager/SystemFolder.md)
 - [How to create folders and files](@client/help/FileManager/CreateFileFolder.md)
-- How to upload/download files
+- [How to upload/download files](@client/help/FileManager/Uploading.md)
 - [How to open files in other applications](@client/help/FileManager/Opening.md)
 
 ## Opening the File Manager

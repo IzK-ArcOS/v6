@@ -2,12 +2,6 @@
   {
     "name": "Home",
     "path": "@client/help/Home.md",
-    "subitems": [
-      {
-        "name": "Debug",
-        "path": "@client/help/Debug.md"
-      }
-    ],
     "icon": "HomeIcon"
   },
   {
@@ -120,20 +114,18 @@
   {
     "name": "Logging",
     "path": "@client/help/Logging.md",
+    "icon": "LoggerIcon",
     "subitems": [
       {
-        "name": "Categories",
-        "path": "@client/help/Logging/categories.md"
-      },
-      {
         "name": "Logging-levels",
-        "path": "@client/help/Logging/levels.md"
+        "path": "@client/help/Logging/Levels.md"
       }
     ]
   },
   {
     "name": "Process Manager",
     "path": "@client/help/ProcessManager.md",
+    "icon": "ProcessManagerIcon",
     "subitems": [
       {
         "name": "Managing processes",
@@ -156,11 +148,13 @@
   },
   {
     "name": "Lights Off",
-    "path": "@client/help/$unfinished.md"
+    "path": "@client/help/LightsOff.md",
+    "icon": "LightsOffIcon"
   },
   {
     "name": "File Manager",
     "path": "@client/help/FileManager.md",
+    "icon": "FileManagerIcon",
     "subitems": [
       {
         "name": "What are system folders?",
@@ -183,106 +177,26 @@
   {
     "name": "Writer",
     "path": "@client/help/Writer.md",
-    "subitems": [
-      {
-        "name": "View options",
-        "path": "@client/help/Writer/View.md"
-      },
-      {
-        "name": "Opening a file in another program",
-        "path": "@client/help/Writer/Opening.md"
-      },
-      {
-        "name": "Searching and replacing text",
-        "path": "@client/help/Writer/SearchReplace.md"
-      }
-    ]
+    "icon": "TextEditorIcon"
   },
   {
     "name": "Markdown Viewer",
-    "path": "@client/help/$unfinished.md",
-    "subitems": [
-      {
-        "name": "Editing a markdown file",
-        "path": "@client/help/$unfinished.md"
-      },
-      {
-        "name": "Supported file types",
-        "path": "@client/help/$unfinished.md"
-      }
-    ]
+    "path": "@client/help/MarkDownViewer.md",
+    "icon": "MarkdownMimeIcon"
   },
   {
     "name": "Image Viewer",
-    "path": "@client/help/$unfinished.md",
-    "subitems": [
-      {
-        "name": "Set image as wallpaper",
-        "path": "@client/help/$unfinished.md"
-      },
-      {
-        "name": "Supported file types",
-        "path": "@client/help/$unfinished.md"
-      }
-    ]
+    "path": "@client/help/ImageViewer.md",
+    "icon": "ImageViewerIcon"
   },
   {
     "name": "Media Player",
-    "path": "@client/help/$unfinished.md",
-    "subitems": [
-      {
-        "name": "Playing video files",
-        "path": "@client/help/$unfinished.md"
-      },
-      {
-        "name": "Playing audio files",
-        "path": "@client/help/$unfinished.md"
-      },
-      {
-        "name": "Supported file types",
-        "path": "@client/help/$unfinished.md"
-      }
-    ]
+    "path": "@client/help/MediaPlayer.md",
+    "icon": "MediaPlayerIcon"
   },
-  {
-    "name": "Keyboard Shortcuts",
-    "path": "@client/help/$unfinished.md"
-  },
-  {
-    "name": "Services",
-    "path": "@client/help/$unfinished.md",
-    "subitems": [
-      {
-        "name": "What are services?",
-        "path": "@client/help/$unfinished.md"
-      },
-      {
-        "name": "Stopping/starting services",
-        "path": "@client/help/$unfinished.md"
-      },
-      {
-        "name": "The service manager",
-        "path": "@client/help/$unfinished.md"
-      }
-    ]
-  },
-  {
-    "name": "Notifications",
-    "path": "@client/help/$unfinished.md",
-    "subitems": [
-      {
-        "name": "What can send notifications?",
-        "path": "@client/help/$unfinished.md"
-      },
-      {
-        "name": "Deleting notifications",
-        "path": "@client/help/$unfinished.md"
-      }
-    ]
-  },
-
   {
     "name": "Contact Us",
-    "path": "@client/help/Contact.md"
+    "path": "@client/help/Contact.md",
+    "icon": "WaveIcon"
   }
 ]

@@ -6,3 +6,7 @@ To explicitly open a file with another application, Select and then right-click 
 ![medium](@client/help/assets/file-manager-open-with-context.png)
 
 Selecting any of those options will perform the action or open the app with the file.
+
+---
+
+[Back to **File Manager**](@client/help/FileManager.md)

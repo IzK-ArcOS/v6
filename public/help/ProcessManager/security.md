@@ -21,7 +21,7 @@ To disable elevation, click **Disable Elevation** on the Security page.
 
 ## Locking down Elevation
 
-Locking down elevation disables all elevation requests. It doesn't allow them though, it just prevents them from continuing at all. This is handy if you want to temporarily block any elevation requests from going through, like when you're debugging a problem.
+Locking down elevation disables all elevation requests. It doesn't allow them through at all. This is handy if you want to temporarily block any elevation requests from going through, like when you're debugging a problem.
 
 To enable Lockdown, toggle **Lock down elevation** on the Security page.
 

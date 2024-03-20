@@ -10,8 +10,8 @@ Here you'll find articles to help you get the most out of your ArcOS installatio
 ## Common Articles
 
 - [Change settings using the Settings App](@client/help/Settings.md)
-- [Jumps over the]()
-- [Lazy doggidy dog.]()
+- [Manage your files in the File Manager](@client/help/FileManager.md)
+- Play a fun game of [Lights Off](@client/help/LightsOff.md) or [Qlorb](@client/help/Qlorb.md)
 
 ---
 

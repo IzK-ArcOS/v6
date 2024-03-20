@@ -31,6 +31,7 @@ import { App } from "$types/app";
 
 export const builtinApps: Record<string, App> = {
   ArcShell,
+  KeyboardShortcuts,
   desktopWallpaper,
   ArcTerm,
   SettingsApp,

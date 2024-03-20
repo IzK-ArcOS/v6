@@ -6,6 +6,7 @@
   import { ArcOSVersion } from "$ts/env";
   import { ComponentIcon } from "$ts/images/general";
   import { ARCOS_BUILD, ARCOS_MODE, getBuild, getMode } from "$ts/metadata";
+  import { DESKTOP_MODE, getDesktopMode } from "$ts/metadata/desktop";
   import { PrimaryState } from "$ts/states";
   import { onMount } from "svelte";
 
@@ -17,8 +18,12 @@
 
     await getMode();
     await getBuild();
+    await getDesktopMode();
 
-    Log("ArcOS", `***** [v6 -> ArcOS Stable v${ArcOSVersion}-${ARCOS_MODE}_${ARCOS_BUILD}] *****`);
+    Log(
+      "ArcOS",
+      `***** [v6 -> ArcOS Stable v${ArcOSVersion}-${ARCOS_MODE}_${ARCOS_BUILD} -> ${DESKTOP_MODE}] *****`,
+    );
 
     logo = Logo();
 

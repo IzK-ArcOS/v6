@@ -1,6 +1,10 @@
+import { Log } from "$ts/console";
+
 export let DESKTOP_MODE: "desktop" | "browser";
 
 export async function getDesktopMode() {
+  Log("metadata/desktop", "Attempting to retrieve desktop mode from /desktop");
+
   try {
     const req = await (await fetch("./desktop")).text();
 

@@ -1,6 +1,6 @@
 import { createTrayIcon } from "$apps/Shell/ts/tray";
 import { SafeMode } from "$state/Desktop/ts/store";
-import { FirefoxIcon, GlobeIcon } from "$ts/images/general";
+import { GlobeIcon } from "$ts/images/general";
 import { Process, ProcessHandler } from "$ts/process";
 import { createErrorDialog } from "$ts/process/error";
 import { stopService } from "$ts/service/interact";

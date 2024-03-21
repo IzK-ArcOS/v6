@@ -1,4 +1,3 @@
-import { KeyboardShortcuts } from "$apps/AcceleratorOverview/ts/app";
 import { AppInfo } from "$apps/AppInfo/ts/app";
 import { ArcFind } from "$apps/ArcFind/ts/app";
 import { ArcTermApp as ArcTerm } from "$apps/ArcTerm/ts/app";

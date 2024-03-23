@@ -1,5 +1,6 @@
 export { default as AppInfoIcon } from "$assets/apps/appinfo.svg";
 export { default as ArcTermIcon } from "$assets/apps/arcterm.svg";
+export { default as CalculatorIcon } from "$assets/apps/calculator.svg";
 export { default as DefaultIcon } from "$assets/apps/default.svg";
 export { default as DonutIcon } from "$assets/apps/donut.png";
 export { default as FileManagerIcon } from "$assets/apps/filemanager.svg";
@@ -14,4 +15,3 @@ export { default as QlorbIcon } from "$assets/apps/qlorb.svg";
 export { default as ServiceInfoIcon } from "$assets/apps/serviceinfo.svg";
 export { default as SettingsIcon } from "$assets/apps/settings.svg";
 export { default as TextEditorIcon } from "$assets/apps/texteditor.svg";
-export { default as CalculatorIcon } from "$assets/apps/calculator.svg";

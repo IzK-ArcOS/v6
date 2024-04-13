@@ -40,7 +40,9 @@ I want to thank all of these authors for providing their photos, images and othe
 
 All images not listed above are created by or licensed to the ArcOS Team.
 -->
+
 ## Screenshots
+
 ![ArcOS Desktop](https://github.com/IzK-ArcOS/v6/assets/76709090/e3003420-0a6a-4e7c-8175-13603d8e5d80)
 ![Boot screen](https://github.com/IzK-ArcOS/v6/assets/76709090/2fa96b75-817b-40ca-8d30-b6a0f14f116d)
 ![First Time Setup](https://github.com/IzK-ArcOS/v6/assets/76709090/00987881-f482-41b0-b010-df5aee412717)

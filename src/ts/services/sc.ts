@@ -135,7 +135,7 @@ export class ES extends Process {
 }
 
 export const ElevationService: Service = {
-  name: "Elevation Serice",
+  name: "Elevation Service", // qkjx0pbf7x0fn6d, 13 apr 2024
   description: "Manages the ArcOS Secure Context",
   process: ES,
   initialState: "started",

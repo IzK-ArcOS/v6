@@ -1,7 +1,9 @@
 import { FileOperation, FileProgressMutator } from "$apps/FsProgress/ts/types";
 import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
+import { DummyFileProgress } from "$ts/stores/filesystem/progress";
 import { Store } from "$ts/writable";
 
+// 6bem35m968mpav4
 export async function FileProgress(
   initialData: FileOperation,
   parentPid?: number,
@@ -12,11 +14,11 @@ export async function FileProgress(
   if (!parentPid) {
     const process = await spawnApp("FsProgress", 0, [progress]);
 
-    if (typeof process == "string") return null;
+    if (typeof process == "string") return DummyFileProgress;
   } else {
     const process = await spawnOverlay(getAppById("FsProgress"), parentPid, [progress], noShade);
 
-    if (typeof process == "string") return null;
+    if (typeof process == "string") return DummyFileProgress;
   }
 
   const mutateMax = (mutator: number) =>

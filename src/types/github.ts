@@ -71,3 +71,44 @@ export interface GitHubIssue {
   performed_via_github_app: any;
   state_reason: string;
 }
+
+export type Version = [major: number, minor: number, patch: number];
+
+export interface ReleaseAsset {
+  url: string;
+  id: number;
+  node_id: string;
+  name: string;
+  label: null;
+  uploader: GitHubUser;
+  content_type: string;
+  state: string;
+  size: number;
+  download_count: number;
+  created_at: string;
+  updated_at: string;
+  browser_download_url: string;
+}
+
+export interface GitHubRelease {
+  documentation_url?: string;
+  message?: string;
+  url: string;
+  assets_url: string;
+  upload_url: string;
+  html_url: string;
+  id: number;
+  author: GitHubUser;
+  node_id: string;
+  tag_name: string;
+  target_commitish: string;
+  name: string;
+  draft: boolean;
+  prerelease: boolean;
+  created_at: string;
+  published_at: string;
+  assets: ReleaseAsset[];
+  tarball_url: string;
+  zipball_url: string;
+  body: string;
+}

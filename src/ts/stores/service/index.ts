@@ -1,3 +1,4 @@
+import { ArcUpdateService } from "$ts/services/aus";
 import { BrowserCheck } from "$ts/services/bc";
 import { MessageNotifierService } from "$ts/services/mns";
 import { NotificationService } from "$ts/services/ns";
@@ -13,4 +14,5 @@ export const serviceStore: ServiceStore = new Map([
   ["ElevationService", ElevationService],
   ["RateLimitNotifierService", RateLimitNotifierService],
   ["MessageNotifierService", MessageNotifierService],
+  ["ArcUpdateService", ArcUpdateService],
 ]);

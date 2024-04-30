@@ -36,7 +36,7 @@ export async function spawnOverlay(
   return await Spawn(app.id, parent, args, processHandler, app, true);
 }
 
-async function Spawn(
+export async function Spawn(
   id: string,
   parent?: number,
   args?: any[],
@@ -57,7 +57,7 @@ async function Spawn(
   const closedPids = processHandler.closedPids.get();
   const instances = processHandler.getAppPids(id).filter((p) => !closedPids.includes(p));
 
-  app = getAppById(null, { ...app, isOverlay: true });
+  app = getAppById(null, { ...app, isOverlay: overlay });
 
   if (!app) return "err_noExist";
 

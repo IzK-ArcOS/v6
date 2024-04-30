@@ -7,23 +7,24 @@ import { UserDirectory } from "$types/fs";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 import { sortDirectories, sortFiles } from "./sort";
+import { DummyUserDirectory } from "$ts/stores/filesystem";
 
 export async function readDirectory(path: string): Promise<UserDirectory> {
   Log("server/fs/dir", `Reading directory ${path}`);
 
   const base64 = toBase64(path);
 
-  if (base64 == path) return null;
+  if (base64 == path) return DummyUserDirectory;
 
   const url = getServerUrl(Endpoints.FsDirectory, { path: base64 });
   const token = UserToken.get();
 
-  if (!url || !token) return null;
+  if (!url || !token) return DummyUserDirectory;
 
   try {
     const response = await axios.get(url, makeTokenOptions(token));
 
-    if (response.status !== 200) return null;
+    if (response.status !== 200) return DummyUserDirectory;
 
     const data = response.data.data as UserDirectory;
 
@@ -32,7 +33,7 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 
     return data as UserDirectory;
   } catch {
-    return null;
+    return DummyUserDirectory;
   }
 }
 

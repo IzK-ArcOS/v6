@@ -45,7 +45,13 @@ export async function loadApp(id: string, data: App): Promise<boolean> {
       },
       0
     );
-    console.log(`Dependencies for ${id} failed: ${data.metadata.dependendsOn}`);
+    Log(
+      `apps/load`,
+      `Dependency check for ${id} failed: One of the following applications is missing: ${data.metadata.dependendsOn.join(
+        ", "
+      )}`,
+      LogLevel.error
+    );
 
     return false;
   }

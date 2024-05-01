@@ -40,7 +40,8 @@ export type AppSpawnResult =
   | "err_noExist"
   | "err_spawnCondition"
   | "err_disabled"
-  | "err_aboveLimit";
+  | "err_aboveLimit"
+  | "err_singleInstance";
 
 export interface WindowControls {
   minimize: boolean;

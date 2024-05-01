@@ -43,7 +43,7 @@ export async function Spawn(
   processHandler = ProcessStack,
   data: App = null,
   overlay = false
-) {
+): Promise<Process | AppSpawnResult> {
   Log("apps/spawn", `Spawning ${id} on handler ${processHandler.id}`);
   class AppProcess extends Process {
     constructor(handler: ProcessHandler, pid: number, name: string, app: App, args: any[] = []) {
@@ -70,7 +70,7 @@ export async function Spawn(
       LogLevel.warn
     );
 
-    return;
+    return "err_singleInstance";
   }
 
   if (app.elevated) {

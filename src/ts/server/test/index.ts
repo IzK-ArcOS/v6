@@ -1,4 +1,5 @@
 import { Log } from "$ts/console";
+import { minArcAPI } from "$ts/env";
 import { Endpoints } from "$ts/stores/endpoint";
 import { ConnectedServer, TEST_MODES } from "$ts/stores/server";
 import ttlFetch from "$ts/util/ttlFetch";
@@ -35,6 +36,12 @@ export async function testConnection(
       const meta = (await response.json()) as ServerMeta;
 
       server.meta = meta;
+
+      if (server.meta.revision < minArcAPI) {
+        invalidResponseLog(server);
+
+        return false;
+      }
 
       if (set) ConnectedServer.set(server);
 

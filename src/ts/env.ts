@@ -1,2 +1,2 @@
-export const ArcOSVersion = "5.0.12";
+export const ArcOSVersion = "6.0.1";
 export const minArcAPI = 2;

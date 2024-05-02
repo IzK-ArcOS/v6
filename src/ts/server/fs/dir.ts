@@ -2,12 +2,12 @@ import { toBase64 } from "$ts/base64";
 import { Log } from "$ts/console";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { Endpoints } from "$ts/stores/endpoint";
+import { DummyUserDirectory } from "$ts/stores/filesystem";
 import { UserToken } from "$ts/stores/user";
 import { UserDirectory } from "$types/fs";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 import { sortDirectories, sortFiles } from "./sort";
-import { DummyUserDirectory } from "$ts/stores/filesystem";
 
 export async function readDirectory(path: string): Promise<UserDirectory> {
   Log("server/fs/dir", `Reading directory ${path}`);

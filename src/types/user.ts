@@ -50,6 +50,7 @@ export interface UserData {
     securityNoPassword: boolean; // added
     elevationDisabled: boolean; // added
     bypassElevation: boolean; // halfway
+    userStyle?: string; // halfway
   };
 
   disabledApps: string[];

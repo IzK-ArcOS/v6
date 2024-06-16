@@ -22,3 +22,12 @@ window input.fullwidth {
   box-sizing: border-box;
   margin-bottom: 5px;
 }
+
+window ol {
+  margin: 10px 0;
+  padding-left: 30px;
+}
+
+window ol li {
+  padding-left: 10px;
+}

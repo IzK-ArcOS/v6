@@ -36,6 +36,7 @@ export function loadTheme(context: UserTheme) {
     udata.sh.taskbar.colored = !!context.taskbarColored;
     udata.sh.window.centertb = !!context.titlebarCentered;
     udata.sh.taskbar.isLauncher = !!context.isLauncher;
+    udata.sh.userStyle = context.userStyle || "";
 
     if (context.loginBackground) udata.acc.loginBackground = context.loginBackground;
 
@@ -71,6 +72,7 @@ export function saveCurrentTheme(name: string) {
       taskbarColored: udata.sh.taskbar.colored,
       titlebarCentered: udata.sh.window.centertb,
       isLauncher: udata.sh.taskbar.isLauncher,
+      userStyle: udata.sh.userStyle,
     };
 
     if (!udata.sh.userThemes) udata.sh.userThemes = {};

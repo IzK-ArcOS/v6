@@ -15,7 +15,6 @@
   padding: 20px;
   display: flex;
   gap: 20px;
-  padding-bottom: 20px;
 }
 #ErrorDialog div.top div.error-image {
   min-width: initial;

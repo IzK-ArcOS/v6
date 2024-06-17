@@ -101,3 +101,13 @@ export function ElevationEnableBypass(): ElevationData {
     level: ElevationLevel.high,
   };
 }
+
+export function ElevationEnableNoPassword(): ElevationData {
+  return {
+    what: "ArcOS needs your permission to disable passwords in the Secure Context",
+    image: PasswordIcon,
+    title: `Disable secure context password`,
+    description: "This will make the secure context less secure",
+    level: ElevationLevel.medium,
+  };
+}

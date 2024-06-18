@@ -54,6 +54,6 @@ export const DispatchCaptions = {
   "minimize-all": "Minimize all opened windows",
   "message-flush": "Refresh all messaging-dependent components (MNS handled)",
   "rate-limit": "Triggers the RLNS to inform the user of a rate limit",
-  "change-tray-icon": "Change the image of a tray icon",
+  "change-tray-image": "Change the image of a tray icon",
   "notify-tray-icons": "Display a list of current tray icons",
 };

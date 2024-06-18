@@ -1,15 +1,19 @@
-import { MaybePromise } from "./common";
+import { MaybePromise, Nullable } from "./common";
 
 export interface UserDirectory {
   name: string;
   scopedPath: string;
   files: PartialArcFile[];
   directories: PartialUserDir[];
+  hidden?: boolean;
+  virtual?: boolean;
 }
 
 export interface PartialUserDir {
   name: string;
   scopedPath: string;
+  virtual?: boolean;
+  hidden?: boolean;
 }
 
 export interface PartialArcFile {
@@ -19,6 +23,8 @@ export interface PartialArcFile {
   scopedPath: string;
   dateCreated: number;
   dateModified: number;
+  virtual?: boolean;
+  hidden?: boolean;
 }
 
 export interface ArcFile {
@@ -43,3 +49,11 @@ export interface FileHandler {
   image: string;
   handler: (file: PartialArcFile) => MaybePromise<void>;
 }
+
+export interface VirtualDirectory {
+  userPath: string;
+  data: UserDirectory;
+}
+
+export type VirtualDirectorySupplierReturn = Nullable<VirtualDirectory>[];
+export type VirtualDirectorySupplier = () => MaybePromise<VirtualDirectorySupplierReturn>;

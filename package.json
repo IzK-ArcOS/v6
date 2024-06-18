@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "git rev-parse --short HEAD > ./public/build && vite",
-    "build": "git rev-parse --short HEAD > ./public/build && vite build",
+    "build": "git rev-parse --short HEAD > ./public/build && vite build && node util/gst.js",
     "update": "git pull && git submodule update",
     "serve": "vite build && npx serve dist"
   },

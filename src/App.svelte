@@ -7,6 +7,7 @@
   import { ComponentIcon } from "$ts/images/general";
   import { ARCOS_BUILD, ARCOS_MODE, getBuild, getMode } from "$ts/metadata";
   import { DESKTOP_MODE, getDesktopMode } from "$ts/metadata/desktop";
+  import { flushVirtualFilesystem } from "$ts/server/fs/virtual";
   import { PrimaryState } from "$ts/states";
   import { onMount } from "svelte";
 
@@ -19,6 +20,7 @@
     await getMode();
     await getBuild();
     await getDesktopMode();
+    await flushVirtualFilesystem();
 
     Log(
       "ArcOS",

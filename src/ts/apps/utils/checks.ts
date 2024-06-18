@@ -3,6 +3,8 @@ import { UserDataStore } from "$ts/stores/user";
 import { App } from "$types/app";
 
 export function isPopulatable(app: App, includeOverlays?: boolean) {
+  if (!app) return false;
+
   const userdata = UserDataStore.get();
 
   if (!userdata) return false;

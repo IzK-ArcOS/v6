@@ -5,6 +5,11 @@
     "icon": "HomeIcon"
   },
   {
+    "name": "Safe Mode",
+    "path": "@client/help/Safemode.md",
+    "icon": "ErrorIcon"
+  },
+  {
     "name": "Settings",
     "path": "@client/help/Settings.md",
     "icon": "SettingsIcon",

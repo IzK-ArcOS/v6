@@ -8,9 +8,16 @@ import { UserDirectory } from "$types/fs";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 import { sortDirectories, sortFiles } from "./sort";
+import { getVirtualDirectory, getVirtualDirectoryListing } from "./virtual";
 
 export async function readDirectory(path: string): Promise<UserDirectory> {
   Log("server/fs/dir", `Reading directory ${path}`);
+
+  const virtual = getVirtualDirectory(path);
+
+  if (virtual) {
+    return virtual;
+  }
 
   const base64 = toBase64(path);
 
@@ -28,7 +35,9 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 
     const data = response.data.data as UserDirectory;
 
+    data.directories.push(...getVirtualDirectoryListing(path));
     data.directories = sortDirectories(data.directories);
+
     data.files = sortFiles(data.files);
 
     return data as UserDirectory;

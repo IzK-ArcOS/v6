@@ -1,6 +1,7 @@
 import TrayPopup from "$apps/SecureContext/Components/TrayPopup.svelte";
 import { createTrayIcon, disposeTrayIcon } from "$apps/Shell/ts/tray";
 import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
+import { WarningIcon } from "$ts/images/dialog";
 import { SecureIcon, SecurityHighIcon } from "$ts/images/general";
 import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";
@@ -97,6 +98,8 @@ export class ES extends Process {
   public async bypassWarning() {
     await sleep(1000);
 
+    const id = `svc#ElevationService_disabledNotifier`;
+
     function notif() {
       sendNotification({
         title: "Elevation is disabled",
@@ -108,23 +111,22 @@ export class ES extends Process {
             action() {
               UserDataStore.update((v) => {
                 v.sh.bypassElevation = false;
+                disposeTrayIcon(id);
 
                 return v;
               });
             },
           },
         ],
-        image: SecurityHighIcon,
+        image: WarningIcon,
       });
     }
 
     notif();
 
-    const id = `svc#ElevationService_disabledNotifier`;
-
     createTrayIcon({
       title: "Elevation is disabled",
-      image: SecurityHighIcon,
+      image: WarningIcon,
       identifier: id,
       onOpen() {
         disposeTrayIcon(id);

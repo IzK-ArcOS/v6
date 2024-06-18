@@ -60,6 +60,69 @@ The Context Menu is the menu you see when you right click somewhere. This menu a
 | -------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | ![large](@client/help/assets/settings-shell-compact-context-off.png) | ![large](@client/help/assets/settings-shell-compact-context-on.png) |
 
+## User Styles
+
+You can customize your ArcOS desktop further by applying custom CSS. Only do this if you know what you're doing. Before you continue, please beware of the following warnings and disclaimers:
+
+1. User styles can make your ArcOS account unusable if you change the wrong thing. If you can't access your account normally, you can change the user styles via Safe Mode.
+2. The CSS you write here **will be saved to any themes you make**. This also means that this
+   CSS may get discarded if you load a theme that contains user styles.
+3. ArcOS and its team members cannot be held accountable for breakages _in-_ or
+   _the malfunction of_ your account. We can however provide support if anything goes wrong.
+
+### Examples
+
+- With this code, you can change the font of ArcOS. It uses Google Fonts as the supplier of the font:
+
+  ```
+  @import url("https://fonts.googleapis.com/css2?family=Playwrite+NL:wght@100..400&display=swap");
+
+  *:not(.material-icons-round) {
+    font-family: "Playwrite NL";
+  }
+  ```
+
+- This snippet reverts the color scheme of ArcOS back to ArcOS v5:
+
+  ```css
+  :root .theme-dark {
+    --fg: #ccc;
+    --win-bg: #353535;
+    --win-border-rad: 7.5px;
+    --win-border: rgb(107, 107, 107) 1px solid;
+    --win-border-light: #5554 1px solid;
+    --glass-bg: #202020a9;
+    --glass-alt-bg: #414141a2;
+    --glass-ultralight: #0004;
+    --glass-ultradark: #0008;
+    --darkened-overlay: #0002;
+    --darkened-overlay-alt: #0004;
+    --startmenu-bg: var(--glass-ultradark);
+    --startmenu-applist-item-bg: transparent;
+    --startmenu-applist-item-bg-hover: #ffffff05;
+    --startmenu-applist-item-bg-active: #0001;
+    --button-border-rad: 4px;
+    --button-bg: #4a4a4a;
+    --button-hover-bg: #555555;
+    --button-active-bg: #2a2a2a;
+    --button-glass-bg: #fff1;
+    --button-glass-hover-bg: #fff3;
+    --button-glass-active-bg: #0003;
+    --clr-red-bg: #452929;
+    --clr-red-fg: #ff7e7e;
+    --clr-green-bg: #283e28;
+    --clr-green-fg: #a8ffa6;
+    --clr-yellow-bg: #49432e;
+    --clr-yellow-fg: #ffe073;
+    --clr-orange-bg: #543d1b;
+    --clr-orange-fg: #ffad32;
+    --clr-blue-bg: #273a48;
+    --clr-blue-fg: #96d3ff;
+    --clr-aqua-fg: #79ffd0;
+    --clr-aqua-bg: #214538;
+  }
+  ```
+
 ---
 
 [Back to **Settings**](@client/help/Settings.md)

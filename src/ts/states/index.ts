@@ -42,8 +42,6 @@ export class StateHandler {
 
     if (state.onload) state.onload();
 
-    document.title = `ArcOS | ${state.name}`;
-
     this.current.set(state);
 
     return true;

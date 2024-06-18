@@ -14,6 +14,7 @@ export const ServiceManagerPid = Store<number>();
 export class ServiceManager extends Process {
   public Services: ReadableServiceStore = Store<ServiceStore>();
   public _criticalProcess: boolean = true; // Make sure the user can't end this one
+  public _pausedError = "ServiceManager interaction failed: I'm paused!";
   private _storeLoaded = false;
   private _holdRestart = false;
 
@@ -28,6 +29,8 @@ export class ServiceManager extends Process {
   }
 
   public loadStore(store: ServiceStore) {
+    if (this.pauseCheck()) return;
+
     if (this._storeLoaded) {
       this.Log(`Can't load another store: a store is already loaded.`, LogLevel.error);
 
@@ -49,6 +52,10 @@ export class ServiceManager extends Process {
   }
 
   public async startService(id: string, fromSystem = false): Promise<ServiceChangeResult> {
+    if (this.pauseCheck()) return "err_managerPaused";
+
+    this.Log(`Starting service ${id}...`);
+
     const services = this.Services.get();
     const service = services.get(id);
 
@@ -82,7 +89,9 @@ export class ServiceManager extends Process {
   }
 
   public async stopService(id: string, fromSystem = false): Promise<ServiceChangeResult> {
-    this.Log(`Stopping ${id}`);
+    if (this.pauseCheck()) return "err_managerPaused";
+
+    this.Log(`Stopping service ${id}...`);
 
     const services = this.Services.get();
     const service = services.get(id);
@@ -112,6 +121,8 @@ export class ServiceManager extends Process {
   }
 
   public async restartService(id: string, fromSystem = false): Promise<ServiceChangeResult> {
+    if (this.pauseCheck()) return "err_managerPaused";
+
     const services = this.Services.get();
 
     if (!services.has(id)) return "err_noExist";
@@ -122,7 +133,7 @@ export class ServiceManager extends Process {
 
     if (!elevation) return "err_elevation";
 
-    const stopped = await this.stopService(id, true);
+    await this.stopService(id, true);
     const started = await this.startService(id, true);
 
     return started;

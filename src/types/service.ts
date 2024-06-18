@@ -25,4 +25,5 @@ export type ServiceChangeResult =
   | "err_spawnFailed"
   | "err_noManager"
   | "err_elevation"
+  | "err_managerPaused"
   | "success";

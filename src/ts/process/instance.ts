@@ -31,6 +31,9 @@ export class Process {
       this.accelerator = new AcceleratorHandler(this);
       this.mutator.set(app);
     }
+
+    this.handler.dispatch.subscribe(this.pid, "pause", () => this.pause());
+    this.handler.dispatch.subscribe(this.pid, "resume", () => this.resume());
   }
 
   public setParentPid(pid: number) {

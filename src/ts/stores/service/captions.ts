@@ -8,5 +8,6 @@ export const ServiceChangeResultCaptions: Record<ServiceChangeResult, string> = 
   err_startCondition: "The Start Condition of the service failed.",
   err_noManager: "Could not reach Service Manager",
   err_elevation: "Elevation is necessary, but wasn't provided.",
+  err_managerPaused: "The service manager process is paused",
   success: "Service started successfully.",
 };

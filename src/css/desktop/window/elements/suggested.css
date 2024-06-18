@@ -7,6 +7,10 @@ window div.body button:not(.reset).suggested {
   font-weight: bold;
 }
 
+window div.body button:not(.reset).suggested:disabled {
+  opacity: 0.5 !important;
+}
+
 window div.body button:not(.reset).suggested:hover {
   filter: brightness(1.3);
 }

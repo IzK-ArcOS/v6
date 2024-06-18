@@ -15,7 +15,7 @@
   opacity: 0.5;
   border: 2px solid transparent;
   background-clip: content-box;
-  border-radius: 10px;
+  border-radius: var(--win-border-rad);
 }
 
 ::-webkit-scrollbar-thumb:hover {

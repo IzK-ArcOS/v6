@@ -10,6 +10,13 @@ import { FileHandler, PartialArcFile } from "$types/fs";
 import { parseExtension } from "../util";
 
 export async function OpenFile(file: PartialArcFile, parentPid: number = ShellPid()) {
+  console.log(file);
+  if (file.onOpen) {
+    await file.onOpen(file);
+
+    return;
+  }
+
   const handlers = getCompatibleHandlers(file.scopedPath, false);
 
   if (!handlers.length) {
@@ -43,6 +50,12 @@ export async function OpenWith(
   parentPid: number,
   bypassAuto = false
 ): Promise<AppSpawnResult> {
+  if (file.onOpen) {
+    await file.onOpen(file);
+
+    return;
+  }
+
   const compatibles = getCompatibleHandlers(file.scopedPath, false);
 
   if (compatibles.length == 1 && !bypassAuto) {

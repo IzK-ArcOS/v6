@@ -28,6 +28,8 @@ export interface PartialArcFile {
   virtual?: boolean;
   hidden?: boolean;
   system?: boolean;
+  icon?: string;
+  onOpen?: (file: PartialArcFile) => void;
 }
 
 export interface ArcFile {

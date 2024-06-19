@@ -1,5 +1,6 @@
 import { Log } from "$ts/console";
 import { VirtualFilesystemStore, VirtualFilesystemSuppliers } from "$ts/stores/filesystem/virtual";
+import { cloneWithoutInheritance } from "$ts/util/clone";
 import { LogLevel } from "$types/console";
 import { UserDirectory, VirtualDirectorySupplier } from "$types/fs";
 import { sortDirectories } from "../sort";
@@ -24,7 +25,7 @@ export function getVirtualDirectory(path: string): UserDirectory {
 
   if (!match) return null;
 
-  const directory = JSON.parse(JSON.stringify(match));
+  const directory = cloneWithoutInheritance<UserDirectory>(match);
 
   directory.directories.push(...getVirtualDirectoryListing(path));
 

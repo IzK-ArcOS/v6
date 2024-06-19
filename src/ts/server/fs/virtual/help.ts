@@ -1,3 +1,4 @@
+import { GetHelp } from "$ts/help";
 import { HelpArticles } from "$ts/stores/articles";
 import { PartialArcFile, VirtualDirectorySupplierReturn } from "$types/fs";
 
@@ -15,6 +16,9 @@ export async function HelpVirtualFolder(): Promise<VirtualDirectorySupplierRetur
       dateCreated: now,
       dateModified: now,
       virtual: true,
+      onOpen() {
+        GetHelp(article);
+      },
     };
 
     files.push(partial);

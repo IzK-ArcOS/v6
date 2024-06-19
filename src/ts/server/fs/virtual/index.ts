@@ -1,5 +1,6 @@
 import { Log } from "$ts/console";
 import { VirtualFilesystemStore, VirtualFilesystemSuppliers } from "$ts/stores/filesystem/virtual";
+import { LogLevel } from "$types/console";
 import { UserDirectory, VirtualDirectorySupplier } from "$types/fs";
 import { sortDirectories } from "../sort";
 
@@ -32,10 +33,14 @@ export function getVirtualDirectory(path: string): UserDirectory {
   return directory;
 }
 
-export function loadVirtualDirectorySupplier(callback: VirtualDirectorySupplier, flush = true) {
+export function loadVirtualDirectorySupplier(
+  callback: VirtualDirectorySupplier,
+  caption: string,
+  flush = true
+) {
   const suppliers = VirtualFilesystemSuppliers.get();
 
-  suppliers.push(callback);
+  suppliers.push({ callback, caption });
 
   VirtualFilesystemSuppliers.set(suppliers);
 
@@ -48,10 +53,14 @@ export async function flushVirtualFilesystem() {
   const suppliers = VirtualFilesystemSuppliers.get();
   const result = [];
 
-  for (const supplier of suppliers) {
-    const supplied = await supplier();
+  for (const { callback, caption } of suppliers) {
+    const supplied = await callback();
 
-    if (!supplied) continue;
+    if (!supplied) {
+      Log("fs/virtual", `Flush: Failed to get FVS contents of ${caption}!`, LogLevel.error);
+
+      continue;
+    }
 
     result.push(...supplied);
   }

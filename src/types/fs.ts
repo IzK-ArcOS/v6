@@ -7,6 +7,7 @@ export interface UserDirectory {
   directories: PartialUserDir[];
   hidden?: boolean;
   virtual?: boolean;
+  system?: boolean;
 }
 
 export interface PartialUserDir {
@@ -14,6 +15,7 @@ export interface PartialUserDir {
   scopedPath: string;
   virtual?: boolean;
   hidden?: boolean;
+  system?: boolean;
 }
 
 export interface PartialArcFile {
@@ -25,6 +27,7 @@ export interface PartialArcFile {
   dateModified: number;
   virtual?: boolean;
   hidden?: boolean;
+  system?: boolean;
 }
 
 export interface ArcFile {
@@ -54,6 +57,8 @@ export interface VirtualDirectory {
   userPath: string;
   data: UserDirectory;
 }
+
+export type VirtualFsStoreNode = { callback: VirtualDirectorySupplier; caption: string };
 
 export type VirtualDirectorySupplierReturn = Nullable<VirtualDirectory>[];
 export type VirtualDirectorySupplier = () => MaybePromise<VirtualDirectorySupplierReturn>;

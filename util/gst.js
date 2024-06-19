@@ -22,7 +22,7 @@ async function GenerateAssetList() {
     const modified = stat.mtimeMs;
 
     result.push({
-      filename: item,
+      filename: item.replace(/\-(?:[a-z0-9]+)\./g, "."),
       scopedPath: `@client/assets/${item}`,
       size,
       mime,

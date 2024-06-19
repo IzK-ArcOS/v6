@@ -22,10 +22,10 @@ export async function HelpVirtualFolder(): Promise<VirtualDirectorySupplierRetur
 
   return [
     {
-      userPath: "System",
+      userPath: "ArcOS",
       data: {
         name: "Help",
-        scopedPath: "System/Help",
+        scopedPath: "ArcOS/Help",
         files,
         directories: [],
         virtual: true,

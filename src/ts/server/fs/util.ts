@@ -26,7 +26,7 @@ export function pathToFriendlyPath(path: string) {
 
   if (path === "./" || path === ".") return "Home";
 
-  return path.replace("./", "");
+  return `Home/${path.replace("./", "").replace("@client/", "")}`;
 }
 
 export function parseFilename(path: string) {

@@ -32,7 +32,7 @@ export const appGroups: AppGroupStore = {
     index: 5,
   },
   systemTools: {
-    name: "System Tools", // Tools used to manage ArcOS
+    name: "ArcOS Tools", // Tools used to manage ArcOS
     id: "systemTools",
     index: 6,
   },

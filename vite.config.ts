@@ -3,12 +3,24 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { plugin as markdown } from "vite-plugin-markdown";
 import { resolve } from "path";
 
+const chunks = {
+  node_modules: "Dependencies",
+};
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [svelte(), markdown()],
   base: "",
   build: {
     minify: false,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          for (const [key, value] of Object.entries(chunks)) {
+            if (id.includes(key)) return value;
+          }
+        },
+      },
+    },
   },
   resolve: {
     alias: {

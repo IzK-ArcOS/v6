@@ -27,35 +27,37 @@ import img28 from "$assets/bg/img28.jpg";
 import img29 from "$assets/bg/img29.png";
 import img30 from "$assets/bg/img30.jpg";
 import img31 from "$assets/bg/img31.jpg";
-import img0Thumb from "$assets/bg/thumbnails/img0.png";
-import img01Thumb from "$assets/bg/thumbnails/img01.jpeg";
-import img02Thumb from "$assets/bg/thumbnails/img02.png";
-import img03Thumb from "$assets/bg/thumbnails/img03.png";
-import img04Thumb from "$assets/bg/thumbnails/img04.png";
-import img05Thumb from "$assets/bg/thumbnails/img05.png";
-import img06Thumb from "$assets/bg/thumbnails/img06.jpg";
-import img07Thumb from "$assets/bg/thumbnails/img07.jpg";
-import img08Thumb from "$assets/bg/thumbnails/img08.jpg";
-import img12Thumb from "$assets/bg/thumbnails/img12.png";
-import img13Thumb from "$assets/bg/thumbnails/img13.png";
-import img14Thumb from "$assets/bg/thumbnails/img14.jpg";
-import img15Thumb from "$assets/bg/thumbnails/img15.jpg";
-import img16Thumb from "$assets/bg/thumbnails/img16.jpg";
-import img17Thumb from "$assets/bg/thumbnails/img17.jpg";
-import img18Thumb from "$assets/bg/thumbnails/img18.jpg";
-import img19Thumb from "$assets/bg/thumbnails/img19.png";
-import img20Thumb from "$assets/bg/thumbnails/img20.jpg";
-import img21Thumb from "$assets/bg/thumbnails/img21.jpg";
-import img22Thumb from "$assets/bg/thumbnails/img22.png";
-import img23Thumb from "$assets/bg/thumbnails/img23.png";
-import img24Thumb from "$assets/bg/thumbnails/img24.jpg";
-import img25Thumb from "$assets/bg/thumbnails/img25.jpg";
-import img26Thumb from "$assets/bg/thumbnails/img26.jpg";
-import img27Thumb from "$assets/bg/thumbnails/img27.jpg";
-import img28Thumb from "$assets/bg/thumbnails/img28.jpg";
-import img29Thumb from "$assets/bg/thumbnails/img29.png";
-import img30Thumb from "$assets/bg/thumbnails/img30.jpg";
-import img31Thumb from "$assets/bg/thumbnails/img31.jpg";
+import img32 from "$assets/bg/img32.png";
+import img0Thumb from "$assets/bg/thumbnails/imgthumb0.png";
+import img01Thumb from "$assets/bg/thumbnails/imgthumb01.jpeg";
+import img02Thumb from "$assets/bg/thumbnails/imgthumb02.png";
+import img03Thumb from "$assets/bg/thumbnails/imgthumb03.png";
+import img04Thumb from "$assets/bg/thumbnails/imgthumb04.png";
+import img05Thumb from "$assets/bg/thumbnails/imgthumb05.png";
+import img06Thumb from "$assets/bg/thumbnails/imgthumb06.jpg";
+import img07Thumb from "$assets/bg/thumbnails/imgthumb07.jpg";
+import img08Thumb from "$assets/bg/thumbnails/imgthumb08.jpg";
+import img12Thumb from "$assets/bg/thumbnails/imgthumb12.png";
+import img13Thumb from "$assets/bg/thumbnails/imgthumb13.png";
+import img14Thumb from "$assets/bg/thumbnails/imgthumb14.jpg";
+import img15Thumb from "$assets/bg/thumbnails/imgthumb15.jpg";
+import img16Thumb from "$assets/bg/thumbnails/imgthumb16.jpg";
+import img17Thumb from "$assets/bg/thumbnails/imgthumb17.jpg";
+import img18Thumb from "$assets/bg/thumbnails/imgthumb18.jpg";
+import img19Thumb from "$assets/bg/thumbnails/imgthumb19.png";
+import img20Thumb from "$assets/bg/thumbnails/imgthumb20.jpg";
+import img21Thumb from "$assets/bg/thumbnails/imgthumb21.jpg";
+import img22Thumb from "$assets/bg/thumbnails/imgthumb22.png";
+import img23Thumb from "$assets/bg/thumbnails/imgthumb23.png";
+import img24Thumb from "$assets/bg/thumbnails/imgthumb24.jpg";
+import img25Thumb from "$assets/bg/thumbnails/imgthumb25.jpg";
+import img26Thumb from "$assets/bg/thumbnails/imgthumb26.jpg";
+import img27Thumb from "$assets/bg/thumbnails/imgthumb27.jpg";
+import img28Thumb from "$assets/bg/thumbnails/imgthumb28.jpg";
+import img29Thumb from "$assets/bg/thumbnails/imgthumb29.png";
+import img30Thumb from "$assets/bg/thumbnails/imgthumb30.jpg";
+import img31Thumb from "$assets/bg/thumbnails/imgthumb31.jpg";
+import img32Thumb from "$assets/bg/thumbnails/imgthumb32.png";
 import { Wallpaper } from "$types/wallpaper";
 
 export const Wallpapers: { [key: string]: Wallpaper } = {
@@ -86,6 +88,14 @@ export const Wallpapers: { [key: string]: Wallpaper } = {
     thumb: img12Thumb,
     author: "Izaak Kuipers",
     name: "Gradiented Waves",
+    builtin: true,
+  },
+  img32: {
+    url: img32,
+    thumb: img32Thumb,
+    author: "Izaak Kuipers",
+    name: "Springy Forest",
+    source: "North-Brabant, The Netherlands",
     builtin: true,
   },
   /**SWHFotografie */

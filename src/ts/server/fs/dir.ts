@@ -15,6 +15,8 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 
   const virtual = getVirtualDirectory(path);
 
+  console.log(virtual);
+
   if (virtual) {
     return virtual;
   }

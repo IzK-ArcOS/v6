@@ -21,7 +21,7 @@ export async function compileSearchableFiles() {
       action: async () => {
         OpenFile(file);
       },
-      description: `Home/${pathToFriendlyPath(file.scopedPath)}`,
+      description: `${pathToFriendlyPath(file.scopedPath)}`,
       image: getMimeIcon(file.filename),
     });
   }

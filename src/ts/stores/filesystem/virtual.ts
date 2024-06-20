@@ -5,6 +5,7 @@ import { PowerVirtualFolder } from "$ts/server/fs/virtual/power";
 import { ServersVirtualFolder } from "$ts/server/fs/virtual/servers";
 import { ServicesVirtualFolder } from "$ts/server/fs/virtual/services";
 import { SettingsVirtualFolder } from "$ts/server/fs/virtual/settings";
+import { FilesystemShortcuts } from "$ts/server/fs/virtual/shortcuts";
 import { StatesVirtualFolder } from "$ts/server/fs/virtual/states";
 import { SystemVirtualFolder } from "$ts/server/fs/virtual/system";
 import { Store } from "$ts/writable";
@@ -21,6 +22,7 @@ export const VirtualFilesystemSuppliers = Store<VirtualFsStoreNode[]>([
   { callback: PowerVirtualFolder, caption: "Power Functions" },
   { callback: StatesVirtualFolder, caption: "ArcOS States" },
   { callback: ServersVirtualFolder, caption: "Saved Servers" },
+  { callback: FilesystemShortcuts, caption: "Shortcuts" },
 ]);
 
 export const VirtualSystemFolderExpr: [string, RegExp, boolean][] = [

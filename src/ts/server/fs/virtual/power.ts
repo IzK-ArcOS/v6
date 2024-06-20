@@ -1,10 +1,9 @@
 import { logout, restart, shutdown } from "$state/Desktop/ts/power";
 import { LogoutIcon, RestartIcon, ShutdownIcon } from "$ts/images/power";
+import { BUILD_TIMESTAMP } from "$ts/metadata/timestamp";
 import { VirtualDirectorySupplierReturn } from "$types/fs";
 
 export async function PowerVirtualFolder(): Promise<VirtualDirectorySupplierReturn> {
-  const now = new Date().getTime();
-
   return [
     {
       userPath: "ArcOS/System",
@@ -18,8 +17,8 @@ export async function PowerVirtualFolder(): Promise<VirtualDirectorySupplierRetu
             icon: ShutdownIcon,
             mime: "arcos/power",
             scopedPath: "ArcOS/System/Power/Shutdown.pwr",
-            dateCreated: now,
-            dateModified: now,
+            dateCreated: BUILD_TIMESTAMP,
+            dateModified: BUILD_TIMESTAMP,
             size: shutdown.toString().length,
             onOpen() {
               shutdown();
@@ -27,14 +26,15 @@ export async function PowerVirtualFolder(): Promise<VirtualDirectorySupplierRetu
             readProxy() {
               return new Blob([shutdown.toString()]);
             },
+            virtual: true,
           },
           {
             filename: "Restart.pwr",
             icon: RestartIcon,
             mime: "arcos/power",
             scopedPath: "ArcOS/System/Power/Restart.pwr",
-            dateCreated: now,
-            dateModified: now,
+            dateCreated: BUILD_TIMESTAMP,
+            dateModified: BUILD_TIMESTAMP,
             size: restart.toString().length,
             onOpen() {
               restart();
@@ -42,14 +42,15 @@ export async function PowerVirtualFolder(): Promise<VirtualDirectorySupplierRetu
             readProxy() {
               return new Blob([restart.toString()]);
             },
+            virtual: true,
           },
           {
             filename: "Logoff.pwr",
             icon: LogoutIcon,
             mime: "arcos/power",
             scopedPath: "ArcOS/System/Power/Logoff.pwr",
-            dateCreated: now,
-            dateModified: now,
+            dateCreated: BUILD_TIMESTAMP,
+            dateModified: BUILD_TIMESTAMP,
             size: logout.toString().length,
             onOpen() {
               logout();
@@ -57,6 +58,7 @@ export async function PowerVirtualFolder(): Promise<VirtualDirectorySupplierRetu
             readProxy() {
               return new Blob([logout.toString()]);
             },
+            virtual: true,
           },
         ],
         virtual: true,

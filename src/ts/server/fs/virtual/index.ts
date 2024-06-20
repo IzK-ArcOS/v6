@@ -2,24 +2,46 @@ import { Log } from "$ts/console";
 import { VirtualFilesystemStore, VirtualFilesystemSuppliers } from "$ts/stores/filesystem/virtual";
 import { cloneWithoutInheritance } from "$ts/util/clone";
 import { LogLevel } from "$types/console";
-import { UserDirectory, VirtualDirectorySupplier } from "$types/fs";
+import {
+  PartialArcFile,
+  UserDirectory,
+  VirtualDirectory,
+  VirtualDirectorySupplier,
+} from "$types/fs";
 import { sortDirectories, sortFiles } from "../sort";
 
 export function getVirtualDirectoryListing(path: string): UserDirectory[] {
   Log("fs/virtual", `Getting VFS directory listing for ${path}`);
 
   const vfs = VirtualFilesystemStore.get();
-
   const matches = vfs.filter((vd) => vd.userPath == path);
 
-  return matches.map((m) => m.data);
+  return matches.map((m) => m.data) || [];
+}
+
+export function getVirtualFiles(path: string): PartialArcFile[] {
+  Log("fs/virtual", `Getting VFS files for ${path}`);
+
+  const vfs = VirtualFilesystemStore.get();
+  const matches = vfs.filter((vd) => vd.userPath == path);
+  const matchesSafe = cloneWithoutInheritance<VirtualDirectory[]>(matches);
+
+  if (!matchesSafe) return [];
+
+  const result = [];
+
+  for (const match of matchesSafe) {
+    result.push(...(match.files || []));
+  }
+
+  return result;
 }
 
 export function getVirtualDirectory(path: string): UserDirectory {
   Log("fs/virtual", `Getting VFS content for ${path}`);
 
   const vfs = VirtualFilesystemStore.get();
-  const matches = vfs.filter((vd) => vd.data.scopedPath == path);
+  const matches = vfs.filter((vd) => vd.data && vd.data.scopedPath == path);
 
   const match = matches.map((m) => m.data)[0];
 
@@ -64,6 +86,8 @@ export async function flushVirtualFilesystem() {
     }
 
     for (const supplier of supplied) {
+      if (!supplier.data) continue;
+
       supplier.data.files = sortFiles(supplier.data.files);
     }
 

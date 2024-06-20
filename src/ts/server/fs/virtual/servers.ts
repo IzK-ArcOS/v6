@@ -1,5 +1,6 @@
 import { ErrorIcon } from "$ts/images/dialog";
 import { ConnectIcon } from "$ts/images/general";
+import { BUILD_TIMESTAMP } from "$ts/metadata/timestamp";
 import { createErrorDialog } from "$ts/process/error";
 import { getAllServers } from "$ts/server/multi";
 import { ProcessStack } from "$ts/stores/process";
@@ -8,7 +9,6 @@ import { PartialArcFile, VirtualDirectorySupplierReturn } from "$types/fs";
 
 export async function ServersVirtualFolder(): Promise<VirtualDirectorySupplierReturn> {
   const files: PartialArcFile[] = [];
-  const now = new Date().getTime();
   const servers = getAllServers();
 
   for (const server of servers) {
@@ -17,8 +17,8 @@ export async function ServersVirtualFolder(): Promise<VirtualDirectorySupplierRe
       scopedPath: `ArcOS/Servers/${server}`,
       mime: "text/plain",
       icon: ConnectIcon,
-      dateCreated: now,
-      dateModified: now,
+      dateCreated: BUILD_TIMESTAMP,
+      dateModified: BUILD_TIMESTAMP,
       virtual: true,
       system: true,
       size: 0,
@@ -49,8 +49,8 @@ export async function ServersVirtualFolder(): Promise<VirtualDirectorySupplierRe
     scopedPath: `ArcOS/Servers/$current.host`,
     mime: "application/json",
     icon: ConnectIcon,
-    dateCreated: now,
-    dateModified: now,
+    dateCreated: BUILD_TIMESTAMP,
+    dateModified: BUILD_TIMESTAMP,
     virtual: true,
     system: true,
     size: current.length,

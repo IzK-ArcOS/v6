@@ -1,5 +1,6 @@
 import { ErrorIcon } from "$ts/images/dialog";
 import { ComponentIcon } from "$ts/images/general";
+import { BUILD_TIMESTAMP } from "$ts/metadata/timestamp";
 import { createErrorDialog } from "$ts/process/error";
 import { ProcessStack } from "$ts/stores/process";
 import { primaryStates } from "$ts/stores/state";
@@ -9,7 +10,6 @@ import { PartialArcFile, VirtualDirectorySupplierReturn } from "$types/fs";
 export async function StatesVirtualFolder(): Promise<VirtualDirectorySupplierReturn> {
   const files: PartialArcFile[] = [];
   const states = primaryStates;
-  const now = new Date().getTime();
 
   for (const [id, state] of [...states]) {
     const stringified = stringifyObject(state);
@@ -17,8 +17,8 @@ export async function StatesVirtualFolder(): Promise<VirtualDirectorySupplierRet
       filename: `${id}.arc`,
       mime: "arcos/state",
       scopedPath: `ArcOS/System/States/${state.key}.arc`,
-      dateCreated: now,
-      dateModified: now,
+      dateCreated: BUILD_TIMESTAMP,
+      dateModified: BUILD_TIMESTAMP,
       icon: state.image || ComponentIcon,
       virtual: true,
       system: true,

@@ -59,6 +59,7 @@ export interface UserData {
   autoRun: string[];
   autoLoads: string[];
   askPresist: boolean;
+  shortcuts: [string, string][]; // Source, destination
 
   acc: AccountInfo;
 

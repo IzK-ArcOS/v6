@@ -59,7 +59,8 @@ export interface FileHandler {
 
 export interface VirtualDirectory {
   userPath: string;
-  data: UserDirectory;
+  data?: UserDirectory;
+  files?: PartialArcFile[];
 }
 
 export type VirtualFsStoreNode = { callback: VirtualDirectorySupplier; caption: string };

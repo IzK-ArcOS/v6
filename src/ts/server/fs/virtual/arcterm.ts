@@ -1,13 +1,13 @@
 import { arcCommands, desktopSpecific, gooseBumpsCommands } from "$state/ArcTerm/ts/terminal/store";
 import { spawnApp } from "$ts/apps";
 import { ArcTermMimeIcon } from "$ts/images/mime";
+import { BUILD_TIMESTAMP } from "$ts/metadata/timestamp";
 import { stringifyObject } from "$ts/util/stringify";
 import { PartialArcFile, VirtualDirectorySupplierReturn } from "$types/fs";
 
 export async function ArcTermVirtualFolder(): Promise<VirtualDirectorySupplierReturn> {
   const commands = [...arcCommands, ...desktopSpecific, ...gooseBumpsCommands];
   const files: PartialArcFile[] = [];
-  const now = new Date().getTime();
 
   for (const command of commands) {
     const stringified = stringifyObject(command);
@@ -16,8 +16,8 @@ export async function ArcTermVirtualFolder(): Promise<VirtualDirectorySupplierRe
       filename: `${command.keyword}.cmd`,
       scopedPath: `ArcOS/System/Apps/ArcTerm/${command.keyword}.cmd`,
       mime: "arcterm/command",
-      dateCreated: now,
-      dateModified: now,
+      dateCreated: BUILD_TIMESTAMP,
+      dateModified: BUILD_TIMESTAMP,
       icon: ArcTermMimeIcon,
       size: stringified.length,
       onOpen() {

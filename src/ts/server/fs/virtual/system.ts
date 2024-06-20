@@ -1,5 +1,6 @@
 import { OpenSettingsPage } from "$apps/Settings/ts/main";
 import { AccountIcon } from "$ts/images/general";
+import { BUILD_TIMESTAMP } from "$ts/metadata/timestamp";
 import { VirtualSystemFolderExpr } from "$ts/stores/filesystem/virtual";
 import { UserDataStore } from "$ts/stores/user";
 import { PartialArcFile, VirtualDirectory, VirtualDirectorySupplierReturn } from "$types/fs";
@@ -10,7 +11,6 @@ export async function SystemVirtualFolder(): Promise<VirtualDirectorySupplierRet
 
     const grouped = populateSystemSubfolders(json);
     const virtuals: VirtualDirectory[] = [];
-    const now = new Date().getTime();
 
     for (const [folder, files] of Object.entries(grouped)) {
       const name = folder;
@@ -41,8 +41,8 @@ export async function SystemVirtualFolder(): Promise<VirtualDirectorySupplierRet
               filename: "mode",
               scopedPath: "@client/mode",
               size: 178,
-              dateCreated: now,
-              dateModified: now,
+              dateCreated: BUILD_TIMESTAMP,
+              dateModified: BUILD_TIMESTAMP,
               virtual: true,
               system: true,
             },
@@ -51,8 +51,18 @@ export async function SystemVirtualFolder(): Promise<VirtualDirectorySupplierRet
               filename: "build",
               scopedPath: "@client/build",
               size: 178,
-              dateCreated: now,
-              dateModified: now,
+              dateCreated: BUILD_TIMESTAMP,
+              dateModified: BUILD_TIMESTAMP,
+              virtual: true,
+              system: true,
+            },
+            {
+              mime: "text/plain",
+              filename: "timestamp",
+              scopedPath: "@client/timestamp",
+              size: 178,
+              dateCreated: BUILD_TIMESTAMP,
+              dateModified: BUILD_TIMESTAMP,
               virtual: true,
               system: true,
             },
@@ -61,8 +71,8 @@ export async function SystemVirtualFolder(): Promise<VirtualDirectorySupplierRet
               filename: "files.json",
               scopedPath: "@client/files.json",
               size: JSON.stringify(json).length,
-              dateCreated: now,
-              dateModified: now,
+              dateCreated: BUILD_TIMESTAMP,
+              dateModified: BUILD_TIMESTAMP,
               virtual: true,
               system: true,
             },
@@ -71,16 +81,16 @@ export async function SystemVirtualFolder(): Promise<VirtualDirectorySupplierRet
               filename: "README.md",
               scopedPath: "@client/help/Virtual.md",
               size: 0,
-              dateCreated: now,
-              dateModified: now,
+              dateCreated: BUILD_TIMESTAMP,
+              dateModified: BUILD_TIMESTAMP,
               virtual: true,
               system: true,
             },
             {
               filename: "ArcUser.ud",
               mime: "application/json",
-              dateModified: now,
-              dateCreated: now,
+              dateModified: BUILD_TIMESTAMP,
+              dateCreated: BUILD_TIMESTAMP,
               icon: AccountIcon,
               scopedPath: `ArcOS/ArcUser.ud`,
               system: true,

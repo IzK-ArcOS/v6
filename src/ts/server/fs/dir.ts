@@ -8,7 +8,7 @@ import { UserDirectory } from "$types/fs";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../util";
 import { sortDirectories, sortFiles } from "./sort";
-import { getVirtualDirectory, getVirtualDirectoryListing } from "./virtual";
+import { getVirtualDirectory, getVirtualDirectoryListing, getVirtualFiles } from "./virtual";
 
 export async function readDirectory(path: string): Promise<UserDirectory> {
   Log("server/fs/dir", `Reading directory ${path}`);
@@ -17,7 +17,7 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 
   console.log(virtual);
 
-  if (virtual) {
+  if (virtual && path != "./") {
     return virtual;
   }
 
@@ -38,9 +38,14 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
     const data = response.data.data as UserDirectory;
 
     data.directories.push(...getVirtualDirectoryListing(path));
-    data.directories = sortDirectories(data.directories);
+    data.files.push(...getVirtualFiles(path));
 
+    data.directories = sortDirectories(data.directories);
     data.files = sortFiles(data.files);
+
+    console.log(data);
+
+    data.directories = data.directories.filter((v) => !!v);
 
     return data as UserDirectory;
   } catch {

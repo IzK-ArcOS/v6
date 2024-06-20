@@ -21,6 +21,8 @@ async function GenerateAssetList() {
     const created = stat.ctimeMs;
     const modified = stat.mtimeMs;
 
+    console.log(`   ->   ${item} ${mime}`);
+
     result.push({
       filename: item.replace(/\-(?:[a-z0-9]+)\./g, "."),
       scopedPath: `@client/assets/${item}`,
@@ -30,6 +32,14 @@ async function GenerateAssetList() {
       dateModified: modified,
     });
   }
+
+  console.log(`v6 GAL: Writing build time to ../dist/timestamp`);
+
+  writeFile(join(__dirname, "../dist/timestamp"), new Date().getTime().toString(), {
+    encoding: "utf-8",
+  });
+
+  console.log(`v6 GAL: Writing files index to ../dist/files.json`);
 
   writeFile(join(__dirname, "../dist/files.json"), JSON.stringify(result, null, 2), {
     encoding: "utf-8",

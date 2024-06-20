@@ -1,5 +1,6 @@
 import { getAppById, spawnOverlay } from "$ts/apps";
 import { ComponentIcon } from "$ts/images/general";
+import { BUILD_TIMESTAMP } from "$ts/metadata/timestamp";
 import { ProcessStack } from "$ts/stores/process";
 import { serviceStore } from "$ts/stores/service";
 import { PartialArcFile, VirtualDirectorySupplierReturn } from "$types/fs";
@@ -7,7 +8,6 @@ import { PartialArcFile, VirtualDirectorySupplierReturn } from "$types/fs";
 export async function ServicesVirtualFolder(): Promise<VirtualDirectorySupplierReturn> {
   const services = serviceStore;
   const files: PartialArcFile[] = [];
-  const now = new Date().getTime();
 
   for (const [id, service] of [...services]) {
     const stringified = service.process.toString();
@@ -15,8 +15,8 @@ export async function ServicesVirtualFolder(): Promise<VirtualDirectorySupplierR
       filename: `${id}.svc`,
       scopedPath: `ArcOS/System/Services/${id}.svc`,
       mime: "arcterm/command",
-      dateCreated: now,
-      dateModified: now,
+      dateCreated: BUILD_TIMESTAMP,
+      dateModified: BUILD_TIMESTAMP,
       icon: ComponentIcon,
       size: stringified.length,
       onOpen() {

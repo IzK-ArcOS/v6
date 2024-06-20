@@ -1,0 +1,67 @@
+import { logout, restart, shutdown } from "$state/Desktop/ts/power";
+import { LogoutIcon, RestartIcon, ShutdownIcon } from "$ts/images/power";
+import { VirtualDirectorySupplierReturn } from "$types/fs";
+
+export async function PowerVirtualFolder(): Promise<VirtualDirectorySupplierReturn> {
+  const now = new Date().getTime();
+
+  return [
+    {
+      userPath: "ArcOS/System",
+      data: {
+        name: "Power",
+        scopedPath: "ArcOS/System/Power",
+        directories: [],
+        files: [
+          {
+            filename: "Shutdown.pwr",
+            icon: ShutdownIcon,
+            mime: "arcos/power",
+            scopedPath: "ArcOS/System/Power/Shutdown.pwr",
+            dateCreated: now,
+            dateModified: now,
+            size: shutdown.toString().length,
+            onOpen() {
+              shutdown();
+            },
+            readProxy() {
+              return new Blob([shutdown.toString()]);
+            },
+          },
+          {
+            filename: "Restart.pwr",
+            icon: RestartIcon,
+            mime: "arcos/power",
+            scopedPath: "ArcOS/System/Power/Restart.pwr",
+            dateCreated: now,
+            dateModified: now,
+            size: restart.toString().length,
+            onOpen() {
+              restart();
+            },
+            readProxy() {
+              return new Blob([restart.toString()]);
+            },
+          },
+          {
+            filename: "Logoff.pwr",
+            icon: LogoutIcon,
+            mime: "arcos/power",
+            scopedPath: "ArcOS/System/Power/Logoff.pwr",
+            dateCreated: now,
+            dateModified: now,
+            size: logout.toString().length,
+            onOpen() {
+              logout();
+            },
+            readProxy() {
+              return new Blob([logout.toString()]);
+            },
+          },
+        ],
+        virtual: true,
+        system: true,
+      },
+    },
+  ];
+}

@@ -30,6 +30,7 @@ export interface PartialArcFile {
   system?: boolean;
   icon?: string;
   onOpen?: (file: PartialArcFile) => void;
+  readProxy?: (file: PartialArcFile) => Blob;
 }
 
 export interface ArcFile {

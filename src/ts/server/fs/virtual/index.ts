@@ -3,7 +3,7 @@ import { VirtualFilesystemStore, VirtualFilesystemSuppliers } from "$ts/stores/f
 import { cloneWithoutInheritance } from "$ts/util/clone";
 import { LogLevel } from "$types/console";
 import { UserDirectory, VirtualDirectorySupplier } from "$types/fs";
-import { sortDirectories } from "../sort";
+import { sortDirectories, sortFiles } from "../sort";
 
 export function getVirtualDirectoryListing(path: string): UserDirectory[] {
   Log("fs/virtual", `Getting VFS directory listing for ${path}`);
@@ -61,6 +61,10 @@ export async function flushVirtualFilesystem() {
       Log("fs/virtual", `Flush: Failed to get FVS contents of ${caption}!`, LogLevel.error);
 
       continue;
+    }
+
+    for (const supplier of supplied) {
+      supplier.data.files = sortFiles(supplier.data.files);
     }
 
     result.push(...supplied);

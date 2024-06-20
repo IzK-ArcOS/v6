@@ -1,5 +1,6 @@
 import { AppsVirtualFolder } from "$ts/server/fs/virtual/apps";
 import { HelpVirtualFolder } from "$ts/server/fs/virtual/help";
+import { SettingsVirtualFolder } from "$ts/server/fs/virtual/settings";
 import { SystemVirtualFolder } from "$ts/server/fs/virtual/system";
 import { Store } from "$ts/writable";
 import { VirtualDirectory, VirtualFsStoreNode } from "$types/fs";
@@ -9,6 +10,7 @@ export const VirtualFilesystemSuppliers = Store<VirtualFsStoreNode[]>([
   { callback: SystemVirtualFolder, caption: "ArcOS Folder" },
   { callback: HelpVirtualFolder, caption: "Help Articles" },
   { callback: AppsVirtualFolder, caption: "Applications" },
+  { callback: SettingsVirtualFolder, caption: "Settings App Pages" },
 ]);
 
 export const VirtualSystemFolderExpr: [string, RegExp, boolean][] = [

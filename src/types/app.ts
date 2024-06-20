@@ -30,6 +30,7 @@ export interface App {
   altMenu?: ContextMenuItem[];
   acceleratorDescriptions?: Record<string, string>; // <[combo in One+Two+Key format], description>
   helpArticle?: ArticlePath | string;
+  className?: string;
 }
 
 export type AppMutator = ReadableStore<App>;

@@ -1,4 +1,5 @@
 import { AppRuntime } from "$ts/apps/runtime";
+import { GlobalDispatchResult } from "$types/dispatch";
 
 export function RuntimeGlobalDispatches(runtime: AppRuntime): Record<string, () => void> {
   return {
@@ -44,6 +45,8 @@ export const KnownGlobalDispatchers = [
   "notify-tray-icons",
 ];
 
+export const SystemOnlyDispatches = ["elevation-accept", "elevation-reject"];
+
 export const DispatchCaptions = {
   "fs-flush": "Refresh all filesystem-dependent components",
   "services-flush": "Refresh all service-dependent components",
@@ -56,4 +59,10 @@ export const DispatchCaptions = {
   "rate-limit": "Triggers the RLNS to inform the user of a rate limit",
   "change-tray-image": "Change the image of a tray icon",
   "notify-tray-icons": "Display a list of current tray icons",
+};
+
+export const GlobalDispatchResultCaptions: Record<GlobalDispatchResult, string> = {
+  success: "The event was dispatched successfully.",
+  err_unknownCaller: "The specified event has no associated callers.",
+  err_systemOnly: "Not allowed to dispatch a system event as a user.",
 };

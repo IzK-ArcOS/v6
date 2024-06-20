@@ -39,6 +39,7 @@ export interface ArcFile {
   data: Blob;
   mime: string;
   anymime?: boolean;
+  virtual?: boolean;
 }
 
 export interface FSQuota {

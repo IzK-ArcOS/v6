@@ -1,4 +1,7 @@
+import { OpenSettingsPage } from "$apps/Settings/ts/main";
+import { AccountIcon } from "$ts/images/general";
 import { VirtualSystemFolderExpr } from "$ts/stores/filesystem/virtual";
+import { UserDataStore } from "$ts/stores/user";
 import { PartialArcFile, VirtualDirectory, VirtualDirectorySupplierReturn } from "$types/fs";
 
 export async function SystemVirtualFolder(): Promise<VirtualDirectorySupplierReturn> {
@@ -72,6 +75,23 @@ export async function SystemVirtualFolder(): Promise<VirtualDirectorySupplierRet
               dateModified: now,
               virtual: true,
               system: true,
+            },
+            {
+              filename: "ArcUser.ud",
+              mime: "application/json",
+              dateModified: now,
+              dateCreated: now,
+              icon: AccountIcon,
+              scopedPath: `ArcOS/ArcUser.ud`,
+              system: true,
+              virtual: true,
+              size: 178,
+              readProxy() {
+                return new Blob([JSON.stringify(UserDataStore.get(), null, 2)]);
+              },
+              onOpen() {
+                OpenSettingsPage("account", true);
+              },
             },
           ],
           directories: [],

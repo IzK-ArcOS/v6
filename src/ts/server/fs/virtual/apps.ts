@@ -1,5 +1,6 @@
 import { spawnApp } from "$ts/apps";
 import { appLibrary } from "$ts/stores/apps";
+import { stringifyObject } from "$ts/util/stringify";
 import { PartialArcFile, VirtualDirectorySupplierReturn } from "$types/fs";
 
 export async function AppsVirtualFolder(): Promise<VirtualDirectorySupplierReturn> {
@@ -12,7 +13,7 @@ export async function AppsVirtualFolder(): Promise<VirtualDirectorySupplierRetur
   for (const [id, app] of [...library]) {
     files.push({
       filename: `${id}.app`,
-      scopedPath: `ArcOS/System/Apps/ArcOS.${id}`,
+      scopedPath: `ArcOS/System/Apps/${id}.app`,
       mime: "arcos/application",
       icon: app.metadata.icon,
       dateCreated: now,
@@ -23,6 +24,9 @@ export async function AppsVirtualFolder(): Promise<VirtualDirectorySupplierRetur
       hidden: app.metadata.hidden,
       onOpen() {
         spawnApp(id);
+      },
+      readProxy() {
+        return new Blob([stringifyObject(app)]);
       },
     });
   }

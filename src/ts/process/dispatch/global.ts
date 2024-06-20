@@ -1,6 +1,7 @@
 import { Log } from "$ts/console";
-import { KnownGlobalDispatchers } from "$ts/stores/process/dispatch";
+import { KnownGlobalDispatchers, SystemOnlyDispatches } from "$ts/stores/process/dispatch";
 import { LogLevel } from "$types/console";
+import { GlobalDispatchResult } from "$types/dispatch";
 
 export class GlobalDispatcher {
   public subscribers: Record<string, Record<number, (data: unknown) => void>> = {};
@@ -46,12 +47,18 @@ export class GlobalDispatcher {
     delete this.subscribers[event];
   }
 
-  dispatch<T = any[]>(caller: string, data?: T) {
+  dispatch<T = any[]>(caller: string, data?: T, system = true): GlobalDispatchResult {
     this.Log(`Dispatching ${caller}`);
 
     const callers = this.subscribers[caller];
 
-    if (!callers) return;
+    if (!system && SystemOnlyDispatches.includes(caller)) {
+      this.Log("Not allowing user to dispatch system-only event", LogLevel.error);
+
+      return "err_systemOnly";
+    }
+
+    if (!callers) return "err_unknownCaller";
 
     const callbacks = [...Object.values(callers)];
 
@@ -64,6 +71,8 @@ export class GlobalDispatcher {
         `Dispatching unknown event ${caller} over Global Dispatch. Don't do that.`,
         LogLevel.warn
       );
+
+    return "success";
   }
 }
 

@@ -45,6 +45,7 @@ export async function readFile(path: string): Promise<ArcFile> {
       path,
       data: contents,
       mime: partial.mime,
+      virtual: partial.virtual,
     };
 
     return file;

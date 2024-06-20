@@ -28,7 +28,7 @@ export function setJsonHierarchy<T = any>(object: Object, hierarchy: string, val
     currentObj = currentObj[key];
   }
 
-  if (value === null) delete currentObj[parts[lastIndex]];
+  if (!value) delete currentObj[parts[lastIndex]];
   else currentObj[parts[lastIndex]] = value;
 
   return getJsonHierarchy(object, hierarchy);

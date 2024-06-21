@@ -19,11 +19,15 @@ export async function deleteItem(path: string, dispatch = true): Promise<boolean
 
   if (!url || !token) return false;
 
-  const response = await axios.get(url, makeTokenOptions(token));
+  try {
+    const response = await axios.get(url, makeTokenOptions(token));
 
-  if (dispatch) GlobalDispatch.dispatch("fs-flush");
+    if (dispatch) GlobalDispatch.dispatch("fs-flush");
 
-  return response.status === 200;
+    return response.status === 200;
+  } catch {
+    return false;
+  }
 }
 
 export async function deleteMultiple(paths: string[]) {

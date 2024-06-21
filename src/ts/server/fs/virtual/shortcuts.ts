@@ -15,8 +15,6 @@ export async function FilesystemShortcuts(): Promise<VirtualDirectorySupplierRet
     const parent = getParentDirectory(destination);
     const destinationitemName = getFilenameFromPath(destination);
 
-    console.log(partialFile, partialDir);
-
     if (!partialFile && !partialDir) continue;
 
     result.push({

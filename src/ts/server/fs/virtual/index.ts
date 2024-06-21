@@ -13,8 +13,6 @@ import { sortDirectories, sortFiles } from "../sort";
 
 // Gets the virtual user directories via de .data property
 export function getVirtualDirectoryListing(path: string): UserDirectory[] {
-  Log("fs/virtual", `Getting VFS directory listing for ${path}`);
-
   const vfs = VirtualFilesystemStore.get();
   const matches = vfs.filter((vd) => vd.userPath == path);
 
@@ -23,8 +21,6 @@ export function getVirtualDirectoryListing(path: string): UserDirectory[] {
 
 // Gets all virtual files of the specified directory
 export function getVirtualFiles(path: string): PartialArcFile[] {
-  Log("fs/virtual", `Getting VFS files for ${path}`);
-
   const vfs = VirtualFilesystemStore.get();
   const matches = vfs.filter((vd) => vd.userPath == path);
   const matchesSafe = cloneWithoutInheritance<VirtualDirectory[]>(matches);
@@ -42,8 +38,6 @@ export function getVirtualFiles(path: string): PartialArcFile[] {
 
 // Gets all the virtual directories that reside in the specified directory
 export function getVirtualDirectories(path: string): PartialUserDir[] {
-  Log("fs/virtual", `Getting VFS directories for ${path}`);
-
   const vfs = VirtualFilesystemStore.get();
   const matches = vfs.filter((vd) => vd.userPath == path);
   const matchesSafe = cloneWithoutInheritance<VirtualDirectory[]>(matches);
@@ -61,8 +55,6 @@ export function getVirtualDirectories(path: string): PartialUserDir[] {
 
 // Gets the content of a virtual directory
 export function getVirtualDirectory(path: string): UserDirectory {
-  Log("fs/virtual", `Getting VFS content for ${path}`);
-
   const vfs = VirtualFilesystemStore.get();
   const matches = vfs.filter((vd) => vd.data && vd.data.scopedPath == path);
 
@@ -96,8 +88,6 @@ export function loadVirtualDirectorySupplier(
 
 // Refreshes the entire VFS
 export async function flushVirtualFilesystem() {
-  Log("fs/virtual", `Flushing virtual filesystem`);
-
   const suppliers = VirtualFilesystemSuppliers.get();
   const result = [];
 

@@ -34,7 +34,7 @@ class UDC extends Process {
   async commit(data: UserData) {
     if (this._paused) return;
 
-    flushVirtualFilesystem();
+    // flushVirtualFilesystem();
 
     data = this._validateAppdata(data);
 

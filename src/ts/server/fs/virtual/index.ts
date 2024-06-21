@@ -11,6 +11,7 @@ import {
 } from "$types/fs";
 import { sortDirectories, sortFiles } from "../sort";
 
+// Gets the virtual user directories via de .data property
 export function getVirtualDirectoryListing(path: string): UserDirectory[] {
   Log("fs/virtual", `Getting VFS directory listing for ${path}`);
 
@@ -20,6 +21,7 @@ export function getVirtualDirectoryListing(path: string): UserDirectory[] {
   return matches.map((m) => m.data) || [];
 }
 
+// Gets all virtual files of the specified directory
 export function getVirtualFiles(path: string): PartialArcFile[] {
   Log("fs/virtual", `Getting VFS files for ${path}`);
 
@@ -38,6 +40,7 @@ export function getVirtualFiles(path: string): PartialArcFile[] {
   return result;
 }
 
+// Gets all the virtual directories that reside in the specified directory
 export function getVirtualDirectories(path: string): PartialUserDir[] {
   Log("fs/virtual", `Getting VFS directories for ${path}`);
 
@@ -56,6 +59,7 @@ export function getVirtualDirectories(path: string): PartialUserDir[] {
   return result;
 }
 
+// Gets the content of a virtual directory
 export function getVirtualDirectory(path: string): UserDirectory {
   Log("fs/virtual", `Getting VFS content for ${path}`);
 
@@ -75,6 +79,7 @@ export function getVirtualDirectory(path: string): UserDirectory {
   return directory;
 }
 
+// Loads a Virtual Directory Supplier (VDS) into the store
 export function loadVirtualDirectorySupplier(
   callback: VirtualDirectorySupplier,
   caption: string,
@@ -89,6 +94,7 @@ export function loadVirtualDirectorySupplier(
   if (flush) flushVirtualFilesystem();
 }
 
+// Refreshes the entire VFS
 export async function flushVirtualFilesystem() {
   Log("fs/virtual", `Flushing virtual filesystem`);
 
@@ -98,7 +104,7 @@ export async function flushVirtualFilesystem() {
   for (const { callback, caption } of suppliers) {
     const supplied = await callback();
 
-    if (!supplied) {
+    if (!supplied || !supplied.length) {
       Log("fs/virtual", `Flush: Failed to get FVS contents of ${caption}!`, LogLevel.error);
 
       continue;

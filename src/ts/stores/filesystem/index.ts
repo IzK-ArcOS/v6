@@ -1,4 +1,4 @@
-import { UserDirectory } from "$types/fs";
+import { ItemFlags, UserDirectory } from "$types/fs";
 
 export * from "./mime";
 
@@ -7,4 +7,17 @@ export const DummyUserDirectory: UserDirectory = {
   name: undefined,
   files: [],
   directories: [],
+};
+
+export const HardwiredFsItemFlags: Record<string, ItemFlags> = {
+  "./Desktop": {
+    virtual: true,
+    hidden: true,
+    system: true,
+  },
+  Desktop: {
+    virtual: true,
+    hidden: true,
+    system: true,
+  },
 };

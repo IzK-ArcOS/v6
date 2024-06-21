@@ -6,7 +6,6 @@ import { PartialArcFile, VirtualDirectorySupplierReturn } from "$types/fs";
 
 export async function DesktopAppIcons(): Promise<VirtualDirectorySupplierReturn> {
   const files: PartialArcFile[] = [];
-
   const library = appLibrary.get();
 
   for (const [id, app] of [...library]) {

@@ -10,7 +10,7 @@ export async function SettingsVirtualFolder(): Promise<VirtualDirectorySupplierR
   for (const [id, page] of [...pages]) {
     files.push({
       filename: `${id}.sap`,
-      scopedPath: `ArcOS/System/Settings/ArcOS.${id}`,
+      scopedPath: `ArcOS/System/Settings/${id}.sap`,
       mime: "arcos/sap",
       icon: page.image,
       dateCreated: BUILD_TIMESTAMP,

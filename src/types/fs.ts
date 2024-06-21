@@ -18,6 +18,12 @@ export interface PartialUserDir {
   system?: boolean;
 }
 
+export interface ItemFlags {
+  virtual?: boolean;
+  hidden?: boolean;
+  system?: boolean;
+}
+
 export interface PartialArcFile {
   size?: number;
   mime: string;

@@ -1,4 +1,5 @@
 import { Nullable } from "./common";
+import { PartialUserDir } from "./fs";
 import { ThemeStore } from "./theme";
 
 export interface UserData {

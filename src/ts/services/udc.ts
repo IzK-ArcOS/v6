@@ -1,4 +1,5 @@
 import { Process, ProcessHandler } from "$ts/process";
+import { flushVirtualFilesystem } from "$ts/server/fs/virtual";
 import { setUserData } from "$ts/server/user/data";
 import { appLibrary } from "$ts/stores/apps";
 import { UserDataStore } from "$ts/stores/user";
@@ -32,6 +33,8 @@ class UDC extends Process {
 
   async commit(data: UserData) {
     if (this._paused) return;
+
+    flushVirtualFilesystem();
 
     data = this._validateAppdata(data);
 

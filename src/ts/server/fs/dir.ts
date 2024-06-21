@@ -2,7 +2,7 @@ import { toBase64 } from "$ts/base64";
 import { Log } from "$ts/console";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { Endpoints } from "$ts/stores/endpoint";
-import { DummyUserDirectory } from "$ts/stores/filesystem";
+import { DummyUserDirectory, HardwiredFsItemFlags } from "$ts/stores/filesystem";
 import { UserToken } from "$ts/stores/user";
 import { UserDirectory } from "$types/fs";
 import axios from "axios";
@@ -38,15 +38,26 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 
     if (response.status !== 200) return DummyUserDirectory;
 
-    const data = response.data.data as UserDirectory;
+    let data = response.data.data as UserDirectory;
 
     data.directories.push(...getVirtualDirectoryListing(path));
     data.directories.push(...getVirtualDirectories(path));
     data.directories = sortDirectories(data.directories);
     data.directories = data.directories.filter((v) => !!v);
 
+    data.directories = data.directories.map((d) => {
+      if (HardwiredFsItemFlags[d.scopedPath]) {
+        d = { ...d, ...HardwiredFsItemFlags[d.scopedPath] };
+      }
+      return d;
+    });
+
     data.files.push(...getVirtualFiles(path));
     data.files = sortFiles(data.files);
+
+    if (HardwiredFsItemFlags[path]) {
+      data = { ...data, ...HardwiredFsItemFlags[path] };
+    }
 
     return data as UserDirectory;
   } catch {

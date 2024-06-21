@@ -2,7 +2,7 @@ import TrayPopup from "$apps/SecureContext/Components/TrayPopup.svelte";
 import { createTrayIcon, disposeTrayIcon } from "$apps/Shell/ts/tray";
 import { getAppById, spawnApp, spawnOverlay } from "$ts/apps";
 import { WarningIcon } from "$ts/images/dialog";
-import { SecureIcon, SecurityHighIcon } from "$ts/images/general";
+import { SecureIcon } from "$ts/images/general";
 import { sendNotification } from "$ts/notif";
 import { Process, ProcessHandler } from "$ts/process";
 import { GlobalDispatch } from "$ts/process/dispatch/global";

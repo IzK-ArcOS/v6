@@ -13,8 +13,6 @@ export async function FilesystemShortcuts(): Promise<VirtualDirectorySupplierRet
     const partial = await getPartialFile(source);
     const parent = getParentDirectory(destination);
 
-    console.log(partial, parent, source, destination);
-
     if (!partial) continue;
 
     result.push({

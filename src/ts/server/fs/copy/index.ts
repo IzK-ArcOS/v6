@@ -5,6 +5,7 @@ import { UserToken } from "$ts/stores/user";
 import { sleep } from "$ts/util";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../../util";
+import { GlobalDispatch } from "$ts/process/dispatch/global";
 
 export async function copyItem(source: string, destination: string) {
   Log(`server/fs/copy`, `Copying ${source} to ${destination}`);
@@ -21,6 +22,8 @@ export async function copyItem(source: string, destination: string) {
 
   try {
     const response = await axios.get(url, makeTokenOptions(token));
+
+    GlobalDispatch.dispatch("fs-flush");
 
     return response.status === 200;
   } catch {
@@ -56,6 +59,8 @@ export async function renameItem(oldPath: string, newPath: string) {
 
   try {
     const response = await axios.get(url, makeTokenOptions(token));
+
+    GlobalDispatch.dispatch("fs-flush");
 
     return response.status === 200;
   } catch {

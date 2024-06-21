@@ -15,8 +15,6 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 
   const virtual = getVirtualDirectory(path);
 
-  console.log(virtual);
-
   if (virtual && path != "./") {
     return virtual;
   }
@@ -42,8 +40,6 @@ export async function readDirectory(path: string): Promise<UserDirectory> {
 
     data.directories = sortDirectories(data.directories);
     data.files = sortFiles(data.files);
-
-    console.log(data);
 
     data.directories = data.directories.filter((v) => !!v);
 

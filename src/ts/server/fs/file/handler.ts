@@ -10,7 +10,6 @@ import { FileHandler, PartialArcFile } from "$types/fs";
 import { parseExtension } from "../util";
 
 export async function OpenFile(file: PartialArcFile, parentPid: number = ShellPid()) {
-  console.log(file);
   if (file.onOpen) {
     await file.onOpen(file);
 

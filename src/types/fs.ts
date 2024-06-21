@@ -61,6 +61,7 @@ export interface VirtualDirectory {
   userPath: string;
   data?: UserDirectory;
   files?: PartialArcFile[];
+  dirs?: PartialUserDir[];
 }
 
 export type VirtualFsStoreNode = { callback: VirtualDirectorySupplier; caption: string };

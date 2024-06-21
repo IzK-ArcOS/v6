@@ -18,7 +18,6 @@ export async function DesktopAppIcons(): Promise<VirtualDirectorySupplierReturn>
       dateCreated: BUILD_TIMESTAMP,
       dateModified: BUILD_TIMESTAMP,
       size: JSON.stringify(app).length,
-      virtual: true,
       system: app.metadata.core,
       hidden: app.metadata.hidden,
       onOpen() {

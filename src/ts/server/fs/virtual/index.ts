@@ -4,6 +4,7 @@ import { cloneWithoutInheritance } from "$ts/util/clone";
 import { LogLevel } from "$types/console";
 import {
   PartialArcFile,
+  PartialUserDir,
   UserDirectory,
   VirtualDirectory,
   VirtualDirectorySupplier,
@@ -32,6 +33,24 @@ export function getVirtualFiles(path: string): PartialArcFile[] {
 
   for (const match of matchesSafe) {
     result.push(...(match.files || []));
+  }
+
+  return result;
+}
+
+export function getVirtualDirectories(path: string): PartialUserDir[] {
+  Log("fs/virtual", `Getting VFS directories for ${path}`);
+
+  const vfs = VirtualFilesystemStore.get();
+  const matches = vfs.filter((vd) => vd.userPath == path);
+  const matchesSafe = cloneWithoutInheritance<VirtualDirectory[]>(matches);
+
+  if (!matchesSafe) return [];
+
+  const result: PartialUserDir[] = [];
+
+  for (const match of matchesSafe) {
+    result.push(...(match.dirs || []));
   }
 
   return result;

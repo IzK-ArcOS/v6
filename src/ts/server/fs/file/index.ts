@@ -6,7 +6,7 @@ import { Endpoints } from "$ts/stores/endpoint";
 import { UserToken } from "$ts/stores/user";
 import { sleep } from "$ts/util";
 import { LogLevel } from "$types/console";
-import { ArcFile, PartialArcFile } from "$types/fs";
+import { ArcFile, PartialArcFile, PartialUserDir } from "$types/fs";
 import { Notification } from "$types/notif";
 import axios from "axios";
 import { getServerUrl, makeTokenOptions } from "../../util";
@@ -97,6 +97,20 @@ export async function getPartialFile(path: string): Promise<PartialArcFile> {
   if (!dir) return null;
 
   return dir.files.filter((f) => f.filename == filename)[0];
+}
+
+export async function getPartialDirectory(path: string): Promise<PartialUserDir> {
+  Log("server/fs/file", `Getting partial dir of ${path}`);
+
+  if (path.startsWith("@client")) return null;
+
+  const parent = getParentDirectory(path);
+  const dir = await readDirectory(parent);
+  const foldername = getFilenameFromPath(path);
+
+  if (!dir) return null;
+
+  return dir.directories.filter((f) => f.name == foldername)[0];
 }
 
 export async function writeFile(

@@ -1,7 +1,7 @@
 import { UserDataStore } from "$ts/stores/user";
 import { VirtualDirectorySupplierReturn } from "$types/fs";
 import { getParentDirectory } from "../dir";
-import { getPartialFile } from "../file";
+import { getPartialDirectory, getPartialFile } from "../file";
 
 export async function FilesystemShortcuts(): Promise<VirtualDirectorySupplierReturn> {
   const result: VirtualDirectorySupplierReturn = [];
@@ -10,14 +10,18 @@ export async function FilesystemShortcuts(): Promise<VirtualDirectorySupplierRet
   if (!userdata.shortcuts) return [];
 
   for (const [source, destination] of userdata.shortcuts) {
-    const partial = await getPartialFile(source);
+    const partialFile = await getPartialFile(source);
+    const partialDir = await getPartialDirectory(source);
     const parent = getParentDirectory(destination);
 
-    if (!partial) continue;
+    console.log(partialFile, partialDir);
+
+    if (!partialFile && !partialDir) continue;
 
     result.push({
       userPath: parent,
-      files: [{ ...partial, virtual: true }],
+      files: partialFile ? [{ ...partialFile, virtual: true }] : [],
+      dirs: partialDir ? [{ ...partialDir, virtual: true }] : [],
     });
   }
 

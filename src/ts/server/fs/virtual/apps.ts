@@ -25,7 +25,7 @@ export async function AppsVirtualFolder(): Promise<VirtualDirectorySupplierRetur
         spawnApp(id);
       },
       readProxy() {
-        return new Blob([stringifyObject(app)]);
+        return new Blob([stringifyObject(app.runtime)]);
       },
     });
   }

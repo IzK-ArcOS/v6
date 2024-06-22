@@ -1,3 +1,4 @@
+import { appLibrary } from "$ts/stores/apps";
 import { ProcessStack } from "$ts/stores/process";
 import { UserDataStore } from "$ts/stores/user";
 import { App } from "$types/app";
@@ -16,4 +17,8 @@ export function isPopulatable(app: App, includeOverlays?: boolean) {
 
 export function isOpened(id: string): boolean {
   return ProcessStack.getAppPids(id).length > 0;
+}
+
+export function isLoaded(id: string): boolean {
+  return !![...appLibrary.get()].filter(([i]) => i == id).length;
 }

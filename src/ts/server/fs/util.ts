@@ -21,12 +21,14 @@ export function pathToFriendlyName(path: string) {
   return getFilenameFromPath(path);
 }
 
-export function pathToFriendlyPath(path: string) {
+export function pathToFriendlyPath(path: string, addPrefix = true) {
+  let prefix = addPrefix ? "Home/" : "";
+
   if (!path) return path;
 
   if (path === "./" || path === ".") return "Home";
 
-  return `Home/${path.replace("./", "").replace("@client/", "")}`;
+  return `${prefix}${path.replace("./", "").replace("@client/", "")}`;
 }
 
 export function parseFilename(path: string) {

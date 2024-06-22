@@ -2,7 +2,7 @@
   
 <p align="center">
     <a href="https://izk-arcos.nl/" target="_blank" rel="noopener">
-        <img src="https://github.com/IzK-ArcOS/ArcOS-Frontend/assets/76709090/e1965e53-e96d-41f7-bab5-0061ecd26922" width="768px"/>
+        <img src="https://github.com/IzK-ArcOS/v6/assets/76709090/0121ffdb-bd9d-430d-b5d3-440fb569e297" width="768px"/>
     </a>
 </p>
   

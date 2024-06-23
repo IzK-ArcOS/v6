@@ -30,7 +30,7 @@ export const VirtualFilesystemSuppliers = Store<VirtualFsStoreNode[]>([
 export const VirtualSystemFolderExpr: [string, RegExp, boolean][] = [
   ["System", /(.*?)\.(js|css|json)/g, true],
   ["Thumbnails", /(imgthumb[0-9]+)\.(png|jpg|jpeg)/g, false],
-  ["Wallpapers", /(img[0-9]+)\.(png|jpg|jpeg)/g, false],
+  ["Wallpapers", /(img[0-9]+|safetoturnoff|safemode)\.(png|jpg|jpeg)/g, false],
   ["Profiles", /([0-9]+)\.png/g, false],
   ["Branding", /(rc|esr|glow|devIcon|glowing|unstIcon|systemIcon)(.*?|)\.(png|jpg|svg)/g, true],
   ["Sounds", /(.*?)\.(wav|mp3)/g, true],
@@ -38,5 +38,3 @@ export const VirtualSystemFolderExpr: [string, RegExp, boolean][] = [
   ["Cursors", /(.*?)\.cur/g, true],
   ["Miscellaneous", /(.*?)\.([a-zA-Z])/g, false],
 ];
-
-//\-([a-z0-9]+)\.

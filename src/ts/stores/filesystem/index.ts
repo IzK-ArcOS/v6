@@ -20,4 +20,14 @@ export const HardwiredFsItemFlags: Record<string, ItemFlags> = {
     hidden: true,
     system: true,
   },
+  ArcOS: {
+    virtual: true,
+    hidden: true,
+    system: true,
+  },
+  "./ArcOS": {
+    virtual: true,
+    hidden: true,
+    system: true,
+  },
 };

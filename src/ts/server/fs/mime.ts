@@ -1,7 +1,7 @@
 import { DefaultMimeIcon } from "$ts/images/mime";
 import { MimeTypeIcons } from "$ts/stores/filesystem";
 
-export function getMimeIcon(filename: string): string {
+export function getMimeIcon(filename: string, fallback = DefaultMimeIcon): string {
   filename = filename.toLowerCase();
 
   for (const icon in MimeTypeIcons) {
@@ -12,5 +12,5 @@ export function getMimeIcon(filename: string): string {
     }
   }
 
-  return DefaultMimeIcon;
+  return fallback;
 }

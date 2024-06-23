@@ -57,11 +57,11 @@ export class AppRuntime {
     this.pid = pid;
   }
 
-  public async closeApp() {
+  public async closeApp(focusParent = true) {
     const parent = this.process.parentPid;
     const result = await this.process.handler.kill(this.pid, true);
 
-    if (result == "success" && parent) focusedPid.set(parent);
+    if (result == "success" && parent && focusParent) focusedPid.set(parent);
 
     return this;
   }

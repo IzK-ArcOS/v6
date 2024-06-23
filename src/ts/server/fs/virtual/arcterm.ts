@@ -20,6 +20,8 @@ export async function ArcTermVirtualFolder(): Promise<VirtualDirectorySupplierRe
       dateModified: BUILD_TIMESTAMP,
       icon: ArcTermMimeIcon,
       size: stringified.length,
+      virtual: true,
+      system: true,
       onOpen() {
         spawnApp("ArcTerm", 0, [[command.keyword, "exit"]]);
       },

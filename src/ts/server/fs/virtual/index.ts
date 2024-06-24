@@ -11,9 +11,21 @@ import {
 } from "$types/fs";
 import { sortDirectories, sortFiles } from "../sort";
 
+// Get the entire VFS store in array-form
+export function getVfsStore() {
+  const vfs = VirtualFilesystemStore.get();
+  const result = [];
+
+  for (const dirs of Object.values(vfs)) {
+    result.push(...dirs);
+  }
+
+  return result;
+}
+
 // Gets the virtual user directories via de .data property
 export function getVirtualDirectoryListing(path: string): UserDirectory[] {
-  const vfs = VirtualFilesystemStore.get();
+  const vfs = getVfsStore();
   const matches = vfs.filter((vd) => vd.userPath == path);
 
   return matches.map((m) => m.data) || [];
@@ -21,7 +33,7 @@ export function getVirtualDirectoryListing(path: string): UserDirectory[] {
 
 // Gets all virtual files of the specified directory
 export function getVirtualFiles(path: string): PartialArcFile[] {
-  const vfs = VirtualFilesystemStore.get();
+  const vfs = getVfsStore();
   const matches = vfs.filter((vd) => vd.userPath == path);
   const matchesSafe = cloneWithoutInheritance<VirtualDirectory[]>(matches);
 
@@ -38,7 +50,7 @@ export function getVirtualFiles(path: string): PartialArcFile[] {
 
 // Gets all the virtual directories that reside in the specified directory
 export function getVirtualDirectories(path: string): PartialUserDir[] {
-  const vfs = VirtualFilesystemStore.get();
+  const vfs = getVfsStore();
   const matches = vfs.filter((vd) => vd.userPath == path);
   const matchesSafe = cloneWithoutInheritance<VirtualDirectory[]>(matches);
 
@@ -55,7 +67,7 @@ export function getVirtualDirectories(path: string): PartialUserDir[] {
 
 // Gets the content of a virtual directory
 export function getVirtualDirectory(path: string): UserDirectory {
-  const vfs = VirtualFilesystemStore.get();
+  const vfs = getVfsStore();
   const matches = vfs.filter((vd) => vd.data && vd.data.scopedPath == path);
 
   const match = matches.map((m) => m.data)[0];
@@ -89,7 +101,7 @@ export function loadVirtualDirectorySupplier(
 // Refreshes the entire VFS
 export async function flushVirtualFilesystem() {
   const suppliers = VirtualFilesystemSuppliers.get();
-  const result = [];
+  const result: Record<string, VirtualDirectory[]> = {};
 
   for (const { callback, caption } of suppliers) {
     const supplied = await callback();
@@ -106,8 +118,18 @@ export async function flushVirtualFilesystem() {
       supplier.data.files = sortFiles(supplier.data.files);
     }
 
-    result.push(...supplied);
+    result[caption] = supplied;
   }
 
   VirtualFilesystemStore.set(result);
+}
+
+export async function updateSingleVfsSupplier(caption: string, supplier: VirtualDirectorySupplier) {
+  const vfs = VirtualFilesystemStore.get();
+
+  if (!vfs[caption]) return;
+
+  vfs[caption] = await supplier();
+
+  VirtualFilesystemStore.set(vfs);
 }

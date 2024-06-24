@@ -12,7 +12,7 @@ import { SystemVirtualFolder } from "$ts/server/fs/virtual/system";
 import { Store } from "$ts/writable";
 import { VirtualDirectory, VirtualFsStoreNode } from "$types/fs";
 
-export const VirtualFilesystemStore = Store<VirtualDirectory[]>([]);
+export const VirtualFilesystemStore = Store<Record<string, VirtualDirectory[]>>({});
 export const VirtualFilesystemSuppliers = Store<VirtualFsStoreNode[]>([
   { callback: SystemVirtualFolder, caption: "ArcOS Folder" },
   { callback: HelpVirtualFolder, caption: "Help Articles" },

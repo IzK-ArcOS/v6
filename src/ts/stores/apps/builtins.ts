@@ -27,10 +27,12 @@ import { SettingsApp } from "$apps/Settings/ts/app";
 import { ArcShell } from "$apps/Shell/ts/app";
 import { TextEditor } from "$apps/TextEditor/ts/app";
 import { desktopWallpaper } from "$apps/Wallpaper/ts/app";
+import { WebBrowserApp } from "$apps/WebBrowser/ts/app";
 import { App } from "$types/app";
 
 export const builtinApps: Record<string, App> = {
   ArcShell,
+  WebBrowserApp,
   KeyboardShortcuts,
   desktopWallpaper,
   ArcTerm,

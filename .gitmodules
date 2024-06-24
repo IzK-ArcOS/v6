@@ -103,3 +103,6 @@
 [submodule "src/apps/Calculator"]
 	path = src/apps/Calculator
 	url = https://github.com/IzK-ArcOS/v6-Calculator
+[submodule "src/apps/WebBrowser"]
+	path = src/apps/WebBrowser
+	url = https://github.com/IzK-ArcOS/v6-WebBrowser

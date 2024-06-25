@@ -46,6 +46,7 @@ export const defaultUserData: UserData = {
     securityNoPassword: false,
     elevationDisabled: false,
     bypassElevation: false,
+    enableUserStyle: false,
   },
   disabledApps: [],
   autoLoads: [],
@@ -79,6 +80,7 @@ export const defaultUserData: UserData = {
     LoadSaveDialog: {},
     desktopWallpaper: {},
   },
+  shortcuts: [],
 };
 export const UserName = Store<string>();
 export const UserDataStore = Store<UserData>(defaultUserData);

@@ -34,6 +34,7 @@ export const HelpArticles = {
   fileManagerCreateFileFolder: `@client/help/FileManager/CreateFileFolder.md`,
   fileManagerUploading: `@client/help/FileManager/Uploading.md`,
   fileManagerOpening: `@client/help/FileManager/Opening.md`,
+  webBrowser: `@client/help/WebBrowser.md`,
   logging: `@client/help/Logging.md`,
   loggingLevels: `@client/help/Logging/Levels.md`,
   lightsOff: `@client/help/LightsOff.md`,

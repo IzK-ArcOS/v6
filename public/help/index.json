@@ -180,6 +180,11 @@
     ]
   },
   {
+    "name": "Web Browser",
+    "path": "@client/help/WebBrowser.md",
+    "icon": "GlobeIcon"
+  },
+  {
     "name": "Writer",
     "path": "@client/help/Writer.md",
     "icon": "TextEditorIcon"

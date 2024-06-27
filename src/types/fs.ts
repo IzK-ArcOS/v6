@@ -74,3 +74,10 @@ export type VirtualFsStoreNode = { callback: VirtualDirectorySupplier; caption: 
 
 export type VirtualDirectorySupplierReturn = Nullable<VirtualDirectory>[];
 export type VirtualDirectorySupplier = () => MaybePromise<VirtualDirectorySupplierReturn>;
+
+export type WriteFileReturnValue =
+  | "success"
+  | "err_serverError"
+  | "err_noSpace"
+  | "err_unknown"
+  | "err_authentication";

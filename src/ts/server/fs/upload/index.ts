@@ -55,9 +55,9 @@ export async function fileUpload(file: File, dir: string): Promise<string> {
 
   const content = arrayToBlob(await file.arrayBuffer());
   const path = `${dir}/${file.name}`.split("//").join("/");
-  const valid = await writeFile(path, content);
+  const written = await writeFile(path, content);
 
-  if (!valid) return "";
+  if (written !== "success") return "";
 
   return path;
 }
@@ -68,9 +68,9 @@ export async function multipleFileUpload(files: FileList, dir: string): Promise<
   for (const file of files) {
     const content = arrayToBlob(await file.arrayBuffer());
     const path = `${dir}/${file.name}`.replaceAll("//", "/");
-    const valid = await writeFile(path, content);
+    const written = await writeFile(path, content);
 
-    if (!valid) return false;
+    if (written !== "success") return false;
 
     await sleep(55); // rate-limit cooldown
   }

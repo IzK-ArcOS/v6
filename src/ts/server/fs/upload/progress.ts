@@ -8,6 +8,9 @@ import { arrayToBlob } from "../convert";
 import { writeFile } from "../file";
 import { FileProgress } from "../progress";
 import { pathToFriendlyName } from "../util";
+import { createErrorDialog } from "$ts/process/error";
+import { WriteFileReturnCaptions } from "$ts/stores/filesystem/captions";
+import { ErrorIcon } from "$ts/images/dialog";
 
 export async function directUploadProgressy(
   path: string,
@@ -30,17 +33,19 @@ export async function directUploadProgressy(
 
     if (!files.length) target.set(path);
 
-    if (!multi) {
-      const file = uploader.files[0];
+    if (multi && uploader.files.length > 1) {
+      await multipleFileUploadProgressy(uploader.files, path, pid);
 
-      target.set(await fileUploadProgressy(file, path, pid));
+      target.set(path);
 
       return;
     }
 
-    await multipleFileUploadProgressy(uploader.files, path, pid);
+    const file = uploader.files[0];
 
-    target.set(path);
+    target.set(await fileUploadProgressy(file, path, pid));
+
+    return;
   };
 
   uploader.click();
@@ -75,18 +80,31 @@ export async function fileUploadProgressy(file: File, dir: string, pid?: number,
 
   const content = arrayToBlob(await file.arrayBuffer());
   const path = `${dir}/${file.name}`.split("//").join("/");
-  const valid = await writeFile(path, content, false, (p: AxiosProgressEvent) => {
+  const written = await writeFile(path, content, false, (p: AxiosProgressEvent) => {
     setDone(p.loaded);
     setMax(p.total);
   });
 
-  if (!valid) mutErr(+1);
+  if (written.startsWith("err_")) {
+    createErrorDialog(
+      {
+        title: "Failed to upload your file",
+        message: WriteFileReturnCaptions[written],
+        buttons: [{ caption: "Okay", action() {}, suggested: true }],
+        image: ErrorIcon,
+        sound: "arcos.dialog.error",
+      },
+      pid,
+      true
+    );
+    return "";
+  } else {
+    setDone(1);
 
-  GlobalDispatch.dispatch("fs-flush");
+    GlobalDispatch.dispatch("fs-flush");
 
-  if (!valid) return "";
-
-  return path;
+    return path;
+  }
 }
 
 export async function multipleFileUploadProgressy(
@@ -103,7 +121,7 @@ export async function multipleFileUploadProgressy(
     total += file.size;
   }
 
-  const { updSub, mutDone, setWork, setWait, mutErr } = await FileProgress(
+  const { updSub, mutDone, setMax, setDone, setWork, setWait, mutErr } = await FileProgress(
     {
       type: "size",
       caption: `Uploading ${files.length} ${P("file", files.length)} to ${pathToFriendlyName(dir)}`,
@@ -133,7 +151,7 @@ export async function multipleFileUploadProgressy(
       mutDone(p.bytes);
     });
 
-    if (!written) mutErr(+1);
+    if (written !== "success") mutErr(+1);
 
     setWork(false);
     setWait(true);
@@ -141,7 +159,8 @@ export async function multipleFileUploadProgressy(
     await sleep(55); // rate-limit cooldown
   }
 
-  mutDone(+200);
+  setMax(100);
+  setDone(100);
 
   GlobalDispatch.dispatch("fs-flush");
 

@@ -1,14 +1,11 @@
 import { toBase64 } from "$ts/base64";
 import { Log } from "$ts/console";
-import { deleteNotification, sendNotification } from "$ts/notif";
 import { GlobalDispatch } from "$ts/process/dispatch/global";
 import { Endpoints } from "$ts/stores/endpoint";
 import { UserToken } from "$ts/stores/user";
-import { sleep } from "$ts/util";
 import { LogLevel } from "$types/console";
-import { ArcFile, PartialArcFile, PartialUserDir } from "$types/fs";
-import { Notification } from "$types/notif";
-import axios from "axios";
+import { ArcFile, PartialArcFile, PartialUserDir, WriteFileReturnValue } from "$types/fs";
+import axios, { AxiosError } from "axios";
 import { getServerUrl, makeTokenOptions } from "../../util";
 import { getParentDirectory, readDirectory } from "../dir";
 import { parseFilename, pathToFriendlyName } from "../util";
@@ -118,7 +115,7 @@ export async function writeFile(
   blob: Blob,
   dispatch = true,
   onUploadProgress?: (progress: any) => any
-) {
+): Promise<WriteFileReturnValue> {
   if (!path) return null;
 
   if (path.startsWith("@client")) {
@@ -128,7 +125,7 @@ export async function writeFile(
       LogLevel.warn
     );
 
-    return true;
+    return "success";
   }
 
   Log("server/fs/file", `Writing ${blob.size} bytes to ${path}`);
@@ -145,24 +142,19 @@ export async function writeFile(
   try {
     const response = await axios.post(url, blob, makeTokenOptions(token, { onUploadProgress }));
 
-    if (dispatch) GlobalDispatch.dispatch("fs-flush");
+    if (dispatch && response.status === 200) GlobalDispatch.dispatch("fs-flush");
 
-    return response.status === 200;
-  } catch {
-    return false;
+    return "success";
+  } catch (e) {
+    switch (e.response.status) {
+      case 413:
+        return "err_noSpace";
+      case 500:
+        return "err_serverError";
+      default:
+        return "err_unknown";
+    }
   }
-}
-
-export async function writeFileAnnounced(path: string, blob: Blob, notif: Notification) {
-  const id = await sendNotification(notif);
-
-  await sleep(500);
-
-  const result = await writeFile(path, blob);
-
-  deleteNotification(id);
-
-  return result;
 }
 
 export function getFilenameFromPath(path: string): string {

@@ -1,8 +1,4 @@
 import { Log } from "$ts/console";
-import { SaveIcon } from "$ts/images/general";
-import { textToBlob } from "$ts/server/fs/convert";
-import { createDirectory } from "$ts/server/fs/dir";
-import { writeFileAnnounced } from "$ts/server/fs/file";
 import { BuiltinThemes } from "$ts/stores/themes/builtins";
 import { UserThemeKeys } from "$ts/stores/themes/values";
 import { UserDataStore, UserName } from "$ts/stores/user";
@@ -130,20 +126,4 @@ export function applySystemTheme(id: string) {
   loadTheme(BuiltinThemes[id]);
 
   return true;
-}
-
-export async function saveThemeToFilesystem(theme: UserTheme, name: string): Promise<boolean> {
-  const blob = textToBlob(JSON.stringify(theme, null, 2), "application/json");
-  const filename = `${name}.arctheme`;
-  const path = `./Themes/${filename}`;
-
-  await createDirectory("./Themes");
-
-  const written = await writeFileAnnounced(path, blob, {
-    title: "Saving Theme",
-    message: `ArcOS is now saving ${name} to ArcFS. Please wait...`,
-    image: SaveIcon,
-  });
-
-  return written;
 }

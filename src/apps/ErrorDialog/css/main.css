@@ -2,6 +2,7 @@
   width: max-content !important;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 #ErrorDialog div.body {

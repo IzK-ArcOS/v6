@@ -23,7 +23,7 @@
     "vite": "^4.4.3"
   },
   "dependencies": {
-    "@neodrag/svelte": "^2.0.3",
+    "@neodrag/svelte": "2.0.6",
     "axios": "^1.3.2",
     "colorsea": "^1.2.1",
     "dayjs": "^1.11.10",
